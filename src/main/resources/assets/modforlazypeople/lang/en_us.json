@@ -1,0 +1,29 @@
+{
+  "mflp.configScreen.title": "MFLP Settings",
+  "mflp.macroConfigScreen.title": "Macro Configurator",
+
+  "mflp.category.configCategory": "Config",
+  "mflp.category.hotkeyCategory": "Hotkeys",
+
+  "mflp.categoryEntry.tickFreezeToggle": "Toggle better tick freeze",
+  "mflp.categoryEntry.tickFreezeKeybind": "Toggle tick freeze key",
+  "mflp.categoryEntry.tickStepKeybind": "Tick stepping key",
+  "mflp.categoryEntry.setupWorldKeybind": "World setup key",
+
+
+  "mflp.tooltip.tickFreezeToggle": "A toggle for better tick freeze",
+  "mflp.tooltip.tickFreezeKey": "The hotkey for toggling tick freeze",
+  "mflp.tooltip.tickStepKey": "The hotkey for tick stepping",
+  "mflp.tooltip.worldSetupKey": "The hotkey for auto setting gamerules and a few others",
+
+  "mflp.keybind.tickFreeze": "Tick freeze",
+  "mflp.keybind.tickStep": "Tick step",
+  "mflp.keybind.setupWorld": "World setup",
+
+  "mflp.keybindCategory.MFLP": "MFLP",
+
+  "mflp.configScreen.removeButton": "Remove",
+  "mflp.configScreen.editButton": "Edit",
+
+  "mflp.keybinding.undefined": "Undefined (Prolly an error)"
+}

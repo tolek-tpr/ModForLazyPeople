@@ -1,0 +1,48 @@
+{
+	"schemaVersion": 1,
+	"id": "modforlazypeople",
+	"version": "${version}",
+	"name": "ModForLazyPeople",
+	"description": "A mod for lazy people ig",
+	"authors": [
+		"bear_with_me_XD"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/modforlazypeople/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"me.tolek.ModForLazyPeople",
+			"me.tolek.commands.MflpCommand"
+		],
+		"client": [
+			"me.tolek.ModForLazyPeopleClient",
+			"me.tolek.Macro.MacroExecutor",
+			"me.tolek.commands.MacroCommand",
+			"me.tolek.commands.MflpWelcomeCommand"
+		],
+		"modmenu": [
+			"me.tolek.ModMenuImpl"
+		]
+	},
+	"mixins": [
+		"modforlazypeople.mixins.json",
+		{
+			"config": "modforlazypeople.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
