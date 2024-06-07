@@ -3,6 +3,7 @@ package me.tolek.mixin.client;
 import me.tolek.Macro.Macro;
 import me.tolek.Macro.MacroList;
 import me.tolek.files.MflpConfigManager;
+import me.tolek.updateChecker.UpdateChecker;
 import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
 import net.minecraft.client.MinecraftClient;
@@ -58,6 +59,12 @@ public class MinecraftClientMixin {
                 }
             }
             iv.hasLoaded = true;
+        }
+
+        UpdateChecker uc = new UpdateChecker("tolek-tpr", "ModForLazyPeople", iv.version);
+        uc.check();
+        if (uc.isUpdateAvailable()) {
+            iv.updateAvailable = true;
         }
     }
 

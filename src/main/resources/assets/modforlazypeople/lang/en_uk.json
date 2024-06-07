@@ -1,6 +1,7 @@
 {
   "mflp.configScreen.title": "MFLP Settings",
   "mflp.macroConfigScreen.title": "Macro Configurator",
+  "mflp.updateScreen.title": "Update Available",
 
   "mflp.category.configCategory": "Config",
   "mflp.category.hotkeyCategory": "Hotkeys",
@@ -23,6 +24,7 @@
   "mflp.keybindCategory.MFLP": "MFLP",
 
   "mflp.configScreen.removeButton": "Remove",
+  "mflp.configScreen.editButton": "Edit",
 
   "mflp.keybinding.undefined": "Undefined (Prolly an error)"
 }
