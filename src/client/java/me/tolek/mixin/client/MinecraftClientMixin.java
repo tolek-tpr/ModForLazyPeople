@@ -66,6 +66,7 @@ public class MinecraftClientMixin {
         if (uc.isUpdateAvailable()) {
             iv.updateAvailable = true;
         }
+        iv.updateAvailable = false;
     }
 
 }
