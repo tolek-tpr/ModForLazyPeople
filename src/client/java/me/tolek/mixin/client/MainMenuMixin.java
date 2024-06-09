@@ -1,6 +1,7 @@
 package me.tolek.mixin.client;
 
 import me.tolek.gui.MflpHelloScreen;
+import me.tolek.gui.UpdateScreen;
 import me.tolek.util.InstancedValues;
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,6 +25,7 @@ public class MainMenuMixin {
 
 
         if (!iv.shownWelcomeScreen) MinecraftClient.getInstance().setScreen(new MflpHelloScreen());
+        if (iv.updateAvailable && !iv.shownUpdateScreen) MinecraftClient.getInstance().setScreen(iv.shownWelcomeScreen ? new UpdateScreen(null) : new UpdateScreen(new MflpHelloScreen()));
     }
 
 }

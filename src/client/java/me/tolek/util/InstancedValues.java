@@ -13,5 +13,9 @@ public class InstancedValues {
 
     public boolean shownWelcomeScreen = false;
     public boolean hasLoaded = false;
+    public boolean updateAvailable = false;
+    public String version = "v3.2.3";
+    public String githubUrl = "github.com/tolek-tpr/ModForLazyPeople/releases";
+    public boolean shownUpdateScreen = false;
 
 }
