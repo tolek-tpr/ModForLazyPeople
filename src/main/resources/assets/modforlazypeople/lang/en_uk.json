@@ -1,7 +1,8 @@
 {
-  "mflp.configScreen.title": "MFLP Settings",
+  "mflp.configScreen.title": "MFLP Macros",
   "mflp.macroConfigScreen.title": "Macro Configurator",
   "mflp.updateScreen.title": "Update Available",
+  "mflp.settingsScreen.title": "MFLP Settings",
 
   "mflp.category.configCategory": "Config",
   "mflp.category.hotkeyCategory": "Hotkeys",

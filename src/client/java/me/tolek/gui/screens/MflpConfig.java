@@ -1,4 +1,4 @@
-package me.tolek.gui;
+package me.tolek.gui.screens;
 
 import me.tolek.Macro.Macro;
 import me.tolek.Macro.MacroList;
@@ -11,7 +11,6 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.network.message.ChatVisibility;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -46,6 +45,13 @@ public class MflpConfig extends Screen {
         addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, (button) -> {
             client.setScreen((Screen) null);
         }).dimensions(width / 2 - 75/*+ 160*/, height - 29, 150, 20).build());
+
+        addDrawableChild(ButtonWidget.builder(Text.literal("Macros"), (button) -> {
+            client.setScreen(new MflpConfig(this.client));
+        }).dimensions(width - width + 10, height - height + 22, 70, 20).build());
+        addDrawableChild(ButtonWidget.builder(Text.literal("Settings"), (button) -> {
+            client.setScreen(new MflpSettingsScreen());
+        }).dimensions(width - width + 85, height - height + 22, 70, 20).build());
 
         int step = 2;
         for (Macro m : macroList.getMacros()) {

@@ -23,7 +23,8 @@
 			"me.tolek.ModForLazyPeopleClient",
 			"me.tolek.Macro.MacroExecutor",
 			"me.tolek.commands.MacroCommand",
-			"me.tolek.commands.MflpWelcomeCommand"
+			"me.tolek.commands.MflpWelcomeCommand",
+			"me.tolek.settings.executor.TickSettingExecutor"
 		],
 		"modmenu": [
 			"me.tolek.ModMenuImpl"
