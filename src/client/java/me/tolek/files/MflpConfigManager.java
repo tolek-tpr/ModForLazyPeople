@@ -5,6 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import me.tolek.Macro.Macro;
+import me.tolek.settings.MflpSettingsList;
+import me.tolek.settings.base.MflpSetting;
 import net.minecraft.client.option.KeyBinding;
 
 import java.io.*;
@@ -23,13 +25,13 @@ public class MflpConfigManager {
         gson = builder.setPrettyPrinting().create();
     }
 
-    public void save(ArrayList<Macro> macros, boolean shownWelcomeScreen) {
+    public void save(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings) {
         File configFileObject = new File(CONFIG_FILE);
         if (configFileObject.exists()) {
             configFileObject.delete();
         }
 
-        ModData modData = new ModData(macros, shownWelcomeScreen);
+        ModData modData = new ModData(macros, shownWelcomeScreen, settings);
         try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
             gson.toJson(modData, writer);
         } catch (IOException e) {
@@ -40,7 +42,7 @@ public class MflpConfigManager {
     public ModData load() {
         try (FileReader reader = new FileReader(CONFIG_FILE)) {
             return gson.fromJson(reader, ModData.class);
-        } catch (JsonIOException | JsonSyntaxException | IOException e) {
+        } catch (IOException e) {
             System.out.println("File not found!");
             return null;
         }
@@ -68,32 +70,21 @@ public class MflpConfigManager {
 
     public class ModData {
         private ArrayList<ShortMacro> macros = new ArrayList<>();
+        private MflpSettingsList settings = MflpSettingsList.getInstance();
         private boolean shownWelcomeScreen;
 
-        public ModData(ArrayList<Macro> macros, boolean shownWelcomeScreen) {
+        public ModData(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings) {
             for (Macro m : macros) {
                 this.macros.add(new ShortMacro(m.getName(), m.getCommands(), m.getKey(), m.getRepeatAmount(), m.getUneditable(), m.getTurnedOn()));
             }
-
-            //this.macros = macros;
+            this.settings = settings;
             this.shownWelcomeScreen = shownWelcomeScreen;
-        }
-
-        public ArrayList<Macro> getMacros() {
-            ArrayList<Macro> macros = new ArrayList<>();
-            for (ShortMacro sm : this.macros) {
-                KeyBinding kb = new KeyBinding("mflp.keybinding.undefined",
-                        sm.key,
-                        "mflp.keybindCategory.MFLP");
-                macros.add(new Macro(kb, sm.commands, sm.name, sm.repeatAmt));
-            }
-
-            return macros;
         }
 
         public ArrayList<ShortMacro> getShortMacros() {
             return this.macros;
         }
+        public MflpSettingsList getSettings() { return this.settings; }
 
 
         public boolean isShownWelcomeScreen() {

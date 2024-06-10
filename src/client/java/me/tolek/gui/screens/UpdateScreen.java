@@ -1,4 +1,4 @@
-package me.tolek.gui;
+package me.tolek.gui.screens;
 
 import me.tolek.util.InstancedValues;
 import net.minecraft.client.gui.DrawContext;

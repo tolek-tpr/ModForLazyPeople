@@ -3,6 +3,8 @@ package me.tolek.mixin.client;
 import me.tolek.Macro.Macro;
 import me.tolek.Macro.MacroList;
 import me.tolek.files.MflpConfigManager;
+import me.tolek.settings.MflpSettingsList;
+import me.tolek.settings.base.*;
 import me.tolek.updateChecker.UpdateChecker;
 import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
@@ -25,9 +27,10 @@ public class MinecraftClientMixin {
         MflpConfigManager configManager = new MflpConfigManager();
         InstancedValues iv = InstancedValues.getInstance();
         MacroList macroList = MacroList.getInstance();
+        MflpSettingsList settings = MflpSettingsList.getInstance();
+
         if (!util.didSave) {
-            configManager.save(macroList.getMacros(), iv.shownWelcomeScreen);
-            System.out.println("saving, " + macroList.getMacros() + " SPACE " + iv.shownWelcomeScreen);
+            configManager.save(macroList.getMacros(), iv.shownWelcomeScreen, settings);
             util.didSave = true;
         }
     }
@@ -37,6 +40,7 @@ public class MinecraftClientMixin {
         MflpConfigManager configManager = new MflpConfigManager();
         InstancedValues iv = InstancedValues.getInstance();
         MacroList macroList = MacroList.getInstance();
+        MflpSettingsList settings = MflpSettingsList.getInstance();
 
         if (!iv.hasLoaded) {
             MflpConfigManager.ModData loadedData = configManager.load();
@@ -46,7 +50,13 @@ public class MinecraftClientMixin {
                 boolean loadedShownWelcomeScreen = loadedData.isShownWelcomeScreen();
 
                 iv.shownWelcomeScreen = loadedShownWelcomeScreen;
-                macroList.getMacros().clear();
+                if (!loadedData.getShortMacros().isEmpty() && loadedData.getShortMacros() != null) {
+                    macroList.getMacros().clear();
+                }
+
+                if (loadedData.getSettings() != null) {
+                    settings.getSettings().clear();
+                }
 
                 for (MflpConfigManager.ShortMacro sm : shortMacros) {
                     KeyBinding kb = new KeyBinding("mflp.keybinding.undefined",
@@ -57,6 +67,10 @@ public class MinecraftClientMixin {
                     m.setKey(sm.key);
                     macroList.addMacro(m);
                 }
+
+                settings.AUTO_WELCOME_BACK = loadedData.getSettings().AUTO_WELCOME_BACK;
+                //settings.settings = loadedData.getSettings().settings;
+
             }
             iv.hasLoaded = true;
         }
@@ -66,7 +80,7 @@ public class MinecraftClientMixin {
         if (uc.isUpdateAvailable()) {
             iv.updateAvailable = true;
         }
-        iv.updateAvailable = false;
+        //iv.updateAvailable = false;
     }
 
 }

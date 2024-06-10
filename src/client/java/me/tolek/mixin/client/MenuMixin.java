@@ -1,6 +1,6 @@
 package me.tolek.mixin.client;
 
-import me.tolek.gui.MflpConfig;
+import me.tolek.gui.screens.MflpConfig;
 import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;

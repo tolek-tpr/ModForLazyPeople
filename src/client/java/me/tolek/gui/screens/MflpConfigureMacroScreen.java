@@ -1,4 +1,4 @@
-package me.tolek.gui;
+package me.tolek.gui.screens;
 
 import me.tolek.Macro.Macro;
 import me.tolek.Macro.MacroList;
@@ -6,7 +6,6 @@ import me.tolek.gui.widgets.InputBoxWidget;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.EditBoxWidget;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;

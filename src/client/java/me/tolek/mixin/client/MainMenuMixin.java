@@ -1,7 +1,7 @@
 package me.tolek.mixin.client;
 
-import me.tolek.gui.MflpHelloScreen;
-import me.tolek.gui.UpdateScreen;
+import me.tolek.gui.screens.MflpHelloScreen;
+import me.tolek.gui.screens.UpdateScreen;
 import me.tolek.util.InstancedValues;
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,10 +1,7 @@
 package me.tolek.commands;
 
-import com.mojang.brigadier.arguments.StringArgumentType;
-import me.tolek.gui.MflpHelloScreen;
+import me.tolek.gui.screens.MflpHelloScreen;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
-import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.MinecraftClient;
 
