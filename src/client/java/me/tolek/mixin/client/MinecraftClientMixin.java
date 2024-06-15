@@ -67,8 +67,9 @@ public class MinecraftClientMixin {
                     m.setKey(sm.key);
                     macroList.addMacro(m);
                 }
-
-                settings.AUTO_WELCOME_BACK = loadedData.getSettings().AUTO_WELCOME_BACK;
+                if (loadedData.getSettings() != null) {
+                    settings.AUTO_WELCOME_BACK = loadedData.getSettings().AUTO_WELCOME_BACK;
+                }
                 //settings.settings = loadedData.getSettings().settings;
 
             }

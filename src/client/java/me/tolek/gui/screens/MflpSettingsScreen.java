@@ -1,11 +1,13 @@
 package me.tolek.gui.screens;
 
 import me.tolek.Macro.Macro;
+import me.tolek.gui.widgets.InputBoxWidget;
 import me.tolek.settings.MflpSettingsList;
 import me.tolek.settings.base.*;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.util.InputUtil;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -43,7 +45,7 @@ public class MflpSettingsScreen extends Screen {
                 ButtonWidget toggleButton = ButtonWidget.builder(toggleText, (button -> {
                     bs.run();
                     client.setScreen(new MflpSettingsScreen());
-                })).dimensions(width / 2 - 155 + 160, 20 + step, 60, 20).build();
+                })).dimensions(width / 2 - 155 + 160, 20 + step, 150, 20).build();
 
                 addDrawableChild(toggleButton);
             }
@@ -61,6 +63,18 @@ public class MflpSettingsScreen extends Screen {
             // STRING SETTING (not implemented)
             if (setting instanceof StringSetting) {
                 StringSetting is = (StringSetting) setting;
+
+                InputBoxWidget inputBox = new InputBoxWidget(textRenderer, width / 2 - 155 + 160, 20 + step, 150, 20, Text.literal(is.getState()), Text.literal(is.getState()));
+                inputBox.setKeyConsumer((keyCode -> {
+                    if (keyCode == InputUtil.GLFW_KEY_ESCAPE) {
+                        inputBox.setFocused(false);
+                    } else if (keyCode == InputUtil.GLFW_KEY_ENTER) {
+                        is.setState(inputBox.getText());
+                        inputBox.setFocused(false);
+                    }
+                }));
+
+                addDrawableChild(inputBox);
             }
 
             step += 22;

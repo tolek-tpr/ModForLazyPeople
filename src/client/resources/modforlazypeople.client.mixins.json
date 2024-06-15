@@ -6,7 +6,8 @@
 		"ExampleClientMixin",
 		"MainMenuMixin",
 		"MenuMixin",
-		"MinecraftClientMixin"
+		"MinecraftClientMixin",
+		"ChatHudMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
