@@ -30,47 +30,72 @@ public class ChatHudMixin {
 
             for (MflpSetting setting : settingsList.getSettings()) {
                 if (setting.getName().equals("Auto welcome back")) {
-                    if (message.getString().contains("banana")) {
+                    executeAutoWB(message, setting, playerName);
+                } else if (setting.getName().equals("Auto welcome")) {
+                    executeAutoWelcome(message, setting, playerName);
+                }
+            }
+
+        }
+    }
+
+    public boolean isFakeMessage(Text message) {
+        return message.getString().contains("From") || message.getString().contains("*");
+    }
+
+    public void executeAutoWelcome(Text message, MflpSetting setting, String playerName) {
+        if (!message.getString().contains(playerName)) {
+            if (message.getString().contains("Welcome") && message.getString().contains(" to Synergy!")) {
+                if (!isFakeMessage(message)) {
+                    setting.refresh();
+                    iv.pauseWelcomeBack = true;
+                }
+            }
+        }
+    }
+
+    public void executeAutoWB(Text message, MflpSetting setting, String playerName) {
+        if (message.getString().contains("banana")) {
+            if (iv.timeSinceLastInputInMils / 1000 < 30) {
+                setting.refresh();
+            }
+        }
+        if (!message.getString().contains(playerName)) {
+            if (!iv.pauseWelcomeBack) {
+                if (message.getString().contains("has joined.") || message.getString().contains("is no longer AFK.")) {
+                    if (!isFakeMessage(message)) {
+                    /*if (settingsList.AUTO_WB_WHITELIST.getState()) {
+                        String[] whiteListedNames = settingsList.WB_WHITELIST.getState().split(" ");
+                        for (String s : whiteListedNames) {
+                            if (message.getString().contains(s)) {
+                                setting.refresh();
+                            }
+                        }
+                        return;
+                    }
+                    if (settingsList.AUTO_WB_BLACKLIST.getState()) {
+                        String[] blackListedNames = settingsList.WB_BLACKLIST.getState().split(" ");
+                        boolean opt = true;
+                        for (String s : blackListedNames) {
+                            if (message.getString().contains(s)) {
+                                opt = false;
+                            }
+                        }
+                        if (opt) {
+                            setting.refresh();
+                        }
+                        return;
+                    }*/
                         if (iv.timeSinceLastInputInMils / 1000 < 30) {
                             setting.refresh();
                         }
                     }
-                    if (message.getString().contains("has joined.") && !(message.getString().contains("From"))) {
-                        if (!message.getString().contains(playerName) && !(message.getString().contains("*"))) {
-                            /*if (settingsList.AUTO_WB_WHITELIST.getState()) {
-                                String[] whiteListedNames = settingsList.WB_WHITELIST.getState().split(" ");
-                                for (String s : whiteListedNames) {
-                                    if (message.getString().contains(s)) {
-                                        setting.refresh();
-                                    }
-                                }
-                                return;
-                            }
-                            if (settingsList.AUTO_WB_BLACKLIST.getState()) {
-                                String[] blackListedNames = settingsList.WB_BLACKLIST.getState().split(" ");
-                                boolean opt = true;
-                                for (String s : blackListedNames) {
-                                    if (message.getString().contains(s)) {
-                                        opt = false;
-                                    }
-                                }
-                                if (opt) {
-                                    setting.refresh();
-                                }
-                                return;
-                            }*/
-                            if (iv.timeSinceLastInputInMils / 1000 < 30) {
-                                setting.refresh();
-                            }
-                        }
-                    } else if (message.getString().contains("is no longer AFK.")  && !(message.getString().contains("From"))) {
-                        if (!message.getString().contains(playerName) &&  !(message.getString().contains("*"))) {
-                            setting.refresh();
-                        }
-                    }
                 }
+            } else {
+                iv.pauseWelcomeBack = false;
             }
         }
+
     }
 
 }

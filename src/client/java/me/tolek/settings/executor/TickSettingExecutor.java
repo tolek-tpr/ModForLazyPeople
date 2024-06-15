@@ -41,13 +41,13 @@ public class TickSettingExecutor implements ClientModInitializer {
     }
 
     public void clientTick(MinecraftClient client) {
-        if (client.currentScreen == null) {
+        //if (client.currentScreen == null) {
             for (int key = GLFW.GLFW_KEY_SPACE; key < GLFW.GLFW_KEY_LAST; key++) {
                 if (GLFW.glfwGetKey(client.getWindow().getHandle(), key) == GLFW.GLFW_PRESS) {
                     iv.timeSinceLastInputInMils = 0;
                 }
             }
-        }
+        //}
     }
 
 }
