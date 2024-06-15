@@ -11,6 +11,10 @@ public class MflpSettingsList {
 
 
     public AutoWelcomeBack AUTO_WELCOME_BACK = new AutoWelcomeBack();
+    public AutoWBWhitelist AUTO_WB_WHITELIST = new AutoWBWhitelist();
+    public WelcomeBackWhitelist WB_WHITELIST = new WelcomeBackWhitelist();
+    public AutoWBBlacklist AUTO_WB_BLACKLIST = new AutoWBBlacklist();
+    public WelcomeBackBlacklist WB_BLACKLIST = new WelcomeBackBlacklist();
 
     private MflpSettingsList() {
 
@@ -24,6 +28,10 @@ public class MflpSettingsList {
     public ArrayList<MflpSetting> getSettings() {
         ArrayList<MflpSetting> settings = new ArrayList<>();
         settings.add(AUTO_WELCOME_BACK);
+        /*settings.add(AUTO_WB_WHITELIST);
+        settings.add(AUTO_WB_BLACKLIST);
+        settings.add(WB_WHITELIST);
+        settings.add(WB_BLACKLIST);*/
         return settings;
     }
 

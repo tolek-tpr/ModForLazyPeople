@@ -37,7 +37,9 @@ public class UpdateScreen extends Screen {
         super.render(context, mouseX, mouseY, delta);
 
         Text updateAvailable = Text.literal("Update available!");
+        Text currentVersion = Text.literal("Mod for lazy people version: " + iv.version);
         context.drawTextWithShadow(textRenderer, updateAvailable, width / 2 - textRenderer.getWidth(updateAvailable) / 2, height / 2 - height / 4, 0xffffff);
+        context.drawTextWithShadow(textRenderer, currentVersion, width / 2 - textRenderer.getWidth(currentVersion) / 2, height / 2 - height / 4 - 20, 0xffffff);
     }
 
 }

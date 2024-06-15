@@ -1,6 +1,7 @@
 package me.tolek.settings;
 
 import me.tolek.settings.base.BooleanSetting;
+import me.tolek.settings.base.MflpSetting;
 import me.tolek.util.MflpUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
@@ -19,8 +20,8 @@ public class AutoWelcomeBack extends BooleanSetting {
 
     @Override
     public void refresh() {
-        if (this.getState()) {
-            MinecraftClient.getInstance().player.sendMessage(Text.literal("wb"));
+        if (this.getState() && MinecraftClient.getInstance().player != null) {
+            MinecraftClient.getInstance().player.networkHandler.sendChatMessage("wb");
         }
     }
 
