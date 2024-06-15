@@ -35,7 +35,7 @@ public class ChatHudMixin {
                             setting.refresh();
                         }
                     }
-                    if (message.getString().contains("has joined.") && !(message.getString().contains("From: "))) {
+                    if (message.getString().contains("has joined.") && !(message.getString().contains("From"))) {
                         if (!message.getString().contains(playerName) && !(message.getString().contains("*"))) {
                             /*if (settingsList.AUTO_WB_WHITELIST.getState()) {
                                 String[] whiteListedNames = settingsList.WB_WHITELIST.getState().split(" ");
@@ -63,8 +63,8 @@ public class ChatHudMixin {
                                 setting.refresh();
                             }
                         }
-                    } else if (message.getString().contains("is no longer AFK.")) {
-                        if (!message.getString().contains(playerName)) {
+                    } else if (message.getString().contains("is no longer AFK.")  && !(message.getString().contains("From"))) {
+                        if (!message.getString().contains(playerName) &&  !(message.getString().contains("*"))) {
                             setting.refresh();
                         }
                     }
