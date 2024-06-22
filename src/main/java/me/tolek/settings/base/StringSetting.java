@@ -9,6 +9,7 @@ public abstract class StringSetting extends MflpSetting {
     }
 
     public abstract void run();
+    public abstract boolean validateString(String s);
 
     public void setState(String state) { this.state = state; }
 

@@ -20,7 +20,6 @@
 			"me.tolek.commands.MflpCommand"
 		],
 		"client": [
-			"me.tolek.ModForLazyPeopleClient",
 			"me.tolek.Macro.MacroExecutor",
 			"me.tolek.commands.MacroCommand",
 			"me.tolek.commands.MflpWelcomeCommand",
@@ -31,11 +30,7 @@
 		]
 	},
 	"mixins": [
-		"modforlazypeople.mixins.json",
-		{
-			"config": "modforlazypeople.client.mixins.json",
-			"environment": "client"
-		}
+		"modforlazypeople.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.15.11",

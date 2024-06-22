@@ -14,11 +14,11 @@ public class InstancedValues {
     public boolean shownWelcomeScreen = false;
     public boolean hasLoaded = false;
     public boolean updateAvailable = false;
-    public String version = "v2.4.2-beta";
+    public String version = "v2.4.3";
     public long timeSinceLastInputInMils = 0;
     public String githubUrl = "github.com/tolek-tpr/ModForLazyPeople/releases";
     public boolean shownUpdateScreen = false;
     public boolean pauseWelcomeBack = false;
-    public boolean unlockOnSecond = false;
+    public boolean isAfk = false;
 
 }

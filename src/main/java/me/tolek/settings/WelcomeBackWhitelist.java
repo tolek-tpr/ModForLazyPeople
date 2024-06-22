@@ -13,4 +13,10 @@ public class WelcomeBackWhitelist extends StringSetting {
     public void run() {
 
     }
+
+    @Override
+    public boolean validateString(String toValidate) {
+        return !toValidate.contains("-");
+    }
+
 }
