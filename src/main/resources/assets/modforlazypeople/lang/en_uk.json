@@ -25,6 +25,8 @@
   "mflp.tooltip.autoWB": "Automatically says wb when someone comes back from being afk or joins synergy",
   "mflp.tooltip.wbBlacklist": "The list of names to ignore people when using auto wb, separated by a space",
   "mflp.tooltip.wbWhitelist": "The list of names to say wb to when using auto wb, separated by a space",
+  "mflp.tooltip.wbMessageTooltip": "What message auto welcome back should say",
+  "mflp.tooltip.welcomeMessageTooltip": "What message auto welcome should say",
 
   "mflp.keybind.tickFreeze": "Tick freeze",
   "mflp.keybind.tickStep": "Tick step",
