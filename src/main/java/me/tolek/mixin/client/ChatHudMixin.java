@@ -67,6 +67,8 @@ public class ChatHudMixin {
         if (settingsList.AUTO_WB_WHITELIST.getState()) {
             String[] whitelistedNames = settingsList.WB_WHITELIST.getState().split(" ");
             for (String wn : whitelistedNames) {
+                wn = wn.toLowerCase();
+                message = message.toLowerCase();
                 if (message.contains(wn)) return true;
             }
         }
@@ -77,6 +79,8 @@ public class ChatHudMixin {
         if (settingsList.AUTO_WB_BLACKLIST.getState()) {
             String[] blacklistedNames = settingsList.WB_BLACKLIST.getState().split(" ");
             for (String bn : blacklistedNames) {
+                bn = bn.toLowerCase();
+                message = message.toLowerCase();
                 if (message.contains(bn)) return true;
             }
         }

@@ -62,6 +62,7 @@ public class MflpSettingsScreen extends Screen {
 
                 TextFieldWidget textFieldWidget = new TextFieldWidget(textRenderer, width / 2 - 155 + 160, 20 + step, 150, 20, Text.literal("" + is.getState()));
                 textFieldWidget.setText("" + is.getState());
+                textFieldWidget.setMaxLength(Integer.MAX_VALUE);
                 textFieldWidget.setChangedListener((state) -> {
                     if (is.validateInt(state)) {
                         textFieldWidget.setEditableColor(14737632);
@@ -80,6 +81,7 @@ public class MflpSettingsScreen extends Screen {
 
                 TextFieldWidget textFieldWidget = new TextFieldWidget(textRenderer, width / 2 - 155 + 160, 20 + step, 150, 20, Text.literal(ss.getState()));
                 textFieldWidget.setText(ss.getState());
+                textFieldWidget.setMaxLength(Integer.MAX_VALUE);
                 textFieldWidget.setChangedListener((state) -> {
                     if (ss.validateString(state)) {
                         textFieldWidget.setEditableColor(14737632);
