@@ -7,6 +7,7 @@ import me.tolek.settings.base.*;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
@@ -55,26 +56,40 @@ public class MflpSettingsScreen extends Screen {
                 FloatSetting fs = (FloatSetting) setting;
             }
 
-            // INT SETTING (not implemented)
+            // INT SETTING
             if (setting instanceof IntegerSetting) {
                 IntegerSetting is = (IntegerSetting) setting;
+
+                TextFieldWidget textFieldWidget = new TextFieldWidget(textRenderer, width / 2 - 155 + 160, 20 + step, 150, 20, Text.literal("" + is.getState()));
+                textFieldWidget.setText("" + is.getState());
+                textFieldWidget.setChangedListener((state) -> {
+                    if (is.validateInt(state)) {
+                        textFieldWidget.setEditableColor(14737632);
+                        is.setState(Integer.parseInt(state));
+                    } else {
+                        textFieldWidget.setEditableColor(16711680);
+                    }
+                });
+
+                addDrawableChild(textFieldWidget);
             }
 
-            // STRING SETTING (not implemented)
+            // STRING SETTING
             if (setting instanceof StringSetting) {
-                StringSetting is = (StringSetting) setting;
+                StringSetting ss = (StringSetting) setting;
 
-                InputBoxWidget inputBox = new InputBoxWidget(textRenderer, width / 2 - 155 + 160, 20 + step, 150, 20, Text.literal(is.getState()), Text.literal(is.getState()));
-                inputBox.setKeyConsumer((keyCode -> {
-                    if (keyCode == InputUtil.GLFW_KEY_ESCAPE) {
-                        inputBox.setFocused(false);
-                    } else if (keyCode == InputUtil.GLFW_KEY_ENTER) {
-                        is.setState(inputBox.getText());
-                        inputBox.setFocused(false);
+                TextFieldWidget textFieldWidget = new TextFieldWidget(textRenderer, width / 2 - 155 + 160, 20 + step, 150, 20, Text.literal(ss.getState()));
+                textFieldWidget.setText(ss.getState());
+                textFieldWidget.setChangedListener((state) -> {
+                    if (ss.validateString(state)) {
+                        textFieldWidget.setEditableColor(14737632);
+                        ss.setState(state);
+                    } else {
+                        textFieldWidget.setEditableColor(16711680);
                     }
-                }));
+                });
 
-                addDrawableChild(inputBox);
+                addDrawableChild(textFieldWidget);
             }
 
             step += 22;

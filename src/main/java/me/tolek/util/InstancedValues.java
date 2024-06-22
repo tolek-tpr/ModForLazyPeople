@@ -19,6 +19,6 @@ public class InstancedValues {
     public String githubUrl = "github.com/tolek-tpr/ModForLazyPeople/releases";
     public boolean shownUpdateScreen = false;
     public boolean pauseWelcomeBack = false;
-    public boolean unlockOnSecond = false;
+    public boolean isAfk = false;
 
 }

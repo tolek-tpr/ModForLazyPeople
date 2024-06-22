@@ -2,8 +2,13 @@
 	"required": true,
 	"package": "me.tolek.mixin",
 	"compatibilityLevel": "JAVA_17",
-	"mixins": [
-		"ExampleMixin"
+	"mixins": [],
+	"client": [
+		"client.ExampleClientMixin",
+		"client.MainMenuMixin",
+		"client.MenuMixin",
+		"client.MinecraftClientMixin",
+		"client.ChatHudMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

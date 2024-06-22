@@ -70,7 +70,7 @@ public class MflpConfigManager {
 
     public class ModData {
         private ArrayList<ShortMacro> macros = new ArrayList<>();
-        private MflpSettingsList settings = MflpSettingsList.getInstance();
+        private MflpSettingsList settings;
         private boolean shownWelcomeScreen;
 
         public ModData(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings) {

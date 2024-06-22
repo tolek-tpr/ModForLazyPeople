@@ -69,6 +69,12 @@ public class MinecraftClientMixin {
                 }
                 if (loadedData.getSettings() != null) {
                     settings.AUTO_WELCOME_BACK = loadedData.getSettings().AUTO_WELCOME_BACK;
+                    settings.AUTO_WELCOME = loadedData.getSettings().AUTO_WELCOME;
+                    //settings.AUTO_PLOT_HOME = loadedData.getSettings().AUTO_PLOT_HOME;
+                    settings.AUTO_WB_BLACKLIST = loadedData.getSettings().AUTO_WB_BLACKLIST;
+                    settings.AUTO_WB_WHITELIST = loadedData.getSettings().AUTO_WB_WHITELIST;
+                    settings.WB_BLACKLIST = loadedData.getSettings().WB_BLACKLIST;
+                    settings.WB_WHITELIST = loadedData.getSettings().WB_WHITELIST;
                 }
                 //settings.settings = loadedData.getSettings().settings;
 

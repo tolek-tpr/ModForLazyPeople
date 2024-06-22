@@ -16,6 +16,7 @@ public class InputBoxWidget extends EditBoxWidget {
     public InputBoxWidget(TextRenderer textRenderer, int x, int y, int width, int height, Text placeholder, Text message) {
         super(textRenderer, x, y, width, height, placeholder, message);
         this.editBox = new EditBox(textRenderer, width - this.getPaddingDoubled());
+        this.editBox.setText(message.getString());
         //this.editBox.setCursorChangeListener(onCursor);
     }
 

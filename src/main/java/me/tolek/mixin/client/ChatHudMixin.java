@@ -36,22 +36,51 @@ public class ChatHudMixin {
                 }
             }
 
+            if (!isFakeMessage(message) && message.getString().contains("[!] You are now AFK.")) {
+                iv.isAfk = true;
+            }
+            if (!isFakeMessage(message) && message.getString().contains("[!] You are no longer AFK.")) {
+                iv.isAfk = false;
+            }
+
         }
     }
 
     public boolean isFakeMessage(Text message) {
-        return message.getString().contains("From") || message.getString().contains("*");
+        return message.getString().contains("From") || message.getString().contains("*") || message.getString().contains(":");
     }
 
     public void executeAutoWelcome(Text message, MflpSetting setting, String playerName) {
         if (!message.getString().contains(playerName)) {
             if (message.getString().contains("Welcome") && message.getString().contains(" to Synergy!")) {
                 if (!isFakeMessage(message)) {
-                    setting.refresh();
-                    iv.pauseWelcomeBack = true;
+                    if (iv.timeSinceLastInputInMils / 1000 < 30 && !iv.isAfk) {
+                        setting.refresh();
+                        iv.pauseWelcomeBack = true;
+                    }
                 }
             }
         }
+    }
+
+    public boolean isWhitelisted(String message) {
+        if (settingsList.AUTO_WB_WHITELIST.getState()) {
+            String[] whitelistedNames = settingsList.WB_WHITELIST.getState().split(" ");
+            for (String wn : whitelistedNames) {
+                if (message.contains(wn)) return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isBlacklisted(String message) {
+        if (settingsList.AUTO_WB_BLACKLIST.getState()) {
+            String[] blacklistedNames = settingsList.WB_BLACKLIST.getState().split(" ");
+            for (String bn : blacklistedNames) {
+                if (message.contains(bn)) return true;
+            }
+        }
+        return false;
     }
 
     public void executeAutoWB(Text message, MflpSetting setting, String playerName) {
@@ -64,30 +93,12 @@ public class ChatHudMixin {
             if (!iv.pauseWelcomeBack) {
                 if (message.getString().contains("has joined.") || message.getString().contains("is no longer AFK.")) {
                     if (!isFakeMessage(message)) {
-                    /*if (settingsList.AUTO_WB_WHITELIST.getState()) {
-                        String[] whiteListedNames = settingsList.WB_WHITELIST.getState().split(" ");
-                        for (String s : whiteListedNames) {
-                            if (message.getString().contains(s)) {
-                                setting.refresh();
-                            }
-                        }
-                        return;
-                    }
-                    if (settingsList.AUTO_WB_BLACKLIST.getState()) {
-                        String[] blackListedNames = settingsList.WB_BLACKLIST.getState().split(" ");
-                        boolean opt = true;
-                        for (String s : blackListedNames) {
-                            if (message.getString().contains(s)) {
-                                opt = false;
-                            }
-                        }
-                        if (opt) {
-                            setting.refresh();
-                        }
-                        return;
-                    }*/
-                        if (iv.timeSinceLastInputInMils / 1000 < 30) {
-                            setting.refresh();
+                        if (iv.timeSinceLastInputInMils / 1000 < 30 && !iv.isAfk) {
+                            if (settingsList.AUTO_WB_WHITELIST.getState()) {
+                                if (isWhitelisted(message.getString())) setting.refresh();
+                            } else if(settingsList.AUTO_WB_BLACKLIST.getState()) {
+                                if (!isBlacklisted(message.getString())) setting.refresh();
+                            } else setting.refresh();
                         }
                     }
                 }

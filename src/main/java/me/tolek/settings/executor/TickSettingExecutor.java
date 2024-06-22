@@ -7,6 +7,7 @@ import me.tolek.util.InstancedValues;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
@@ -18,25 +19,18 @@ public class TickSettingExecutor implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        /*ClientReceiveMessageEvents.CHAT.register((message, signedMessage, gameProfile, parameters, instant) -> {
-            String playerName = MinecraftClient.getInstance().getSession().getUsername();
-            System.out.println(message + "!!!!!!!!!!!!!");
-            for (MflpSetting setting : settingsList.getSettings()) {
-                if (setting.getName().equals("Auto welcome back")) {
-                    if (message.getString().contains("has joined.")) {
-                        if (!message.getString().contains(playerName)) {
-                            //AutoWelcomeBack autoWbSetting = new AutoWelcomeBack();
-                            setting.refresh();
-                        }
-                    }
-                }
-            }
-
-        });*/
         ClientTickEvents.END_CLIENT_TICK.register((client -> {
             if (client.player != null && client.player.clientWorld != null)
                 iv.timeSinceLastInputInMils += 50;
             clientTick(client);
+        }));
+        ClientPlayConnectionEvents.JOIN.register(((handler, sender, client) -> {
+            if (client.getServer() != null && client.getServer().getServerIp() != null) {
+                System.out.println(client.getServer().getServerIp());
+                if(client.getServer().getServerIp().equals("synergyserver.net")) {
+                    settingsList.AUTO_PLOT_HOME.refresh();
+                }
+            }
         }));
     }
 
