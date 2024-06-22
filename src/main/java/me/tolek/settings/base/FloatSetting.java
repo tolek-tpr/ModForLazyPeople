@@ -1,11 +1,13 @@
 package me.tolek.settings.base;
 
+import net.minecraft.text.Text;
+
 public abstract class FloatSetting extends MflpSetting {
 
     private float state;
 
-    public FloatSetting(String name, float defaultValue) {
-        super(name, defaultValue, "float");
+    public FloatSetting(String name, float defaultValue, String tt) {
+        super(name, defaultValue, "float", tt);
     }
 
     public abstract void run();

@@ -6,10 +6,12 @@ import me.tolek.settings.MflpSettingsList;
 import me.tolek.settings.base.*;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.screen.ScreenTexts;
+import net.minecraft.text.HoverEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
@@ -47,6 +49,7 @@ public class MflpSettingsScreen extends Screen {
                     bs.run();
                     client.setScreen(new MflpSettingsScreen());
                 })).dimensions(width / 2 - 155 + 160, 20 + step, 150, 20).build();
+                toggleButton.setTooltip(Tooltip.of(Text.literal(bs.getTooltip())));
 
                 addDrawableChild(toggleButton);
             }
@@ -63,6 +66,7 @@ public class MflpSettingsScreen extends Screen {
                 TextFieldWidget textFieldWidget = new TextFieldWidget(textRenderer, width / 2 - 155 + 160, 20 + step, 150, 20, Text.literal("" + is.getState()));
                 textFieldWidget.setText("" + is.getState());
                 textFieldWidget.setMaxLength(Integer.MAX_VALUE);
+                textFieldWidget.setTooltip(Tooltip.of(Text.literal(is.getTooltip())));
                 textFieldWidget.setChangedListener((state) -> {
                     if (is.validateInt(state)) {
                         textFieldWidget.setEditableColor(14737632);
@@ -82,6 +86,7 @@ public class MflpSettingsScreen extends Screen {
                 TextFieldWidget textFieldWidget = new TextFieldWidget(textRenderer, width / 2 - 155 + 160, 20 + step, 150, 20, Text.literal(ss.getState()));
                 textFieldWidget.setText(ss.getState());
                 textFieldWidget.setMaxLength(Integer.MAX_VALUE);
+                textFieldWidget.setTooltip(Tooltip.of(Text.literal(ss.getTooltip())));
                 textFieldWidget.setChangedListener((state) -> {
                     if (ss.validateString(state)) {
                         textFieldWidget.setEditableColor(14737632);
@@ -104,8 +109,11 @@ public class MflpSettingsScreen extends Screen {
 
         int step = 0;
         for (MflpSetting setting : settingsList.getSettings()) {
-            Text macroName = Text.of(setting.getName());
-            context.drawTextWithShadow(textRenderer, macroName, width / 2 - 155, 24 + step, 0xffffff);
+            Text settingName = Text.literal(setting.getName());
+            HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(setting.getTooltip()));
+            settingName = settingName.copy().setStyle(settingName.getStyle().withHoverEvent(hoverEvent));
+
+            context.drawTextWithShadow(textRenderer, settingName, width / 2 - 155, 24 + step, 0xffffff);
             step += 24;
         }
     }

@@ -2,11 +2,12 @@ package me.tolek.settings;
 
 import me.tolek.settings.base.BooleanSetting;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.text.Text;
 
 public class AutoPlotHome extends BooleanSetting {
 
     public AutoPlotHome() {
-        super("Auto Plot Home", false);
+        super("Auto Plot Home", false, "");
     }
 
     @Override

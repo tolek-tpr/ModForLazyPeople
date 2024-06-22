@@ -18,6 +18,16 @@
   "mflp.tooltip.tickStepKey": "The hotkey for tick stepping",
   "mflp.tooltip.worldSetupKey": "The hotkey for auto setting gamerules and a few others",
 
+  "mflp.tooltip.autoPlotHome": "Automatically does /plot home, when joining synergy",
+  "mflp.tooltip.autoWbBlacklist": "A toggle for auto welcome back blacklist",
+  "mflp.tooltip.autoWbWhitelist": "A toggle for auto welcome back whitelist",
+  "mflp.tooltip.autoWelcome": "Automatically says welcome! when a new person joins synergy",
+  "mflp.tooltip.autoWB": "Automatically says wb when someone comes back from being afk or joins synergy",
+  "mflp.tooltip.wbBlacklist": "The list of names to ignore people when using auto wb, separated by a space",
+  "mflp.tooltip.wbWhitelist": "The list of names to say wb to when using auto wb, separated by a space",
+  "mflp.tooltip.wbMessageTooltip": "What message auto welcome back should say",
+  "mflp.tooltip.welcomeMessageTooltip": "What message auto welcome should say",
+
   "mflp.keybind.tickFreeze": "Tick freeze",
   "mflp.keybind.tickStep": "Tick step",
   "mflp.keybind.setupWorld": "World setup",

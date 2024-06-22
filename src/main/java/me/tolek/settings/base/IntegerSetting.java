@@ -1,11 +1,13 @@
 package me.tolek.settings.base;
 
+import net.minecraft.text.Text;
+
 public abstract class IntegerSetting extends MflpSetting {
 
     private int state;
 
-    public IntegerSetting(String name, int defaultValue) {
-        super(name, defaultValue, "int");
+    public IntegerSetting(String name, int defaultValue, String tt) {
+        super(name, defaultValue, "int", tt);
     }
 
     public abstract void run();
