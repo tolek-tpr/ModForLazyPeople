@@ -1,10 +1,10 @@
 package me.tolek.mixin.client;
 
-import me.tolek.Macro.Macro;
-import me.tolek.Macro.MacroList;
+import me.tolek.modules.Macro.Macro;
+import me.tolek.modules.Macro.MacroList;
 import me.tolek.files.MflpConfigManager;
-import me.tolek.settings.MflpSettingsList;
-import me.tolek.settings.base.*;
+import me.tolek.modules.autoReply.AutoRepliesList;
+import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.updateChecker.UpdateChecker;
 import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
@@ -28,9 +28,10 @@ public class MinecraftClientMixin {
         InstancedValues iv = InstancedValues.getInstance();
         MacroList macroList = MacroList.getInstance();
         MflpSettingsList settings = MflpSettingsList.getInstance();
+        AutoRepliesList arl = AutoRepliesList.getInstance();
 
         if (!util.didSave) {
-            configManager.save(macroList.getMacros(), iv.shownWelcomeScreen, settings);
+            configManager.save(macroList.getMacros(), iv.shownWelcomeScreen, settings, arl);
             util.didSave = true;
         }
     }
@@ -41,6 +42,7 @@ public class MinecraftClientMixin {
         InstancedValues iv = InstancedValues.getInstance();
         MacroList macroList = MacroList.getInstance();
         MflpSettingsList settings = MflpSettingsList.getInstance();
+        AutoRepliesList arl = AutoRepliesList.getInstance();
 
         if (!iv.hasLoaded) {
             MflpConfigManager.ModData loadedData = configManager.load();
@@ -56,6 +58,10 @@ public class MinecraftClientMixin {
 
                 if (loadedData.getSettings() != null) {
                     settings.getSettings().clear();
+                }
+
+                if (loadedData.getAutoReplies() != null) {
+                    arl.getAutoReplies().clear();
                 }
 
                 for (MflpConfigManager.ShortMacro sm : shortMacros) {
@@ -77,6 +83,9 @@ public class MinecraftClientMixin {
                     settings.AUTO_WB_WHITELIST = loadedData.getSettings().AUTO_WB_WHITELIST;
                     settings.WB_BLACKLIST = loadedData.getSettings().WB_BLACKLIST;
                     settings.WB_WHITELIST = loadedData.getSettings().WB_WHITELIST;
+                }
+                if (loadedData.getAutoReplies() != null) {
+                    arl.setAutoReplies(loadedData.getAutoReplies());
                 }
                 //settings.settings = loadedData.getSettings().settings;
 

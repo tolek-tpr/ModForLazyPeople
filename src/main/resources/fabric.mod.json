@@ -20,10 +20,10 @@
 			"me.tolek.commands.MflpCommand"
 		],
 		"client": [
-			"me.tolek.Macro.MacroExecutor",
+			"me.tolek.modules.Macro.MacroExecutor",
 			"me.tolek.commands.MacroCommand",
 			"me.tolek.commands.MflpWelcomeCommand",
-			"me.tolek.settings.executor.TickSettingExecutor"
+			"me.tolek.modules.settings.executor.TickSettingExecutor"
 		],
 		"modmenu": [
 			"me.tolek.ModMenuImpl"

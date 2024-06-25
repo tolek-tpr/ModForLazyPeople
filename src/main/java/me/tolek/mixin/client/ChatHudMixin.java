@@ -1,18 +1,15 @@
 package me.tolek.mixin.client;
 
-import me.tolek.settings.MflpSettingsList;
-import me.tolek.settings.base.MflpSetting;
+import me.tolek.modules.autoReply.AutoRepliesList;
+import me.tolek.modules.settings.MflpSettingsList;
+import me.tolek.modules.settings.base.MflpSetting;
 import me.tolek.util.InstancedValues;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.ChatHud;
-import net.minecraft.client.gui.hud.ChatHudLine;
 import net.minecraft.client.gui.hud.MessageIndicator;
 import net.minecraft.network.message.MessageSignatureData;
 import net.minecraft.text.Text;
-import org.jetbrains.annotations.Nullable;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -21,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ChatHudMixin {
 
     private MflpSettingsList settingsList = MflpSettingsList.getInstance();
+    private AutoRepliesList autoReplies = AutoRepliesList.getInstance();
     private InstancedValues iv = InstancedValues.getInstance();
 
     @Inject(method = "addMessage(Lnet/minecraft/text/Text;Lnet/minecraft/network/message/MessageSignatureData;ILnet/minecraft/client/gui/hud/MessageIndicator;Z)V", at = @At("RETURN"))
@@ -43,7 +41,28 @@ public class ChatHudMixin {
                 iv.isAfk = false;
             }
 
+            handleAutoReply(message);
         }
+    }
+
+    public void handleAutoReply(Text a) {
+        String message = a.getString();
+
+        autoReplies.getAutoReplies().forEach((ar) -> {
+            ar.getKeywords().forEach((String s) -> {
+                if (message.contains(s)) {
+                    int index = (int) Math.round(Math.random() * ar.getReplies().size()) - 1;
+                    String reply = ar.getReplies().get(index == -1 ? 0 : index);
+
+                    if (reply.startsWith("/") && reply != null) {
+                        MinecraftClient.getInstance().player.networkHandler.sendCommand(reply.substring(1));
+                    } else {
+                        MinecraftClient.getInstance().player.networkHandler.sendChatMessage(reply);
+                    }
+                }
+
+            });
+        });
     }
 
     public boolean isFakeMessage(Text message) {

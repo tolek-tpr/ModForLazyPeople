@@ -1,11 +1,8 @@
 package me.tolek.util;
 
-import me.tolek.Macro.Macro;
-import me.tolek.Macro.MacroList;
+import me.tolek.modules.Macro.MacroList;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-
-import java.util.List;
 
 public class KeyBindingUtil {
 

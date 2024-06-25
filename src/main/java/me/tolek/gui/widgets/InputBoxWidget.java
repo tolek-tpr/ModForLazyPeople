@@ -3,20 +3,20 @@ package me.tolek.gui.widgets;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.EditBox;
 import net.minecraft.client.gui.widget.EditBoxWidget;
+import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
 
 import java.util.function.Consumer;
 
-public class InputBoxWidget extends EditBoxWidget {
+public class InputBoxWidget extends TextFieldWidget {
 
     private EditBox editBox;
     private Consumer<Integer> keyConsumer = (s -> {});
 
-    public InputBoxWidget(TextRenderer textRenderer, int x, int y, int width, int height, Text placeholder, Text message) {
-        super(textRenderer, x, y, width, height, placeholder, message);
-        this.editBox = new EditBox(textRenderer, width - this.getPaddingDoubled());
-        this.editBox.setText(message.getString());
+    public InputBoxWidget(TextRenderer textRenderer, int x, int y, int width, int height, Text message) {
+        super(textRenderer, x, y, width, height, message);
+        this.setText(message.getString());
         //this.editBox.setCursorChangeListener(onCursor);
     }
 

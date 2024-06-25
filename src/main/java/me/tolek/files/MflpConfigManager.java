@@ -2,12 +2,10 @@ package me.tolek.files;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonSyntaxException;
-import me.tolek.Macro.Macro;
-import me.tolek.settings.MflpSettingsList;
-import me.tolek.settings.base.MflpSetting;
-import net.minecraft.client.option.KeyBinding;
+import me.tolek.modules.Macro.Macro;
+import me.tolek.modules.autoReply.AutoRepliesList;
+import me.tolek.modules.autoReply.AutoReply;
+import me.tolek.modules.settings.MflpSettingsList;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -20,18 +18,17 @@ public class MflpConfigManager {
 
     public MflpConfigManager() {
         GsonBuilder builder = new GsonBuilder();
-        //builder.registerTypeAdapter(Supplier.class, new SupplierTypeAdapter());
         builder.setPrettyPrinting();
         gson = builder.setPrettyPrinting().create();
     }
 
-    public void save(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings) {
+    public void save(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings, AutoRepliesList arl) {
         File configFileObject = new File(CONFIG_FILE);
         if (configFileObject.exists()) {
             configFileObject.delete();
         }
 
-        ModData modData = new ModData(macros, shownWelcomeScreen, settings);
+        ModData modData = new ModData(macros, shownWelcomeScreen, settings, arl);
         try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
             gson.toJson(modData, writer);
         } catch (IOException e) {
@@ -72,21 +69,22 @@ public class MflpConfigManager {
         private ArrayList<ShortMacro> macros = new ArrayList<>();
         private MflpSettingsList settings;
         private boolean shownWelcomeScreen;
+        private ArrayList<AutoReply> autoReplies = new ArrayList<>();
 
-        public ModData(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings) {
+        public ModData(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings, AutoRepliesList arl) {
             for (Macro m : macros) {
                 this.macros.add(new ShortMacro(m.getName(), m.getCommands(), m.getKey(), m.getRepeatAmount(), m.getUneditable(), m.getTurnedOn()));
             }
             this.settings = settings;
             this.shownWelcomeScreen = shownWelcomeScreen;
+            this.autoReplies = arl.getAutoReplies();
         }
 
         public ArrayList<ShortMacro> getShortMacros() {
             return this.macros;
         }
         public MflpSettingsList getSettings() { return this.settings; }
-
-
+        public ArrayList<AutoReply> getAutoReplies() { return this.autoReplies; }
         public boolean isShownWelcomeScreen() {
             return shownWelcomeScreen;
         }

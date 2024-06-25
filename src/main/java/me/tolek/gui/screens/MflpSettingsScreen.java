@@ -1,19 +1,13 @@
 package me.tolek.gui.screens;
 
-import me.tolek.Macro.Macro;
-import me.tolek.gui.widgets.InputBoxWidget;
-import me.tolek.settings.MflpSettingsList;
-import me.tolek.settings.base.*;
+import me.tolek.gui.widgets.*;
+import me.tolek.modules.settings.MflpSettingsList;
+import me.tolek.modules.settings.base.*;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.util.InputUtil;
 import net.minecraft.screen.ScreenTexts;
-import net.minecraft.text.HoverEvent;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 
 public class MflpSettingsScreen extends Screen {
 
@@ -21,20 +15,16 @@ public class MflpSettingsScreen extends Screen {
         super(Text.translatable("mflp.settingsScreen.title"));
     }
 
-    private MflpSettingsList settingsList = MflpSettingsList.getInstance();
+    private final MflpSettingsList settingsList = MflpSettingsList.getInstance();
 
     @Override
     public void init() {
         addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, (button) -> {
             client.setScreen((Screen) null);
-        }).dimensions(width / 2 - 75/*+ 160*/, height - 29, 150, 20).build());
+        }).dimensions(width / 2 - 75, height - 29, 150, 20).build());
 
-        addDrawableChild(ButtonWidget.builder(Text.literal("Macros"), (button) -> {
-            client.setScreen(new MflpConfig(this.client));
-        }).dimensions(width - width + 10, height - height + 22, 70, 20).build());
-        addDrawableChild(ButtonWidget.builder(Text.literal("Settings"), (button) -> {
-            client.setScreen(new MflpSettingsScreen());
-        }).dimensions(width - width + 85, height - height + 22, 70, 20).build());
+        MenuPickerWidget mpw = new MenuPickerWidget(10, 22, client);
+        mpw.children().forEach(this::addDrawableChild);
 
         int step = 2;
         for (MflpSetting setting : settingsList.getSettings()) {
@@ -42,16 +32,10 @@ public class MflpSettingsScreen extends Screen {
             if (setting instanceof BooleanSetting) {
                 BooleanSetting bs = (BooleanSetting) setting;
 
-                Text toggleText = bs.getState() ? Text.literal("True").formatted(Formatting.GREEN) :
-                        Text.literal("False").formatted(Formatting.RED);
-
-                ButtonWidget toggleButton = ButtonWidget.builder(toggleText, (button -> {
-                    bs.run();
-                    client.setScreen(new MflpSettingsScreen());
-                })).dimensions(width / 2 - 155 + 160, 20 + step, 150, 20).build();
-                toggleButton.setTooltip(Tooltip.of(Text.literal(bs.getTooltip())));
-
-                addDrawableChild(toggleButton);
+                BooleanSettingWidgetContainer bswc = new BooleanSettingWidgetContainer(width / 2, 42 + step,
+                        Text.literal(bs.getName()), bs, textRenderer, client);
+                addDrawableChild(bswc);
+                addDrawableChild(bswc.bsw);
             }
 
             // FLOAT SETTING (not implemented)
@@ -63,40 +47,20 @@ public class MflpSettingsScreen extends Screen {
             if (setting instanceof IntegerSetting) {
                 IntegerSetting is = (IntegerSetting) setting;
 
-                TextFieldWidget textFieldWidget = new TextFieldWidget(textRenderer, width / 2 - 155 + 160, 20 + step, 150, 20, Text.literal("" + is.getState()));
-                textFieldWidget.setText("" + is.getState());
-                textFieldWidget.setMaxLength(Integer.MAX_VALUE);
-                textFieldWidget.setTooltip(Tooltip.of(Text.literal(is.getTooltip())));
-                textFieldWidget.setChangedListener((state) -> {
-                    if (is.validateInt(state)) {
-                        textFieldWidget.setEditableColor(14737632);
-                        is.setState(Integer.parseInt(state));
-                    } else {
-                        textFieldWidget.setEditableColor(16711680);
-                    }
-                });
-
-                addDrawableChild(textFieldWidget);
+                IntegerSettingWidgetContainer iswc = new IntegerSettingWidgetContainer(width / 2, 42 + step,
+                        Text.literal(is.getName()), is, textRenderer, client);
+                addDrawableChild(iswc);
+                addDrawableChild(iswc.isw);
             }
 
             // STRING SETTING
             if (setting instanceof StringSetting) {
                 StringSetting ss = (StringSetting) setting;
 
-                TextFieldWidget textFieldWidget = new TextFieldWidget(textRenderer, width / 2 - 155 + 160, 20 + step, 150, 20, Text.literal(ss.getState()));
-                textFieldWidget.setText(ss.getState());
-                textFieldWidget.setMaxLength(Integer.MAX_VALUE);
-                textFieldWidget.setTooltip(Tooltip.of(Text.literal(ss.getTooltip())));
-                textFieldWidget.setChangedListener((state) -> {
-                    if (ss.validateString(state)) {
-                        textFieldWidget.setEditableColor(14737632);
-                        ss.setState(state);
-                    } else {
-                        textFieldWidget.setEditableColor(16711680);
-                    }
-                });
-
-                addDrawableChild(textFieldWidget);
+                StringSettingWidgetContainer sswc = new StringSettingWidgetContainer(width / 2, 42 + step,
+                        Text.literal(ss.getName()), ss, textRenderer, client);
+                addDrawableChild(sswc);
+                addDrawableChild(sswc.ssw);
             }
 
             step += 22;
@@ -106,16 +70,6 @@ public class MflpSettingsScreen extends Screen {
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
-
-        int step = 0;
-        for (MflpSetting setting : settingsList.getSettings()) {
-            Text settingName = Text.literal(setting.getName());
-            HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(setting.getTooltip()));
-            settingName = settingName.copy().setStyle(settingName.getStyle().withHoverEvent(hoverEvent));
-
-            context.drawTextWithShadow(textRenderer, settingName, width / 2 - 155, 24 + step, 0xffffff);
-            step += 24;
-        }
     }
 
     @Override
