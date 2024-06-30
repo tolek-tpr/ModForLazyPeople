@@ -18,6 +18,8 @@ public class MflpSettingsList {
     public WelcomeBackBlacklist WB_BLACKLIST = new WelcomeBackBlacklist();
     public WelcomeBackMessage WB_MESSAGE = new WelcomeBackMessage();
     public WelcomeMessage WELCOME_MESSAGE = new WelcomeMessage();
+    public AutoWbRanksSetting WB_RANK_WHITELIST = new AutoWbRanksSetting();
+    public AutoWbCooldown WB_COOLDOWN = new AutoWbCooldown();
 
     private MflpSettingsList() {
 
@@ -32,6 +34,8 @@ public class MflpSettingsList {
         ArrayList<MflpSetting> settings = new ArrayList<>();
         settings.add(AUTO_WELCOME_BACK);
         settings.add(AUTO_WELCOME);
+        settings.add(WB_RANK_WHITELIST);
+        settings.add(WB_COOLDOWN);
         settings.add(WB_MESSAGE);
         settings.add(WELCOME_MESSAGE);
         //settings.add(AUTO_PLOT_HOME);

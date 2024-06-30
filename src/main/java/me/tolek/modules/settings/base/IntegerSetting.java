@@ -10,7 +10,7 @@ public abstract class IntegerSetting extends MflpSetting {
 
     public abstract void run();
     public boolean validateInt(String toValidate) {
-        String regex = "\\d+";
+        String regex = "0-9";
         return toValidate.matches(regex);
     }
 

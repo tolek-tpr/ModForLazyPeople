@@ -60,11 +60,12 @@ public class MflpConfig extends Screen {
                 }
             });
             addDrawableChild(ibw);
-        })).dimensions(10, 44, 70, 20).build());
+        })).dimensions(236, 22, 70, 20).build());
 
+        int scaledWidth = client.getWindow().getScaledWidth();
         int step = 2;
         for (Macro m : macroList.getMacros()) {
-            MacroContainerWidget mcw = new MacroContainerWidget(width / 2, 42 + step, this.client,
+            MacroContainerWidget mcw = new MacroContainerWidget(scaledWidth / 2, 42 + step, this.client,
                     this.selectedKeyBinding, m, textRenderer);
             addDrawableChild(mcw);
             mcw.children().forEach(this::addDrawableChild);

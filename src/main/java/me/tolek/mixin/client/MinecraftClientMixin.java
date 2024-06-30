@@ -78,6 +78,8 @@ public class MinecraftClientMixin {
                     settings.AUTO_WELCOME = loadedData.getSettings().AUTO_WELCOME;
                     settings.WB_MESSAGE = loadedData.getSettings().WB_MESSAGE;
                     settings.WELCOME_MESSAGE = loadedData.getSettings().WELCOME_MESSAGE;
+                    settings.WB_RANK_WHITELIST = loadedData.getSettings().WB_RANK_WHITELIST;
+                    settings.WB_COOLDOWN = loadedData.getSettings().WB_COOLDOWN;
                     //settings.AUTO_PLOT_HOME = loadedData.getSettings().AUTO_PLOT_HOME;
                     settings.AUTO_WB_BLACKLIST = loadedData.getSettings().AUTO_WB_BLACKLIST;
                     settings.AUTO_WB_WHITELIST = loadedData.getSettings().AUTO_WB_WHITELIST;

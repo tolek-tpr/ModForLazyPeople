@@ -10,8 +10,8 @@ public class StringSettingWidget extends TextFieldWidget {
 
     public StringSettingWidget(TextRenderer textRenderer, int x, int y, StringSetting setting) {
         super(textRenderer, x, y, 150, 20, Text.literal(setting.getState()));
-        this.setText(setting.getState());
         this.setMaxLength(Integer.MAX_VALUE);
+        this.setText(setting.getState());
         this.setTooltip(Tooltip.of(Text.literal(setting.getTooltip())));
         this.setChangedListener((state) -> {
             if (setting.validateString(state)) {

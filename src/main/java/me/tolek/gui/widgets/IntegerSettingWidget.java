@@ -10,8 +10,8 @@ public class IntegerSettingWidget extends TextFieldWidget {
 
     public IntegerSettingWidget(TextRenderer textRenderer, int x, int y, IntegerSetting setting) {
         super(textRenderer, x, y, 150, 20, Text.literal(String.valueOf(setting.getState())));
-        this.setText(String.valueOf(setting.getState()));
         this.setMaxLength(Integer.MAX_VALUE);
+        this.setText(String.valueOf(setting.getState()));
         this.setTooltip(Tooltip.of(Text.literal(setting.getTooltip())));
         this.setChangedListener((state) -> {
             if (setting.validateInt(state)) {

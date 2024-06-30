@@ -6,6 +6,9 @@ import me.tolek.modules.settings.base.*;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gui.widget.ContainerWidget;
+import net.minecraft.client.gui.widget.ElementListWidget;
+import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 
@@ -26,6 +29,9 @@ public class MflpSettingsScreen extends Screen {
         MenuPickerWidget mpw = new MenuPickerWidget(10, 22, client);
         mpw.children().forEach(this::addDrawableChild);
 
+        //ElementListWidget elementListWidget = new ElementListWidget
+        ScrollableListWidget slw = new ScrollableListWidget(this.client, 310, height - 82, 42, 22);
+
         int step = 2;
         for (MflpSetting setting : settingsList.getSettings()) {
             // BOOLEAN SETTING
@@ -36,6 +42,7 @@ public class MflpSettingsScreen extends Screen {
                         Text.literal(bs.getName()), bs, textRenderer, client);
                 addDrawableChild(bswc);
                 addDrawableChild(bswc.bsw);
+                slw.children().add(bswc);
             }
 
             // FLOAT SETTING (not implemented)
@@ -51,6 +58,7 @@ public class MflpSettingsScreen extends Screen {
                         Text.literal(is.getName()), is, textRenderer, client);
                 addDrawableChild(iswc);
                 addDrawableChild(iswc.isw);
+                slw.children().add(iswc);
             }
 
             // STRING SETTING
@@ -61,6 +69,18 @@ public class MflpSettingsScreen extends Screen {
                         Text.literal(ss.getName()), ss, textRenderer, client);
                 addDrawableChild(sswc);
                 addDrawableChild(sswc.ssw);
+                slw.children().add(sswc);
+            }
+
+            // LIST SETTING
+            if (setting instanceof ListSetting) {
+                ListSetting ls = (ListSetting) setting;
+
+                ListSettingWidgetContainer lswc = new ListSettingWidgetContainer(width / 2, 42 + step,
+                        Text.literal(ls.getName()), ls, textRenderer, client);
+                addDrawableChild(lswc);
+                addDrawableChild(lswc.lsw);
+                slw.children().add(lswc);
             }
 
             step += 22;

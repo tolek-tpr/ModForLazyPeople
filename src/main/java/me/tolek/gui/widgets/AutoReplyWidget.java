@@ -6,6 +6,7 @@ import me.tolek.gui.screens.MflpConfig;
 import me.tolek.gui.screens.MflpConfigureMacroScreen;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;
+import me.tolek.util.MflpUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -13,6 +14,7 @@ import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.ContainerWidget;
+import net.minecraft.client.gui.widget.TextIconButtonWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
@@ -55,13 +57,13 @@ public class AutoReplyWidget extends ContainerWidget {
         addChild(removeButton);
 
         Text editText = Text.translatable("mflp.configScreen.editButton");
-        ButtonWidget editButton = ButtonWidget.builder(editText, (button -> {
+        TextIconButtonWidget tibw = new TextIconButtonWidget.Builder(editText, (button) -> {
             if (client != null) {
                 client.setScreen(new AutoReplySettingScreen(new AutoReplyScreen(), ar));
             }
-        })).dimensions(x + 139, y, 60, 20).build();
-        addChild(editButton);
-
+        }, true).texture(MflpUtil.pencilIcon, 20, 20).dimension(20, 20).build();
+        tibw.setPosition(x - 180, y);
+        addChild(tibw);
     }
 
     @Override

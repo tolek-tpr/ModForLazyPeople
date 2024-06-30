@@ -7,11 +7,7 @@ import java.util.ArrayList;
 public class AutoRepliesList {
 
     private AutoRepliesList() {
-        ArrayList<String> keywords = new ArrayList<>();
-        keywords.add("Keyword");
-        ArrayList<String> replies = new ArrayList<>();
-        replies.add("Reply");
-        addAutoReply(new AutoReply("Test", keywords, replies));
+
     }
 
     public static final String repliesTooltip = "Here, you add replies. To execute a command add a / before the command, to only " +

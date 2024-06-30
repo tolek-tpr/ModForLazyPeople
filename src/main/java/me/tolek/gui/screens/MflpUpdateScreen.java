@@ -24,7 +24,7 @@ public class MflpUpdateScreen extends Screen {
             client.setScreen(parent);
         }).dimensions(width / 2 - 155, height / 2 + 80, 150, 20).build());
         addDrawableChild(
-                ButtonWidget.builder(Text.literal("Download"), ConfirmLinkScreen.opening(this, iv.githubUrl))
+                ButtonWidget.builder(Text.literal("Download"), ConfirmLinkScreen.opening(this, iv.modrinthUrl))
                         .dimensions(width / 2 + 2, height / 2 + 80, 150, 20)
                         .build()
         );

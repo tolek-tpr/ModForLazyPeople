@@ -4,6 +4,7 @@ import me.tolek.modules.Macro.Macro;
 import me.tolek.modules.Macro.MacroList;
 import me.tolek.gui.screens.MflpConfig;
 import me.tolek.gui.screens.MflpConfigureMacroScreen;
+import me.tolek.util.MflpUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -11,6 +12,7 @@ import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.ContainerWidget;
+import net.minecraft.client.gui.widget.TextIconButtonWidget;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
@@ -52,7 +54,7 @@ public class MacroContainerWidget extends ContainerWidget {
             selectedButton = editButtons.get(m);
 
             this.update(m.getKeyBinding(), m);
-        })).dimensions(x + 5, y, 90, 20).build();
+        })).dimensions(x, y, 80, 20).build();
         editButtons.put(m, bw);
 
         addChild(bw);
@@ -62,7 +64,7 @@ public class MacroContainerWidget extends ContainerWidget {
         ButtonWidget toggleButton = ButtonWidget.builder(toggleText, (button -> {
             m.setTurnedOn(!m.getTurnedOn());
             client.setScreen(new MflpConfig(client));
-        })).dimensions(x + 97, y, 60, 20).build();
+        })).dimensions(x + 82, y, 60, 20).build();
         addChild(toggleButton);
 
         Text removeText = Text.translatable("mflp.configScreen.removeButton");
@@ -72,16 +74,18 @@ public class MacroContainerWidget extends ContainerWidget {
                 if (client != null) {
                     client.setScreen(new MflpConfig(client));
                 }
-            })).dimensions(x + 159, y, 70, 20).build();
+            })).dimensions(x + 144, y, 70, 20).build();
             addChild(removeButton);
 
             Text editText = Text.translatable("mflp.configScreen.editButton");
-            ButtonWidget editButton = ButtonWidget.builder(editText, (button -> {
+
+            TextIconButtonWidget tibw = new TextIconButtonWidget.Builder(editText, (button) -> {
                 if (client != null) {
                     client.setScreen(new MflpConfigureMacroScreen(new MflpConfig(client), m));
                 }
-            })).dimensions(x + 231, y, 60, 20).build();
-            addChild(editButton);
+            }, true).texture(MflpUtil.pencilIcon, 20, 20).dimension(20, 20).build();
+            tibw.setPosition(x - 180, y);
+            addChild(tibw);
         }
     }
 

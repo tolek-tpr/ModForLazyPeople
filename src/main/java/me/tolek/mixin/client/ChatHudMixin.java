@@ -1,5 +1,6 @@
 package me.tolek.mixin.client;
 
+import me.tolek.interfaces.TimerInterface;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.modules.settings.base.MflpSetting;
@@ -7,6 +8,7 @@ import me.tolek.util.InstancedValues;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.gui.hud.MessageIndicator;
+import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.network.message.MessageSignatureData;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ChatHud.class)
 public class ChatHudMixin {
 
+    private MinecraftClient client = MinecraftClient.getInstance();
     private MflpSettingsList settingsList = MflpSettingsList.getInstance();
     private AutoRepliesList autoReplies = AutoRepliesList.getInstance();
     private InstancedValues iv = InstancedValues.getInstance();
@@ -49,20 +52,19 @@ public class ChatHudMixin {
         String message = a.getString();
 
         autoReplies.getAutoReplies().forEach((ar) -> {
-            if (ar.isTurnedOn())
-                ar.getKeywords().forEach((String s) -> {
-                    if (message.contains(s)) {
-                        int index = (int) Math.round(Math.random() * ar.getReplies().size()) - 1;
-                        String reply = ar.getReplies().get(index == -1 ? 0 : index);
+            ar.getKeywords().forEach((String s) -> {
+                if (message.contains(s) && ar.isTurnedOn()) {
+                    int index = (int) Math.round(Math.random() * ar.getReplies().size()) - 1;
+                    String reply = ar.getReplies().get(index == -1 ? 0 : index);
 
-                        if (reply.startsWith("/") && reply != null) {
-                            MinecraftClient.getInstance().player.networkHandler.sendCommand(reply.substring(1));
-                        } else {
-                            MinecraftClient.getInstance().player.networkHandler.sendChatMessage(reply);
-                        }
+                    if (reply.startsWith("/") && reply != null) {
+                        MinecraftClient.getInstance().player.networkHandler.sendCommand(reply.substring(1));
+                    } else {
+                        MinecraftClient.getInstance().player.networkHandler.sendChatMessage(reply);
                     }
+                }
 
-                });
+            });
         });
     }
 
@@ -107,22 +109,66 @@ public class ChatHudMixin {
         return false;
     }
 
+    public boolean validateRankWhitelist(Text message) {
+        /*
+            T: #30BAA3
+            D: #F29C36
+            M: #C7CCD7
+            G: #565F68
+         */
+        if (this.client.player != null && this.client.player.networkHandler.getPlayerList() != null) {
+            for (PlayerListEntry p : this.client.player.networkHandler.getPlayerList()) {
+                if (p.getDisplayName() == null || p.getDisplayName().getSiblings() == null) return true;
+                if (message.getString().contains(p.getDisplayName().getSiblings().get(0).getString())) {
+                    for (Text t : p.getDisplayName().getSiblings()) {
+                        if (t.getStyle() == null || t.getStyle().getColor() == null || t.getStyle().getColor().getHexCode() == null) return true;
+                        if (t.getStyle().getColor().getHexCode().equals("#30BAA3")) {
+                            return true;
+                        } else if (t.getStyle().getColor().getHexCode().equals("#F29C36")) {
+                            System.out.println(settingsList.WB_RANK_WHITELIST.stateIndex);
+                            if (settingsList.WB_RANK_WHITELIST.stateIndex > 2) {
+                                return false;
+                            }
+                        } else if (t.getStyle().getColor().getHexCode().equals("#C7CCD7")) {
+                            System.out.println(settingsList.WB_RANK_WHITELIST.stateIndex);
+                            if (settingsList.WB_RANK_WHITELIST.stateIndex > 1) {
+                                return false;
+                            }
+                        } else if (t.getStyle().getColor().getHexCode().equals("#565F68")) {
+                            System.out.println(settingsList.WB_RANK_WHITELIST.stateIndex);
+                            if (settingsList.WB_RANK_WHITELIST.stateIndex > 0) {
+                                return false;
+                            }
+                        } else if (settingsList.WB_RANK_WHITELIST.stateIndex == 0) return true;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
     public void executeAutoWB(Text message, MflpSetting setting, String playerName) {
         if (message.getString().contains("banana")) {
             if (iv.timeSinceLastInputInMils / 1000 < 30) {
                 setting.refresh();
             }
         }
+
         if (!message.getString().contains(playerName)) {
             if (!iv.pauseWelcomeBack) {
                 if (message.getString().contains("has joined.") || message.getString().contains("is no longer AFK.")) {
                     if (!isFakeMessage(message)) {
                         if (iv.timeSinceLastInputInMils / 1000 < 30 && !iv.isAfk) {
-                            if (settingsList.AUTO_WB_WHITELIST.getState()) {
-                                if (isWhitelisted(message.getString())) setting.refresh();
-                            } else if(settingsList.AUTO_WB_BLACKLIST.getState()) {
-                                if (!isBlacklisted(message.getString())) setting.refresh();
-                            } else setting.refresh();
+                            ((TimerInterface) MinecraftClient.getInstance()).setTimer(settingsList.WB_COOLDOWN.getState(), (b) -> {
+                                if (validateRankWhitelist(message)) {
+                                    if (settingsList.AUTO_WB_WHITELIST.getState()) {
+                                        if (isWhitelisted(message.getString())) setting.refresh();
+                                    } else if (settingsList.AUTO_WB_BLACKLIST.getState()) {
+                                        if (!isBlacklisted(message.getString())) setting.refresh();
+                                    } else setting.refresh();
+                                }
+                            });
+
                         }
                     }
                 }
@@ -130,7 +176,6 @@ public class ChatHudMixin {
                 iv.pauseWelcomeBack = false;
             }
         }
-
     }
 
 }

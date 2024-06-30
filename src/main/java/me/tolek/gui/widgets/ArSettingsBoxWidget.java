@@ -60,19 +60,6 @@ public class ArSettingsBoxWidget extends ContainerWidget {
             autoReplies.addAutoReply(ara);
             client.setScreen(parent);
         }).dimensions(x + 72, y, 70, 20).build();
-        /*ButtonWidget addCommand = ButtonWidget.builder(Text.literal("Add command"), (button) -> {
-            InputBoxWidget inputBox = new InputBoxWidget(tx, width / 2 - 50, height / 2, 100, 20, Text.literal("Command"), Text.literal("E"));
-            inputBox.setKeyConsumer((keyCode -> {
-                if (keyCode == InputUtil.GLFW_KEY_ESCAPE) {
-                    client.setScreen(new MflpConfigureMacroScreen(this.parent, this.ar));
-                } else if (keyCode == InputUtil.GLFW_KEY_ENTER) {
-                    this.ar.addCommands(List.of(inputBox.getText()));
-                    client.setScreen(new MflpConfigureMacroScreen(this.parent, this.ar));
-                }
-            }));
-
-            addChild(inputBox);
-        }).dimensions(x + 144, y, 80, 20).build();*/
 
         addChild(rename);
         addChild(duplicate);
