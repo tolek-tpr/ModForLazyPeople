@@ -1,4 +1,4 @@
-package me.tolek.gui.widgets;
+package me.tolek.gui.widgets.settingsWidgets;
 
 import me.tolek.gui.screens.MflpSettingsScreen;
 import me.tolek.modules.settings.base.ListSetting;

@@ -1,4 +1,4 @@
-package me.tolek.gui.widgets;
+package me.tolek.gui.widgets.settingsWidgets;
 
 import me.tolek.modules.settings.base.BooleanSetting;
 import net.minecraft.client.MinecraftClient;
@@ -6,13 +6,8 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
-import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
-import net.minecraft.client.gui.widget.ClickableWidget;
-import net.minecraft.client.gui.widget.ContainerWidget;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BooleanSettingWidgetContainer extends AbstractSettingWidget {

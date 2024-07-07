@@ -39,13 +39,6 @@ public class MflpHelloScreen extends Screen {
         Text quickGuide6 = Text.literal("If you want to request new features message me on discord");
         //Text quickGuide5 = Text.literal("To open this screen once closed, run /mflpwelcome");
 
-        String playerName = client.getSession().getUsername();
-        if (playerName.equalsIgnoreCase("G6W9")) {
-            context.drawTextWithShadow(textRenderer, mflpUtil.g6Message, width  /2- textRenderer.getWidth(mflpUtil.g6Message) /2, height - 10, 0xffffff);
-        } else if (playerName.equalsIgnoreCase("avogaado")) {
-            context.drawTextWithShadow(textRenderer, mflpUtil.avoMessage, width  /2- textRenderer.getWidth(mflpUtil.avoMessage) /2, height - 10, 0xffffff);
-        }
-
         context.drawTextWithShadow(textRenderer, welcomeText, width / 2 - textRenderer.getWidth(welcomeText) / 2, height / 2 - height / 4, 0xffffff);
         context.drawTextWithShadow(textRenderer, quickGuide, width / 2 - textRenderer.getWidth(quickGuide) / 2, height / 2 - 30, 0xffffff);
         context.drawTextWithShadow(textRenderer, quickGuide1, width / 2 - textRenderer.getWidth(quickGuide1) / 2, height / 2 - 20, 0xffffff);

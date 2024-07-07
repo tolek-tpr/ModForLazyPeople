@@ -1,2 +1,29 @@
-package me.tolek.interfaces;public class UpdateListener {
+package me.tolek.interfaces;
+
+import me.tolek.event.Event;
+
+import java.util.ArrayList;
+
+public interface UpdateListener extends Listener {
+
+    public void onUpdate();
+
+    public static class UpdateEvent extends Event<UpdateListener>
+    {
+        public static final UpdateEvent INSTANCE = new UpdateEvent();
+
+        @Override
+        public void fire(ArrayList<UpdateListener> listeners)
+        {
+            for(UpdateListener listener : listeners)
+                listener.onUpdate();
+        }
+
+        @Override
+        public Class<UpdateListener> getListenerType()
+        {
+            return UpdateListener.class;
+        }
+    }
+
 }

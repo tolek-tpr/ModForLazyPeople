@@ -1,4 +1,4 @@
-package me.tolek.gui.widgets;
+package me.tolek.gui.widgets.autoReply;
 
 import me.tolek.gui.screens.AutoReplyScreen;
 import me.tolek.gui.screens.AutoReplySettingScreen;

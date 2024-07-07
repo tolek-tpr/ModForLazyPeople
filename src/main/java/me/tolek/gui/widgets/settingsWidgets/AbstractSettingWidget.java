@@ -1,4 +1,4 @@
-package me.tolek.gui.widgets;
+package me.tolek.gui.widgets.settingsWidgets;
 
 import net.minecraft.client.gui.widget.ElementListWidget;
 

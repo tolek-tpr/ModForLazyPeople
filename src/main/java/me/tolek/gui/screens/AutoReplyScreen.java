@@ -1,10 +1,8 @@
 package me.tolek.gui.screens;
 
-import me.tolek.gui.widgets.AutoReplyWidget;
+import me.tolek.gui.widgets.autoReply.AutoReplyWidget;
 import me.tolek.gui.widgets.InputBoxWidget;
-import me.tolek.gui.widgets.MacroContainerWidget;
 import me.tolek.gui.widgets.MenuPickerWidget;
-import me.tolek.modules.Macro.Macro;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;
 import net.minecraft.client.gui.DrawContext;

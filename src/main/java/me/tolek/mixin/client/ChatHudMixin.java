@@ -148,7 +148,7 @@ public class ChatHudMixin {
     }
 
     public void executeAutoWB(Text message, MflpSetting setting, String playerName) {
-        if (message.getString().contains("banana")) {
+        if (message.getString().contains("banana") && !message.getString().contains("To:")) {
             if (iv.timeSinceLastInputInMils / 1000 < 30) {
                 setting.refresh();
             }
@@ -159,7 +159,7 @@ public class ChatHudMixin {
                 if (message.getString().contains("has joined.") || message.getString().contains("is no longer AFK.")) {
                     if (!isFakeMessage(message)) {
                         if (iv.timeSinceLastInputInMils / 1000 < 30 && !iv.isAfk) {
-                            ((TimerInterface) MinecraftClient.getInstance()).setTimer(settingsList.WB_COOLDOWN.getState(), (b) -> {
+                            ((TimerInterface) client).scheduleNonRepeating(settingsList.WB_COOLDOWN.getState(), (b) -> {
                                 if (validateRankWhitelist(message)) {
                                     if (settingsList.AUTO_WB_WHITELIST.getState()) {
                                         if (isWhitelisted(message.getString())) setting.refresh();

@@ -10,8 +10,6 @@ public class MflpUtil {
 
     public boolean showedHelloScreen = false;
     public static Identifier pencilIcon = new Identifier("modforlazypeople", "pencil");
-    public final Text g6Message = Text.literal("Thanks for all the help with redstone G6! <3");
-    public final Text avoMessage = Text.literal("Great vids, keep it up avo!");
     public boolean didSave = false;
 
     public void sendMessage(ClientPlayerEntity source, String message) {

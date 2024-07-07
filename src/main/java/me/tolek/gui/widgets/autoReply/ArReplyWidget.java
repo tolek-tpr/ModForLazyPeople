@@ -1,4 +1,4 @@
-package me.tolek.gui.widgets;
+package me.tolek.gui.widgets.autoReply;
 
 import me.tolek.modules.autoReply.AutoReply;
 import net.minecraft.client.font.TextRenderer;

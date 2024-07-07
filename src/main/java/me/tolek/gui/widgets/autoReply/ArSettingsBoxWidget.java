@@ -1,7 +1,8 @@
-package me.tolek.gui.widgets;
+package me.tolek.gui.widgets.autoReply;
 
 import me.tolek.gui.screens.AutoReplySettingScreen;
 import me.tolek.gui.screens.MflpConfigureMacroScreen;
+import me.tolek.gui.widgets.InputBoxWidget;
 import me.tolek.modules.Macro.MacroList;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;

@@ -1,2 +1,5 @@
-package me.tolek.interfaces;public interface Listener {
+package me.tolek.interfaces;
+
+public interface Listener {
+
 }

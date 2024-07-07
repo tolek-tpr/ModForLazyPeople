@@ -1,5 +1,6 @@
 package me.tolek.mixin.client;
 
+import me.tolek.event.EventManager;
 import me.tolek.modules.Macro.Macro;
 import me.tolek.modules.Macro.MacroList;
 import me.tolek.files.MflpConfigManager;
@@ -17,10 +18,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
 
+import static me.tolek.interfaces.UpdateListener.UpdateEvent;
+
 @Mixin(MinecraftClient.class)
 public class MinecraftClientMixin {
 
     private MflpUtil util = new MflpUtil();
+
+    @Inject(at = @At("HEAD"), method = "tick")
+    private void onTick(CallbackInfo ci) {
+        EventManager.getInstance().fire(UpdateEvent.INSTANCE);
+    }
 
     @Inject(at = @At("HEAD"), method = "scheduleStop")
     private void scheduleStop(CallbackInfo ci) {
@@ -85,6 +93,7 @@ public class MinecraftClientMixin {
                     settings.AUTO_WB_WHITELIST = loadedData.getSettings().AUTO_WB_WHITELIST;
                     settings.WB_BLACKLIST = loadedData.getSettings().WB_BLACKLIST;
                     settings.WB_WHITELIST = loadedData.getSettings().WB_WHITELIST;
+                    settings.PLAYER_ESP = loadedData.getSettings().PLAYER_ESP;
                 }
                 if (loadedData.getAutoReplies() != null) {
                     arl.setAutoReplies(loadedData.getAutoReplies());

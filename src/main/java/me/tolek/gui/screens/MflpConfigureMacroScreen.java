@@ -1,8 +1,8 @@
 package me.tolek.gui.screens;
 
 import me.tolek.modules.Macro.Macro;
-import me.tolek.gui.widgets.MacroCommandsWidget;
-import me.tolek.gui.widgets.MacroSettingsBoxWidget;
+import me.tolek.gui.widgets.macros.MacroCommandsWidget;
+import me.tolek.gui.widgets.macros.MacroSettingsBoxWidget;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;

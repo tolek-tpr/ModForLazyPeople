@@ -2,6 +2,7 @@ package me.tolek.files;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import me.tolek.modules.Macro.Macro;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;
@@ -20,6 +21,7 @@ public class MflpConfigManager {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         gson = builder.setPrettyPrinting().create();
+
     }
 
     public void save(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings, AutoRepliesList arl) {
@@ -41,6 +43,9 @@ public class MflpConfigManager {
             return gson.fromJson(reader, ModData.class);
         } catch (IOException e) {
             System.out.println("File not found!");
+            return null;
+        } catch (JsonIOException e) {
+            System.out.println("Json Error");
             return null;
         }
     }
