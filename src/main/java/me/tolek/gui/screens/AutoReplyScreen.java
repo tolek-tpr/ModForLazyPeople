@@ -32,7 +32,7 @@ public class AutoReplyScreen extends Screen {
         mpw.children().forEach(this::addDrawableChild);
 
         addDrawableChild(ButtonWidget.builder(Text.literal("Create"), (button -> {
-            InputBoxWidget ibw = new InputBoxWidget(textRenderer, width / 2 - 75, height / 2 - 40, 150, 20, Text.literal("Name"));
+            InputBoxWidget ibw = new InputBoxWidget(textRenderer, width / 2 - 75,   height / 2 - 40, 150, 20, Text.literal("Name"));
 
             ibw.setKeyConsumer((keyCode) -> {
                 if (keyCode == InputUtil.GLFW_KEY_ESCAPE) {

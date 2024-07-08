@@ -89,8 +89,7 @@ public class MinecraftClientMixin {
                     settings.WB_RANK_WHITELIST = loadedData.getSettings().WB_RANK_WHITELIST;
                     settings.WB_COOLDOWN = loadedData.getSettings().WB_COOLDOWN;
                     //settings.AUTO_PLOT_HOME = loadedData.getSettings().AUTO_PLOT_HOME;
-                    settings.AUTO_WB_BLACKLIST = loadedData.getSettings().AUTO_WB_BLACKLIST;
-                    settings.AUTO_WB_WHITELIST = loadedData.getSettings().AUTO_WB_WHITELIST;
+                    settings.WB_FILTER = loadedData.getSettings().WB_FILTER;
                     settings.WB_BLACKLIST = loadedData.getSettings().WB_BLACKLIST;
                     settings.WB_WHITELIST = loadedData.getSettings().WB_WHITELIST;
                     settings.PLAYER_ESP = loadedData.getSettings().PLAYER_ESP;

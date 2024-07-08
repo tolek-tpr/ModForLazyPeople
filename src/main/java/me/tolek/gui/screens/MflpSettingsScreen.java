@@ -39,8 +39,7 @@ public class MflpSettingsScreen extends Screen {
 
                 BooleanWidget bw = new BooleanWidget(width / 2, 44 + step, Text.literal(bs.getName()),
                         bs, textRenderer);
-                SettingContainerWidget scw = new SettingContainerWidget(bw);
-                slw.addChild(scw);
+                slw.addRow(bw);
             }
 
             // FLOAT SETTING (not implemented)
@@ -54,8 +53,7 @@ public class MflpSettingsScreen extends Screen {
 
                 IntegerWidget iw = new IntegerWidget(width / 2, 44 + step, Text.literal(is.getName()),
                         is, textRenderer);
-                SettingContainerWidget scw = new SettingContainerWidget(iw);
-                slw.addChild(scw);
+                slw.addRow(iw);
             }
 
             // STRING SETTING
@@ -64,8 +62,7 @@ public class MflpSettingsScreen extends Screen {
 
                 StringWidget sw = new StringWidget(width / 2, 44 + step, Text.literal(ss.getName()),
                         ss, textRenderer);
-                SettingContainerWidget scw = new SettingContainerWidget(sw);
-                slw.addChild(scw);
+                slw.addRow(sw);
             }
 
             // LIST SETTING
@@ -74,8 +71,7 @@ public class MflpSettingsScreen extends Screen {
 
                 ListWidget lw = new ListWidget(width / 2, 44 + step, Text.literal(ls.getName()),
                         ls, textRenderer);
-                SettingContainerWidget scw = new SettingContainerWidget(lw);
-                slw.addChild(scw);
+                slw.addRow(lw);
             }
 
             step += 22;
@@ -91,12 +87,6 @@ public class MflpSettingsScreen extends Screen {
     @Override
     public void close() {
         client.setScreen(null);
-    }
-
-    @Override
-    public boolean keyPressed(int keyCode, int scanCode, int modifier) {
-        slw.keyPressed(keyCode, scanCode, modifier);
-        return super.keyPressed(keyCode, scanCode, modifier);
     }
 
 }

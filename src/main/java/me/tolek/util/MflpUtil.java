@@ -21,13 +21,15 @@ public class MflpUtil {
         if (source == null) return;
         source.networkHandler.sendChatCommand(command.startsWith("/") ?
                 command.substring(1) : command);
-        System.out.println(command.startsWith("/") ?
-                command.substring(1) : command);
     }
 
     public void sendMessage(ClientPlayerEntity source, Text message) {
         if (source == null) return;
         source.sendMessage(message, false);
+    }
+
+    public static boolean isFakeMessage(Text message) {
+        return message.getString().contains("From") || message.getString().contains("*") || message.getString().contains(":");
     }
 
 }

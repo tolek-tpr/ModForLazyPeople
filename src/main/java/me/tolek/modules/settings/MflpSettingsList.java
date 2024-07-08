@@ -11,10 +11,9 @@ public class MflpSettingsList {
 
     public AutoWelcomeBack AUTO_WELCOME_BACK = new AutoWelcomeBack();
     public AutoWelcome AUTO_WELCOME = new AutoWelcome();
-    public AutoPlotHome AUTO_PLOT_HOME = new AutoPlotHome();
-    public AutoWBWhitelist AUTO_WB_WHITELIST = new AutoWBWhitelist();
+    //public AutoPlotHome AUTO_PLOT_HOME = new AutoPlotHome();
+    public AutoWbFilter WB_FILTER = new AutoWbFilter();
     public WelcomeBackWhitelist WB_WHITELIST = new WelcomeBackWhitelist();
-    public AutoWBBlacklist AUTO_WB_BLACKLIST = new AutoWBBlacklist();
     public WelcomeBackBlacklist WB_BLACKLIST = new WelcomeBackBlacklist();
     public WelcomeBackMessage WB_MESSAGE = new WelcomeBackMessage();
     public WelcomeMessage WELCOME_MESSAGE = new WelcomeMessage();
@@ -40,8 +39,7 @@ public class MflpSettingsList {
         settings.add(WB_MESSAGE);
         settings.add(WELCOME_MESSAGE);
         //settings.add(AUTO_PLOT_HOME);
-        settings.add(AUTO_WB_WHITELIST);
-        settings.add(AUTO_WB_BLACKLIST);
+        settings.add(WB_FILTER);
         settings.add(WB_WHITELIST);
         settings.add(WB_BLACKLIST);
         settings.add(PLAYER_ESP);

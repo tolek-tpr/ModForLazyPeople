@@ -41,6 +41,7 @@ public class StringWidget extends AbstractSettingWidget {
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
         context.drawTextWithShadow(tx, setting.getName(), x - 155,
                 y + 10 - tx.fontHeight / 2, 0xffffff);
+        children.forEach(c -> c.render(context, mouseX, mouseY, delta));
     }
 
     @Override

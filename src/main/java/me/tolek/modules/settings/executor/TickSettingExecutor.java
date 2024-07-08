@@ -25,7 +25,7 @@ public class TickSettingExecutor implements ClientModInitializer {
             if (client.getServer() != null && client.getServer().getServerIp() != null) {
                 System.out.println(client.getServer().getServerIp());
                 if(client.getServer().getServerIp().equals("synergyserver.net")) {
-                    settingsList.AUTO_PLOT_HOME.refresh();
+                    //settingsList.AUTO_PLOT_HOME.refresh();
                 }
             }
         }));

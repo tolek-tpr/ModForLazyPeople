@@ -80,9 +80,8 @@ public class MacroContainerWidget extends ContainerWidget {
             Text editText = Text.translatable("mflp.configScreen.editButton");
 
             TextIconButtonWidget tibw = new TextIconButtonWidget.Builder(editText, (button) -> {
-                if (client != null) {
-                    client.setScreen(new MflpConfigureMacroScreen(new MflpConfig(client), m));
-                }
+                client.setScreen(new MflpConfigureMacroScreen(new MflpConfig(client), m));
+                //System.out.println("pressed");
             }, true).texture(MflpUtil.pencilIcon, 20, 20).dimension(20, 20).build();
             tibw.setPosition(x - 180, y);
             addChild(tibw);
@@ -124,6 +123,7 @@ public class MacroContainerWidget extends ContainerWidget {
         } else {
             return super.mouseClicked(mouseX, mouseY, button);
         }
+
     }
 
     @Override
@@ -153,6 +153,7 @@ public class MacroContainerWidget extends ContainerWidget {
     @Override
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
         context.drawTextWithShadow(tx, m.getName(), x - 155, y + 10 - tx.fontHeight / 2, 0xffffff);
+        children.forEach(c -> c.render(context, mouseX, mouseY, delta));
     }
 
     public void addChild(ClickableWidget child) {
