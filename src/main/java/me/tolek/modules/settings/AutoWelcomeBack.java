@@ -95,7 +95,11 @@ public class AutoWelcomeBack extends BooleanSetting {
 
         if (message.getString().contains("banana") && !message.getString().contains("To:")) {
             if (iv.timeSinceLastInputInMils / 1000 < 30) {
-                setting.refresh();
+                if (!this.getState()) {
+                    this.run();
+                    setting.refresh();
+                    this.run();
+                }
             }
         }
 

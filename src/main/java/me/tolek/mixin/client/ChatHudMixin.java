@@ -35,7 +35,8 @@ public class ChatHudMixin {
             for (MflpSetting setting : settingsList.getSettings()) {
                 if (setting.getName().equals("Auto welcome back")) {
                     AutoWelcomeBack s = (AutoWelcomeBack) setting;
-                    s.executeAutoWB(message, setting, playerName, client);
+                    if (!iv.pauseWelcomeBack)
+                        s.executeAutoWB(message, setting, playerName, client);
                 } else if (setting.getName().equals("Auto welcome")) {
                     AutoWelcome s = (AutoWelcome) setting;
                     s.executeAutoWelcome(message, setting, playerName);

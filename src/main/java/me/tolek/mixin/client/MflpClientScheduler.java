@@ -34,7 +34,7 @@ public class MflpClientScheduler implements TimerInterface {
 
         }
 
-        toRemove.forEach((uuid) -> { uuids.remove(uuid); });
+        toRemove.forEach(uuids::remove);
     }
 
     @Override

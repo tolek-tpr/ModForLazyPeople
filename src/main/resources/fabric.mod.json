@@ -23,7 +23,8 @@
 			"me.tolek.modules.Macro.MacroExecutor",
 			"me.tolek.commands.MacroCommand",
 			"me.tolek.commands.MflpWelcomeCommand",
-			"me.tolek.modules.settings.executor.TickSettingExecutor"
+			"me.tolek.modules.settings.executor.TickSettingExecutor",
+			"me.tolek.event.FabricEventsRegistry"
 		],
 		"modmenu": [
 			"me.tolek.ModMenuImpl"

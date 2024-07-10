@@ -6,10 +6,10 @@ import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 
-public class IntegerSettingWidget extends TextFieldWidget {
+public class IntegerWidget extends TextFieldWidget {
 
-    public IntegerSettingWidget(TextRenderer textRenderer, int x, int y, IntegerSetting setting) {
-        super(textRenderer, x, y, 150, 20, Text.literal(String.valueOf(setting.getState())));
+    public IntegerWidget(int x, int y, IntegerSetting setting, TextRenderer tx) {
+        super(tx, x + 6, y, 148, 20, Text.literal(String.valueOf(setting.getState())));
         this.setMaxLength(Integer.MAX_VALUE);
         this.setText(String.valueOf(setting.getState()));
         this.setTooltip(Tooltip.of(Text.literal(setting.getTooltip())));

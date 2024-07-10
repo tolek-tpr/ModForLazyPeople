@@ -14,7 +14,7 @@ public class InstancedValues {
     public boolean shownWelcomeScreen = false;
     public boolean hasLoaded = false;
     public boolean updateAvailable = false;
-    public String version = "v2.5.4";
+    public String version = "v2.6.0";
     public long timeSinceLastInputInMils = 0;
     public String githubUrl = "github.com/tolek-tpr/ModForLazyPeople/releases";
     public String modrinthUrl = "https://modrinth.com/mod/modforlazypeople/versions";
