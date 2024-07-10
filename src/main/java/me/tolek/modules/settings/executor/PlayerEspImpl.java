@@ -42,7 +42,8 @@ public class PlayerEspImpl extends EventImpl implements RenderListener, UpdateLi
 
     @Override
     public void onRender(MatrixStack matrixStack, float tickDelta) {
-        if (MflpSettingsList.getInstance().PLAYER_ESP.getState()) {
+        boolean a = false;
+        if (/*MflpSettingsList.getInstance().PLAYER_ESP.getState()*/ a) {
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             GL11.glDisable(GL11.GL_DEPTH_TEST);
