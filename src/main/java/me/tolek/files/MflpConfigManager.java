@@ -2,12 +2,15 @@ package me.tolek.files;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import me.tolek.modules.Macro.Macro;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;
 import me.tolek.modules.settings.MflpSettingsList;
 
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 //import java.util.function.Supplier;
 
@@ -20,6 +23,7 @@ public class MflpConfigManager {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         gson = builder.setPrettyPrinting().create();
+
     }
 
     public void save(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings, AutoRepliesList arl) {
@@ -29,7 +33,7 @@ public class MflpConfigManager {
         }
 
         ModData modData = new ModData(macros, shownWelcomeScreen, settings, arl);
-        try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
+        try (FileWriter writer = new FileWriter(CONFIG_FILE, StandardCharsets.UTF_8)) {
             gson.toJson(modData, writer);
         } catch (IOException e) {
             e.printStackTrace();
@@ -37,10 +41,13 @@ public class MflpConfigManager {
     }
 
     public ModData load() {
-        try (FileReader reader = new FileReader(CONFIG_FILE)) {
+        try (FileReader reader = new FileReader(CONFIG_FILE, StandardCharsets.UTF_8)) {
             return gson.fromJson(reader, ModData.class);
         } catch (IOException e) {
             System.out.println("File not found!");
+            return null;
+        } catch (JsonIOException e) {
+            System.out.println("Json Error");
             return null;
         }
     }

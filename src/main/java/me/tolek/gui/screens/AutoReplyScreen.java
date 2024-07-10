@@ -1,10 +1,8 @@
 package me.tolek.gui.screens;
 
-import me.tolek.gui.widgets.AutoReplyWidget;
+import me.tolek.gui.widgets.autoReply.AutoReplyWidget;
 import me.tolek.gui.widgets.InputBoxWidget;
-import me.tolek.gui.widgets.MacroContainerWidget;
 import me.tolek.gui.widgets.MenuPickerWidget;
-import me.tolek.modules.Macro.Macro;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;
 import net.minecraft.client.gui.DrawContext;
@@ -34,7 +32,7 @@ public class AutoReplyScreen extends Screen {
         mpw.children().forEach(this::addDrawableChild);
 
         addDrawableChild(ButtonWidget.builder(Text.literal("Create"), (button -> {
-            InputBoxWidget ibw = new InputBoxWidget(textRenderer, width / 2 - 75, height / 2 - 40, 150, 20, Text.literal("Name"));
+            InputBoxWidget ibw = new InputBoxWidget(textRenderer, width / 2 - 75,   height / 2 - 40, 150, 20, Text.literal("Name"));
 
             ibw.setKeyConsumer((keyCode) -> {
                 if (keyCode == InputUtil.GLFW_KEY_ESCAPE) {

@@ -1,7 +1,7 @@
 package me.tolek.gui.screens;
 
-import me.tolek.gui.widgets.ArReplyWidget;
-import me.tolek.gui.widgets.ArSettingsBoxWidget;
+import me.tolek.gui.widgets.autoReply.ArReplyWidget;
+import me.tolek.gui.widgets.autoReply.ArSettingsBoxWidget;
 import me.tolek.gui.widgets.InputBoxWidget;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;

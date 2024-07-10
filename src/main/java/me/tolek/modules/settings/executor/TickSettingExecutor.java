@@ -1,17 +1,20 @@
 package me.tolek.modules.settings.executor;
 
+import me.tolek.event.EventManager;
+import me.tolek.interfaces.TimerInterface;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.util.InstancedValues;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
-import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerLoginConnectionEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.client.MinecraftClient;
 import org.lwjgl.glfw.GLFW;
 
 public class TickSettingExecutor implements ClientModInitializer {
 
-    private MflpSettingsList settingsList = MflpSettingsList.getInstance();
     private InstancedValues iv = InstancedValues.getInstance();
 
     @Override
@@ -20,14 +23,6 @@ public class TickSettingExecutor implements ClientModInitializer {
             if (client.player != null && client.player.clientWorld != null)
                 iv.timeSinceLastInputInMils += 50;
             clientTick(client);
-        }));
-        ClientPlayConnectionEvents.JOIN.register(((handler, sender, client) -> {
-            if (client.getServer() != null && client.getServer().getServerIp() != null) {
-                System.out.println(client.getServer().getServerIp());
-                if(client.getServer().getServerIp().equals("synergyserver.net")) {
-                    settingsList.AUTO_PLOT_HOME.refresh();
-                }
-            }
         }));
     }
 

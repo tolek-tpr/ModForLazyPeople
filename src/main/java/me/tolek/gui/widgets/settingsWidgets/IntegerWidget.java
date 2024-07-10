@@ -1,22 +1,22 @@
-package me.tolek.gui.widgets;
+package me.tolek.gui.widgets.settingsWidgets;
 
-import me.tolek.modules.settings.base.StringSetting;
+import me.tolek.modules.settings.base.IntegerSetting;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 
-public class StringSettingWidget extends TextFieldWidget {
+public class IntegerWidget extends TextFieldWidget {
 
-    public StringSettingWidget(TextRenderer textRenderer, int x, int y, StringSetting setting) {
-        super(textRenderer, x, y, 150, 20, Text.literal(setting.getState()));
+    public IntegerWidget(int x, int y, IntegerSetting setting, TextRenderer tx) {
+        super(tx, x + 6, y, 148, 20, Text.literal(String.valueOf(setting.getState())));
         this.setMaxLength(Integer.MAX_VALUE);
-        this.setText(setting.getState());
+        this.setText(String.valueOf(setting.getState()));
         this.setTooltip(Tooltip.of(Text.literal(setting.getTooltip())));
         this.setChangedListener((state) -> {
-            if (setting.validateString(state)) {
+            if (setting.validateInt(state)) {
                 this.setEditableColor(14737632);
-                setting.setState(state);
+                setting.setState(Integer.parseInt(state));
             } else {
                 this.setEditableColor(16711680);
             }

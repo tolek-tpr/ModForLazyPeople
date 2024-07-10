@@ -7,6 +7,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 public class MflpHelloScreen extends Screen {
 
@@ -37,14 +38,8 @@ public class MflpHelloScreen extends Screen {
         Text quickGuide4 = Text.literal("For removing macro's, use /macro removeMacro <macro name>");
         Text quickGuide5 = Text.literal("If you're macro uses a space in its name replace it with a dash");
         Text quickGuide6 = Text.literal("If you want to request new features message me on discord");
+        Text quickGuide7 = Text.literal("As of update 2.5.0, you can use the \"create\" button to add macros").formatted(Formatting.RED, Formatting.BOLD);
         //Text quickGuide5 = Text.literal("To open this screen once closed, run /mflpwelcome");
-
-        String playerName = client.getSession().getUsername();
-        if (playerName.equalsIgnoreCase("G6W9")) {
-            context.drawTextWithShadow(textRenderer, mflpUtil.g6Message, width  /2- textRenderer.getWidth(mflpUtil.g6Message) /2, height - 10, 0xffffff);
-        } else if (playerName.equalsIgnoreCase("avogaado")) {
-            context.drawTextWithShadow(textRenderer, mflpUtil.avoMessage, width  /2- textRenderer.getWidth(mflpUtil.avoMessage) /2, height - 10, 0xffffff);
-        }
 
         context.drawTextWithShadow(textRenderer, welcomeText, width / 2 - textRenderer.getWidth(welcomeText) / 2, height / 2 - height / 4, 0xffffff);
         context.drawTextWithShadow(textRenderer, quickGuide, width / 2 - textRenderer.getWidth(quickGuide) / 2, height / 2 - 30, 0xffffff);
@@ -53,8 +48,9 @@ public class MflpHelloScreen extends Screen {
         context.drawTextWithShadow(textRenderer, quickGuide2, width / 2 - textRenderer.getWidth(quickGuide2) / 2, height / 2, 0xffffff);
         context.drawTextWithShadow(textRenderer, quickGuide3, width / 2 - textRenderer.getWidth(quickGuide3) / 2, height / 2 + 10, 0xffffff);
         context.drawTextWithShadow(textRenderer, quickGuide4, width / 2 - textRenderer.getWidth(quickGuide4) / 2, height / 2 + 20, 0xffffff);
-        context.drawTextWithShadow(textRenderer, quickGuide5, width / 2 - textRenderer.getWidth(quickGuide4) / 2, height / 2 + 30, 0xffffff);
-        context.drawTextWithShadow(textRenderer, quickGuide6, width / 2 - textRenderer.getWidth(quickGuide4) / 2, height / 2 + 40, 0xffffff);
+        context.drawTextWithShadow(textRenderer, quickGuide5, width / 2 - textRenderer.getWidth(quickGuide5) / 2, height / 2 + 30, 0xffffff);
+        context.drawTextWithShadow(textRenderer, quickGuide6, width / 2 - textRenderer.getWidth(quickGuide6) / 2, height / 2 + 40, 0xffffff);
+        context.drawTextWithShadow(textRenderer, quickGuide7, width / 2 - textRenderer.getWidth(quickGuide7) / 2, height / 2 + 50, 0xffffff);
         //context.drawTextWithShadow(textRenderer, quickGuide5, width / 2 - textRenderer.getWidth(quickGuide5) / 2, height / 2 + 30, 0xffffff);
     }
 

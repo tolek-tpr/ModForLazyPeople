@@ -1,14 +1,15 @@
 package me.tolek.gui.screens;
 
 import me.tolek.gui.widgets.*;
+import me.tolek.gui.widgets.settingsWidgets.BooleanWidget;
+import me.tolek.gui.widgets.settingsWidgets.IntegerWidget;
+import me.tolek.gui.widgets.settingsWidgets.ListWidget;
+import me.tolek.gui.widgets.settingsWidgets.StringWidget;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.modules.settings.base.*;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.ContainerWidget;
-import net.minecraft.client.gui.widget.ElementListWidget;
-import net.minecraft.client.gui.widget.Widget;
+import net.minecraft.client.gui.widget.*;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 
@@ -19,6 +20,7 @@ public class MflpSettingsScreen extends Screen {
     }
 
     private final MflpSettingsList settingsList = MflpSettingsList.getInstance();
+    private ScrollableListWidget slw;
 
     @Override
     public void init() {
@@ -29,20 +31,18 @@ public class MflpSettingsScreen extends Screen {
         MenuPickerWidget mpw = new MenuPickerWidget(10, 22, client);
         mpw.children().forEach(this::addDrawableChild);
 
-        //ElementListWidget elementListWidget = new ElementListWidget
-        ScrollableListWidget slw = new ScrollableListWidget(this.client, 310, height - 82, 42, 22);
+        slw = new ScrollableListWidget(this.client, width, height - 84, 44, 22);
+        slw.setRenderBackground(false);
 
-        int step = 2;
         for (MflpSetting setting : settingsList.getSettings()) {
             // BOOLEAN SETTING
             if (setting instanceof BooleanSetting) {
                 BooleanSetting bs = (BooleanSetting) setting;
 
-                BooleanSettingWidgetContainer bswc = new BooleanSettingWidgetContainer(width / 2, 42 + step,
-                        Text.literal(bs.getName()), bs, textRenderer, client);
-                addDrawableChild(bswc);
-                addDrawableChild(bswc.bsw);
-                slw.children().add(bswc);
+                BooleanWidget bw = new BooleanWidget(width / 2, 0, bs);
+                TextWidget label = new TextWidget(width / 2 - 155,
+                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(setting.getName()) + 10, 20, Text.literal(setting.getName()), textRenderer);
+                slw.addRow(label, bw);
             }
 
             // FLOAT SETTING (not implemented)
@@ -54,37 +54,33 @@ public class MflpSettingsScreen extends Screen {
             if (setting instanceof IntegerSetting) {
                 IntegerSetting is = (IntegerSetting) setting;
 
-                IntegerSettingWidgetContainer iswc = new IntegerSettingWidgetContainer(width / 2, 42 + step,
-                        Text.literal(is.getName()), is, textRenderer, client);
-                addDrawableChild(iswc);
-                addDrawableChild(iswc.isw);
-                slw.children().add(iswc);
+                IntegerWidget iw = new IntegerWidget(width / 2, 0, is, textRenderer);
+                TextWidget label = new TextWidget(width / 2 - 155,
+                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(setting.getName()) + 10, 20, Text.literal(setting.getName()), textRenderer);
+                slw.addRow(label, iw);
             }
 
             // STRING SETTING
             if (setting instanceof StringSetting) {
                 StringSetting ss = (StringSetting) setting;
 
-                StringSettingWidgetContainer sswc = new StringSettingWidgetContainer(width / 2, 42 + step,
-                        Text.literal(ss.getName()), ss, textRenderer, client);
-                addDrawableChild(sswc);
-                addDrawableChild(sswc.ssw);
-                slw.children().add(sswc);
+                StringWidget sw = new StringWidget(width / 2, 0, ss, textRenderer);
+                TextWidget label = new TextWidget(width / 2 - 155,
+                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(setting.getName()) + 10, 20, Text.literal(setting.getName()), textRenderer);
+                slw.addRow(label, sw);
             }
 
             // LIST SETTING
             if (setting instanceof ListSetting) {
                 ListSetting ls = (ListSetting) setting;
 
-                ListSettingWidgetContainer lswc = new ListSettingWidgetContainer(width / 2, 42 + step,
-                        Text.literal(ls.getName()), ls, textRenderer, client);
-                addDrawableChild(lswc);
-                addDrawableChild(lswc.lsw);
-                slw.children().add(lswc);
+                ListWidget lw = new ListWidget(width / 2, 0, ls);
+                TextWidget label = new TextWidget(width / 2 - 155,
+                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(setting.getName()) + 10, 20, Text.literal(setting.getName()), textRenderer);
+                slw.addRow(label, lw);
             }
-
-            step += 22;
         }
+        addDrawableChild(slw);
     }
 
     @Override
