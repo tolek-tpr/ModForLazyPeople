@@ -19,7 +19,7 @@ public class MflpSettingsList {
     public WelcomeMessage WELCOME_MESSAGE = new WelcomeMessage();
     public AutoWbRanksSetting WB_RANK_WHITELIST = new AutoWbRanksSetting();
     public AutoWbCooldown WB_COOLDOWN = new AutoWbCooldown();
-    public PlayerEsp PLAYER_ESP = new PlayerEsp();
+    //public PlayerEsp PLAYER_ESP = new PlayerEsp();
 
     private MflpSettingsList() {
 
@@ -42,7 +42,7 @@ public class MflpSettingsList {
         settings.add(WB_FILTER);
         settings.add(WB_WHITELIST);
         settings.add(WB_BLACKLIST);
-        settings.add(PLAYER_ESP);
+        //settings.add(PLAYER_ESP);
         return settings;
     }
 

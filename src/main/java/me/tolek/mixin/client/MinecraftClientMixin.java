@@ -92,7 +92,7 @@ public class MinecraftClientMixin {
                     settings.WB_FILTER = loadedData.getSettings().WB_FILTER;
                     settings.WB_BLACKLIST = loadedData.getSettings().WB_BLACKLIST;
                     settings.WB_WHITELIST = loadedData.getSettings().WB_WHITELIST;
-                    settings.PLAYER_ESP = loadedData.getSettings().PLAYER_ESP;
+                    //settings.PLAYER_ESP = loadedData.getSettings().PLAYER_ESP;
                 }
                 if (loadedData.getAutoReplies() != null) {
                     arl.setAutoReplies(loadedData.getAutoReplies());
