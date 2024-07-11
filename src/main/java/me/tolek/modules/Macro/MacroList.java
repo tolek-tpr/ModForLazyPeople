@@ -12,32 +12,23 @@ public class MacroList {
     private MacroList() {
         Macro a = new Macro(UNDEFINED_KEYBINDING, List.of("/mflp freezeGame"), "Tick freeze", 1);
         Macro b = new Macro(UNDEFINED_KEYBINDING1, List.of("/tick step"), "Tick step", 1);
-        //Macro c = new Macro(UNDEFINED_KEYBINDING2, List.of("/cmflp showchat"), "Invisible chat", 1, true, false);
         a.setKey(InputUtil.UNKNOWN_KEY.getCode());
         b.setKey(InputUtil.UNKNOWN_KEY.getCode());
-        //c.setKey(InputUtil.UNKNOWN_KEY.getCode());
         this.addMacro(a);
         this.addMacro(b);
-        //this.addMacro(c);
     }
 
     private final KeyBinding UNDEFINED_KEYBINDING = new KeyBinding(
-            "mflp.keybinding.undefined",
+            "mflp.keybinding.defaultKey",
             InputUtil.Type.KEYSYM,
             InputUtil.UNKNOWN_KEY.getCode(),
-            "mflp.keybindCategory.MFLP"
+            "mflp.keybindCategory.macro"
     );
     private final KeyBinding UNDEFINED_KEYBINDING1 = new KeyBinding(
-            "mflp.keybinding.undefined",
+            "mflp.keybinding.defaultKey",
             InputUtil.Type.KEYSYM,
             InputUtil.UNKNOWN_KEY.getCode(),
-            "mflp.keybindCategory.MFLP"
-    );
-    private final KeyBinding UNDEFINED_KEYBINDING2 = new KeyBinding(
-            "mflp.keybinding.undefined",
-            InputUtil.Type.KEYSYM,
-            InputUtil.UNKNOWN_KEY.getCode(),
-            "mflp.keybindCategory.MFLP"
+            "mflp.keybindCategory.macro"
     );
 
     private static MacroList instance;

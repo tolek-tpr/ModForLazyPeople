@@ -16,6 +16,7 @@ public class InstancedValues {
     public boolean updateAvailable = false;
     public String version = "v2.6.0";
     public long timeSinceLastInputInMils = 0;
+    public long timeSinceLastWbInMils = 0;
     public String githubUrl = "github.com/tolek-tpr/ModForLazyPeople/releases";
     public String modrinthUrl = "https://modrinth.com/mod/modforlazypeople/versions";
     public boolean shownUpdateScreen = false;

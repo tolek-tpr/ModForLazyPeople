@@ -2,7 +2,6 @@ package me.tolek.mixin.client;
 
 
 import me.tolek.event.EventManager;
-import me.tolek.interfaces.RenderListener;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import org.objectweb.asm.Opcodes;
@@ -11,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static me.tolek.interfaces.RenderListener.RenderEvent;
+import static me.tolek.event.RenderListener.RenderEvent;
 
 @Mixin(GameRenderer.class)
 public abstract class GamRendererMixin implements AutoCloseable {

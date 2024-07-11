@@ -1,4 +1,4 @@
-package me.tolek.commands;
+package me.tolek.commands.client;
 
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;

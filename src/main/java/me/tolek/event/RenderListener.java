@@ -1,6 +1,5 @@
-package me.tolek.interfaces;
+package me.tolek.event;
 
-import me.tolek.event.Event;
 import net.minecraft.client.util.math.MatrixStack;
 import org.lwjgl.opengl.GL11;
 
@@ -14,15 +13,13 @@ public interface RenderListener extends Listener {
         private final MatrixStack matrixStack;
         private final float partialTicks;
 
-        public RenderEvent(MatrixStack matrixStack, float partialTicks)
-        {
+        public RenderEvent(MatrixStack matrixStack, float partialTicks) {
             this.matrixStack = matrixStack;
             this.partialTicks = partialTicks;
         }
 
         @Override
-        public void fire(ArrayList<RenderListener> listeners)
-        {
+        public void fire(ArrayList<RenderListener> listeners) {
             GL11.glEnable(GL11.GL_LINE_SMOOTH);
 
             for(RenderListener listener : listeners)

@@ -1,6 +1,4 @@
-package me.tolek.interfaces;
-
-import me.tolek.event.Event;
+package me.tolek.event;
 
 import java.util.ArrayList;
 

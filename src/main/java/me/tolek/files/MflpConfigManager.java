@@ -23,14 +23,10 @@ public class MflpConfigManager {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         gson = builder.setPrettyPrinting().create();
-
     }
 
     public void save(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings, AutoRepliesList arl) {
         File configFileObject = new File(CONFIG_FILE);
-        if (configFileObject.exists()) {
-            configFileObject.delete();
-        }
 
         ModData modData = new ModData(macros, shownWelcomeScreen, settings, arl);
         try (FileWriter writer = new FileWriter(CONFIG_FILE, StandardCharsets.UTF_8)) {

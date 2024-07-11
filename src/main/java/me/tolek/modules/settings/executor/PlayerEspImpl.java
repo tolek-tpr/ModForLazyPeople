@@ -1,17 +1,13 @@
 package me.tolek.modules.settings.executor;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import me.tolek.event.Event;
 import me.tolek.event.EventImpl;
 import me.tolek.event.EventManager;
-import me.tolek.interfaces.RenderListener;
-import me.tolek.interfaces.UpdateListener;
-import me.tolek.modules.settings.MflpSettingsList;
-import me.tolek.util.MflpUtil;
+import me.tolek.event.RenderListener;
+import me.tolek.event.UpdateListener;
 import me.tolek.util.RenderUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.network.OtherClientPlayerEntity;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;

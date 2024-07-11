@@ -19,5 +19,6 @@ public abstract class MflpSetting {
     public void setName(String name) { this.name = name; }
     public String getName() { return this.name; }
     public String getTooltip() { return this.tooltip; }
+    public void setTooltip(String tooltip) { this.tooltip = tooltip; }
 
 }

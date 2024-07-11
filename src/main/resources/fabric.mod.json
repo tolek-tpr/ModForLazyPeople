@@ -8,8 +8,8 @@
 		"bear_with_me_XD"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/modforlazypeople/",
+		"sources": "https://github.com/tolek-tpr/ModForLazyPeople"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/modforlazypeople/icon.png",
@@ -17,14 +17,12 @@
 	"entrypoints": {
 		"main": [
 			"me.tolek.ModForLazyPeople",
-			"me.tolek.commands.MflpCommand"
+			"me.tolek.commands.common.MflpCommand"
 		],
 		"client": [
-			"me.tolek.modules.Macro.MacroExecutor",
-			"me.tolek.commands.MacroCommand",
-			"me.tolek.commands.MflpWelcomeCommand",
-			"me.tolek.modules.settings.executor.TickSettingExecutor",
-			"me.tolek.event.FabricEventsRegistry"
+			"me.tolek.commands.client.MacroCommand",
+			"me.tolek.commands.client.MflpWelcomeCommand",
+			"me.tolek.events.FabricEventsRegistry"
 		],
 		"modmenu": [
 			"me.tolek.ModMenuImpl"
@@ -40,6 +38,6 @@
 		"fabric-api": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
+		"modmenu": "Mod Menu"
 	}
 }
