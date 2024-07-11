@@ -1,6 +1,8 @@
 package me.tolek.events;
 
+import me.tolek.ModForLazyPeople;
 import me.tolek.event.*;
+import me.tolek.input.HotkeyManager;
 import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
 import net.minecraft.client.MinecraftClient;

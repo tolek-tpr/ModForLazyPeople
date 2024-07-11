@@ -4,6 +4,8 @@ import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.tolek.event.EventImpl;
 import me.tolek.events.AfkDetector;
 import me.tolek.files.MflpConfigImpl;
+import me.tolek.input.HotkeyExecutorImpl;
+import me.tolek.input.HotkeyManager;
 import me.tolek.modules.Macro.MacroExecutor;
 import me.tolek.modules.autoReply.AutoReplyExecutor;
 import me.tolek.modules.settings.executor.AutoWelcomeBackImpl;
@@ -14,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static net.minecraft.server.command.CommandManager.*;
 
@@ -33,7 +36,12 @@ public class ModForLazyPeople implements ModInitializer {
 		events.add(new AutoWelcomeImpl());
 		events.add(new AutoReplyExecutor());
 		events.add(new MflpConfigImpl());
+		events.add(new HotkeyExecutorImpl());
 
 		events.forEach(e -> e.setEnabled(true));
+		ArrayList<Integer> keys = new ArrayList<>();
+		keys.add(82);
+		keys.add(90);
+		HotkeyManager.getInstance().createHotkey(keys);
 	}
 }

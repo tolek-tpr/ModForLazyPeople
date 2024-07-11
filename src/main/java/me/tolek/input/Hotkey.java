@@ -1,34 +1,48 @@
 package me.tolek.input;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Hotkey {
 
-    private ArrayList<Integer> keys;
-    private boolean pressed = false;
+    private HashMap<Integer, Boolean> keys;
 
-    public Hotkey(ArrayList<Integer> key) {
-        this.keys = key;
+    public Hotkey(ArrayList<Integer> keys) {
+        HashMap<Integer, Boolean> a = new HashMap<>();
+        keys.forEach(k -> a.put(k, false));
+        this.keys = a;
     }
 
-    public ArrayList<Integer> getKey() {
-        return keys;
+    public ArrayList<Integer> getKeys() {
+        ArrayList<Integer> a = new ArrayList<>();
+        this.keys.keySet().forEach(a::add);
+        return a;
     }
 
-    public void setKey(ArrayList<Integer> key) {
-        this.keys = key;
+    public void setKey(ArrayList<Integer> keys) {
+        HashMap<Integer, Boolean> a = new HashMap<>();
+        keys.forEach(k -> a.put(k, false));
+        this.keys = a;
     }
 
     public Hotkey copy() {
-        Hotkey e = new Hotkey(this.keys);
+        ArrayList<Integer> a = new ArrayList<>();
+        this.keys.keySet().forEach(a::add);
+        Hotkey e = new Hotkey(a);
         return e;
     }
 
-    public boolean isPressed() {
-        return pressed;
+    public void setKeyState(int key, boolean state) {
+        keys.keySet().forEach(k -> {
+            if (k == key) keys.replace(key, state);
+        });
     }
 
-    public void setPressed(boolean pressed) {
-        this.pressed = pressed;
+    public boolean isPressed() {
+        for (int key : keys.keySet()) {
+            if (!keys.get(key)) return false;
+        }
+
+        return true;
     }
 }
