@@ -1,7 +1,5 @@
 package me.tolek.event;
 
-import me.tolek.interfaces.Listener;
-
 import java.util.ArrayList;
 
 public abstract class Event<T extends Listener> {

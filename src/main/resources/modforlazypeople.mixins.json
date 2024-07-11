@@ -5,11 +5,12 @@
 	"mixins": [],
 	"client": [
 		"client.MainMenuMixin",
-		"client.MenuMixin",
+		"client.PauseScreenMixin",
 		"client.MinecraftClientMixin",
 		"client.ChatHudMixin",
      	"client.MflpClientScheduler",
-		"client.GamRendererMixin"
+		"client.GamRendererMixin",
+		"client.KeyboardMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

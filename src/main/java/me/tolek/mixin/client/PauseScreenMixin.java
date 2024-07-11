@@ -15,9 +15,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.function.Supplier;
 
 @Mixin(GameMenuScreen.class)
-public class MenuMixin extends Screen {
+public class PauseScreenMixin extends Screen {
 
-    protected MenuMixin(Text title) {
+    protected PauseScreenMixin(Text title) {
         super(title);
     }
 

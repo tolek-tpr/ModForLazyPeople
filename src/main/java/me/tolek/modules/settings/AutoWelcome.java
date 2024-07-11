@@ -25,19 +25,4 @@ public class AutoWelcome extends BooleanSetting {
             MinecraftClient.getInstance().player.networkHandler.sendChatMessage(MflpSettingsList.getInstance().WELCOME_MESSAGE.getState());
         }
     }
-
-    public void executeAutoWelcome(Text message, MflpSetting setting, String playerName) {
-        InstancedValues iv = InstancedValues.getInstance();
-        if (!message.getString().contains(playerName)) {
-            if (message.getString().contains("Welcome") && message.getString().contains(" to Synergy!")) {
-                if (!MflpUtil.isFakeMessage(message)) {
-                    if (iv.timeSinceLastInputInMils / 1000 < 30 && !iv.isAfk) {
-                        setting.refresh();
-                        iv.pauseWelcomeBack = true;
-                    }
-                }
-            }
-        }
-    }
-
 }

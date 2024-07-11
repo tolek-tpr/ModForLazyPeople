@@ -1,6 +1,5 @@
 package me.tolek.event;
 
-import me.tolek.interfaces.Listener;
 import net.minecraft.util.crash.CrashException;
 import net.minecraft.util.crash.CrashReport;
 import net.minecraft.util.crash.CrashReportSection;

@@ -1,4 +1,4 @@
-package me.tolek.interfaces;
+package me.tolek.event;
 
 public interface Listener {
 

@@ -1,4 +1,4 @@
-package me.tolek.commands;
+package me.tolek.commands.client;
 
 import me.tolek.gui.screens.MflpHelloScreen;
 import net.fabricmc.api.ClientModInitializer;

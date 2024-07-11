@@ -1,6 +1,6 @@
 package me.tolek.mixin.client;
 
-import me.tolek.interfaces.TimerInterface;
+import me.tolek.interfaces.IScheduler;
 import me.tolek.util.MflpScheduler;
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,7 +13,7 @@ import java.util.*;
 import java.util.function.Consumer;
 
 @Mixin(MinecraftClient.class)
-public class MflpClientScheduler implements TimerInterface {
+public class MflpClientScheduler implements IScheduler {
 
 
     @Unique

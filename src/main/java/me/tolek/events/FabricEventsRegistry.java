@@ -1,12 +1,9 @@
-package me.tolek.event;
+package me.tolek.events;
 
-import me.tolek.interfaces.TimerInterface;
 import me.tolek.util.InstancedValues;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
-import net.minecraft.client.MinecraftClient;
 
 public class FabricEventsRegistry implements ClientModInitializer {
 
