@@ -1,6 +1,7 @@
 package me.tolek.files;
 
 import me.tolek.event.*;
+import me.tolek.input.Hotkey;
 import me.tolek.modules.Macro.Macro;
 import me.tolek.modules.Macro.MacroList;
 import me.tolek.modules.autoReply.AutoRepliesList;
@@ -60,11 +61,10 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
             MflpConfigManager.ModData loadedData = configManager.load();
 
             if (loadedData != null) {
-                ArrayList<MflpConfigManager.ShortMacro> shortMacros = loadedData.getShortMacros();
                 boolean loadedShownWelcomeScreen = loadedData.isShownWelcomeScreen();
 
                 iv.shownWelcomeScreen = loadedShownWelcomeScreen;
-                if (!loadedData.getShortMacros().isEmpty() && loadedData.getShortMacros() != null) {
+                if (!loadedData.getMacros().isEmpty() && loadedData.getMacros() != null) {
                     macroList.getMacros().clear();
                 }
 
@@ -75,15 +75,19 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
                 if (loadedData.getAutoReplies() != null) {
                     arl.getAutoReplies().clear();
                 }
+                if (loadedData.getMacros() != null) {
+                    macroList.getMacros().clear();
+                }
 
-                for (MflpConfigManager.ShortMacro sm : shortMacros) {
-                    KeyBinding kb = new KeyBinding("mflp.keybinding.undefined",
-                            sm.key,
-                            "mflp.keybindCategory.MFLP");
-
-                    Macro m = new Macro(kb, sm.commands, sm.name, sm.repeatAmt, sm.isUneditable, sm.isOn);
-                    m.setKey(sm.key);
-                    macroList.addMacro(m);
+                if (loadedData.getMacros() != null) {
+                    for (Macro m : loadedData.getMacros()) {
+                        macroList.addMacro(m);
+                    }
+                }
+                if (loadedData.getFileVersion() == null) {
+                    for (Macro m : macroList.getMacros()) {
+                        m.setKeyBinding(new Hotkey(MflpUtil.asArray(-1)));
+                    }
                 }
                 if (loadedData.getSettings() != null) {
                     settings.AUTO_WELCOME_BACK = loadedData.getSettings().AUTO_WELCOME_BACK;

@@ -1,6 +1,8 @@
 package me.tolek.modules.Macro;
 
+import me.tolek.input.Hotkey;
 import me.tolek.util.KeyBindingUtil;
+import me.tolek.util.MflpUtil;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 
@@ -10,25 +12,14 @@ import java.util.List;
 public class MacroList {
 
     private MacroList() {
-        Macro a = new Macro(UNDEFINED_KEYBINDING, List.of("/mflp freezeGame"), "Tick freeze", 1);
-        Macro b = new Macro(UNDEFINED_KEYBINDING1, List.of("/tick step"), "Tick step", 1);
-        a.setKey(InputUtil.UNKNOWN_KEY.getCode());
-        b.setKey(InputUtil.UNKNOWN_KEY.getCode());
+        Macro a = new Macro(UNDEFINED_KEYBINDING.copy(), List.of("/mflp freezeGame"), "Tick freeze", 1);
+        Macro b = new Macro(UNDEFINED_KEYBINDING.copy(), List.of("/tick step"), "Tick step", 1);
         this.addMacro(a);
         this.addMacro(b);
     }
 
-    private final KeyBinding UNDEFINED_KEYBINDING = new KeyBinding(
-            "mflp.keybinding.defaultKey",
-            InputUtil.Type.KEYSYM,
-            InputUtil.UNKNOWN_KEY.getCode(),
-            "mflp.keybindCategory.macro"
-    );
-    private final KeyBinding UNDEFINED_KEYBINDING1 = new KeyBinding(
-            "mflp.keybinding.defaultKey",
-            InputUtil.Type.KEYSYM,
-            InputUtil.UNKNOWN_KEY.getCode(),
-            "mflp.keybindCategory.macro"
+    private final Hotkey UNDEFINED_KEYBINDING = new Hotkey(
+            MflpUtil.asArray(InputUtil.UNKNOWN_KEY.getCode())
     );
 
     private static MacroList instance;
@@ -47,32 +38,9 @@ public class MacroList {
         macros.add(macro);
     }
 
-    public KeyBinding setKeyBinding(KeyBinding keyBinding, InputUtil.Key key) {
-        int i = 0;
-        for (Macro m : macros) {
-            KeyBinding macroKeyBinding = m.getKeyBinding();
-
-            if (keyBinding == macroKeyBinding) {
-                KeyBinding newKeyBinding = KeyBindingUtil.setKey(keyBinding, key);
-
-                m.setKeyBinding(newKeyBinding);
-                m.setKey(key.getCode());
-                return newKeyBinding;
-            }
-        }
-        return null;
-    }
-
     public void removeMacro(Macro m) {
         m.setKeyBinding(null);
         macros.remove(m);
-    }
-
-    public Macro getMacroFromKeyBinding(KeyBinding keyBinding) {
-        for (Macro m : macros) {
-            if (m.getKeyBinding() == keyBinding) return m;
-        }
-        return null;
     }
 
     public void setList(ArrayList<Macro> ml) {

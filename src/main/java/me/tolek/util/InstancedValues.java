@@ -22,5 +22,6 @@ public class InstancedValues {
     public boolean shownUpdateScreen = false;
     public boolean pauseWelcomeBack = false;
     public boolean isAfk = false;
+    public String fileVersion = "1.3";
 
 }

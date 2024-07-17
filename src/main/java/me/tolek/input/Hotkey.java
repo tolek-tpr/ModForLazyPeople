@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class Hotkey {
 
     private HashMap<Integer, Boolean> keys;
+    private int timesPressed;
 
     public Hotkey(ArrayList<Integer> keys) {
         HashMap<Integer, Boolean> a = new HashMap<>();
@@ -36,6 +37,9 @@ public class Hotkey {
         keys.keySet().forEach(k -> {
             if (k == key) keys.replace(key, state);
         });
+        if (this.isPressed()) {
+            this.timesPressed++;
+        }
     }
 
     public boolean isPressed() {
@@ -44,5 +48,14 @@ public class Hotkey {
         }
 
         return true;
+    }
+
+    public boolean wasPressed() {
+        if (this.timesPressed == 0) {
+            return false;
+        } else {
+            --this.timesPressed;
+            return true;
+        }
     }
 }

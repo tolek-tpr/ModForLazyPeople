@@ -4,6 +4,9 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class MflpUtil {
 
     public MflpUtil() { }
@@ -30,6 +33,12 @@ public class MflpUtil {
 
     public static boolean isFakeMessage(Text message) {
         return message.getString().contains("From") || message.getString().contains("*") || message.getString().contains(":");
+    }
+
+    public static <T extends Object> ArrayList<T> asArray(T... toAdd) {
+        ArrayList<T> list = new ArrayList<>();
+        Collections.addAll(list, toAdd);
+        return list;
     }
 
 }

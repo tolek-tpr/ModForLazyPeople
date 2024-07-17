@@ -25,6 +25,7 @@ public class MacroExecutor extends EventImpl implements UpdateListener {
     @Override
     public void onUpdate() {
         for (Macro m : macroList.getMacros()) {
+            if (m.getKeyBinding() == null) continue;
             if (m.getKeyBinding().wasPressed()) {
                 m.runMacro(client.player);
             }

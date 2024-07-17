@@ -2,6 +2,7 @@ package me.tolek.commands.client;
 
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import me.tolek.input.Hotkey;
 import me.tolek.modules.Macro.Macro;
 import me.tolek.modules.Macro.MacroList;
 import me.tolek.util.MflpUtil;
@@ -268,12 +269,10 @@ public class MacroCommand implements ClientModInitializer {
         List<String> commands = List.of(unparesedCommand.split("\\."));
         macroName = macroName.replace('-', ' ');
 
-        KeyBinding keyBinding = new KeyBinding("mflp.keybinding.undefined", InputUtil.UNKNOWN_KEY.getCode(), "mflp.keybindCategory.MFLP");
+        Hotkey keyBinding = new Hotkey(MflpUtil.asArray(InputUtil.UNKNOWN_KEY.getCode()));
 
         Macro m = new Macro(keyBinding, commands, macroName, 1);
-        m.setKey(InputUtil.UNKNOWN_KEY.getCode());
         macroList.addMacro(m);
-        System.out.println(macroList.getMacroFromKeyBinding(keyBinding).getCommands());
 
         Text macroNameText = Text.literal(macroName).formatted(Formatting.BOLD).formatted(Formatting.GOLD);
         Text message = Text.literal("Added macro: ").append(macroNameText);

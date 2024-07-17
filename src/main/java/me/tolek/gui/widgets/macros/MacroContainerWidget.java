@@ -47,7 +47,7 @@ public class MacroContainerWidget extends ContainerWidget {
         this.y = y;
         this.tx = tx;
 
-        Text keyName = m.getKeyBinding().getBoundKeyLocalizedText();
+        /*Text keyName = m.getKeyBinding().getBoundKeyLocalizedText();
 
         ButtonWidget bw = ButtonWidget.builder(keyName, (button -> {
             this.selectedKeyBinding = m.getKeyBinding();
@@ -85,10 +85,10 @@ public class MacroContainerWidget extends ContainerWidget {
             }, true).texture(MflpUtil.pencilIcon, 20, 20).dimension(20, 20).build();
             tibw.setPosition(x - 180, y);
             addChild(tibw);
-        }
+        }*/
     }
 
-    private void update(KeyBinding keyBinding, Macro m) {
+    /*private void update(KeyBinding keyBinding, Macro m) {
         ButtonWidget editButton = editButtons.get(m);
         Text keyName = m.getKeyBinding().getBoundKeyLocalizedText();
 
@@ -143,7 +143,7 @@ public class MacroContainerWidget extends ContainerWidget {
         } else {
             return super.keyPressed(keyCode, scanCode, modifiers);
         }
-    }
+    }*/
 
     @Override
     public List<? extends ClickableWidget> children() {
