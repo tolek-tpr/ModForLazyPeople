@@ -44,6 +44,7 @@ public class AutoWelcomeImpl extends EventImpl implements ChatListener {
             if (message.getString().contains("Welcome") && message.getString().contains(" to Synergy!")) {
                 if (!MflpUtil.isFakeMessage(message)) {
                     if (iv.timeSinceLastInputInMils / 1000 < 30 && !iv.isAfk) {
+                        setting.lastName = message.getString().split(" ")[1];
                         setting.refresh();
                         iv.pauseWelcomeBack = true;
                     }

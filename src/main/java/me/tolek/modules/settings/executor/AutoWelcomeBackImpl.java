@@ -67,6 +67,8 @@ public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, Upda
                         if (iv.timeSinceLastInputInMils / 1000 < 30 && !iv.isAfk) {
                             ((IScheduler) client).scheduleNonRepeating(settingsList.WB_DELAY.getState(), (b) -> {
                                 if (validateRankWhitelist(message, client, settingsList)) {
+                                    setting.lastName = message.getString().contains("is no longer AFK.") ?
+                                            message.getString().split(" ")[1] : message.getString().split(" ")[0];
                                     if (settingsList.WB_FILTER.stateIndex == 0) {
                                         setting.refresh();
                                     } else if (settingsList.WB_FILTER.stateIndex == 1) {

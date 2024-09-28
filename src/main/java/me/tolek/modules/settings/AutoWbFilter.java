@@ -9,11 +9,10 @@ public class AutoWbFilter extends ListSetting {
     public AutoWbFilter() {
         super("Auto wb filter", 0, "A switch between no filter, a whitelist filter, and a blacklist", null);
 
-        ArrayList<Object> options = new ArrayList<>();
-        options.add("None");
-        options.add("Whitelist");
-        options.add("Blacklist");
-        this.setList(options);
+        this.setList(new ArrayList<>());
+        this.addOption("None");
+        this.addOption("Whitelist");
+        this.addOption("Blacklist");
     }
 
     @Override

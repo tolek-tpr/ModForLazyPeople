@@ -1,5 +1,19 @@
 package me.tolek.util;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
+import me.tolek.ModForLazyPeople;
+import me.tolek.files.MflpConfigManager;
+import net.fabricmc.loader.api.FabricLoader;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Optional;
+
 public class InstancedValues {
 
     private static InstancedValues instance;
@@ -9,15 +23,52 @@ public class InstancedValues {
         return instance;
     }
 
-    private InstancedValues() {}
+    private InstancedValues() {
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        gson = builder.create();
+    }
+
+    private Gson gson;
 
     public boolean shownWelcomeScreen = false;
     public boolean hasLoaded = false;
     public boolean updateAvailable = false;
-    public String version = "v2.6.0";
+    private String version;
+
+    public String getMflpVersion() {
+        String settings = getMflpSettings();
+        if (settings == null) return null;
+
+        String[] lines = settings.split("\n");
+        return lines[1].split(":")[1].strip();
+    }
+
+    public String getFileVersion() {
+        String settings = getMflpSettings();
+        if (settings == null) return null;
+
+        String[] lines = settings.split("\n");
+        return lines[2].split(":")[1].strip();
+    }
+
+    public String getMflpSettings() {
+        Optional<Path> o = FabricLoader.getInstance().getModContainer("modforlazypeople").get()
+                .findPath("settings.mflp");
+        if (o.isPresent()) {
+            try {
+                String settings = Files.readString(o.get());
+                return settings;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
     public long timeSinceLastInputInMils = 0;
     public long timeSinceLastWbInMils = 0;
-    public String githubUrl = "github.com/tolek-tpr/ModForLazyPeople/releases";
+    public String githubUrl = "https://github.com/tolek-tpr/ModForLazyPeople/releases";
     public String modrinthUrl = "https://modrinth.com/mod/modforlazypeople/versions";
     public boolean shownUpdateScreen = false;
     public boolean pauseWelcomeBack = false;

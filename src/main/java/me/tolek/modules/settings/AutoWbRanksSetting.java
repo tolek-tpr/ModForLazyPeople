@@ -11,12 +11,11 @@ public class AutoWbRanksSetting extends ListSetting {
     public AutoWbRanksSetting() {
         super("Auto WB rank setting", 0, "Rank filter for auto wb", null);
 
-        ArrayList<Object> options = new ArrayList<>();
-        options.add("Everyone");
-        options.add("Member +");
-        options.add("Devoted +");
-        options.add("Trusted +");
-        this.setList(options);
+        this.setList(new ArrayList<>());
+        this.addOption("Everyone");
+        this.addOption("Member +");
+        this.addOption("Devoted +");
+        this.addOption("Trusted +");
     }
 
     @Override

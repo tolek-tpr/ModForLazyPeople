@@ -102,11 +102,14 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
                 if (loadedData.getAutoReplies() != null) {
                     arl.setAutoReplies(loadedData.getAutoReplies());
                 }
+                if (loadedData.getFileVersion() != null) {
+                    System.out.println("File Version is " + loadedData.getFileVersion() + " no changes need to be applied");
+                }
             }
             iv.hasLoaded = true;
         }
 
-        UpdateChecker uc = new UpdateChecker("tolek-tpr", "ModForLazyPeople", iv.version);
+        UpdateChecker uc = new UpdateChecker("tolek-tpr", "ModForLazyPeople", iv.getMflpVersion());
         uc.check();
         if (uc.isUpdateAvailable()) {
             iv.updateAvailable = true;

@@ -9,6 +9,8 @@ import net.minecraft.text.Text;
 
 public class AutoWelcome extends BooleanSetting {
 
+    public String lastName;
+
     public AutoWelcome() {
         super("Auto welcome", false, "Automatically says welcome! when a new person joins synergy");
     }
@@ -22,7 +24,11 @@ public class AutoWelcome extends BooleanSetting {
     @Override
     public void refresh() {
         if (this.getState() && MinecraftClient.getInstance().player != null) {
-            MinecraftClient.getInstance().player.networkHandler.sendChatMessage(MflpSettingsList.getInstance().WELCOME_MESSAGE.getState());
+            String message = MflpSettingsList.getInstance().WELCOME_MESSAGE.getState();
+            if (message.contains("%p") && lastName != null) {
+                message = message.replace("%p", lastName);
+            }
+            MinecraftClient.getInstance().player.networkHandler.sendChatMessage(message);
         }
     }
 }

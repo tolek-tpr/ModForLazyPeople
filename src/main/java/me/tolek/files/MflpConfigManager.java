@@ -3,21 +3,30 @@ package me.tolek.files;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
+import com.mojang.authlib.Environment;
+import com.mojang.authlib.EnvironmentParser;
+import com.mojang.authlib.yggdrasil.YggdrasilEnvironment;
 import me.tolek.modules.Macro.Macro;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;
 import me.tolek.modules.settings.MflpSettingsList;
+import me.tolek.util.InstancedValues;
 
 import java.io.*;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-//import java.util.function.Supplier;
 
 public class MflpConfigManager {
 
     private static final String CONFIG_FILE = "MflpConfig.json";
+    private static final String FILE_VERSION = InstancedValues.getInstance().getFileVersion();
     private Gson gson;
+
+    private Environment determineEnvironment() {
+        return EnvironmentParser
+                .getEnvironmentFromProperties()
+                .orElse(YggdrasilEnvironment.PROD.getEnvironment());
+    }
 
     public MflpConfigManager() {
         GsonBuilder builder = new GsonBuilder();
@@ -26,9 +35,7 @@ public class MflpConfigManager {
     }
 
     public void save(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings, AutoRepliesList arl) {
-        File configFileObject = new File(CONFIG_FILE);
-
-        ModData modData = new ModData(macros, shownWelcomeScreen, settings, arl);
+        ModData modData = new ModData(macros, shownWelcomeScreen, settings, arl, FILE_VERSION);
         try (FileWriter writer = new FileWriter(CONFIG_FILE, StandardCharsets.UTF_8)) {
             gson.toJson(modData, writer);
         } catch (IOException e) {
@@ -73,19 +80,22 @@ public class MflpConfigManager {
         private MflpSettingsList settings;
         private boolean shownWelcomeScreen;
         private ArrayList<AutoReply> autoReplies = new ArrayList<>();
+        private String fileVersion;
 
-        public ModData(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings, AutoRepliesList arl) {
+        public ModData(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings, AutoRepliesList arl, String fileVersion) {
             for (Macro m : macros) {
                 this.macros.add(new ShortMacro(m.getName(), m.getCommands(), m.getKey(), m.getRepeatAmount(), m.getUneditable(), m.getTurnedOn()));
             }
             this.settings = settings;
             this.shownWelcomeScreen = shownWelcomeScreen;
             this.autoReplies = arl.getAutoReplies();
+            this.fileVersion = fileVersion;
         }
 
         public ArrayList<ShortMacro> getShortMacros() {
             return this.macros;
         }
+        public String getFileVersion() { return this.fileVersion; }
         public MflpSettingsList getSettings() { return this.settings; }
         public ArrayList<AutoReply> getAutoReplies() { return this.autoReplies; }
         public boolean isShownWelcomeScreen() {

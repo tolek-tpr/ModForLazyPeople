@@ -11,8 +11,10 @@ import net.minecraft.text.Text;
 
 public class AutoWelcomeBack extends BooleanSetting {
 
+    public String lastName;
+
     public AutoWelcomeBack() {
-        super("Auto welcome back", false, "Automatically says wb when someone comes back from being afk or joins synergy");
+        super("Auto welcome back", false, "Automatically says wb when someone comes back from being afk or joins synergy.");
     }
 
     @Override
@@ -24,7 +26,11 @@ public class AutoWelcomeBack extends BooleanSetting {
     @Override
     public void refresh() {
         if (this.getState() && MinecraftClient.getInstance().player != null) {
-            MinecraftClient.getInstance().player.networkHandler.sendChatMessage(MflpSettingsList.getInstance().WB_MESSAGE.getState());
+            String message = MflpSettingsList.getInstance().WB_MESSAGE.getState();
+            if (message.contains("%p") && lastName != null) {
+                message = message.replace("%p", lastName);
+            }
+            MinecraftClient.getInstance().player.networkHandler.sendChatMessage(message);
             InstancedValues.getInstance().timeSinceLastWbInMils = 0;
         }
     }

@@ -28,7 +28,24 @@ dependencies {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
 	modApi ("com.terraformersmc:modmenu:9.2.0-beta.2")
-	implementation 'com.google.code.gson:gson:2.9.0'
+	implementation "com.google.code.gson:gson:2.9.0"
+}
+
+def replaceFileVersion() {
+	def jsonFile = file("src/main/resources/settings.mflp")
+	def props = new Properties()
+	file("gradle.properties").withInputStream { props.load(it) }
+
+	def fileVersion = props['file_version']
+
+	// Read the JSON file
+	def jsonText = jsonFile.text
+
+	// Replace the placeholder with the actual value from gradle.properties
+	jsonText = jsonText.replace('${file_version}', fileVersion)
+
+	// Write the modified JSON back
+	jsonFile.text = jsonText
 }
 
 processResources {
@@ -37,6 +54,10 @@ processResources {
 	filesMatching("fabric.mod.json") {
 		expand "version": project.version
 	}
+	filesMatching("settings.mflp") {
+		expand "version": project.version
+	}
+	replaceFileVersion()
 }
 
 tasks.withType(JavaCompile).configureEach {

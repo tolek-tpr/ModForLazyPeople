@@ -1,6 +1,7 @@
 package me.tolek.mixin.client;
 
 import me.tolek.gui.screens.MflpConfig;
+import me.tolek.util.InstancedValues;
 import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -39,6 +40,16 @@ public class PauseScreenMixin extends Screen {
         return ButtonWidget.builder(text, (button) -> {
             this.client.setScreen((Screen)screenSupplier.get());
         }).width(98).build();
+    }
+
+    @Inject(at = @At("RETURN"), method="init")
+    public void init(CallbackInfo ci) {
+        InstancedValues.getInstance().pauseWelcomeBack = true;
+    }
+
+    @Override
+    public void close() {
+        InstancedValues.getInstance().pauseWelcomeBack = false;
     }
 
 }

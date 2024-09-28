@@ -18,4 +18,5 @@ public class WelcomeBackBlacklist extends StringSetting {
     public boolean validateString(String toValidate) {
         return !toValidate.contains("-");
     }
+
 }

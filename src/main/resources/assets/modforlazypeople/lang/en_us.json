@@ -5,6 +5,7 @@
   "mflp.settingsScreen.title": "MFLP Settings",
   "mflp.autoReplyScreen.title": "Auto Reply config",
   "mflp.autoReplyConfigScreen.title": "Auto reply settings",
+  "mflp.playerBlacklistScreen.title": "Auto welcome back player blacklist screen",
 
   "mflp.category.configCategory": "Config",
   "mflp.category.hotkeyCategory": "Hotkeys",

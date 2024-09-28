@@ -1,9 +1,11 @@
 package me.tolek.events;
 
+import me.tolek.interfaces.IScheduler;
 import me.tolek.util.InstancedValues;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.minecraft.client.MinecraftClient;
 
 public class FabricEventsRegistry implements ClientModInitializer {
 
@@ -11,11 +13,13 @@ public class FabricEventsRegistry implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        ClientLoginConnectionEvents.INIT.register((i, j) -> {
+        /*ClientLoginConnectionEvents.INIT.register((i, j) -> {
             iv.pauseWelcomeBack = true;
-            //((TimerInterface) MinecraftClient.getInstance()).scheduleNonRepeating(200, b -> iv.pauseWelcomeBack = false);
+            // bad idea but w/e
+            ((IScheduler) MinecraftClient.getInstance()).scheduleNonRepeating(200, b -> iv.pauseWelcomeBack = false);
         });
         ClientLoginConnectionEvents.DISCONNECT.register((i, j) -> {
+            // when the connection is ended.
             iv.pauseWelcomeBack = false;
             iv.isAfk = false;
         });
@@ -25,10 +29,7 @@ public class FabricEventsRegistry implements ClientModInitializer {
         ClientPlayConnectionEvents.DISCONNECT.register((i, j) -> {
             iv.pauseWelcomeBack = false;
             iv.isAfk = false;
-        });
-        ClientLoginConnectionEvents.QUERY_START.register((i, j) -> {
-            iv.pauseWelcomeBack = false;
-        });
+        });*/
     }
 
 }
