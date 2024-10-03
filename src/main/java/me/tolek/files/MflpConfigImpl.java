@@ -1,15 +1,19 @@
 package me.tolek.files;
 
+import me.tolek.ModForLazyPeople;
 import me.tolek.event.*;
+import me.tolek.interfaces.IScheduler;
 import me.tolek.modules.Macro.Macro;
 import me.tolek.modules.Macro.MacroList;
 import me.tolek.modules.autoReply.AutoRepliesList;
+import me.tolek.modules.settings.CustomPlayerMessageList;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.updateChecker.UpdateChecker;
 import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
+import org.slf4j.Logger;
 
 import java.util.ArrayList;
 
@@ -60,6 +64,10 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
             MflpConfigManager.ModData loadedData = configManager.load();
 
             if (loadedData != null) {
+                if (loadedData.getFileVersion() != null) {
+                    ModForLazyPeople.LOGGER.info("File Version is " + loadedData.getFileVersion() + " no changes need to be applied");
+                }
+
                 ArrayList<MflpConfigManager.ShortMacro> shortMacros = loadedData.getShortMacros();
                 boolean loadedShownWelcomeScreen = loadedData.isShownWelcomeScreen();
 
@@ -98,12 +106,13 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
                     settings.WB_WHITELIST = loadedData.getSettings().WB_WHITELIST;
                     //settings.PLAYER_ESP = loadedData.getSettings().PLAYER_ESP;
                     settings.WB_COOLDOWN = loadedData.getSettings().WB_COOLDOWN;
+                    settings.WB_PLAYER_BLACKLIST = loadedData.getSettings().WB_PLAYER_BLACKLIST;
                 }
                 if (loadedData.getAutoReplies() != null) {
                     arl.setAutoReplies(loadedData.getAutoReplies());
                 }
-                if (loadedData.getFileVersion() != null) {
-                    System.out.println("File Version is " + loadedData.getFileVersion() + " no changes need to be applied");
+                if (loadedData.getCustomPlayerMessages() != null) {
+                    CustomPlayerMessageList.getInstance().setMessages(loadedData.getCustomPlayerMessages());
                 }
             }
             iv.hasLoaded = true;
@@ -111,6 +120,11 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
 
         UpdateChecker uc = new UpdateChecker("tolek-tpr", "ModForLazyPeople", iv.getMflpVersion());
         uc.check();
+        Logger logger = ModForLazyPeople.LOGGER;
+        if (uc.isUpdateAvailable()) {
+            logger.warn("New version available: v" + uc.getLatestVersion() + " (current: v" + uc.currentVersion + ")");
+            logger.warn("Download it at " + iv.modrinthUrl);
+        }
         if (uc.isUpdateAvailable()) {
             iv.updateAvailable = true;
         }

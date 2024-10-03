@@ -29,35 +29,30 @@ dependencies {
 	}
 	modApi ("com.terraformersmc:modmenu:9.2.0-beta.2")
 	implementation "com.google.code.gson:gson:2.9.0"
+
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
-def replaceFileVersion() {
-	def jsonFile = file("src/main/resources/settings.mflp")
-	def props = new Properties()
-	file("gradle.properties").withInputStream { props.load(it) }
-
-	def fileVersion = props['file_version']
-
-	// Read the JSON file
-	def jsonText = jsonFile.text
-
-	// Replace the placeholder with the actual value from gradle.properties
-	jsonText = jsonText.replace('${file_version}', fileVersion)
-
-	// Write the modified JSON back
-	jsonFile.text = jsonText
+test {
+	useJUnitPlatform()
 }
 
 processResources {
 	inputs.property "version", project.version
+	def fileProps = new Properties()
+	file('gradle.properties').withInputStream { stream ->
+		fileProps.load(stream)
+	}
+	inputs.property "file_version", fileProps['file_version']
 
 	filesMatching("fabric.mod.json") {
 		expand "version": project.version
 	}
-	filesMatching("settings.mflp") {
-		expand "version": project.version
+	filesMatching("**/settings.mflp") {
+		expand "version": project.version, "file_version": fileProps['file_version']
 	}
-	replaceFileVersion()
+
 }
 
 tasks.withType(JavaCompile).configureEach {

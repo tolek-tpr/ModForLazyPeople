@@ -1,4 +1,4 @@
 {
     "version": "${version}",
-    "file_version": "1.0.0"
+    "file_version": "${file_version}"
 }

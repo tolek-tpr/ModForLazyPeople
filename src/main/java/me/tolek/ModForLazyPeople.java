@@ -8,6 +8,7 @@ import me.tolek.modules.Macro.MacroExecutor;
 import me.tolek.modules.autoReply.AutoReplyExecutor;
 import me.tolek.modules.settings.executor.AutoWelcomeBackImpl;
 import me.tolek.modules.settings.executor.AutoWelcomeImpl;
+import me.tolek.network.MflpPlayersWorker;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -33,6 +34,7 @@ public class ModForLazyPeople implements ModInitializer {
 		events.add(new AutoWelcomeImpl());
 		events.add(new AutoReplyExecutor());
 		events.add(new MflpConfigImpl());
+		events.add(MflpPlayersWorker.getInstance());
 
 		events.forEach(e -> e.setEnabled(true));
 	}

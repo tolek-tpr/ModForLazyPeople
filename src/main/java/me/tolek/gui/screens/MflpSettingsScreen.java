@@ -1,10 +1,7 @@
 package me.tolek.gui.screens;
 
 import me.tolek.gui.widgets.*;
-import me.tolek.gui.widgets.settingsWidgets.BooleanWidget;
-import me.tolek.gui.widgets.settingsWidgets.IntegerWidget;
-import me.tolek.gui.widgets.settingsWidgets.ListWidget;
-import me.tolek.gui.widgets.settingsWidgets.StringWidget;
+import me.tolek.gui.widgets.settingsWidgets.*;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.modules.settings.base.*;
 import net.minecraft.client.gui.DrawContext;
@@ -78,6 +75,15 @@ public class MflpSettingsScreen extends Screen {
                 TextWidget label = new TextWidget(width / 2 - 155,
                         10 - textRenderer.fontHeight / 2, textRenderer.getWidth(setting.getName()) + 10, 20, Text.literal(setting.getName()), textRenderer);
                 slw.addRow(label, lw);
+            }
+
+            if (setting instanceof ButtonSetting) {
+                ButtonSetting bs = (ButtonSetting) setting;
+
+                ButtonSettingWidget bw = new ButtonSettingWidget(width / 2, 0, bs);
+                TextWidget label = new TextWidget(width / 2 - 155,
+                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(setting.getName()) + 10, 20, Text.literal(setting.getName()), textRenderer);
+                slw.addRow(label, bw);
             }
         }
         addDrawableChild(slw);

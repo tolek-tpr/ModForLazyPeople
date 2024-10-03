@@ -34,22 +34,21 @@ public class InstancedValues {
     public boolean shownWelcomeScreen = false;
     public boolean hasLoaded = false;
     public boolean updateAvailable = false;
-    private String version;
 
     public String getMflpVersion() {
-        String settings = getMflpSettings();
+        String settings = getMflpSettings().strip();
         if (settings == null) return null;
 
         String[] lines = settings.split("\n");
-        return lines[1].split(":")[1].strip();
+        return lines[1].split(":")[1].replaceAll("\"", "").replaceAll(",", "").strip();
     }
 
     public String getFileVersion() {
-        String settings = getMflpSettings();
+        String settings = getMflpSettings().strip();
         if (settings == null) return null;
 
         String[] lines = settings.split("\n");
-        return lines[2].split(":")[1].strip();
+        return lines[2].split(":")[1].replaceAll("\"", "").replaceAll(",", "").strip();
     }
 
     public String getMflpSettings() {
@@ -68,7 +67,7 @@ public class InstancedValues {
 
     public long timeSinceLastInputInMils = 0;
     public long timeSinceLastWbInMils = 0;
-    public String githubUrl = "https://github.com/tolek-tpr/ModForLazyPeople/releases";
+    public String githubUrl = "github.com/tolek-tpr/ModForLazyPeople/releases";
     public String modrinthUrl = "https://modrinth.com/mod/modforlazypeople/versions";
     public boolean shownUpdateScreen = false;
     public boolean pauseWelcomeBack = false;

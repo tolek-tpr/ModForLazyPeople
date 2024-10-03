@@ -9,8 +9,10 @@ import com.mojang.authlib.yggdrasil.YggdrasilEnvironment;
 import me.tolek.modules.Macro.Macro;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;
+import me.tolek.modules.settings.CustomPlayerMessageList;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.util.InstancedValues;
+import me.tolek.util.Tuple;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -35,7 +37,8 @@ public class MflpConfigManager {
     }
 
     public void save(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings, AutoRepliesList arl) {
-        ModData modData = new ModData(macros, shownWelcomeScreen, settings, arl, FILE_VERSION);
+        ModData modData = new ModData(macros, shownWelcomeScreen, settings, arl, FILE_VERSION,
+                CustomPlayerMessageList.getInstance().getMessages());
         try (FileWriter writer = new FileWriter(CONFIG_FILE, StandardCharsets.UTF_8)) {
             gson.toJson(modData, writer);
         } catch (IOException e) {
@@ -76,13 +79,15 @@ public class MflpConfigManager {
     }
 
     public class ModData {
+        private String fileVersion;
         private ArrayList<ShortMacro> macros = new ArrayList<>();
         private MflpSettingsList settings;
         private boolean shownWelcomeScreen;
         private ArrayList<AutoReply> autoReplies = new ArrayList<>();
-        private String fileVersion;
+        private ArrayList<Tuple<String, String>> customPlayerMessages = new ArrayList<>();
 
-        public ModData(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings, AutoRepliesList arl, String fileVersion) {
+        public ModData(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings,
+                       AutoRepliesList arl, String fileVersion, ArrayList<Tuple<String, String>> customPlayerMessages) {
             for (Macro m : macros) {
                 this.macros.add(new ShortMacro(m.getName(), m.getCommands(), m.getKey(), m.getRepeatAmount(), m.getUneditable(), m.getTurnedOn()));
             }
@@ -90,6 +95,7 @@ public class MflpConfigManager {
             this.shownWelcomeScreen = shownWelcomeScreen;
             this.autoReplies = arl.getAutoReplies();
             this.fileVersion = fileVersion;
+            this.customPlayerMessages = customPlayerMessages;
         }
 
         public ArrayList<ShortMacro> getShortMacros() {
@@ -101,6 +107,7 @@ public class MflpConfigManager {
         public boolean isShownWelcomeScreen() {
             return shownWelcomeScreen;
         }
+        public ArrayList<Tuple<String, String>> getCustomPlayerMessages() { return this.customPlayerMessages; }
     }
 
 

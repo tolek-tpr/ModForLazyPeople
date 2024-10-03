@@ -21,6 +21,8 @@ public class MflpSettingsList {
     public AutoWbDelay WB_DELAY = new AutoWbDelay();
     //public PlayerEsp PLAYER_ESP = new PlayerEsp();
     public AutoWbCooldown WB_COOLDOWN = new AutoWbCooldown();
+    public WbPlayerBlacklist WB_PLAYER_BLACKLIST = new WbPlayerBlacklist();
+    public PerPlayerMessageButtonSetting PPMBS = new PerPlayerMessageButtonSetting();
 
     private MflpSettingsList() {
 
@@ -44,6 +46,8 @@ public class MflpSettingsList {
         settings.add(WB_FILTER);
         settings.add(WB_WHITELIST);
         settings.add(WB_BLACKLIST);
+        settings.add(WB_PLAYER_BLACKLIST);
+        settings.add(PPMBS);
 
         //settings.add(PLAYER_ESP);
         return settings;

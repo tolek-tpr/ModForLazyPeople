@@ -3,9 +3,11 @@ package me.tolek.modules.settings.executor;
 import me.tolek.event.*;
 import me.tolek.interfaces.IScheduler;
 import me.tolek.modules.settings.AutoWelcomeBack;
+import me.tolek.modules.settings.CustomPlayerMessageList;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
+import me.tolek.util.Tuple;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.text.Text;
@@ -70,11 +72,11 @@ public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, Upda
                                     setting.lastName = message.getString().contains("is no longer AFK.") ?
                                             message.getString().split(" ")[1] : message.getString().split(" ")[0];
                                     if (settingsList.WB_FILTER.stateIndex == 0) {
-                                        setting.refresh();
+                                        setting.refresh(message);
                                     } else if (settingsList.WB_FILTER.stateIndex == 1) {
-                                        if (isWhitelisted(message.getString())) setting.refresh();
+                                        if (isWhitelisted(message.getString())) setting.refresh(message);
                                     } else if (settingsList.WB_FILTER.stateIndex == 2) {
-                                        if (!isBlacklisted(message.getString())) setting.refresh();
+                                        if (!isBlacklisted(message.getString())) setting.refresh(message);
                                     }
                                 }
                             });
@@ -87,6 +89,8 @@ public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, Upda
             }
         }
     }
+
+
 
     public boolean validateRankWhitelist(Text message, MinecraftClient client, MflpSettingsList settingsList) {
         /*

@@ -10,7 +10,8 @@
 		"client.ChatHudMixin",
      	"client.MflpClientScheduler",
 		"client.GamRendererMixin",
-		"client.KeyboardMixin"
+		"client.KeyboardMixin",
+		"client.PlayerListHudMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

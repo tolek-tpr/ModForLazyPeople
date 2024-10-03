@@ -13,8 +13,8 @@ import java.util.logging.Logger;
 
 public class UpdateChecker {
 
-    private final String currentVersion;
-    private final URL url;
+    public final String currentVersion;
+    public final URL url;
 
     private transient CompletableFuture<String> latestVersionFuture = null;
 
