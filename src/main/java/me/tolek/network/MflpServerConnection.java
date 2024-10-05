@@ -49,6 +49,8 @@ public class MflpServerConnection {
 
         URL url = new URL(BASE_URL + endpoint);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setConnectTimeout(1 * 1000);
+        connection.setReadTimeout(1 * 1000);
 
         // Set the request method to GET
         connection.setRequestMethod("GET");
@@ -63,6 +65,8 @@ public class MflpServerConnection {
 
         URL url = new URL(BASE_URL + endpoint);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setConnectTimeout(1 * 1000);
+        connection.setReadTimeout(1 * 1000);
 
         connection.setRequestMethod("DELETE");
         connection.setRequestProperty("Content-Type", "application/json");
@@ -86,6 +90,8 @@ public class MflpServerConnection {
         // Create the full URL
         URL url = new URL(BASE_URL + endpoint);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setConnectTimeout(1 * 1000);
+        connection.setReadTimeout(1 * 1000);
 
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");

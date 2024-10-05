@@ -49,6 +49,11 @@ public class PauseScreenMixin extends Screen {
 
     @Override
     public void close() {
+        super.close();
+        InstancedValues.getInstance().pauseWelcomeBack = false;
+    }
+    @Inject(at = @At("HEAD"), method = "disconnect")
+    private void disconnect(CallbackInfo ci) {
         InstancedValues.getInstance().pauseWelcomeBack = false;
     }
 

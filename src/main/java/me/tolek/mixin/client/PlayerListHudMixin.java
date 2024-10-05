@@ -33,12 +33,6 @@ public class PlayerListHudMixin {
         renderMflpTag(context,  m, y - (bl ? 9 : 0), z, playerListEntry2);
     }
 
-    @Inject(method = "render", at = @At(value = "FIELD", opcode = Opcodes.GETFIELD, target = "Lnet/minecraft/client/gui/hud/PlayerListHud;header:Lnet/minecraft/text/Text;"))
-    private void modifyTVariable(DrawContext context, int scaledWindowWidth, Scoreboard scoreboard, ScoreboardObjective objective,
-                                 CallbackInfo ci, @Local(ordinal = 11) LocalIntRef t) {
-        t.set(t.get() + 16);
-    }
-
     public void renderMflpTag(DrawContext context, int width, int x, int y, PlayerListEntry entry) {
         MinecraftClient client = MinecraftClient.getInstance();
         PlayerEntity player = client.world.getPlayerByUuid(entry.getProfile().getId());
@@ -50,8 +44,8 @@ public class PlayerListHudMixin {
         if (returnMessage != null && returnMessage.contains(client.world.getPlayerByUuid(entry.getProfile().getId()).getName().getString())) {
             RenderSystem.enableBlend();
             context.getMatrices().push();
-            context.getMatrices().translate(11.0f, 0.0f, 100.0f);
-            context.drawGuiTexture(logo, x + width - 11, y, 8, 8);
+            context.getMatrices().translate(0.0f, 0.0f, 100.0f);
+            context.drawGuiTexture(logo, x - 2, y + 5, 4, 4);
             context.getMatrices().pop();
             RenderSystem.disableBlend();
         }

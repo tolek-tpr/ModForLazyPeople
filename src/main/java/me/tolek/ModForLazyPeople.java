@@ -9,6 +9,7 @@ import me.tolek.modules.autoReply.AutoReplyExecutor;
 import me.tolek.modules.settings.executor.AutoWelcomeBackImpl;
 import me.tolek.modules.settings.executor.AutoWelcomeImpl;
 import me.tolek.network.MflpPlayersWorker;
+import me.tolek.network.MflpServerConnection;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ import static net.minecraft.server.command.CommandManager.*;
 public class ModForLazyPeople implements ModInitializer {
 
     public static final Logger LOGGER = LoggerFactory.getLogger("modforlazypeople");
+	public static final MflpServerConnection serverConnection = new MflpServerConnection();
 
 	private ArrayList<EventImpl> events = new ArrayList<>();
 

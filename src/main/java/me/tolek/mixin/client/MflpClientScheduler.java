@@ -15,6 +15,8 @@ import java.util.function.Consumer;
 @Mixin(MinecraftClient.class)
 public class MflpClientScheduler implements IScheduler {
 
+    // THIS CODE IS FAULTY, WHEN USING IT WITH SOMETHING THAT USES THREADS, LIKE HTTP REQUESTS IT WILL LAG THE GAME!!!!
+    // FIX ME
 
     @Unique
     private Map<UUID, MflpScheduler> schedulers = new HashMap<>();
@@ -31,13 +33,13 @@ public class MflpClientScheduler implements IScheduler {
                 schedulers.remove(uuid);
                 toRemove.add(uuid);
             }
-
         }
 
         toRemove.forEach(uuids::remove);
     }
 
     @Override
+    @Deprecated
     public UUID scheduleRepeating(int time, Consumer<Boolean> executor) {
         UUID uuid = UUID.randomUUID();
         schedulers.put(uuid, new MflpScheduler(time, true, executor));
@@ -46,6 +48,14 @@ public class MflpClientScheduler implements IScheduler {
     }
 
     @Override
+    @Deprecated
+    public void cancelTask(UUID task) {
+        schedulers.remove(task);
+        uuids.remove(task);
+    }
+
+    @Override
+    @Deprecated
     public UUID scheduleNonRepeating(int time, Consumer<Boolean> executor) {
         UUID uuid = UUID.randomUUID();
         schedulers.put(uuid, new MflpScheduler(time, false, executor));

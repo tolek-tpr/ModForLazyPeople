@@ -11,7 +11,8 @@
      	"client.MflpClientScheduler",
 		"client.GamRendererMixin",
 		"client.KeyboardMixin",
-		"client.PlayerListHudMixin"
+		"client.PlayerListHudMixin",
+		"client.PlayerNameTagMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
