@@ -15,6 +15,7 @@ import net.minecraft.util.Identifier;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -22,7 +23,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(PlayerListHud.class)
 public class PlayerListHudMixin {
 
+    @Unique
     private final MflpPlayersWorker worker = MflpPlayersWorker.getInstance();
+    @Unique
     private final Identifier logo = new Identifier("modforlazypeople", "mflp/user_logo");
 
     @Inject(method = "render", at = @At(value = "INVOKE", target="Lnet/minecraft/client/gui/hud/PlayerListHud;renderLatencyIcon(Lnet/minecraft/client/gui/DrawContext;IIILnet/minecraft/client/network/PlayerListEntry;)V"))
@@ -35,13 +38,15 @@ public class PlayerListHudMixin {
 
     public void renderMflpTag(DrawContext context, int width, int x, int y, PlayerListEntry entry) {
         MinecraftClient client = MinecraftClient.getInstance();
+        if (client.world == null) return;
+
         PlayerEntity player = client.world.getPlayerByUuid(entry.getProfile().getId());
         String returnMessage = worker.data;
 
         if (entry.getProfile().getId() == null ||
                 player == null || player.getName() == null) return;
 
-        if (returnMessage != null && returnMessage.contains(client.world.getPlayerByUuid(entry.getProfile().getId()).getName().getString())) {
+        if (returnMessage != null && returnMessage.contains(player.getName().getString())) {
             RenderSystem.enableBlend();
             context.getMatrices().push();
             context.getMatrices().translate(0.0f, 0.0f, 100.0f);

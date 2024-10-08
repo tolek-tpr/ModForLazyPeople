@@ -10,8 +10,10 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.EntityView;
 import org.joml.Matrix4f;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Coerce;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -20,23 +22,26 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(EntityRenderer.class)
 public class PlayerNameTagMixin {
 
+    @Unique
     private final MflpPlayersWorker worker = MflpPlayersWorker.getInstance();
+    @Unique
     private final Identifier logo = new Identifier("modforlazypeople", "textures/gui/sprites/mflp/user_logo.png");
-    private final Identifier logo2 = new Identifier("modforlazypeople", "mflp/user_logo");
+    @Unique
     private final MinecraftClient client = MinecraftClient.getInstance();
+    @Unique
     private final TextRenderer tx = client.textRenderer;
 
     @Inject(method = "renderLabelIfPresent", at = @At(value = "INVOKE", target="Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/text/Text;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/client/font/TextRenderer$TextLayerType;II)I"))
     private void drawLogo(@Coerce Object entity, Text text, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
         String returnMessage = worker.data;
 
-        if (!(entity instanceof PlayerEntity)) return;
+        if (!(entity instanceof PlayerEntity e)) return;
 
-        PlayerEntity e = (PlayerEntity) entity;
         if (e.getGameProfile().getId() == null || e.getName() == null) return;
 
-        if (returnMessage != null) {
-            if (returnMessage.contains(client.world.getPlayerByUuid(e.getGameProfile().getId()).getName().getString())) {
+        if (returnMessage != null && client.world != null) {
+            PlayerEntity playerByUUID = client.world.getPlayerByUuid(e.getGameProfile().getId());
+            if (playerByUUID != null && returnMessage.contains(playerByUUID.getName().getString())) {
                 int width = tx.getWidth(text);
                 int x1 = width / 2 + 2;
                 int x2 = width / 2 + tx.fontHeight + 2;

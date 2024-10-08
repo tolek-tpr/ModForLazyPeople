@@ -37,9 +37,7 @@ public class PauseScreenMixin extends Screen {
     }
 
     private ButtonWidget createButton(Text text, Supplier<Screen> screenSupplier) {
-        return ButtonWidget.builder(text, (button) -> {
-            this.client.setScreen((Screen)screenSupplier.get());
-        }).width(98).build();
+        return ButtonWidget.builder(text, (button) -> this.client.setScreen((Screen)screenSupplier.get())).width(98).build();
     }
 
     @Inject(at = @At("RETURN"), method="init")
