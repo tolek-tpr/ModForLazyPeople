@@ -8,7 +8,6 @@ public class MflpUtil {
 
     public MflpUtil() { }
 
-    public boolean showedHelloScreen = false;
     public static Identifier pencilIcon = new Identifier("modforlazypeople", "pencil");
     public boolean didSave = false;
 

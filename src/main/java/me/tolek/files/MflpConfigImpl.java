@@ -53,6 +53,9 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
     }
 
     @Override
+    public void onStartFinished() {}
+
+    @Override
     public void onStart() {
         MflpConfigManager configManager = new MflpConfigManager();
 

@@ -6,6 +6,7 @@ import com.google.gson.JsonIOException;
 import com.mojang.authlib.Environment;
 import com.mojang.authlib.EnvironmentParser;
 import com.mojang.authlib.yggdrasil.YggdrasilEnvironment;
+import me.tolek.ModForLazyPeople;
 import me.tolek.modules.Macro.Macro;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;
@@ -23,12 +24,6 @@ public class MflpConfigManager {
     private static final String CONFIG_FILE = "MflpConfig.json";
     private static final String FILE_VERSION = InstancedValues.getInstance().getFileVersion();
     private Gson gson;
-
-    private Environment determineEnvironment() {
-        return EnvironmentParser
-                .getEnvironmentFromProperties()
-                .orElse(YggdrasilEnvironment.PROD.getEnvironment());
-    }
 
     public MflpConfigManager() {
         GsonBuilder builder = new GsonBuilder();
@@ -50,10 +45,10 @@ public class MflpConfigManager {
         try (FileReader reader = new FileReader(CONFIG_FILE, StandardCharsets.UTF_8)) {
             return gson.fromJson(reader, ModData.class);
         } catch (IOException e) {
-            System.out.println("File not found!");
+            ModForLazyPeople.LOGGER.warn("MFLP save file not found!");
             return null;
         } catch (JsonIOException e) {
-            System.out.println("Json Error");
+            ModForLazyPeople.LOGGER.warn("Json Error while loading MFLP save file");
             return null;
         }
     }

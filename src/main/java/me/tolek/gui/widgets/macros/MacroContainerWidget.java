@@ -79,10 +79,9 @@ public class MacroContainerWidget extends ContainerWidget {
 
             Text editText = Text.translatable("mflp.configScreen.editButton");
 
-            TextIconButtonWidget tibw = new TextIconButtonWidget.Builder(editText, (button) -> {
-                client.setScreen(new MflpConfigureMacroScreen(new MflpConfig(client), m));
-                //System.out.println("pressed");
-            }, true).texture(MflpUtil.pencilIcon, 20, 20).dimension(20, 20).build();
+            TextIconButtonWidget tibw = new TextIconButtonWidget.Builder(editText, (button) ->
+                    client.setScreen(new MflpConfigureMacroScreen(new MflpConfig(client), m)), true)
+                    .texture(MflpUtil.pencilIcon, 20, 20).dimension(20, 20).build();
             tibw.setPosition(x - 180, y);
             addChild(tibw);
         }

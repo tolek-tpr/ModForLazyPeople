@@ -273,7 +273,6 @@ public class MacroCommand implements ClientModInitializer {
         Macro m = new Macro(keyBinding, commands, macroName, 1);
         m.setKey(InputUtil.UNKNOWN_KEY.getCode());
         macroList.addMacro(m);
-        System.out.println(macroList.getMacroFromKeyBinding(keyBinding).getCommands());
 
         Text macroNameText = Text.literal(macroName).formatted(Formatting.BOLD).formatted(Formatting.GOLD);
         Text message = Text.literal("Added macro: ").append(macroNameText);

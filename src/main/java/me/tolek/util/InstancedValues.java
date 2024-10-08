@@ -2,14 +2,9 @@ package me.tolek.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonIOException;
-import me.tolek.ModForLazyPeople;
-import me.tolek.files.MflpConfigManager;
 import net.fabricmc.loader.api.FabricLoader;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -29,7 +24,7 @@ public class InstancedValues {
         gson = builder.create();
     }
 
-    private Gson gson;
+    private final Gson gson;
 
     public boolean shownWelcomeScreen = false;
     public boolean hasLoaded = false;
@@ -53,7 +48,7 @@ public class InstancedValues {
 
     public String getMflpSettings() {
         Optional<Path> o = FabricLoader.getInstance().getModContainer("modforlazypeople").get()
-                .findPath("settings.mflp");
+                .findPath("assets/modforlazypeople/mflp/settings.mflp");
         if (o.isPresent()) {
             try {
                 String settings = Files.readString(o.get());

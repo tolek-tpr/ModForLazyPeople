@@ -1,6 +1,6 @@
 package me.tolek.util;
 
-public class Tuple <K, V> {
+public class Tuple <K, V> implements Cloneable {
 
     public K value1;
     public V value2;

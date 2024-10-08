@@ -42,9 +42,9 @@ public class MflpPlayersWorker extends EventImpl implements UpdateListener {
     public void onUpdate() {
         ticksPassed += 1;
         if (ticksPassed == 60 * 20) {
-            CompletableFuture<Void> posts = CompletableFuture.supplyAsync(() -> {
+            CompletableFuture.supplyAsync(() -> {
                 sendInfoToServer();
-                return null;
+                return "";
             });
             CompletableFuture<String> gets = CompletableFuture.supplyAsync(() -> {
                 String d = null;
@@ -56,14 +56,13 @@ public class MflpPlayersWorker extends EventImpl implements UpdateListener {
                 }
                 return d;
             });
-            CompletableFuture<String> setDataThing = gets.thenApply((r) -> {
+            gets.thenApply((r) -> {
                 try {
                     this.data = gets.get();
                 } catch (Exception ignored) {
                 }
-                return null;
+                return "";
             });
-            System.out.println("REPEAT");
             ticksPassed = 0;
         }
     }
