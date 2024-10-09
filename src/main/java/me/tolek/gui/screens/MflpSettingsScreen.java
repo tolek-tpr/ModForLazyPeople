@@ -19,6 +19,7 @@ public class MflpSettingsScreen extends Screen {
     private final MflpSettingsList settingsList = MflpSettingsList.getInstance();
     private ScrollableListWidget slw;
 
+    // TODO: Advanced settings dropdown (specifically for AutoWbJoinRegex and AutoWbUnAfkRegex).
     @Override
     public void init() {
         addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, (button) -> {

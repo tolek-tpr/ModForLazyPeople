@@ -68,8 +68,8 @@ public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, Upda
 
         if (!message.getString().contains(playerName)) {
             if (!iv.pauseWelcomeBack) {
-                boolean joined = RegexUtil.evaluateRegex("^[a-zA-Z0-9_]{3,16} has joined\\.$", message.getString());
-                boolean unAfk = RegexUtil.evaluateRegex("^[a-zA-Z0-9_]{3,16} is no longer AFK\\.$", message.getString());
+                boolean joined = RegexUtil.evaluateRegex(settingsList.WB_JOIN_REGEX.getState(), message.getString());
+                boolean unAfk = RegexUtil.evaluateRegex(settingsList.WB_UN_AFK_REGEX.getState(), message.getString());
                 if (joined || unAfk) {
                 //if (message.getString().contains("has joined.") || message.getString().contains("is no longer AFK.")) {
                     if (!MflpUtil.isFakeMessage(message)) {
