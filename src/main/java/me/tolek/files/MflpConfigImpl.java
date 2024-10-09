@@ -6,6 +6,7 @@ import me.tolek.interfaces.IScheduler;
 import me.tolek.modules.Macro.Macro;
 import me.tolek.modules.Macro.MacroList;
 import me.tolek.modules.autoReply.AutoRepliesList;
+import me.tolek.modules.settings.CustomMessagePerServerList;
 import me.tolek.modules.settings.CustomPlayerMessageList;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.updateChecker.UpdateChecker;
@@ -116,6 +117,9 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
                 }
                 if (loadedData.getCustomPlayerMessages() != null) {
                     CustomPlayerMessageList.getInstance().setMessages(loadedData.getCustomPlayerMessages());
+                }
+                if (loadedData.getCustomServerMessages() != null) {
+                    CustomMessagePerServerList.getInstance().setMessagesPerServer(loadedData.getCustomServerMessages());
                 }
             }
             iv.hasLoaded = true;

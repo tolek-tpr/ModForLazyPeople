@@ -14,9 +14,19 @@ import java.util.List;
 
 public class ScrollableListWidget extends ElementListWidget<ScrollableListWidget.ListEntry> {
 
+    private int rowWidth = 220;
+
     public ScrollableListWidget(MinecraftClient minecraftClient, int width, int height, int y, int itemHeight) {
         super(minecraftClient, width, height, y, itemHeight);
+        this.setRowWidth(width);
     }
+
+    public void setRowWidth(int width) {
+        this.rowWidth = width;
+    }
+
+    @Override
+    public int getRowWidth() { return this.rowWidth; }
 
     public void addRow(ClickableWidget... widget) {
         ListEntry e = new ListEntry(widget);

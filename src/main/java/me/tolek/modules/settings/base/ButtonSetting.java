@@ -5,7 +5,7 @@ public abstract class ButtonSetting extends MflpSetting {
     public String buttonName;
 
     public ButtonSetting() {
-        super("Per player messages", null, "button", "Opens the custom message per player menu");
+        super("", null, "button", "");
     }
 
     public abstract void run();
