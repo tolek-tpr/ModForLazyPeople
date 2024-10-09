@@ -1,5 +1,6 @@
 package me.tolek.modules.settings.executor;
 
+import me.tolek.ModForLazyPeople;
 import me.tolek.event.*;
 import me.tolek.interfaces.IScheduler;
 import me.tolek.modules.settings.AutoWelcomeBack;
@@ -7,10 +8,13 @@ import me.tolek.modules.settings.CustomPlayerMessageList;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
+import me.tolek.util.RegexUtil;
 import me.tolek.util.Tuple;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.text.Text;
+
+import java.util.regex.Pattern;
 
 public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, UpdateListener {
 
@@ -64,7 +68,10 @@ public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, Upda
 
         if (!message.getString().contains(playerName)) {
             if (!iv.pauseWelcomeBack) {
-                if (message.getString().contains("has joined.") || message.getString().contains("is no longer AFK.")) {
+                boolean joined = RegexUtil.evaluateRegex("^[a-zA-Z0-9_]{3,16} has joined\\.$", message.getString());
+                boolean unAfk = RegexUtil.evaluateRegex("^[a-zA-Z0-9_]{3,16} is no longer AFK\\.$", message.getString());
+                if (joined || unAfk) {
+                //if (message.getString().contains("has joined.") || message.getString().contains("is no longer AFK.")) {
                     if (!MflpUtil.isFakeMessage(message)) {
                         if (iv.timeSinceLastInputInMils / 1000 < 30 && !iv.isAfk) {
                             ((IScheduler) client).scheduleNonRepeating(settingsList.WB_DELAY.getState(), (b) -> {
