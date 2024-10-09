@@ -24,6 +24,9 @@ public class MflpSettingsList {
     public WbPlayerBlacklist WB_PLAYER_BLACKLIST = new WbPlayerBlacklist();
     public PerPlayerMessageButtonSetting PPMBS = new PerPlayerMessageButtonSetting();
 
+    public AutoWbJoinRegex WB_JOIN_REGEX = new AutoWbJoinRegex();
+    public AutoWbUnAfkRegex WB_UN_AFK_REGEX = new AutoWbUnAfkRegex();
+
     private MflpSettingsList() {
 
     }
@@ -48,6 +51,9 @@ public class MflpSettingsList {
         settings.add(WB_BLACKLIST);
         settings.add(WB_PLAYER_BLACKLIST);
         settings.add(PPMBS);
+
+        settings.add(WB_JOIN_REGEX);
+        settings.add(WB_UN_AFK_REGEX);
 
         //settings.add(PLAYER_ESP);
         return settings;
