@@ -39,7 +39,7 @@ public class CustomMessagePerServerScreen extends Screen {
 
         TextInputWidget defaultJoinWidget = new TextInputWidget(tx, 20, 36, 150, 20, Text.literal(settingsList.WB_JOIN_REGEX.getState()), 
                 settingsList.WB_JOIN_REGEX::setState);
-        TextInputWidget defaultUnafkWidget = new TextInputWidget(tx, 340, 36, 150, 20, Text.literal(settingsList.WB_UN_AFK_REGEX.getState()),
+        TextInputWidget defaultUnafkWidget = new TextInputWidget(tx, 200, 36, 150, 20, Text.literal(settingsList.WB_UN_AFK_REGEX.getState()),
                 settingsList.WB_UN_AFK_REGEX::setState);
 
         addDrawableChild(defaultJoinWidget);
@@ -56,8 +56,8 @@ public class CustomMessagePerServerScreen extends Screen {
             ibw.setPosition(20 + 152, 83);
 
             TextInputWidget serverTIW = new TextInputWidget(tx, 20, 83, 150, 20, Text.literal(currentTuple.value1), (value) -> currentTuple.value1 = value);
-            TextInputWidget joinTIW = new TextInputWidget(tx, 340, 83, 150, 20, Text.literal(currentTuple.value2.value1), (value) -> currentTuple.value2.value1 = value);
-            TextInputWidget afkTIW = new TextInputWidget(tx, 660, 83, 150, 20, Text.literal(currentTuple.value2.value2), (value) -> currentTuple.value2.value2 = value);
+            TextInputWidget joinTIW = new TextInputWidget(tx, 200, 83, 150, 20, Text.literal(currentTuple.value2.value1), (value) -> currentTuple.value2.value1 = value);
+            TextInputWidget afkTIW = new TextInputWidget(tx, 360, 83, 150, 20, Text.literal(currentTuple.value2.value2), (value) -> currentTuple.value2.value2 = value);
 
             slw.addRow(serverTIW, ibw, joinTIW, afkTIW);
         }
@@ -69,8 +69,12 @@ public class CustomMessagePerServerScreen extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float tickDelta) {
         super.render(context, mouseX, mouseY, tickDelta);
 
-        Text screenName = Text.literal("Custom player messages");
+        Text screenName = Text.literal("Custom server join messages");
         context.drawTextWithShadow(textRenderer, screenName, width / 2 - textRenderer.getWidth(screenName) / 2, 10, 0xffffff);
+
+        Text usernameRegexInfo = Text.literal("To use the regex for usernames, type in %u");
+        context.drawTextWithShadow(textRenderer, usernameRegexInfo, width / 2 - textRenderer.getWidth(usernameRegexInfo) / 2,
+                12 + tx.fontHeight, 0xffffff);
 
         if (list.getMessages().isEmpty()) {
             Text noMessagesSet = Text.literal("No custom messages set!");
@@ -80,14 +84,14 @@ public class CustomMessagePerServerScreen extends Screen {
         context.drawTextWithShadow(tx, Text.literal("Server"),
                 20, 65, 0xffffff);
         context.drawTextWithShadow(tx, Text.literal("Join Message (REGEX)"),
-                340, 65, 0xffffff);
+                200, 65, 0xffffff);
         context.drawTextWithShadow(tx, Text.literal("Unafk Message (REGEX)"),
-                660, 65, 0xffffff);
+                360, 65, 0xffffff);
 
         context.drawTextWithShadow(tx, Text.literal("Default Join Message (REGEX)"),
                 20, 36 - 2 - tx.fontHeight, 0xffffff);
         context.drawTextWithShadow(tx, Text.literal("Default Unafk Message (REGEX)"),
-                340, 36 - 2 - tx.fontHeight, 0xffffff);
+                200, 36 - 2 - tx.fontHeight, 0xffffff);
 
     }
 
