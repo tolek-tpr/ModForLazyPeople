@@ -10,6 +10,7 @@ import me.tolek.ModForLazyPeople;
 import me.tolek.modules.Macro.Macro;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;
+import me.tolek.modules.settings.CustomMessagePerServerList;
 import me.tolek.modules.settings.CustomPlayerMessageList;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.util.InstancedValues;
@@ -23,7 +24,7 @@ public class MflpConfigManager {
 
     private static final String CONFIG_FILE = "MflpConfig.json";
     private static final String FILE_VERSION = InstancedValues.getInstance().getFileVersion();
-    private Gson gson;
+    private final Gson gson;
 
     public MflpConfigManager() {
         GsonBuilder builder = new GsonBuilder();
@@ -33,7 +34,7 @@ public class MflpConfigManager {
 
     public void save(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings, AutoRepliesList arl) {
         ModData modData = new ModData(macros, shownWelcomeScreen, settings, arl, FILE_VERSION,
-                CustomPlayerMessageList.getInstance().getMessages());
+                CustomPlayerMessageList.getInstance().getMessages(), CustomMessagePerServerList.getInstance().getMessages());
         try (FileWriter writer = new FileWriter(CONFIG_FILE, StandardCharsets.UTF_8)) {
             gson.toJson(modData, writer);
         } catch (IOException e) {
@@ -80,9 +81,11 @@ public class MflpConfigManager {
         private boolean shownWelcomeScreen;
         private ArrayList<AutoReply> autoReplies = new ArrayList<>();
         private ArrayList<Tuple<String, String>> customPlayerMessages = new ArrayList<>();
+        private ArrayList<Tuple<String, Tuple<String, String>>> customServerMessages = new ArrayList<>();
 
         public ModData(ArrayList<Macro> macros, boolean shownWelcomeScreen, MflpSettingsList settings,
-                       AutoRepliesList arl, String fileVersion, ArrayList<Tuple<String, String>> customPlayerMessages) {
+                       AutoRepliesList arl, String fileVersion, ArrayList<Tuple<String, String>> customPlayerMessages,
+                       ArrayList<Tuple<String, Tuple<String, String>>> customServerMessages) {
             for (Macro m : macros) {
                 this.macros.add(new ShortMacro(m.getName(), m.getCommands(), m.getKey(), m.getRepeatAmount(), m.getUneditable(), m.getTurnedOn()));
             }
@@ -91,6 +94,7 @@ public class MflpConfigManager {
             this.autoReplies = arl.getAutoReplies();
             this.fileVersion = fileVersion;
             this.customPlayerMessages = customPlayerMessages;
+            this.customServerMessages = customServerMessages;
         }
 
         public ArrayList<ShortMacro> getShortMacros() {
@@ -103,6 +107,7 @@ public class MflpConfigManager {
             return shownWelcomeScreen;
         }
         public ArrayList<Tuple<String, String>> getCustomPlayerMessages() { return this.customPlayerMessages; }
+        public ArrayList<Tuple<String, Tuple<String, String>>> getCustomServerMessages() { return this.customServerMessages; }
     }
 
 

@@ -9,6 +9,7 @@ import java.util.regex.PatternSyntaxException;
 public class RegexUtil {
 
     public static boolean evaluateRegex(@NotNull String regex, @NotNull String matchAgainst, int flags) {
+        if (!validateRegex(regex)) return false;
         Pattern pattern = Pattern.compile(regex, flags);
         Matcher matcher = pattern.matcher(matchAgainst);
         return matcher.find();

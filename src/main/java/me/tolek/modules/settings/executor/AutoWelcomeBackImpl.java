@@ -1,20 +1,16 @@
 package me.tolek.modules.settings.executor;
 
-import me.tolek.ModForLazyPeople;
 import me.tolek.event.*;
 import me.tolek.interfaces.IScheduler;
-import me.tolek.modules.settings.AutoWelcomeBack;
-import me.tolek.modules.settings.CustomPlayerMessageList;
-import me.tolek.modules.settings.MflpSettingsList;
+import me.tolek.modules.settings.*;
 import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
 import me.tolek.util.RegexUtil;
 import me.tolek.util.Tuple;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.PlayerListEntry;
+import net.minecraft.client.network.ServerInfo;
 import net.minecraft.text.Text;
-
-import java.util.regex.Pattern;
 
 public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, UpdateListener {
 
@@ -49,6 +45,7 @@ public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, Upda
         MflpSettingsList settingsList = MflpSettingsList.getInstance();
         AutoWelcomeBack setting = settingsList.AUTO_WELCOME_BACK;
         String playerName = MinecraftClient.getInstance().getSession().getUsername();
+        CustomMessagePerServerList serverMessagesList = CustomMessagePerServerList.getInstance();
 
         if (message.getString().contains("banana") && !message.getString().contains("To")) {
             if (iv.timeSinceLastInputInMils / 1000 < 30) {
@@ -68,10 +65,29 @@ public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, Upda
 
         if (!message.getString().contains(playerName)) {
             if (!iv.pauseWelcomeBack) {
-                boolean joined = RegexUtil.evaluateRegex(settingsList.WB_JOIN_REGEX.getState(), message.getString());
-                boolean unAfk = RegexUtil.evaluateRegex(settingsList.WB_UN_AFK_REGEX.getState(), message.getString());
+                boolean connectedToServer = client.getNetworkHandler() != null && client.getNetworkHandler().getServerInfo() != null;
+
+                String wb_join_regex = settingsList.WB_JOIN_REGEX.getState();
+                String wb_un_afk_regex = settingsList.WB_UN_AFK_REGEX.getState();
+                String usernameRegex = "[a-zA-Z0-9_]{3,16}";
+
+                wb_join_regex = wb_join_regex.replaceAll("%u", usernameRegex);
+                wb_un_afk_regex = wb_un_afk_regex.replaceAll("%u", usernameRegex);
+
+                boolean joined = RegexUtil.evaluateRegex(wb_join_regex, message.getString());
+                boolean unAfk = RegexUtil.evaluateRegex(wb_un_afk_regex, message.getString());
+
+                if (connectedToServer) {
+                    ServerInfo serverInfo = client.getNetworkHandler().getServerInfo();
+                    Tuple<String, String> messagesForServer = serverMessagesList.getMessagesForServer(serverInfo.address);
+
+                    if (messagesForServer != null) {
+                        joined = RegexUtil.evaluateRegex(messagesForServer.value1, message.getString());
+                        unAfk = RegexUtil.evaluateRegex(messagesForServer.value2, message.getString());
+                    }
+                }
+
                 if (joined || unAfk) {
-                //if (message.getString().contains("has joined.") || message.getString().contains("is no longer AFK.")) {
                     if (!MflpUtil.isFakeMessage(message)) {
                         if (iv.timeSinceLastInputInMils / 1000 < 30 && !iv.isAfk) {
                             ((IScheduler) client).scheduleNonRepeating(settingsList.WB_DELAY.getState(), (b) -> {

@@ -6,6 +6,7 @@
   "mflp.autoReplyScreen.title": "Auto Reply config",
   "mflp.autoReplyConfigScreen.title": "Auto reply settings",
   "mflp.playerBlacklistScreen.title": "Auto welcome back player blacklist screen",
+  "mflp.messagePerServer.title": "Custom messages per server screen",
 
   "mflp.category.configCategory": "Config",
   "mflp.category.hotkeyCategory": "Hotkeys",

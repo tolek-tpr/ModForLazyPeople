@@ -33,6 +33,7 @@ public class MflpSettingsScreen extends Screen {
         slw.setRenderBackground(false);
 
         for (MflpSetting setting : settingsList.getSettings()) {
+            if (!setting.render) continue;
             // BOOLEAN SETTING
             if (setting instanceof BooleanSetting) {
                 BooleanSetting bs = (BooleanSetting) setting;

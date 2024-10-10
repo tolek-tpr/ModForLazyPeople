@@ -6,6 +6,7 @@ public abstract class MflpSetting {
     private Object defaultValue;
     private String tooltip;
     public String type;
+    public boolean render = true;
 
     public MflpSetting(String name, Object defaultValue, String type, String tooltip) {
         this.name = name;

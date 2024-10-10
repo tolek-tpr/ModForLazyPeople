@@ -9,6 +9,8 @@ public class PerPlayerMessageButtonSetting extends ButtonSetting {
     public PerPlayerMessageButtonSetting() {
         super();
         this.buttonName = "Open screen";
+        this.setName("Per player messages");
+        this.setTooltip("Opens the custom message per player menu");
     }
 
     @Override
