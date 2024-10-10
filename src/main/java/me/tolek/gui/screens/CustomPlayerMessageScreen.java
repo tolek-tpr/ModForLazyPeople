@@ -26,7 +26,7 @@ public class CustomPlayerMessageScreen extends Screen {
 
     @Override
     public void init() {
-        ScrollableListWidget slw = new ScrollableListWidget(this.client, width, height - 84, 44, 22);
+        ScrollableListWidget slw = new ScrollableListWidget(this.client, width, height - 84, 80, 22);
         slw.setRenderBackground(false);
 
         addDrawableChild(ButtonWidget.builder(Text.literal("Add"), (button) -> {
@@ -34,7 +34,6 @@ public class CustomPlayerMessageScreen extends Screen {
             clearAndInit();
         }).dimensions(20 + 142, 63 - textRenderer.fontHeight / 2, 30, 20).build());
 
-        int step = 0;
         for (int i = 0; i < list.getMessages().size(); i++) {
             Tuple<String, String> currentTuple = list.getMessages().get(i);
 
@@ -43,11 +42,10 @@ public class CustomPlayerMessageScreen extends Screen {
                 clearAndInit();
             }, true).dimension(20, 20)
                     .texture(CROSS_ICON, 20, 20).build();
-            ibw.setPosition(20 + 152, 83 + step);
-            addDrawableChild(ibw);
+            ibw.setPosition(20 + 152, 83);
 
-            TextFieldWidget widget = new TextFieldWidget(tx, 20, 83 + step, 150, 20, Text.literal(currentTuple.value1));
-            TextFieldWidget widget2 = new TextFieldWidget(tx, width / 2 + 5, 83 + step, 150, 20,
+            TextFieldWidget widget = new TextFieldWidget(tx, 20, 83, 150, 20, Text.literal(currentTuple.value1));
+            TextFieldWidget widget2 = new TextFieldWidget(tx, width / 2 + 5, 83, 150, 20,
                     Text.literal(currentTuple.value2));
 
             widget.setMaxLength(Integer.MAX_VALUE);
@@ -57,10 +55,10 @@ public class CustomPlayerMessageScreen extends Screen {
 
             widget.setChangedListener((value) -> currentTuple.value1 = value);
             widget2.setChangedListener((value) -> currentTuple.value2 = value);
-            addDrawableChild(widget);
-            addDrawableChild(widget2);
-            step += 22;
+            slw.addRow(widget, ibw, widget2);
         }
+
+        addDrawableChild(slw);
     }
 
     @Override

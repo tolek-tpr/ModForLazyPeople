@@ -11,7 +11,6 @@ public class MflpSettingsList {
 
     public AutoWelcomeBack AUTO_WELCOME_BACK = new AutoWelcomeBack();
     public AutoWelcome AUTO_WELCOME = new AutoWelcome();
-    //public AutoPlotHome AUTO_PLOT_HOME = new AutoPlotHome();
     public AutoWbFilter WB_FILTER = new AutoWbFilter();
     public WelcomeBackWhitelist WB_WHITELIST = new WelcomeBackWhitelist();
     public WelcomeBackBlacklist WB_BLACKLIST = new WelcomeBackBlacklist();
@@ -19,13 +18,13 @@ public class MflpSettingsList {
     public WelcomeMessage WELCOME_MESSAGE = new WelcomeMessage();
     public AutoWbRanksSetting WB_RANK_WHITELIST = new AutoWbRanksSetting();
     public AutoWbDelay WB_DELAY = new AutoWbDelay();
-    //public PlayerEsp PLAYER_ESP = new PlayerEsp();
     public AutoWbCooldown WB_COOLDOWN = new AutoWbCooldown();
     public WbPlayerBlacklist WB_PLAYER_BLACKLIST = new WbPlayerBlacklist();
     public PerPlayerMessageButtonSetting PPMBS = new PerPlayerMessageButtonSetting();
 
     public AutoWbJoinRegex WB_JOIN_REGEX = new AutoWbJoinRegex();
     public AutoWbUnAfkRegex WB_UN_AFK_REGEX = new AutoWbUnAfkRegex();
+    public CustomMessagePerPlayerSetting WB_REGEX_SETTINGS = new CustomMessagePerPlayerSetting();
 
     private MflpSettingsList() {
 
@@ -45,17 +44,16 @@ public class MflpSettingsList {
         settings.add(WB_MESSAGE);
         settings.add(WELCOME_MESSAGE);
         settings.add(WB_COOLDOWN);
-        //settings.add(AUTO_PLOT_HOME);
         settings.add(WB_FILTER);
         settings.add(WB_WHITELIST);
         settings.add(WB_BLACKLIST);
         settings.add(WB_PLAYER_BLACKLIST);
         settings.add(PPMBS);
 
+        settings.add(WB_REGEX_SETTINGS);
         settings.add(WB_JOIN_REGEX);
         settings.add(WB_UN_AFK_REGEX);
 
-        //settings.add(PLAYER_ESP);
         return settings;
     }
 

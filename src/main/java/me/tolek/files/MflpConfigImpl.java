@@ -6,6 +6,7 @@ import me.tolek.interfaces.IScheduler;
 import me.tolek.modules.Macro.Macro;
 import me.tolek.modules.Macro.MacroList;
 import me.tolek.modules.autoReply.AutoRepliesList;
+import me.tolek.modules.settings.CustomMessagePerServerList;
 import me.tolek.modules.settings.CustomPlayerMessageList;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.updateChecker.UpdateChecker;
@@ -103,19 +104,22 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
                     settings.WELCOME_MESSAGE = loadedData.getSettings().WELCOME_MESSAGE;
                     settings.WB_RANK_WHITELIST = loadedData.getSettings().WB_RANK_WHITELIST;
                     settings.WB_DELAY = loadedData.getSettings().WB_DELAY;
-                    //settings.AUTO_PLOT_HOME = loadedData.getSettings().AUTO_PLOT_HOME;
                     settings.WB_FILTER = loadedData.getSettings().WB_FILTER;
                     settings.WB_BLACKLIST = loadedData.getSettings().WB_BLACKLIST;
                     settings.WB_WHITELIST = loadedData.getSettings().WB_WHITELIST;
-                    //settings.PLAYER_ESP = loadedData.getSettings().PLAYER_ESP;
                     settings.WB_COOLDOWN = loadedData.getSettings().WB_COOLDOWN;
                     settings.WB_PLAYER_BLACKLIST = loadedData.getSettings().WB_PLAYER_BLACKLIST;
+                    settings.WB_UN_AFK_REGEX = loadedData.getSettings().WB_UN_AFK_REGEX;
+                    settings.WB_JOIN_REGEX = loadedData.getSettings().WB_JOIN_REGEX;
                 }
                 if (loadedData.getAutoReplies() != null) {
                     arl.setAutoReplies(loadedData.getAutoReplies());
                 }
                 if (loadedData.getCustomPlayerMessages() != null) {
                     CustomPlayerMessageList.getInstance().setMessages(loadedData.getCustomPlayerMessages());
+                }
+                if (loadedData.getCustomServerMessages() != null) {
+                    CustomMessagePerServerList.getInstance().setMessagesPerServer(loadedData.getCustomServerMessages());
                 }
             }
             iv.hasLoaded = true;
