@@ -13,7 +13,7 @@ import java.security.cert.X509Certificate;
 
 public class MflpServerConnection {
 
-    private static final String SERVER_IP = "https:epsi.ddns.net";
+    private static final String SERVER_IP = "https://epsi.ddns.net";
     private static final int PORT = 3000;
     private static final String BASE_URL = SERVER_IP + ":" + PORT;
 
