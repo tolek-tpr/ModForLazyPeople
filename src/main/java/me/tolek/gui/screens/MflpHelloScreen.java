@@ -35,8 +35,8 @@ public class MflpHelloScreen extends Screen {
         Text quickGuideMacroCommand = Text.literal("/macro createMacro <macro name> <commands>");
         Text quickGuide2 = Text.literal("the commands syntax is as follows: say-hi.say-hi-2");
         Text quickGuide3 = Text.literal("Dashes = spaces, and the dot separates commands.");
-        Text quickGuide4 = Text.literal("For removing macro's, use /macro removeMacro <macro name>");
-        Text quickGuide5 = Text.literal("If you're macro uses a space in its name replace it with a dash");
+        Text quickGuide4 = Text.literal("For removing macros, use /macro removeMacro <macro name>");
+        Text quickGuide5 = Text.literal("If your macro uses a space in its name replace it with a dash");
         Text quickGuide6 = Text.literal("If you want to request new features message me on discord");
         Text quickGuide7 = Text.literal("As of update 2.5.0, you can use the \"create\" button to add macros").formatted(Formatting.RED, Formatting.BOLD);
         //Text quickGuide5 = Text.literal("To open this screen once closed, run /mflpwelcome");
