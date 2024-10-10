@@ -67,6 +67,8 @@ public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, Upda
                 boolean joined = RegexUtil.evaluateRegex(settingsList.WB_JOIN_REGEX.getState(), message.getString());
                 boolean unAfk = RegexUtil.evaluateRegex(settingsList.WB_UN_AFK_REGEX.getState(), message.getString());
 
+                System.out.println(client.getServer());
+                System.out.println(client.getNetworkHandler().getServerInfo().address);
                 if (connectedToServer) {
                     joined = RegexUtil.evaluateRegex(serverMessagesList.getMessagesForServer(client.getServer().getServerIp()).value1, message.getString());
                     unAfk = RegexUtil.evaluateRegex(serverMessagesList.getMessagesForServer(client.getServer().getServerIp()).value2, message.getString());
