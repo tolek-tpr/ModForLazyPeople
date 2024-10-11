@@ -22,6 +22,7 @@
 			"me.tolek.commands.common.MflpCommand"
 		],
 		"client": [
+			"me.tolek.ModForLazyPeopleClient",
 			"me.tolek.commands.client.MacroCommand",
 			"me.tolek.commands.client.MflpWelcomeCommand",
 			"me.tolek.events.FabricEventsRegistry"

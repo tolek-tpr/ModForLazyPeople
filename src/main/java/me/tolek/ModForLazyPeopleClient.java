@@ -18,6 +18,8 @@ public class ModForLazyPeopleClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        ModForLazyPeople.LOGGER.info("Running Mod For Lazy People on the Client!");
+
         events.add(new AfkDetector());
         events.add(new MacroExecutor());
         events.add(new AutoWelcomeBackImpl());
