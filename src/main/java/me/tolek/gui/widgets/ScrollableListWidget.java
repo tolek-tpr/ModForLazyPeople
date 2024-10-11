@@ -59,7 +59,7 @@ public class ScrollableListWidget extends ElementListWidget<ScrollableListWidget
         @Override
         public void render(DrawContext context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
             elements.forEach(e -> {
-                e.setY(y + Math.max(0, (entryHeight - e.getHeight()) / 2));
+                e.setY(y + Math.max(0, (entryHeight - e.getHeight()) / 2 + 1));
                 e.render(context, mouseX, mouseY, tickDelta);
             });
         }
