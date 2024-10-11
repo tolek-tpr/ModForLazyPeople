@@ -4,13 +4,13 @@ import me.tolek.gui.screens.CustomMessagePerServerScreen;
 import me.tolek.modules.settings.base.ButtonSetting;
 import net.minecraft.client.MinecraftClient;
 
-public class CustomMessagePerPlayerSetting extends ButtonSetting {
+public class CustomMessagePerServerSetting extends ButtonSetting {
 
-    public CustomMessagePerPlayerSetting() {
+    public CustomMessagePerServerSetting() {
         super();
         this.buttonName = "Open screen";
         this.setName("Custom server messages");
-        this.setTooltip("Opens the screen where you can modify the server join/afk messages");
+        this.setTooltip("Opens the screen where you can modify the server join/afk messages.");
     }
 
     @Override

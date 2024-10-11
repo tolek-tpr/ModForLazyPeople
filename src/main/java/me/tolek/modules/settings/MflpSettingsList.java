@@ -24,7 +24,7 @@ public class MflpSettingsList {
 
     public AutoWbJoinRegex WB_JOIN_REGEX = new AutoWbJoinRegex();
     public AutoWbUnAfkRegex WB_UN_AFK_REGEX = new AutoWbUnAfkRegex();
-    public CustomMessagePerPlayerSetting WB_REGEX_SETTINGS = new CustomMessagePerPlayerSetting();
+    public CustomMessagePerServerSetting WB_REGEX_SETTINGS = new CustomMessagePerServerSetting();
 
     private MflpSettingsList() {
 

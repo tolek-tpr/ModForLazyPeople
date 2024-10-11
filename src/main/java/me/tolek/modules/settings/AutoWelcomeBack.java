@@ -49,7 +49,7 @@ public class AutoWelcomeBack extends BooleanSetting {
     public void refresh(Text message) {
         if (this.getState() && MinecraftClient.getInstance().player != null) {
             String reply = MflpSettingsList.getInstance().WB_MESSAGE.getState();
-            String messageForName = CustomPlayerMessageList.getInstance().getMessageForName(lastName.toLowerCase());
+            String messageForName = CustomPlayerMessageList.getInstance().getMessageForName(lastName);
 
             if (validateMessageList(message)) reply = messageForName == null ? reply : messageForName;
 
