@@ -102,7 +102,7 @@ public class CustomMessagePerServerScreen extends Screen {
             regexValidityIcon.setTooltip(Tooltip.of(Text.literal("Valid RegEx.")));
         } else {
             regexValidityIcon.setTexture(INVALID_REGEX_ICON);
-            regexValidityIcon.setTooltip(Tooltip.of(Text.literal("Invalid RegEx. Error: %s".formatted(validationResult.value2))));
+            regexValidityIcon.setTooltip(Tooltip.of(Text.literal("Invalid RegEx: %s".formatted(validationResult.value2))));
         }
     }
 
