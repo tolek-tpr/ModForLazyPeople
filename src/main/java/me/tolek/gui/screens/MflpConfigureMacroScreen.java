@@ -3,12 +3,15 @@ package me.tolek.gui.screens;
 import me.tolek.modules.Macro.Macro;
 import me.tolek.gui.widgets.macros.MacroCommandsWidget;
 import me.tolek.gui.widgets.macros.MacroSettingsBoxWidget;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 
+@Environment(EnvType.CLIENT)
 public class MflpConfigureMacroScreen extends Screen {
 
     private Screen parent;

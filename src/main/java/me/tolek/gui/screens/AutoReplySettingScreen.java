@@ -5,6 +5,8 @@ import me.tolek.gui.widgets.autoReply.ArSettingsBoxWidget;
 import me.tolek.gui.widgets.InputBoxWidget;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -12,6 +14,7 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 
+@Environment(EnvType.CLIENT)
 public class AutoReplySettingScreen extends Screen {
 
     private Screen parent;

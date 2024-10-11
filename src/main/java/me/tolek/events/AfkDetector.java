@@ -3,9 +3,12 @@ package me.tolek.events;
 import me.tolek.event.*;
 import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
+@Environment(EnvType.CLIENT)
 public class AfkDetector extends EventImpl implements KeyboardListener, UpdateListener, ChatListener {
 
     InstancedValues iv = InstancedValues.getInstance();

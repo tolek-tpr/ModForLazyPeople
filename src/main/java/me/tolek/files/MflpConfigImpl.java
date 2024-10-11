@@ -12,7 +12,6 @@ import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.updateChecker.UpdateChecker;
 import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import org.slf4j.Logger;
 
@@ -21,14 +20,12 @@ import java.util.ArrayList;
 public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, MinecraftStartListener {
 
     private InstancedValues iv;
-    private MinecraftClient client;
     private MflpUtil util;
 
     @Override
     public void onEnable() {
         EventManager.getInstance().add(MinecraftQuitListener.class, this);
         EventManager.getInstance().add(MinecraftStartListener.class, this);
-        this.client = MinecraftClient.getInstance();
         this.iv = InstancedValues.getInstance();
         this.util = new MflpUtil();
     }

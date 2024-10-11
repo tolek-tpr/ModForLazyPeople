@@ -4,12 +4,15 @@ import me.tolek.gui.widgets.*;
 import me.tolek.gui.widgets.settingsWidgets.*;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.modules.settings.base.*;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.*;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 
+@Environment(EnvType.CLIENT)
 public class MflpSettingsScreen extends Screen {
 
     public MflpSettingsScreen() {
@@ -19,7 +22,6 @@ public class MflpSettingsScreen extends Screen {
     private final MflpSettingsList settingsList = MflpSettingsList.getInstance();
     private ScrollableListWidget slw;
 
-    // TODO: Advanced settings dropdown (specifically for AutoWbJoinRegex and AutoWbUnAfkRegex).
     @Override
     public void init() {
         addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, (button) -> {

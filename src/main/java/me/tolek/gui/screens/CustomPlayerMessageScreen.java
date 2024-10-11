@@ -3,6 +3,8 @@ package me.tolek.gui.screens;
 import me.tolek.gui.widgets.ScrollableListWidget;
 import me.tolek.modules.settings.CustomPlayerMessageList;
 import me.tolek.util.Tuple;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -14,6 +16,7 @@ import net.minecraft.text.Text;
 
 import static me.tolek.gui.widgets.autoReply.ArReplyWidget.CROSS_ICON;
 
+@Environment(EnvType.CLIENT)
 public class CustomPlayerMessageScreen extends Screen {
 
     public CustomPlayerMessageScreen() {
