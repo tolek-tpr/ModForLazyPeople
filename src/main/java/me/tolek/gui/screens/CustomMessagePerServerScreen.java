@@ -2,7 +2,7 @@ package me.tolek.gui.screens;
 
 import me.tolek.ModForLazyPeople;
 import me.tolek.gui.widgets.ScrollableListWidget;
-import me.tolek.gui.widgets.TextIconButtonWidgetWithoutButtonTextures;
+import me.tolek.gui.widgets.IconButtonWidgetWithoutButtonTextures;
 import me.tolek.gui.widgets.TextInputWidget;
 import me.tolek.modules.settings.CustomMessagePerServerList;
 import me.tolek.modules.settings.MflpSettingsList;
@@ -52,10 +52,10 @@ public class CustomMessagePerServerScreen extends Screen {
         addDrawableChild(defaultJoinWidget);
         addDrawableChild(defaultUnafkWidget);
 
-        TextIconButtonWidgetWithoutButtonTextures defaultJoinRegexValidityIcon = setupValidityIcon(defaultJoinWidget);
+        IconButtonWidgetWithoutButtonTextures defaultJoinRegexValidityIcon = setupValidityIcon(defaultJoinWidget);
         defaultJoinRegexValidityIcon.setY(38);
 
-        TextIconButtonWidgetWithoutButtonTextures defaultUnafkRegexValidityIcon = setupValidityIcon(defaultUnafkWidget);
+        IconButtonWidgetWithoutButtonTextures defaultUnafkRegexValidityIcon = setupValidityIcon(defaultUnafkWidget);
         defaultUnafkRegexValidityIcon.setY(38);
 
         addDrawableChild(defaultJoinRegexValidityIcon);
@@ -75,8 +75,8 @@ public class CustomMessagePerServerScreen extends Screen {
             TextInputWidget joinTIW = new TextInputWidget(tx, 200, 83, 150, 20, Text.literal(currentTuple.value2.value1), (value) -> currentTuple.value2.value1 = value);
             TextInputWidget afkTIW = new TextInputWidget(tx, 380, 83, 150, 20, Text.literal(currentTuple.value2.value2), (value) -> currentTuple.value2.value2 = value);
 
-            TextIconButtonWidgetWithoutButtonTextures joinRegexValidityIcon = setupValidityIcon(joinTIW);
-            TextIconButtonWidgetWithoutButtonTextures afkRegexValidityIcon = setupValidityIcon(afkTIW);
+            IconButtonWidgetWithoutButtonTextures joinRegexValidityIcon = setupValidityIcon(joinTIW);
+            IconButtonWidgetWithoutButtonTextures afkRegexValidityIcon = setupValidityIcon(afkTIW);
 
             slw.addRow(serverTIW, ibw, joinTIW, joinRegexValidityIcon, afkTIW, afkRegexValidityIcon);
         }
@@ -84,8 +84,8 @@ public class CustomMessagePerServerScreen extends Screen {
         addDrawableChild(slw);
     }
 
-    private static TextIconButtonWidgetWithoutButtonTextures setupValidityIcon(TextInputWidget textInputWidget) {
-        TextIconButtonWidgetWithoutButtonTextures regexValidityIcon = new TextIconButtonWidgetWithoutButtonTextures(16, 16, Text.empty(), Identifier.of(ModForLazyPeople.MOD_ID, "checkmark"), (btn) -> {});
+    private static IconButtonWidgetWithoutButtonTextures setupValidityIcon(TextInputWidget textInputWidget) {
+        IconButtonWidgetWithoutButtonTextures regexValidityIcon = new IconButtonWidgetWithoutButtonTextures(16, 16, Text.empty(), Identifier.of(ModForLazyPeople.MOD_ID, "checkmark"), (btn) -> {});
         regexValidityIcon.setX(textInputWidget.getX() + 152);
         updateRegexValidityIcon(regexValidityIcon, textInputWidget.getText());
 
@@ -94,7 +94,7 @@ public class CustomMessagePerServerScreen extends Screen {
         return regexValidityIcon;
     }
 
-    private static void updateRegexValidityIcon(TextIconButtonWidgetWithoutButtonTextures regexValidityIcon, String currentRegex) {
+    private static void updateRegexValidityIcon(IconButtonWidgetWithoutButtonTextures regexValidityIcon, String currentRegex) {
         Tuple<Boolean, String> validationResult = RegexUtil.validateRegex(currentRegex);
 
         if (validationResult.value1) {
