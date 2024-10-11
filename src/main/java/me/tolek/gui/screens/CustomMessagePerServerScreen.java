@@ -72,7 +72,7 @@ public class CustomMessagePerServerScreen extends Screen {
         Text screenName = Text.literal("Custom server join messages");
         context.drawTextWithShadow(textRenderer, screenName, width / 2 - textRenderer.getWidth(screenName) / 2, 10, 0xffffff);
 
-        Text usernameRegexInfo = Text.literal("To use the regex for usernames, type in %u");
+        Text usernameRegexInfo = Text.literal("To use the RegEx for usernames, type in %u.");
         context.drawTextWithShadow(textRenderer, usernameRegexInfo, width / 2 - textRenderer.getWidth(usernameRegexInfo) / 2,
                 12 + tx.fontHeight, 0xffffff);
 
