@@ -85,7 +85,7 @@ public class CustomMessagePerServerScreen extends Screen {
     }
 
     private static IconButtonWidgetWithoutButtonTextures setupValidityIcon(TextInputWidget textInputWidget) {
-        IconButtonWidgetWithoutButtonTextures regexValidityIcon = new IconButtonWidgetWithoutButtonTextures(16, 16, Text.empty(), Identifier.of(ModForLazyPeople.MOD_ID, "checkmark"), (btn) -> {});
+        IconButtonWidgetWithoutButtonTextures regexValidityIcon = new IconButtonWidgetWithoutButtonTextures(16, 16, Text.empty(), VALID_REGEX_ICON, (btn) -> {});
         regexValidityIcon.setX(textInputWidget.getX() + 152);
         updateRegexValidityIcon(regexValidityIcon, textInputWidget.getText());
 

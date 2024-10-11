@@ -6,7 +6,6 @@ import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.ElementListWidget;
-import org.apache.commons.compress.utils.Lists;
 
 import java.util.ArrayList;
 import java.util.Arrays;
