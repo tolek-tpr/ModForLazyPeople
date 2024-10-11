@@ -1,15 +1,14 @@
 package me.tolek.events;
 
-import me.tolek.interfaces.IScheduler;
+import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.util.InstancedValues;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
-import net.minecraft.client.MinecraftClient;
+import net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents;
 
 public class FabricEventsRegistry implements ClientModInitializer {
 
-    private InstancedValues iv = InstancedValues.getInstance();
+    private final InstancedValues iv = InstancedValues.getInstance();
+    private final MflpSettingsList settingsList = MflpSettingsList.getInstance();
 
     @Override
     public void onInitializeClient() {
@@ -30,6 +29,7 @@ public class FabricEventsRegistry implements ClientModInitializer {
             iv.pauseWelcomeBack = false;
             iv.isAfk = false;
         });*/
+        ClientSendMessageEvents.ALLOW_CHAT.register((msg) -> !(settingsList.AUTO_WELCOME_BACK.getState() && settingsList.AUTO_IGNORE_WB_MESSAGES.getState() && iv.timeSinceLastWbMillis < settingsList.AUTO_IGNORE_WB_MESSAGES_DURATION.getState() * 1000 && msg.contains("wb")));
     }
 
 }

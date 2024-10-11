@@ -38,7 +38,7 @@ public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, Upda
 
     @Override
     public void onUpdate() {
-        iv.timeSinceLastWbInMils += 50;
+        iv.timeSinceLastWbMillis += 50;
     }
 
     public void executeAutoWB(Text message) {
@@ -48,7 +48,7 @@ public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, Upda
         CustomMessagePerServerList serverMessagesList = CustomMessagePerServerList.getInstance();
 
         if (message.getString().contains("banana") && !message.getString().contains("To")) {
-            if (iv.timeSinceLastInputInMils / 1000 < 30) {
+            if (iv.timeSinceLastInputMillis / 1000 < 30) {
                 if (!setting.getState()) {
                     setting.run();
                     setting.refresh();
@@ -59,7 +59,7 @@ public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, Upda
             }
         }
 
-        if (!setting.getState() || iv.timeSinceLastWbInMils / 1000 < settingsList.WB_COOLDOWN.getState()) {
+        if (!setting.getState() || iv.timeSinceLastWbMillis / 1000 < settingsList.WB_COOLDOWN.getState()) {
             return;
         }
 
@@ -89,7 +89,7 @@ public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, Upda
 
                 if (joined || unAfk) {
                     if (!MflpUtil.isFakeMessage(message)) {
-                        if (iv.timeSinceLastInputInMils / 1000 < 30 && !iv.isAfk) {
+                        if (iv.timeSinceLastInputMillis / 1000 < 30 && !iv.isAfk) {
                             ((IScheduler) client).scheduleNonRepeating(settingsList.WB_DELAY.getState(), (b) -> {
                                 if (validateRankWhitelist(message, client, settingsList)) {
                                     setting.lastName = message.getString().contains("is no longer AFK.") ?
