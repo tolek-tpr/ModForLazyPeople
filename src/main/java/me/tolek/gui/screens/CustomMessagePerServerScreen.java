@@ -1,18 +1,22 @@
 package me.tolek.gui.screens;
 
+import me.tolek.ModForLazyPeople;
 import me.tolek.gui.widgets.ScrollableListWidget;
+import me.tolek.gui.widgets.TextIconButtonWidgetWithoutButtonTextures;
 import me.tolek.gui.widgets.TextInputWidget;
 import me.tolek.modules.settings.CustomMessagePerServerList;
 import me.tolek.modules.settings.MflpSettingsList;
+import me.tolek.util.RegexUtil;
 import me.tolek.util.Tuple;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.TextIconButtonWidget;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 
 import static me.tolek.gui.widgets.autoReply.ArReplyWidget.CROSS_ICON;
 
@@ -26,6 +30,9 @@ public class CustomMessagePerServerScreen extends Screen {
     private final MflpSettingsList settingsList = MflpSettingsList.getInstance();
     private final MinecraftClient client = MinecraftClient.getInstance();
     private final TextRenderer tx = client.textRenderer;
+
+    private static final Identifier VALID_REGEX_ICON = Identifier.of(ModForLazyPeople.MOD_ID, "checkmark");
+    private static final Identifier INVALID_REGEX_ICON = Identifier.of(ModForLazyPeople.MOD_ID, "cross");
 
     @Override
     public void init() {
@@ -45,6 +52,15 @@ public class CustomMessagePerServerScreen extends Screen {
         addDrawableChild(defaultJoinWidget);
         addDrawableChild(defaultUnafkWidget);
 
+        TextIconButtonWidgetWithoutButtonTextures defaultJoinRegexValidityIcon = setupValidityIcon(defaultJoinWidget);
+        defaultJoinRegexValidityIcon.setY(38);
+
+        TextIconButtonWidgetWithoutButtonTextures defaultUnafkRegexValidityIcon = setupValidityIcon(defaultUnafkWidget);
+        defaultUnafkRegexValidityIcon.setY(38);
+
+        addDrawableChild(defaultJoinRegexValidityIcon);
+        addDrawableChild(defaultUnafkRegexValidityIcon);
+
         for (int i = 0; i < list.getMessages().size(); i++) {
             Tuple<String, Tuple<String, String>> currentTuple = list.getMessages().get(i);
 
@@ -57,12 +73,37 @@ public class CustomMessagePerServerScreen extends Screen {
 
             TextInputWidget serverTIW = new TextInputWidget(tx, 20, 83, 150, 20, Text.literal(currentTuple.value1), (value) -> currentTuple.value1 = value);
             TextInputWidget joinTIW = new TextInputWidget(tx, 200, 83, 150, 20, Text.literal(currentTuple.value2.value1), (value) -> currentTuple.value2.value1 = value);
-            TextInputWidget afkTIW = new TextInputWidget(tx, 360, 83, 150, 20, Text.literal(currentTuple.value2.value2), (value) -> currentTuple.value2.value2 = value);
+            TextInputWidget afkTIW = new TextInputWidget(tx, 380, 83, 150, 20, Text.literal(currentTuple.value2.value2), (value) -> currentTuple.value2.value2 = value);
 
-            slw.addRow(serverTIW, ibw, joinTIW, afkTIW);
+            TextIconButtonWidgetWithoutButtonTextures joinRegexValidityIcon = setupValidityIcon(joinTIW);
+            TextIconButtonWidgetWithoutButtonTextures afkRegexValidityIcon = setupValidityIcon(afkTIW);
+
+            slw.addRow(serverTIW, ibw, joinTIW, joinRegexValidityIcon, afkTIW, afkRegexValidityIcon);
         }
 
         addDrawableChild(slw);
+    }
+
+    private static TextIconButtonWidgetWithoutButtonTextures setupValidityIcon(TextInputWidget textInputWidget) {
+        TextIconButtonWidgetWithoutButtonTextures regexValidityIcon = new TextIconButtonWidgetWithoutButtonTextures(16, 16, Text.empty(), Identifier.of(ModForLazyPeople.MOD_ID, "checkmark"), (btn) -> {});
+        regexValidityIcon.setX(textInputWidget.getX() + 152);
+        updateRegexValidityIcon(regexValidityIcon, textInputWidget.getText());
+
+        textInputWidget.setChangedListener(state -> updateRegexValidityIcon(regexValidityIcon, state));
+
+        return regexValidityIcon;
+    }
+
+    private static void updateRegexValidityIcon(TextIconButtonWidgetWithoutButtonTextures regexValidityIcon, String currentRegex) {
+        Tuple<Boolean, String> validationResult = RegexUtil.validateRegex(currentRegex);
+
+        if (validationResult.value1) {
+            regexValidityIcon.setTexture(VALID_REGEX_ICON);
+            regexValidityIcon.setTooltip(Tooltip.of(Text.literal("Valid RegEx.")));
+        } else {
+            regexValidityIcon.setTexture(INVALID_REGEX_ICON);
+            regexValidityIcon.setTooltip(Tooltip.of(Text.literal("Invalid RegEx. Error: %s".formatted(validationResult.value2))));
+        }
     }
 
     @Override
