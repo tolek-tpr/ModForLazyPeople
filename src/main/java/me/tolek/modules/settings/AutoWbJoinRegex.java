@@ -18,6 +18,6 @@ public class AutoWbJoinRegex extends StringSetting {
 
     @Override
     public boolean validateString(String s) {
-        return RegexUtil.validateRegex(s);
+        return RegexUtil.validateRegex(s).value1;
     }
 }

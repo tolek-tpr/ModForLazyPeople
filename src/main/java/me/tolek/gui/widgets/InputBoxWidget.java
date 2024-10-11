@@ -2,9 +2,7 @@ package me.tolek.gui.widgets;
 
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.EditBox;
-import net.minecraft.client.gui.widget.EditBoxWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
 
 import java.util.function.Consumer;

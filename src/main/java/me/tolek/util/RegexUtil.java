@@ -9,7 +9,7 @@ import java.util.regex.PatternSyntaxException;
 public class RegexUtil {
 
     public static boolean evaluateRegex(@NotNull String regex, @NotNull String matchAgainst, int flags) {
-        if (!validateRegex(regex)) return false;
+        if (!validateRegex(regex).value1) return false;
         Pattern pattern = Pattern.compile(regex, flags);
         Matcher matcher = pattern.matcher(matchAgainst);
         return matcher.find();
@@ -19,15 +19,15 @@ public class RegexUtil {
         return evaluateRegex(regex, matchAgainst, Pattern.CASE_INSENSITIVE);
     }
 
-    public static boolean validateRegex(@NotNull String regex) {
+    public static Tuple<Boolean, String> validateRegex(@NotNull String regex) {
         // Check if a given RegEx is valid.
         try {
             Pattern.compile(regex);
         } catch (PatternSyntaxException exception) { // Pattern.compile() returns an error if the RegEx is invalid.
-            return false;
+            return new Tuple<>(false, exception.getDescription());
         }
 
-        return true;
+        return new Tuple<>(true, "");
     }
 
 }
