@@ -42,4 +42,14 @@ public class TextIconButtonWidgetWithoutButtonTextures extends TextIconButtonWid
 
     public void drawMessage(DrawContext context, TextRenderer textRenderer, int color) {
     }
+
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        return false;
+    }
 }
