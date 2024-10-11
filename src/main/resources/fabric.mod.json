@@ -10,7 +10,8 @@
 	],
 	"contact": {
 		"homepage": "https://modrinth.com/mod/modforlazypeople/",
-		"sources": "https://github.com/tolek-tpr/ModForLazyPeople"
+		"sources": "https://github.com/tolek-tpr/ModForLazyPeople",
+		"issues": "https://github.com/tolek-tpr/ModForLazyPeople/issues"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/modforlazypeople/icon.png",
