@@ -5,7 +5,7 @@ import me.tolek.modules.settings.base.StringSetting;
 public class WelcomeMessage extends StringSetting {
 
     public WelcomeMessage() {
-        super("Welcome message", "welcome!", "What message auto welcome should say. Use %p to say the username of the player that joined.");
+        super("mflp.setting.welcomeMessage.name", "welcome!", "mflp.setting.welcomeMessage.tooltip");
         this.setState("welcome!");
     }
 

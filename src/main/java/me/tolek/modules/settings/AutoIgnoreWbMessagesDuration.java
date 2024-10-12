@@ -5,7 +5,7 @@ import me.tolek.modules.settings.base.IntegerSetting;
 public class AutoIgnoreWbMessagesDuration extends IntegerSetting {
 
     public AutoIgnoreWbMessagesDuration() {
-        super("Auto Ignore wb Duration", 5, "The duration that your messages containing wb will be ignored.");
+        super("mflp.setting.autoIgnoreWbDuration.name", 5, "mflp.setting.autoIgnoreWbDuration.tooltip");
         this.setState(5);
     }
 

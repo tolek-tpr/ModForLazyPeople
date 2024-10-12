@@ -42,7 +42,7 @@ public class MflpSettingsScreen extends Screen {
 
                 BooleanWidget bw = new BooleanWidget(width / 2, 0, bs);
                 TextWidget label = new TextWidget(width / 2 - 155,
-                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(setting.getName()) + 10, 20, Text.literal(setting.getName()), textRenderer);
+                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(Text.translatable(setting.getName())) + 10, 20, Text.translatable(setting.getName()), textRenderer);
                 slw.addRow(label, bw);
             }
 
@@ -57,7 +57,7 @@ public class MflpSettingsScreen extends Screen {
 
                 IntegerWidget iw = new IntegerWidget(width / 2, 0, is, textRenderer);
                 TextWidget label = new TextWidget(width / 2 - 155,
-                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(setting.getName()) + 10, 20, Text.literal(setting.getName()), textRenderer);
+                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(Text.translatable(setting.getName())) + 10, 20, Text.translatable(setting.getName()), textRenderer);
                 slw.addRow(label, iw);
             }
 
@@ -67,7 +67,7 @@ public class MflpSettingsScreen extends Screen {
 
                 StringWidget sw = new StringWidget(width / 2, 0, ss, textRenderer);
                 TextWidget label = new TextWidget(width / 2 - 155,
-                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(setting.getName()) + 10, 20, Text.literal(setting.getName()), textRenderer);
+                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(Text.translatable(setting.getName())) + 10, 20, Text.translatable(setting.getName()), textRenderer);
                 slw.addRow(label, sw);
             }
 
@@ -77,7 +77,7 @@ public class MflpSettingsScreen extends Screen {
 
                 ListWidget lw = new ListWidget(width / 2, 0, ls);
                 TextWidget label = new TextWidget(width / 2 - 155,
-                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(setting.getName()) + 10, 20, Text.literal(setting.getName()), textRenderer);
+                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(Text.translatable(setting.getName())) + 10, 20, Text.translatable(setting.getName()), textRenderer);
                 slw.addRow(label, lw);
             }
 
@@ -86,7 +86,7 @@ public class MflpSettingsScreen extends Screen {
 
                 ButtonSettingWidget bw = new ButtonSettingWidget(width / 2, 0, bs);
                 TextWidget label = new TextWidget(width / 2 - 155,
-                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(setting.getName()) + 10, 20, Text.literal(setting.getName()), textRenderer);
+                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(Text.translatable(setting.getName())) + 10, 20, Text.translatable(setting.getName()), textRenderer);
                 slw.addRow(label, bw);
             }
         }

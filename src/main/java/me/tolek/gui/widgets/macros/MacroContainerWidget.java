@@ -62,8 +62,8 @@ public class MacroContainerWidget extends ContainerWidget {
 
         addChild(bw);
 
-        Text toggleText = m.getTurnedOn() ? Text.literal("True").formatted(Formatting.GREEN) :
-                Text.literal("False").formatted(Formatting.RED);
+        Text toggleText = m.getTurnedOn() ? Text.translatable("mflp.true").formatted(Formatting.GREEN) :
+                Text.translatable("mflp.false").formatted(Formatting.RED);
         ButtonWidget toggleButton = ButtonWidget.builder(toggleText, (button -> {
             m.setTurnedOn(!m.getTurnedOn());
             client.setScreen(new MflpConfig(client));

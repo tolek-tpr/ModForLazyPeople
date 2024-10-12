@@ -5,7 +5,7 @@ import me.tolek.modules.settings.base.StringSetting;
 public class WbPlayerBlacklist extends StringSetting {
 
     public WbPlayerBlacklist() {
-        super("Player name wb blacklist", "", "Stops the player from mentioning specific names when using %p");
+        super("mflp.setting.playerNameWbBlacklist.name", "", "mflp.setting.playerNameWbBlacklist.tooltip");
         this.setState("");
     }
 

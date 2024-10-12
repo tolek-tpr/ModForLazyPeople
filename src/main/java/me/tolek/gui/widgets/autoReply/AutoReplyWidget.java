@@ -42,8 +42,8 @@ public class AutoReplyWidget extends ContainerWidget {
         this.y = y;
         this.client = client;
 
-        Text toggleText = ar.isTurnedOn() ? Text.literal("True").formatted(Formatting.GREEN) :
-                Text.literal("False").formatted(Formatting.RED);
+        Text toggleText = ar.isTurnedOn() ? Text.translatable("mflp.true").formatted(Formatting.GREEN) :
+                Text.translatable("mflp.false").formatted(Formatting.RED);
         ButtonWidget toggleButton = ButtonWidget.builder(toggleText, (button -> {
             ar.setTurnedOn(!ar.isTurnedOn());
             client.setScreen(new AutoReplyScreen());

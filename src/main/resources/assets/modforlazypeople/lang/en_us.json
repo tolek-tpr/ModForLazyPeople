@@ -1,35 +1,13 @@
 {
-  "mflp.configScreen.title": "MFLP Macros",
-  "mflp.macroConfigScreen.title": "Macro Configurator",
-  "mflp.updateScreen.title": "Update Available",
-  "mflp.settingsScreen.title": "MFLP Settings",
-  "mflp.autoReplyScreen.title": "Auto Reply config",
-  "mflp.autoReplyConfigScreen.title": "Auto reply settings",
-  "mflp.playerBlacklistScreen.title": "Auto welcome back player blacklist screen",
-  "mflp.messagePerServer.title": "Custom messages per server screen",
-
-  "mflp.category.configCategory": "Config",
-  "mflp.category.hotkeyCategory": "Hotkeys",
-
-  "mflp.tooltip.autoPlotHome": "Automatically does /plot home, when joining synergy",
-  "mflp.tooltip.autoWbBlacklist": "A toggle for auto welcome back blacklist",
-  "mflp.tooltip.autoWbWhitelist": "A toggle for auto welcome back whitelist",
-  "mflp.tooltip.autoWelcome": "Automatically says welcome! when a new person joins synergy",
-  "mflp.tooltip.autoWB": "Automatically says wb when someone comes back from being afk or joins synergy",
-  "mflp.tooltip.wbBlacklist": "The list of names to ignore people when using auto wb, separated by a space",
-  "mflp.tooltip.wbWhitelist": "The list of names to say wb to when using auto wb, separated by a space",
-  "mflp.tooltip.wbMessageTooltip": "What message auto welcome back should say",
-  "mflp.tooltip.welcomeMessageTooltip": "What message auto welcome should say",
-
-  "mflp.keybind.tickFreeze": "Tick freeze",
-  "mflp.keybind.tickStep": "Tick step",
-  "mflp.keybind.setupWorld": "World setup",
-
-  "mflp.keybindCategory.macro": "Macro Keybinds",
-
-  "mflp.configScreen.removeButton": "Remove",
-  "mflp.configScreen.editButton": "Edit",
-
-  "mflp.keybinding.undefined": "Undefined (Prolly an error)",
-  "mflp.keybinding.defaultKey": "Not bound"
+  "mflp.welcomeScreen.welcomeText": "Welcome to MFLP",
+  "mflp.welcomeScreen.line1": "Mflp is a mod for creating command macros, and adding QOL features.",
+  "mflp.welcomeScreen.line2": "To create a macro run the command: ",
+  "mflp.welcomeScreen.command": "/macro createMacro <macro name> <commands>",
+  "mflp.welcomeScreen.line3": "the commands syntax is as follows: say-hi.say-hi-2",
+  "mflp.welcomeScreen.line4": "Dashes = spaces, and the dot separates commands.",
+  "mflp.welcomeScreen.line5": "For removing macros, use /macro removeMacro <macro name>",
+  "mflp.welcomeScreen.line6": "If your macro uses a space in its name replace it with a dash",
+  "mflp.welcomeScreen.line7": "If you want to request new features message me on discord",
+  "mflp.welcomeScreen.line8": "As of update 2.5.0, you can use the \"create\" button to add macros",
+  "mflp.welcomeScreen.quickGuide.title": "Mflp Quick Guide"
 }

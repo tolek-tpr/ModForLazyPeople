@@ -39,8 +39,8 @@ public class AutoReplySettingScreen extends Screen {
         addDrawableChild(arss);
         arss.children().forEach(this::addDrawableChild);
 
-        addDrawableChild(ButtonWidget.builder(Text.literal("Add"), (button) -> {
-            InputBoxWidget ibw = new InputBoxWidget(textRenderer, width / 2 - 75, height / 2 - 40, 150, 20, Text.literal("Keyword"));
+        addDrawableChild(ButtonWidget.builder(Text.translatable("mflp.add"), (button) -> {
+            InputBoxWidget ibw = new InputBoxWidget(textRenderer, width / 2 - 75, height / 2 - 40, 150, 20, Text.translatable("mflp.autoReplyConfigScreen.keyword"));
             ibw.setKeyConsumer((keyCode) -> {
                 if (keyCode == InputUtil.GLFW_KEY_ESCAPE) {
                     client.setScreen(new AutoReplySettingScreen(this.parent, this.ar));
@@ -52,8 +52,8 @@ public class AutoReplySettingScreen extends Screen {
             addDrawableChild(ibw);
         }).dimensions(20 + 142, 63 - textRenderer.fontHeight / 2, 30, 20).build());
 
-        addDrawableChild(ButtonWidget.builder(Text.literal("Add"), (button) -> {
-            InputBoxWidget ibw = new InputBoxWidget(textRenderer, width / 2 - 75, height / 2 - 40, 150, 20, Text.literal("Keyword"));
+        addDrawableChild(ButtonWidget.builder(Text.translatable("mflp.add"), (button) -> {
+            InputBoxWidget ibw = new InputBoxWidget(textRenderer, width / 2 - 75, height / 2 - 40, 150, 20, Text.translatable("mflp.autoReplyConfigScreen.keyword"));
             ibw.setKeyConsumer((keyCode) -> {
                 if (keyCode == InputUtil.GLFW_KEY_ESCAPE) {
                     client.setScreen(new AutoReplySettingScreen(this.parent, this.ar));
@@ -114,9 +114,9 @@ public class AutoReplySettingScreen extends Screen {
             context.drawTextWithShadow(textRenderer, macroName, width / 2 - textRenderer.getWidth(macroName) / 2, 10, 0xffffff);
         }
 
-        context.drawTextWithShadow(textRenderer, Text.literal("Keywords"),
+        context.drawTextWithShadow(textRenderer, Text.translatable("mflp.autoReplyConfigScreen.keywords"),
                 20, 65, 0xffffff);
-        context.drawTextWithShadow(textRenderer, Text.literal("Replies"),
+        context.drawTextWithShadow(textRenderer, Text.translatable("mflp.autoReplyConfigScreen.replies"),
                 width / 2 + 5, 65, 0xffffff);
 
         remove(arss);

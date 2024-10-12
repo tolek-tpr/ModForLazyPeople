@@ -4,7 +4,7 @@ import me.tolek.modules.settings.base.BooleanSetting;
 
 public class AutoIgnoreWbMessages extends BooleanSetting {
     public AutoIgnoreWbMessages() {
-        super("Auto Ignore wb", true, "Automatically ignore wb messages within a few seconds of someone joining");
+        super("mflp.setting.autoIgnoreWb.name", true, "mflp.setting.autoIgnoreWb.tooltip");
         this.setState(true);
     }
 

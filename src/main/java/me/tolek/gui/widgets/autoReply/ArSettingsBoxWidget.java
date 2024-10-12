@@ -46,7 +46,7 @@ public class ArSettingsBoxWidget extends ContainerWidget {
         this.width = width;
         this.height = height;
 
-        ButtonWidget rename = ButtonWidget.builder(Text.literal("Rename"), (button) -> {
+        ButtonWidget rename = ButtonWidget.builder(Text.translatable("mflp.remove"), (button) -> {
             InputBoxWidget inputBox = new InputBoxWidget(tx, width / 2 - 75, height / 2 - 40, 150, 20, Text.literal(this.ar.getName()));
             inputBox.setKeyConsumer((keyCode -> {
                 if (keyCode == InputUtil.GLFW_KEY_ESCAPE) {
@@ -59,7 +59,7 @@ public class ArSettingsBoxWidget extends ContainerWidget {
 
             addChild(inputBox);
         }).dimensions(x, y, 70, 20).build();
-        ButtonWidget duplicate = ButtonWidget.builder(Text.literal("Duplicate"), (button) -> {
+        ButtonWidget duplicate = ButtonWidget.builder(Text.translatable("mflp.duplicate"), (button) -> {
             AutoReply ara = this.ar.copy();
             autoReplies.addAutoReply(ara);
             client.setScreen(parent);

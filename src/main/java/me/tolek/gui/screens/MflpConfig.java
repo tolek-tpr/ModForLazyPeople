@@ -42,8 +42,8 @@ public class MflpConfig extends Screen {
         MenuPickerWidget mpw = new MenuPickerWidget(10, 22, client);
         mpw.children().forEach(this::addDrawableChild);
 
-        addDrawableChild(ButtonWidget.builder(Text.literal("Create"), (button -> {
-            InputBoxWidget ibw = new InputBoxWidget(textRenderer, width / 2 - 75, height / 2 - 40, 150, 20, Text.literal("Name"));
+        addDrawableChild(ButtonWidget.builder(Text.translatable("mflp.create"), (button -> {
+            InputBoxWidget ibw = new InputBoxWidget(textRenderer, width / 2 - 75, height / 2 - 40, 150, 20, Text.translatable("mflp.name"));
 
             ibw.setKeyConsumer((keyCode) -> {
                 if (keyCode == InputUtil.GLFW_KEY_ESCAPE) {
@@ -78,8 +78,8 @@ public class MflpConfig extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
         if (macroList.getMacros().isEmpty()) {
-            context.drawTextWithShadow(textRenderer, Text.literal("No macros added!"),
-                    width / 2 - textRenderer.getWidth("No macros added!") / 2, 46 + textRenderer.fontHeight / 2, 0xffffff);
+            context.drawTextWithShadow(textRenderer, Text.translatable("mflp.macro.nomacrosadded"),
+                    width / 2 - textRenderer.getWidth(Text.translatable("mflp.macro.nomacrosadded")) / 2, 46 + textRenderer.fontHeight / 2, 0xffffff);
         }
     }
 

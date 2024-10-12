@@ -106,7 +106,7 @@ public class MacroCommand implements ClientModInitializer {
     }
 
     private int noSuchMacroExistsError(FabricClientCommandSource ctx) {
-        Text message = Text.literal("The macro does not exist!").formatted(Formatting.RED);
+        Text message = Text.translatable("mflp.macro.doesntExist").formatted(Formatting.RED);
         mflpUtil.sendMessage(ctx.getClient().player, message);
         return 0;
     }
@@ -126,8 +126,8 @@ public class MacroCommand implements ClientModInitializer {
         if (ml == null) return noSuchMacroExistsError(ctx);
 
         Text amountText = Text.literal(macroName).formatted(Formatting.BOLD).formatted(Formatting.GOLD);
-        Text message = Text.literal("Added a repeat flag to macro ").append(amountText);
-        Text tooltip = Text.literal("Commands: " + ml.getCommands()).formatted(Formatting.AQUA);
+        Text message = Text.translatable("mflp.macro.addedRepeatFlag").append(amountText);
+        Text tooltip = Text.translatable("mflp.macro.commands", ml.getCommands()).formatted(Formatting.AQUA);
 
         HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, tooltip);
         message = message.copy().setStyle(message.getStyle().withHoverEvent(hoverEvent));
@@ -153,8 +153,8 @@ public class MacroCommand implements ClientModInitializer {
         if (ml == null) return noSuchMacroExistsError(ctx);
 
         Text amountText = Text.literal(String.valueOf(amount)).formatted(Formatting.BOLD).formatted(Formatting.GOLD);
-        Text message = Text.literal("Repeating macro ").append(amountText).append(Text.literal(" times."));
-        Text tooltip = Text.literal("Commands: " + ml.getCommands()).formatted(Formatting.AQUA);
+        Text message = Text.translatable("mflp.macro.repeating").append(amountText).append(Text.translatable("mflp.macro.times"));
+        Text tooltip = Text.translatable("mflp.macro.commands", ml.getCommands()).formatted(Formatting.AQUA);
 
         HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, tooltip);
         message = message.copy().setStyle(message.getStyle().withHoverEvent(hoverEvent));
@@ -179,8 +179,8 @@ public class MacroCommand implements ClientModInitializer {
         if (ml == null) return noSuchMacroExistsError(ctx);
 
         Text macroNameText = Text.literal(newMacroName).formatted(Formatting.BOLD).formatted(Formatting.GOLD);
-        Text message = Text.literal("Renamed macro to: ").append(macroNameText);
-        Text tooltip = Text.literal("Commands: " + ml.getCommands()).formatted(Formatting.AQUA);
+        Text message = Text.translatable("mflp.macro.renamedTo").append(macroNameText);
+        Text tooltip = Text.translatable("mflp.macro.commands", ml.getCommands()).formatted(Formatting.AQUA);
 
         HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, tooltip);
         message = message.copy().setStyle(message.getStyle().withHoverEvent(hoverEvent));
@@ -201,7 +201,7 @@ public class MacroCommand implements ClientModInitializer {
                 ml = m;
                 boolean a = m.removeCommands(commands);
                 if (!a) {
-                    Text message = Text.literal("The macro does not contain this command!").formatted(Formatting.RED);
+                    Text message = Text.translatable("mflp.macro.doesNotContainCommand").formatted(Formatting.RED);
                     mflpUtil.sendMessage(ctx.getClient().player, message);
 
                     return 1;
@@ -212,8 +212,8 @@ public class MacroCommand implements ClientModInitializer {
         if (ml == null) return noSuchMacroExistsError(ctx);
 
         Text macroNameText = Text.literal(macroName).formatted(Formatting.BOLD).formatted(Formatting.GOLD);
-        Text message = Text.literal("Removed commands from macro: ").append(macroNameText);
-        Text tooltip = Text.literal("Commands: " + ml.getCommands()).formatted(Formatting.AQUA);
+        Text message = Text.translatable("mflp.macro.removedCommands").append(macroNameText);
+        Text tooltip = Text.translatable("mflp.macro.commands", ml.getCommands()).formatted(Formatting.AQUA);
 
         HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, tooltip);
         message = message.copy().setStyle(message.getStyle().withHoverEvent(hoverEvent));
@@ -239,8 +239,8 @@ public class MacroCommand implements ClientModInitializer {
         if (ml == null) return noSuchMacroExistsError(ctx);
 
         Text macroNameText = Text.literal(macroName).formatted(Formatting.BOLD).formatted(Formatting.GOLD);
-        Text message = Text.literal("Added commands to macro: ").append(macroNameText);
-        Text tooltip = Text.literal("Commands: " + ml.getCommands()).formatted(Formatting.AQUA);
+        Text message = Text.translatable("mflp.macro.addedCommands").append(macroNameText);
+        Text tooltip = Text.translatable("mflp.macro.commands", ml.getCommands()).formatted(Formatting.AQUA);
 
         HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, tooltip);
         message = message.copy().setStyle(message.getStyle().withHoverEvent(hoverEvent));
@@ -255,11 +255,11 @@ public class MacroCommand implements ClientModInitializer {
             if (m.getName().equals(name)) {
                 macroList.removeMacro(m);
                 Text macroNameText = Text.literal(name).formatted(Formatting.GOLD);
-                ctx.sendFeedback(Text.literal("Removed macro: ").append(macroNameText));
+                ctx.sendFeedback(Text.translatable("mflp.macro.removed").append(macroNameText));
                 return 1;
             }
         }
-        ctx.sendFeedback(Text.literal("Could not find macro!").formatted(Formatting.RED));
+        ctx.sendFeedback(Text.translatable("mflp.macro.couldNotFind").formatted(Formatting.RED));
         return 1;
     }
 
@@ -275,8 +275,8 @@ public class MacroCommand implements ClientModInitializer {
         macroList.addMacro(m);
 
         Text macroNameText = Text.literal(macroName).formatted(Formatting.BOLD).formatted(Formatting.GOLD);
-        Text message = Text.literal("Added macro: ").append(macroNameText);
-        Text tooltip = Text.literal("Commands: " + commands).formatted(Formatting.AQUA);
+        Text message = Text.translatable("mflp.macro.added").append(macroNameText);
+        Text tooltip = Text.translatable("mflp.macro.commands", commands).formatted(Formatting.AQUA);
 
         HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, tooltip);
         message = message.copy().setStyle(message.getStyle().withHoverEvent(hoverEvent));

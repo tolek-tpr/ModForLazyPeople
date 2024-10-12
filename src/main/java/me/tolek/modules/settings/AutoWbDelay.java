@@ -5,7 +5,7 @@ import me.tolek.modules.settings.base.IntegerSetting;
 public class AutoWbDelay extends IntegerSetting {
 
     public AutoWbDelay() {
-        super("Auto welcome back delay", 4, "How long the bot should wait before saying wb after someone joins in GAME TICKS");
+        super("mflp.setting.autoWbDelay.name", 5, "mflp.setting.autoWbDelay.tooltip");
         this.setState(5);
     }
 

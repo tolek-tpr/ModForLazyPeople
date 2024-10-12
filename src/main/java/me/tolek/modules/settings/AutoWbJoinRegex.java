@@ -6,7 +6,7 @@ import me.tolek.util.RegexUtil;
 public class AutoWbJoinRegex extends StringSetting {
 
     public AutoWbJoinRegex() {
-        super("Join RegEx", "^%u has joined\\.$", "The RegEx to use to match if a message contains the user has joined text.");
+        super("mflp.setting.autoWbJoinRegex.name", "^%u has joined\\.$", "mflp.setting.autoWbJoinRegex.tooltip");
         this.setState("^%u has joined\\.$");
         this.render = false;
     }
