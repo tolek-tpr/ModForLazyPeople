@@ -68,7 +68,7 @@
   "mflp.setting.autoIgnoreWb.name": "Auto Ignore wb",
   "mflp.setting.autoIgnoreWb.tooltip": "Automatically ignore messages containing wb within a few seconds of someone joining. NOTE: The bot also can't send wb messages within the duration.",
 
-  "mflp.setting.autoIgnoreWbDuration.name": "Auto Ignore wb Duration",
+  "mflp.setting.autoIgnoreWbDuration.name": "Auto Ignore wb duration",
   "mflp.setting.autoIgnoreWbDuration.tooltip": "The duration that your messages containing wb will be ignored.",
 
   "mflp.setting.perPlayerMessages.name": "Per player messages",
