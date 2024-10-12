@@ -1,8 +1,8 @@
 package me.tolek.gui.screens;
 
 import me.tolek.gui.widgets.InputBoxWidget;
-import me.tolek.modules.Macro.Macro;
-import me.tolek.modules.Macro.MacroList;
+import me.tolek.modules.macro.Macro;
+import me.tolek.modules.macro.MacroList;
 import me.tolek.gui.widgets.macros.MacroContainerWidget;
 import me.tolek.gui.widgets.MenuPickerWidget;
 import net.fabricmc.api.EnvType;

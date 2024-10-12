@@ -1,7 +1,7 @@
 package me.tolek.gui.widgets.macros;
 
-import me.tolek.modules.Macro.Macro;
-import me.tolek.modules.Macro.MacroList;
+import me.tolek.modules.macro.Macro;
+import me.tolek.modules.macro.MacroList;
 import me.tolek.gui.screens.MflpConfig;
 import me.tolek.gui.screens.MflpConfigureMacroScreen;
 import me.tolek.util.MflpUtil;

@@ -2,8 +2,7 @@ package me.tolek;
 
 import me.tolek.event.EventImpl;
 import me.tolek.events.AfkDetector;
-import me.tolek.files.MflpConfigImpl;
-import me.tolek.modules.Macro.MacroExecutor;
+import me.tolek.modules.macro.MacroExecutor;
 import me.tolek.modules.autoReply.AutoReplyExecutor;
 import me.tolek.modules.settings.executor.AutoWelcomeBackImpl;
 import me.tolek.modules.settings.executor.AutoWelcomeImpl;
