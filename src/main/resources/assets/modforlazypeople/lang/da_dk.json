@@ -103,5 +103,7 @@
   "mflp.customMessagesPerServer.joinRegexTitle": "Tilsluttelsesbesked (RegEx)",
   "mflp.customMessagesPerServer.unAfkRegexTitle": "Unafkbesked (RegEx)",
   "mflp.customMessagesPerServer.defaultJoinRegexTitle": "Standard Tilsluttelsesbesked (RegEx)",
-  "mflp.customMessagesPerServer.defaultUnAfkRegexTitle": "Standard Unafkbesked (RegEx)"
+  "mflp.customMessagesPerServer.defaultUnAfkRegexTitle": "Standard Unafkbesked (RegEx)",
+
+  "mflp.pause.settingsButton": "MFLP Indstillinger"
 }

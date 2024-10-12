@@ -103,5 +103,7 @@
   "mflp.customMessagesPerServer.joinRegexTitle": "Join Message (RegEx)",
   "mflp.customMessagesPerServer.unAfkRegexTitle": "Unafk Message (RegEx)",
   "mflp.customMessagesPerServer.defaultJoinRegexTitle": "Default Join Message (RegEx)",
-  "mflp.customMessagesPerServer.defaultUnAfkRegexTitle": "Default Unafk Message (RegEx)"
+  "mflp.customMessagesPerServer.defaultUnAfkRegexTitle": "Default Unafk Message (RegEx)",
+
+  "mflp.pause.settingsButton": "MFLP Settings"
 }
