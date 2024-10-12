@@ -1,4 +1,4 @@
-package me.tolek.modules.Macro;
+package me.tolek.modules.macro;
 
 import me.tolek.util.KeyBindingUtil;
 import net.minecraft.client.network.ClientPlayerEntity;

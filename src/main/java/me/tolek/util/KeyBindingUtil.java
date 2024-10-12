@@ -1,6 +1,6 @@
 package me.tolek.util;
 
-import me.tolek.modules.Macro.MacroList;
+import me.tolek.modules.macro.MacroList;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 

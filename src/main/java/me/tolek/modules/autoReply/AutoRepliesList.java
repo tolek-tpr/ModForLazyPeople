@@ -1,7 +1,5 @@
 package me.tolek.modules.autoReply;
 
-import me.tolek.modules.Macro.MacroList;
-
 import java.util.ArrayList;
 
 public class AutoRepliesList {

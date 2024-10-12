@@ -1,4 +1,4 @@
-package me.tolek.modules.Macro;
+package me.tolek.modules.macro;
 
 import me.tolek.event.EventImpl;
 import me.tolek.event.EventManager;

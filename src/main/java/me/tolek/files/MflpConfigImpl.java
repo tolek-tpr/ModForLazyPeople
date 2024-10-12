@@ -2,9 +2,8 @@ package me.tolek.files;
 
 import me.tolek.ModForLazyPeople;
 import me.tolek.event.*;
-import me.tolek.interfaces.IScheduler;
-import me.tolek.modules.Macro.Macro;
-import me.tolek.modules.Macro.MacroList;
+import me.tolek.modules.macro.Macro;
+import me.tolek.modules.macro.MacroList;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.settings.CustomMessagePerServerList;
 import me.tolek.modules.settings.CustomPlayerMessageList;
