@@ -20,6 +20,7 @@
   "mflp.rename": "Rename",
   "mflp.duplicate": "Duplicate",
   "mflp.name": "Name",
+  "mflp.download": "Download",
 
   "mflp.mainConfig.macrosButton": "Macros",
   "mflp.mainConfig.settingsButton": "Settings",
@@ -105,5 +106,8 @@
   "mflp.customMessagesPerServer.defaultJoinRegexTitle": "Default Join Message (RegEx)",
   "mflp.customMessagesPerServer.defaultUnAfkRegexTitle": "Default Unafk Message (RegEx)",
 
-  "mflp.pause.settingsButton": "MFLP Settings"
+  "mflp.pause.settingsButton": "MFLP Settings",
+
+  "mflp.updateScreen.currentVersion": "Mod for lazy people version: ",
+  "mflp.updateAvailable": "Update Available!"
 }

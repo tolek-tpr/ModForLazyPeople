@@ -38,8 +38,8 @@ public class MflpUpdateScreen extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
 
-        Text updateAvailable = Text.translatable("mflp.updateAvaliable");
-        Text currentVersion = Text.translatable("mlfp.updateScreen.currentVersion").append(iv.getMflpVersion());
+        Text updateAvailable = Text.translatable("mflp.updateAvailable");
+        Text currentVersion = Text.translatable("mflp.updateScreen.currentVersion").append(iv.getMflpVersion());
         context.drawTextWithShadow(textRenderer, updateAvailable, width / 2 - textRenderer.getWidth(updateAvailable) / 2, height / 2 - height / 4, 0xffffff);
         context.drawTextWithShadow(textRenderer, currentVersion, width / 2 - textRenderer.getWidth(currentVersion) / 2, height / 2 - height / 4 - 20, 0xffffff);
     }

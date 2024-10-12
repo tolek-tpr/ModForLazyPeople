@@ -20,6 +20,7 @@
   "mflp.rename": "Omdøb",
   "mflp.duplicate": "Dupliker",
   "mflp.name": "Navn",
+  "mflp.download": "Hent",
 
   "mflp.mainConfig.macrosButton": "Makroer",
   "mflp.mainConfig.settingsButton": "Indstillinger",
@@ -105,5 +106,8 @@
   "mflp.customMessagesPerServer.defaultJoinRegexTitle": "Standard Tilsluttelsesbesked (RegEx)",
   "mflp.customMessagesPerServer.defaultUnAfkRegexTitle": "Standard Unafkbesked (RegEx)",
 
-  "mflp.pause.settingsButton": "MFLP Indstillinger"
+  "mflp.pause.settingsButton": "MFLP Indstillinger",
+
+  "mflp.updateScreen.currentVersion": "Mod for lazy people version: ",
+  "mflp.updateAvailable": "Opdatering Tilgængelig!"
 }
