@@ -1,6 +1,7 @@
 package me.tolek.mixin.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.network.MflpPlayersWorker;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -30,9 +31,11 @@ public class PlayerNameTagMixin {
     private final MinecraftClient client = MinecraftClient.getInstance();
     @Unique
     private final TextRenderer tx = client.textRenderer;
+    private final MflpSettingsList settingsList = MflpSettingsList.getInstance();
 
     @Inject(method = "renderLabelIfPresent", at = @At(value = "INVOKE", target="Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/text/Text;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/client/font/TextRenderer$TextLayerType;II)I"))
     private void drawLogo(@Coerce Object entity, Text text, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
+        if (this.worker == null || !settingsList.NAMETAG_ICON_TOGGLE.getState()) return;
         String returnMessage = worker.data;
 
         if (!(entity instanceof PlayerEntity e)) return;
