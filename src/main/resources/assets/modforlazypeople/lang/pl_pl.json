@@ -1,6 +1,6 @@
 {
-  "mflp.welcomeScreen.welcomeText": "Welcome to MFLP",
-  "mflp.welcomeScreen.line1": "Mflp is a mod for creating command macros, and adding QOL features.",
+  "mflp.welcomeScreen.welcomeText": "Witaj w MFLP",
+  "mflp.welcomeScreen.line1": "Mflp is a mod for creating command macros, and adding QOL features. MFLP jest modem, do tworzenia ",
   "mflp.welcomeScreen.line2": "To create a macro run the command: ",
   "mflp.welcomeScreen.command": "/macro createMacro <macro name> <commands>",
   "mflp.welcomeScreen.line3": "the commands syntax is as follows: say-hi.say-hi-2",
