@@ -70,7 +70,7 @@ public class MacroContainerWidget extends ContainerWidget {
         })).dimensions(x + 82, y, 60, 20).build();
         addChild(toggleButton);
 
-        Text removeText = Text.translatable("mflp.configScreen.removeButton");
+        Text removeText = Text.translatable("mflp.remove");
         if (!m.getUneditable()) {
             ButtonWidget removeButton = ButtonWidget.builder(removeText, (button -> {
                 macroList.removeMacro(m);

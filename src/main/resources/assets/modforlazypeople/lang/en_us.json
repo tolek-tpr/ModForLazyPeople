@@ -9,5 +9,99 @@
   "mflp.welcomeScreen.line6": "If your macro uses a space in its name replace it with a dash",
   "mflp.welcomeScreen.line7": "If you want to request new features message me on discord",
   "mflp.welcomeScreen.line8": "As of update 2.5.0, you can use the \"create\" button to add macros",
-  "mflp.welcomeScreen.quickGuide.title": "Mflp Quick Guide"
+  "mflp.welcomeScreen.quickGuide.title": "Mflp Quick Guide",
+
+  "mflp.true": "True",
+  "mflp.false": "False",
+  "mflp.create": "Create",
+  "mflp.openScreen": "Open screen",
+  "mflp.add": "Add",
+  "mflp.remove": "Remove",
+  "mflp.rename": "Rename",
+  "mflp.duplicate": "Duplicate",
+  "mflp.name": "Name",
+
+  "mflp.mainConfig.macrosButton": "Macros",
+  "mflp.mainConfig.settingsButton": "Settings",
+  "mflp.mainConfig.autoReplyButton": "Auto Reply",
+
+  "mflp.setting.autoWb.name": "Auto welcome back",
+  "mflp.setting.autoWb.tooltip": "Automatically says wb when someone comes back from being afk or joins synergy.",
+
+  "mflp.setting.autoWelcome.name": "Auto welcome",
+  "mflp.setting.autoWelcome.tooltip": "Automatically says welcome! when a new person joins synergy",
+
+  "mflp.setting.autoWbRank.name": "Auto WB rank setting",
+  "mflp.setting.autoWbRank.tooltip": "Rank filter for auto wb",
+  "mflp.setting.autoWbRank.everyone": "Everyone",
+  "mflp.setting.autoWbRank.memberPlus": "Member +",
+  "mflp.setting.autoWbRank.devotedPlus": "Devoted +",
+  "mflp.setting.autoWbRank.trustedPlus": "Trusted +",
+
+  "mflp.setting.autoWbDelay.name": "Auto welcome back delay",
+  "mflp.setting.autoWbDelay.tooltip": "How long the bot should wait before saying wb after someone joins in GAME TICKS",
+
+  "mflp.setting.wbMessage.name": "Welcome back message",
+  "mflp.setting.wbMessage.tooltip": "What message auto welcome back should say. Use %p to say the username of the player that joined.",
+
+  "mflp.setting.welcomeMessage.name": "Welcome message",
+  "mflp.setting.welcomeMessage.tooltip": "What message auto welcome should say. Use %p to say the username of the player that joined.",
+
+  "mflp.setting.autoWbCooldown.name": "Auto welcome back cooldown",
+  "mflp.setting.autoWbCooldown.tooltip": "The cooldown between the bot saying wb in seconds",
+
+  "mflp.setting.autoWbFilter.name": "Auto wb filter",
+  "mflp.setting.autoWbFilter.tooltip": "A switch between no filter, a whitelist filter, and a blacklist",
+  "mflp.setting.autoWbFilter.none": "None",
+  "mflp.setting.autoWbFilter.whitelist": "Whitelist",
+  "mflp.setting.autoWbFilter.blacklist": "Blacklist",
+
+  "mflp.setting.autoWbWhitelist.name": "Auto welcome back whitelist",
+  "mflp.setting.autoWbWhitelist.tooltip": "The list of names to say wb to when using auto wb, separated by a space",
+
+  "mflp.setting.autoWbBlacklist.name": "Auto welcome back blacklist",
+  "mflp.setting.autoWbBlacklist.tooltip": "The list of names to ignore people when using auto wb, separated by a space",
+
+  "mflp.setting.playerNameWbBlacklist.name": "Player name wb blacklist",
+  "mflp.setting.playerNameWbBlacklist.tooltip": "Stops the player from mentioning specific names when using %p",
+
+  "mflp.setting.autoIgnoreWb.name": "Auto Ignore wb",
+  "mflp.setting.autoIgnoreWb.tooltip": "Automatically ignore messages containing wb within a few seconds of someone joining",
+
+  "mflp.setting.autoIgnoreWbDuration.name": "Auto Ignore wb Duration",
+  "mflp.setting.autoIgnoreWbDuration.tooltip": "The duration that your messages containing wb will be ignored.",
+
+  "mflp.setting.perPlayerMessages.name": "Per player messages",
+  "mflp.setting.perPlayerMessages.tooltip": "Opens the custom message per player menu. Warning this IS case sensitive",
+
+  "mflp.setting.customServerMessages.name": "Custom server messages",
+  "mflp.setting.customServerMessages.tooltip": "Opens the screen where you can modify the server join/afk messages.",
+
+  "mflp.macroSettings.addCommandButton": "Add Command",
+  "mflp.macroSettings.command": "Command",
+  "mflp.macro.noMacrosAdded": "No Macros Added!",
+
+  "mflp.autoReply.noAutoRepliesAdded": "No Auto Replies Added!",
+  "mflp.autoReplyConfigScreen.keywords": "Keywords",
+  "mflp.autoReplyConfigScreen.replies": "Replies",
+  "mflp.autoReplyConfigScreen.keyword": "Keyword",
+  "mflp.autoReplyConfigScreen.reply": "Reply",
+  "mflp.autoReplyConfigScreen.replies.tooltip": "Here, you add replies. To execute a command add a / before the command, to only say the message type it without the slash.",
+  "mflp.autoReplyConfigScreen.keywords.tooltip": "Here, you add messages, that the auto reply bot should reply to.",
+
+  "mflp.customPlayerMessages.title": "Custom player messages",
+  "mflp.customPlayerMessages.player": "Player",
+  "mflp.customPlayerMessages.message": "Message",
+  "mflp.customPlayerMessages.noMessagesSet": "No custom messages made!",
+
+  "mflp.customMessagesPerServer.title": "Custom server join messages",
+  "mflp.customMessagesPerServer.instructions": "To use the RegEx for usernames, type in \"%u\".",
+  "mflp.customMessagesPerServer.validRegex": "Valid RegEx.",
+  "mflp.customMessagesPerServer.invalidRegex": "Invalid RegEx: %s.",
+  "mflp.customMessagesPerServer.noCustomMessages": "No custom messages set!",
+  "mflp.customMessagesPerServer.server": "Server",
+  "mflp.customMessagesPerServer.joinRegexTitle": "Join Message (RegEx)",
+  "mflp.customMessagesPerServer.unAfkRegexTitle": "Unafk Message (RegEx)",
+  "mflp.customMessagesPerServer.defaultJoinRegexTitle": "Default Join Message (RegEx)",
+  "mflp.customMessagesPerServer.defaultUnAfkRegexTitle": "Default Unafk Message (RegEx)"
 }

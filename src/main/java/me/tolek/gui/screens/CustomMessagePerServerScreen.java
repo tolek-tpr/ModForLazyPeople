@@ -105,10 +105,10 @@ public class CustomMessagePerServerScreen extends Screen {
 
         if (validationResult.value1) {
             regexValidityIcon.setTexture(VALID_REGEX_ICON);
-            regexValidityIcon.setTooltip(Tooltip.of(Text.translatable("mflp.customMessagesPerServerScreen.validRegex")));
+            regexValidityIcon.setTooltip(Tooltip.of(Text.translatable("mflp.customMessagesPerServer.validRegex")));
         } else {
             regexValidityIcon.setTexture(INVALID_REGEX_ICON);
-            regexValidityIcon.setTooltip(Tooltip.of(Text.translatable("mflp.customMessagesPerServerScreen.invalidRegex",validationResult.value2)));
+            regexValidityIcon.setTooltip(Tooltip.of(Text.translatable("mflp.customMessagesPerServer.invalidRegex",validationResult.value2)));
         }
     }
 
@@ -116,28 +116,28 @@ public class CustomMessagePerServerScreen extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float tickDelta) {
         super.render(context, mouseX, mouseY, tickDelta);
 
-        Text screenName = Text.translatable("mflp.customMessagesPerServerScreen.title");
+        Text screenName = Text.translatable("mflp.customMessagesPerServer.title");
         context.drawTextWithShadow(textRenderer, screenName, width / 2 - textRenderer.getWidth(screenName) / 2, 10, 0xffffff);
 
-        Text usernameRegexInfo = Text.translatable("mflp.customMessagesPerServerScreen.instructions");
+        Text usernameRegexInfo = Text.translatable("mflp.customMessagesPerServer.instructions");
         context.drawTextWithShadow(textRenderer, usernameRegexInfo, width / 2 - textRenderer.getWidth(usernameRegexInfo) / 2,
                 12 + tx.fontHeight, 0xffffff);
 
         if (list.getMessages().isEmpty()) {
-            Text noMessagesSet = Text.translatable("mflp.customMessagesPerServerScreen.noCustomMessages");
+            Text noMessagesSet = Text.translatable("mflp.customMessagesPerServer.noCustomMessages");
             context.drawTextWithShadow(tx, noMessagesSet, width / 2 - tx.getWidth(noMessagesSet) / 2, height / 2, 0xffffff);
         }
 
-        context.drawTextWithShadow(tx, Text.literal("mflp.customMessagesPerServerScreen.server"),
+        context.drawTextWithShadow(tx, Text.translatable("mflp.customMessagesPerServer.server"),
                 20, 65, 0xffffff);
-        context.drawTextWithShadow(tx, Text.literal("mflp.customMessagesPerServerScreen.joinRegexTitle"),
+        context.drawTextWithShadow(tx, Text.translatable("mflp.customMessagesPerServer.joinRegexTitle"),
                 200, 65, 0xffffff);
-        context.drawTextWithShadow(tx, Text.literal("mflp.customMessagesPerServerScreen.unAfkRegexTitle"),
+        context.drawTextWithShadow(tx, Text.translatable("mflp.customMessagesPerServer.unAfkRegexTitle"),
                 360, 65, 0xffffff);
 
-        context.drawTextWithShadow(tx, Text.literal("mflp.customMessagesPerServerScreen.defaultJoinRegexTitle"),
+        context.drawTextWithShadow(tx, Text.translatable("mflp.customMessagesPerServer.defaultJoinRegexTitle"),
                 20, 36 - 2 - tx.fontHeight, 0xffffff);
-        context.drawTextWithShadow(tx, Text.literal("mflp.customMessagesPerServerScreen.defaultUnAfkRegexTitle"),
+        context.drawTextWithShadow(tx, Text.translatable("mflp.customMessagesPerServer.defaultUnAfkRegexTitle"),
                 200, 36 - 2 - tx.fontHeight, 0xffffff);
 
     }

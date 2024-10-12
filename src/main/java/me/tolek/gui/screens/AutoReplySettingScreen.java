@@ -53,7 +53,7 @@ public class AutoReplySettingScreen extends Screen {
         }).dimensions(20 + 142, 63 - textRenderer.fontHeight / 2, 30, 20).build());
 
         addDrawableChild(ButtonWidget.builder(Text.translatable("mflp.add"), (button) -> {
-            InputBoxWidget ibw = new InputBoxWidget(textRenderer, width / 2 - 75, height / 2 - 40, 150, 20, Text.translatable("mflp.autoReplyConfigScreen.keyword"));
+            InputBoxWidget ibw = new InputBoxWidget(textRenderer, width / 2 - 75, height / 2 - 40, 150, 20, Text.translatable("mflp.autoReplyConfigScreen.reply"));
             ibw.setKeyConsumer((keyCode) -> {
                 if (keyCode == InputUtil.GLFW_KEY_ESCAPE) {
                     client.setScreen(new AutoReplySettingScreen(this.parent, this.ar));

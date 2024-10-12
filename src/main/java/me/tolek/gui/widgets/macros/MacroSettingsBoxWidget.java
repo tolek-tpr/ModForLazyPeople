@@ -63,7 +63,7 @@ public class MacroSettingsBoxWidget extends ContainerWidget {
             client.setScreen(parent);
         }).dimensions(x + 72, y, 70, 20).build();
         ButtonWidget addCommand = ButtonWidget.builder(Text.translatable("mflp.macroSettings.addCommandButton"), (button) -> {
-            InputBoxWidget inputBox = new InputBoxWidget(tx, width / 2 - 75, height / 2 - 40, 150, 20, Text.literal("Command"));
+            InputBoxWidget inputBox = new InputBoxWidget(tx, width / 2 - 75, height / 2 - 40, 150, 20, Text.translatable("mflp.macroSettings.command"));
             inputBox.setKeyConsumer((keyCode -> {
                 if (keyCode == InputUtil.GLFW_KEY_ESCAPE) {
                     client.setScreen(new MflpConfigureMacroScreen(this.parent, this.m));

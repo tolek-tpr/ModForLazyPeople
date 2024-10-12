@@ -10,7 +10,7 @@ public class CustomMessagePerServerSetting extends ButtonSetting {
         super();
         this.buttonName = "mflp.openScreen";
         this.setName("mflp.setting.customServerMessages.name");
-        this.setTooltip("mlfp.setting.customServerMessages.tooltip");
+        this.setTooltip("mflp.setting.customServerMessages.tooltip");
     }
 
     @Override

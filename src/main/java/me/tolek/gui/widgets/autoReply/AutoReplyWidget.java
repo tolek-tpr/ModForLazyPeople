@@ -50,7 +50,7 @@ public class AutoReplyWidget extends ContainerWidget {
         })).dimensions(x + 5, y, 60, 20).build();
         addChild(toggleButton);
 
-        Text removeText = Text.translatable("mflp.configScreen.removeButton");
+        Text removeText = Text.translatable("mflp.remove");
         ButtonWidget removeButton = ButtonWidget.builder(removeText, (button -> {
             autoReplies.remove(ar);
             if (client != null) {

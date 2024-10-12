@@ -78,8 +78,8 @@ public class MflpConfig extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
         if (macroList.getMacros().isEmpty()) {
-            context.drawTextWithShadow(textRenderer, Text.translatable("mflp.macro.nomacrosadded"),
-                    width / 2 - textRenderer.getWidth(Text.translatable("mflp.macro.nomacrosadded")) / 2, 46 + textRenderer.fontHeight / 2, 0xffffff);
+            context.drawTextWithShadow(textRenderer, Text.translatable("mflp.macro.noMacrosAdded"),
+                    width / 2 - textRenderer.getWidth(Text.translatable("mflp.macro.noMacrosAdded")) / 2, 46 + textRenderer.fontHeight / 2, 0xffffff);
         }
     }
 

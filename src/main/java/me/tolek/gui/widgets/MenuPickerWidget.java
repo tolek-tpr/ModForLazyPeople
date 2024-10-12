@@ -11,7 +11,6 @@ import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.ContainerWidget;
-import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
@@ -25,13 +24,13 @@ public class MenuPickerWidget extends ContainerWidget {
     public MenuPickerWidget(int x, int y, MinecraftClient client) {
         super(x, y, 150, 20, Text.literal("test"));
 
-        ButtonWidget macrosButton = ButtonWidget.builder(Text.translatable("mflp.gui.macros.macrosbutton"), (button) -> {
+        ButtonWidget macrosButton = ButtonWidget.builder(Text.translatable("mflp.mainConfig.macrosButton"), (button) -> {
             client.setScreen(new MflpConfig(client));
         }).dimensions(width - width + 10, height - height + 22, 70, 20).build();
-        ButtonWidget settingsWidget = ButtonWidget.builder(Text.translatable("mflp.gui.macros.settingsbutton"), (button) -> {
+        ButtonWidget settingsWidget = ButtonWidget.builder(Text.translatable("mflp.mainConfig.settingsButton"), (button) -> {
             client.setScreen(new MflpSettingsScreen());
         }).dimensions(width - width + 82, height - height + 22, 70, 20).build();
-        ButtonWidget autoReplyWidget = ButtonWidget.builder(Text.translatable("mflp.gui.macros.autoreplybutton"), (button) -> {
+        ButtonWidget autoReplyWidget = ButtonWidget.builder(Text.translatable("mflp.mainConfig.autoReplyButton"), (button) -> {
             client.setScreen(new AutoReplyScreen());
         }).dimensions(width - width + 154, height - height + 22, 80, 20).build();
 
