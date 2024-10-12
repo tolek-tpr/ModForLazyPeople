@@ -46,7 +46,7 @@ public class ArSettingsBoxWidget extends ContainerWidget {
         this.width = width;
         this.height = height;
 
-        ButtonWidget rename = ButtonWidget.builder(Text.translatable("mflp.remove"), (button) -> {
+        ButtonWidget rename = ButtonWidget.builder(Text.translatable("mflp.rename"), (button) -> {
             InputBoxWidget inputBox = new InputBoxWidget(tx, width / 2 - 75, height / 2 - 40, 150, 20, Text.literal(this.ar.getName()));
             inputBox.setKeyConsumer((keyCode -> {
                 if (keyCode == InputUtil.GLFW_KEY_ESCAPE) {
