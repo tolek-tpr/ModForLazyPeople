@@ -12,7 +12,7 @@ public class AutoWelcome extends BooleanSetting {
     public String lastName;
 
     public AutoWelcome() {
-        super("Auto welcome", false, "Automatically says welcome! when a new person joins synergy");
+        super("mflp.setting.autoWelcome.name", false, "mflp.setting.autoWelcome.tooltip");
     }
 
     @Override

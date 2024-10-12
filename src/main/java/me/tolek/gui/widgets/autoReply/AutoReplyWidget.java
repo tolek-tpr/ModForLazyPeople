@@ -42,15 +42,15 @@ public class AutoReplyWidget extends ContainerWidget {
         this.y = y;
         this.client = client;
 
-        Text toggleText = ar.isTurnedOn() ? Text.literal("True").formatted(Formatting.GREEN) :
-                Text.literal("False").formatted(Formatting.RED);
+        Text toggleText = ar.isTurnedOn() ? Text.translatable("mflp.true").formatted(Formatting.GREEN) :
+                Text.translatable("mflp.false").formatted(Formatting.RED);
         ButtonWidget toggleButton = ButtonWidget.builder(toggleText, (button -> {
             ar.setTurnedOn(!ar.isTurnedOn());
             client.setScreen(new AutoReplyScreen());
         })).dimensions(x + 5, y, 60, 20).build();
         addChild(toggleButton);
 
-        Text removeText = Text.translatable("mflp.configScreen.removeButton");
+        Text removeText = Text.translatable("mflp.remove");
         ButtonWidget removeButton = ButtonWidget.builder(removeText, (button -> {
             autoReplies.remove(ar);
             if (client != null) {

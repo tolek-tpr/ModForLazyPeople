@@ -1,0 +1,107 @@
+{
+  "mflp.welcomeScreen.welcomeText": "Velkommen til MFLP",
+  "mflp.welcomeScreen.line1": "Mflp er en modifikation til at lave makroer og tilføje QOL ting.",
+  "mflp.welcomeScreen.line2": "For at lave en makro, kør kommandoen: ",
+  "mflp.welcomeScreen.command": "/macro createMacro <macro navn> <kommandoer>",
+  "mflp.welcomeScreen.line3": "syntaksen for kommandoer er som følger: sig-hej.sig-hej-2",
+  "mflp.welcomeScreen.line4": "Bindestreger = mellemrum, og punktummet adskiller kommandoer.",
+  "mflp.welcomeScreen.line5": "For at fjerne makroer, brug /macro removeMacro <makro navn>",
+  "mflp.welcomeScreen.line6": "Hvis din makro bruger et mellemrum i dets navn, erstat det med en bindestreg.",
+  "mflp.welcomeScreen.line7": "Hvis du gerne vil anmode om en funktion kan du skrive til os på Discord.",
+  "mflp.welcomeScreen.line8": "Fra opdatering 2.5.0 kan du bruge \"lav\" knappen for at tilføje makroer",
+  "mflp.welcomeScreen.quickGuide.title": "Mflp Kvikstart",
+
+  "mflp.true": "Til",
+  "mflp.false": "Fra",
+  "mflp.create": "Lav",
+  "mflp.openScreen": "Åbn menu",
+  "mflp.add": "Tilføj",
+  "mflp.remove": "Fjern",
+  "mflp.rename": "Omdøb",
+  "mflp.duplicate": "Dupliker",
+  "mflp.name": "Navn",
+
+  "mflp.mainConfig.macrosButton": "Makroer",
+  "mflp.mainConfig.settingsButton": "Indstillinger",
+  "mflp.mainConfig.autoReplyButton": "Automatisk Svar",
+
+  "mflp.setting.autoWb.name": "Automatisk velkommen tilbage",
+  "mflp.setting.autoWb.tooltip": "Siger automatisk wb når nogen kommer tilbage fra AFK eller tilslutter sig Synergy.",
+
+  "mflp.setting.autoWelcome.name": "Automatisk velkomst",
+  "mflp.setting.autoWelcome.tooltip": "Siger automatisk welcome! når en ny person tilslutter sig Synergy.",
+
+  "mflp.setting.autoWbRank.name": "Automatisk WB rang",
+  "mflp.setting.autoWbRank.tooltip": "Rang filter for automatisk wb",
+  "mflp.setting.autoWbRank.everyone": "Alle",
+  "mflp.setting.autoWbRank.memberPlus": "Member +",
+  "mflp.setting.autoWbRank.devotedPlus": "Devoted +",
+  "mflp.setting.autoWbRank.trustedPlus": "Trusted +",
+
+  "mflp.setting.autoWbDelay.name": "Automatisk wb forsinkelse",
+  "mflp.setting.autoWbDelay.tooltip": "Hvor lang tid botten skal vente før den siger wb efter nogen tilslutter sig eller kommer tilbage fra AFK i SPIL-TIKKER",
+
+  "mflp.setting.wbMessage.name": "Velkommen tilbage besked",
+  "mflp.setting.wbMessage.tooltip": "Hvilken besked automatisk wb skal sige. Brug %p for at bruge brugernavn af spilleren.",
+
+  "mflp.setting.welcomeMessage.name": "Velkommen besked",
+  "mflp.setting.welcomeMessage.tooltip": "Hvilken besked automatisk velkomst skal sige. Brug %p for at bruge brugernavn af spilleren.",
+
+  "mflp.setting.autoWbCooldown.name": "Automatisk wb nedkøling",
+  "mflp.setting.autoWbCooldown.tooltip": "Nedkølingen mellem botten siger wb i sekunder.",
+
+  "mflp.setting.autoWbFilter.name": "Automatisk wb filter",
+  "mflp.setting.autoWbFilter.tooltip": "En kontakt mellem intet filter, en hvidliste og en sortliste.",
+  "mflp.setting.autoWbFilter.none": "Ingen",
+  "mflp.setting.autoWbFilter.whitelist": "Hvidliste",
+  "mflp.setting.autoWbFilter.blacklist": "Sortliste",
+
+  "mflp.setting.autoWbWhitelist.name": "Automatisk wb hvidliste",
+  "mflp.setting.autoWbWhitelist.tooltip": "Listen af navne botten må sige wb til når du bruger automatisk wb, adskilt af mellemrum.",
+
+  "mflp.setting.autoWbBlacklist.name": "Automatisk wb sortliste",
+  "mflp.setting.autoWbBlacklist.tooltip": "Listen af navne botten ikke må sige wb til når du bruger automatisk wb, adskilt af mellemrum.",
+
+  "mflp.setting.playerNameWbBlacklist.name": "Spillernavns wb sortliste",
+  "mflp.setting.playerNameWbBlacklist.tooltip": "Stopper botten fra at sige specifikke navne ved hjælp af %p.",
+
+  "mflp.setting.autoIgnoreWb.name": "Automatisk Ignorer wb",
+  "mflp.setting.autoIgnoreWb.tooltip": "Ignorerer automatisk beskeder med wb i sig inden for et par sekunder af at nogen har tilsluttet sig.",
+
+  "mflp.setting.autoIgnoreWbDuration.name": "Automatisk Ignorer wb Varighed",
+  "mflp.setting.autoIgnoreWbDuration.tooltip": "Varigheden dine beskeder som indeholder wb vil blive ignoreret i.",
+
+  "mflp.setting.perPlayerMessages.name": "Per spiller beskeder",
+  "mflp.setting.perPlayerMessages.tooltip": "Åbner menuen for brugerdefinerede beskeder pr. spiller. Advarsel, der skelnes mellem store og små bogstaver",
+
+  "mflp.setting.customServerMessages.name": "Brugerdefinerede server beskeder",
+  "mflp.setting.customServerMessages.tooltip": "Åbner menuen, hvor du kan ændre server tilsluttelse og afk beskeder.",
+
+  "mflp.macroSettings.addCommandButton": "Tilføj Kommando",
+  "mflp.macroSettings.command": "Kommando",
+  "mflp.macro.noMacrosAdded": "Ingen Makroer Tilføjet!",
+
+  "mflp.autoReply.noAutoRepliesAdded": "Ingen Automatiske svar Tilføjet!",
+  "mflp.autoReplyConfigScreen.keywords": "Nøjleord",
+  "mflp.autoReplyConfigScreen.replies": "Svar",
+  "mflp.autoReplyConfigScreen.keyword": "Nøjleord",
+  "mflp.autoReplyConfigScreen.reply": "Svar",
+  "mflp.autoReplyConfigScreen.replies.tooltip": "Her tilføjer du svar. For at udføre en kommando skal du tilføje en / før kommandoen, for kun at sige beskeden, skriv den uden skråstreg.",
+  "mflp.autoReplyConfigScreen.keywords.tooltip": "Her tilføjer du beskeder, som autosvar-botten skal svare på.",
+
+  "mflp.customPlayerMessages.title": "Brugerdefinerede spillerbeskeder",
+  "mflp.customPlayerMessages.player": "Spiller",
+  "mflp.customPlayerMessages.message": "Besked",
+  "mflp.customPlayerMessages.noMessagesSet": "Ingen brugerdefinerede beskeder er lavet!",
+
+  "mflp.customMessagesPerServer.title": "Brugerdefinerede server-tilsluttelsesmeddelelser",
+  "mflp.customMessagesPerServer.instructions": "For at bruge RegEx-et til brugernavne skal du indtaste \"%u\".",
+  "mflp.customMessagesPerServer.validRegex": "Gyldig RegEx.",
+  "mflp.customMessagesPerServer.invalidRegex": "Ugyldig RegEx: %s.",
+  "mflp.customMessagesPerServer.noCustomMessages": "Ingen brugerdefinerede beskeder er lavet!",
+  "mflp.customMessagesPerServer.server": "Server",
+  "mflp.customMessagesPerServer.joinRegexTitle": "Tilsluttelsesbesked (RegEx)",
+  "mflp.customMessagesPerServer.unAfkRegexTitle": "Unafkbesked (RegEx)",
+  "mflp.customMessagesPerServer.defaultJoinRegexTitle": "Standard Tilsluttelsesbesked (RegEx)",
+  "mflp.customMessagesPerServer.defaultUnAfkRegexTitle": "Standard Unafkbesked (RegEx)"
+}

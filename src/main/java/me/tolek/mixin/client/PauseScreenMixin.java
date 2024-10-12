@@ -27,7 +27,7 @@ public class PauseScreenMixin extends Screen {
         GridWidget gridWidget = new GridWidget();
         gridWidget.getMainPositioner().margin(4, 4, 4, 0);
         GridWidget.Adder adder = gridWidget.createAdder(2);
-        adder.add(createButton(Text.literal("MFLP settings"), () -> {
+        adder.add(createButton(Text.translatable("mflp.pause.settingsButton"), () -> {
             return new MflpConfig(client);
         }));
 

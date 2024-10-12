@@ -7,12 +7,12 @@ import java.util.ArrayList;
 public class AutoWbFilter extends ListSetting {
 
     public AutoWbFilter() {
-        super("Auto wb filter", 0, "A switch between no filter, a whitelist filter, and a blacklist", null);
+        super("mflp.setting.autoWbFilter.name", 0, "mflp.setting.autoWbFilter.tooltip", null);
 
         this.setList(new ArrayList<>());
-        this.addOption("None");
-        this.addOption("Whitelist");
-        this.addOption("Blacklist");
+        this.addOption("mflp.setting.autoWbFilter.none");
+        this.addOption("mflp.setting.autoWbFilter.whitelist");
+        this.addOption("mflp.setting.autoWbFilter.blacklist");
     }
 
     @Override

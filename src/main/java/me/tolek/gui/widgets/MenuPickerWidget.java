@@ -24,13 +24,13 @@ public class MenuPickerWidget extends ContainerWidget {
     public MenuPickerWidget(int x, int y, MinecraftClient client) {
         super(x, y, 150, 20, Text.literal("test"));
 
-        ButtonWidget macrosButton = ButtonWidget.builder(Text.literal("Macros"), (button) -> {
+        ButtonWidget macrosButton = ButtonWidget.builder(Text.translatable("mflp.mainConfig.macrosButton"), (button) -> {
             client.setScreen(new MflpConfig(client));
         }).dimensions(width - width + 10, height - height + 22, 70, 20).build();
-        ButtonWidget settingsWidget = ButtonWidget.builder(Text.literal("Settings"), (button) -> {
+        ButtonWidget settingsWidget = ButtonWidget.builder(Text.translatable("mflp.mainConfig.settingsButton"), (button) -> {
             client.setScreen(new MflpSettingsScreen());
         }).dimensions(width - width + 82, height - height + 22, 70, 20).build();
-        ButtonWidget autoReplyWidget = ButtonWidget.builder(Text.literal("Auto reply"), (button) -> {
+        ButtonWidget autoReplyWidget = ButtonWidget.builder(Text.translatable("mflp.mainConfig.autoReplyButton"), (button) -> {
             client.setScreen(new AutoReplyScreen());
         }).dimensions(width - width + 154, height - height + 22, 80, 20).build();
 

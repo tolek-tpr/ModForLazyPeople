@@ -8,9 +8,9 @@ public class CustomMessagePerServerSetting extends ButtonSetting {
 
     public CustomMessagePerServerSetting() {
         super();
-        this.buttonName = "Open screen";
-        this.setName("Custom server messages");
-        this.setTooltip("Opens the screen where you can modify the server join/afk messages.");
+        this.buttonName = "mflp.openScreen";
+        this.setName("mflp.setting.customServerMessages.name");
+        this.setTooltip("mflp.setting.customServerMessages.tooltip");
     }
 
     @Override

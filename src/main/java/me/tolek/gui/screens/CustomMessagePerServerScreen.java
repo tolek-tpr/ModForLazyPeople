@@ -44,7 +44,7 @@ public class CustomMessagePerServerScreen extends Screen {
         ScrollableListWidget slw = new ScrollableListWidget(this.client, width - 2, height - 84, 80, 22);
         slw.setRenderBackground(false);
 
-        addDrawableChild(ButtonWidget.builder(Text.literal("Add"), (button) -> {
+        addDrawableChild(ButtonWidget.builder(Text.translatable("mflp.add"), (button) -> {
             list.addMessagesForServer("", new Tuple<>("", ""));
             clearAndInit();
         }).dimensions(20 + 142, 63 - textRenderer.fontHeight / 2, 30, 20).build());
@@ -105,10 +105,10 @@ public class CustomMessagePerServerScreen extends Screen {
 
         if (validationResult.value1) {
             regexValidityIcon.setTexture(VALID_REGEX_ICON);
-            regexValidityIcon.setTooltip(Tooltip.of(Text.literal("Valid RegEx.")));
+            regexValidityIcon.setTooltip(Tooltip.of(Text.translatable("mflp.customMessagesPerServer.validRegex")));
         } else {
             regexValidityIcon.setTexture(INVALID_REGEX_ICON);
-            regexValidityIcon.setTooltip(Tooltip.of(Text.literal("Invalid RegEx: %s".formatted(validationResult.value2))));
+            regexValidityIcon.setTooltip(Tooltip.of(Text.translatable("mflp.customMessagesPerServer.invalidRegex",validationResult.value2)));
         }
     }
 
@@ -116,28 +116,28 @@ public class CustomMessagePerServerScreen extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float tickDelta) {
         super.render(context, mouseX, mouseY, tickDelta);
 
-        Text screenName = Text.literal("Custom server join messages");
+        Text screenName = Text.translatable("mflp.customMessagesPerServer.title");
         context.drawTextWithShadow(textRenderer, screenName, width / 2 - textRenderer.getWidth(screenName) / 2, 10, 0xffffff);
 
-        Text usernameRegexInfo = Text.literal("To use the RegEx for usernames, type in \"%u\".");
+        Text usernameRegexInfo = Text.translatable("mflp.customMessagesPerServer.instructions");
         context.drawTextWithShadow(textRenderer, usernameRegexInfo, width / 2 - textRenderer.getWidth(usernameRegexInfo) / 2,
                 12 + tx.fontHeight, 0xffffff);
 
         if (list.getMessages().isEmpty()) {
-            Text noMessagesSet = Text.literal("No custom messages set!");
+            Text noMessagesSet = Text.translatable("mflp.customMessagesPerServer.noCustomMessages");
             context.drawTextWithShadow(tx, noMessagesSet, width / 2 - tx.getWidth(noMessagesSet) / 2, height / 2, 0xffffff);
         }
 
-        context.drawTextWithShadow(tx, Text.literal("Server"),
+        context.drawTextWithShadow(tx, Text.translatable("mflp.customMessagesPerServer.server"),
                 20, 65, 0xffffff);
-        context.drawTextWithShadow(tx, Text.literal("Join Message (REGEX)"),
+        context.drawTextWithShadow(tx, Text.translatable("mflp.customMessagesPerServer.joinRegexTitle"),
                 200, 65, 0xffffff);
-        context.drawTextWithShadow(tx, Text.literal("Unafk Message (REGEX)"),
+        context.drawTextWithShadow(tx, Text.translatable("mflp.customMessagesPerServer.unAfkRegexTitle"),
                 360, 65, 0xffffff);
 
-        context.drawTextWithShadow(tx, Text.literal("Default Join Message (REGEX)"),
+        context.drawTextWithShadow(tx, Text.translatable("mflp.customMessagesPerServer.defaultJoinRegexTitle"),
                 20, 36 - 2 - tx.fontHeight, 0xffffff);
-        context.drawTextWithShadow(tx, Text.literal("Default Unafk Message (REGEX)"),
+        context.drawTextWithShadow(tx, Text.translatable("mflp.customMessagesPerServer.defaultUnAfkRegexTitle"),
                 200, 36 - 2 - tx.fontHeight, 0xffffff);
 
     }

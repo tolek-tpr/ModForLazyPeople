@@ -5,7 +5,7 @@ import me.tolek.modules.settings.base.StringSetting;
 public class WelcomeBackBlacklist extends StringSetting {
 
     public WelcomeBackBlacklist() {
-        super("Auto welcome back blacklist", "", "The list of names to ignore people when using auto wb, separated by a space");
+        super("mflp.setting.autoWbBlacklist.name", "", "mflp.setting.autoWbBlacklist.tooltip");
         this.setState("");
     }
 

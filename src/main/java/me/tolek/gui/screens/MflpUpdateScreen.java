@@ -27,7 +27,7 @@ public class MflpUpdateScreen extends Screen {
             client.setScreen(parent);
         }).dimensions(width / 2 - 155, height / 2 + 80, 150, 20).build());
         addDrawableChild(
-                ButtonWidget.builder(Text.literal("Download"), ConfirmLinkScreen.opening(this, iv.modrinthUrl))
+                ButtonWidget.builder(Text.translatable("mflp.download"), ConfirmLinkScreen.opening(this, iv.modrinthUrl))
                         .dimensions(width / 2 + 2, height / 2 + 80, 150, 20)
                         .build()
         );
@@ -38,8 +38,8 @@ public class MflpUpdateScreen extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
 
-        Text updateAvailable = Text.literal("Update available!");
-        Text currentVersion = Text.literal("Mod for lazy people version: " + iv.getMflpVersion());
+        Text updateAvailable = Text.translatable("mflp.updateAvaliable");
+        Text currentVersion = Text.translatable("mlfp.updateScreen.currentVersion").append(iv.getMflpVersion());
         context.drawTextWithShadow(textRenderer, updateAvailable, width / 2 - textRenderer.getWidth(updateAvailable) / 2, height / 2 - height / 4, 0xffffff);
         context.drawTextWithShadow(textRenderer, currentVersion, width / 2 - textRenderer.getWidth(currentVersion) / 2, height / 2 - height / 4 - 20, 0xffffff);
     }

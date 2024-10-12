@@ -10,9 +10,8 @@ public class AutoRepliesList {
 
     }
 
-    public static final String repliesTooltip = "Here, you add replies. To execute a command add a / before the command, to only " +
-            "say the message type it without the slash.";
-    public static final String toReplyTooltip = "Here, you add messages, that the auto reply bot should reply to.";
+    public static final String repliesTooltip = "mflp.autoReplyConfigScreen.replies.tooltip";
+    public static final String toReplyTooltip = "mflp.autoReplyConfigScreen.keywords.tooltip";
 
     private static AutoRepliesList instance;
     private ArrayList<AutoReply> autoReplies = new ArrayList<>();

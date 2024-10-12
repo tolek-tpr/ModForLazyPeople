@@ -8,9 +8,9 @@ public class PerPlayerMessageButtonSetting extends ButtonSetting {
 
     public PerPlayerMessageButtonSetting() {
         super();
-        this.buttonName = "Open screen";
-        this.setName("Per player messages");
-        this.setTooltip("Opens the custom message per player menu. Warning this IS case sensitive");
+        this.buttonName = "mflp.openScreen";
+        this.setName("mflp.setting.perPlayerMessages.name");
+        this.setTooltip("mflp.setting.perPlayerMessages.tooltip");
     }
 
     @Override

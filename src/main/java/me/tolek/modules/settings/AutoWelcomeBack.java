@@ -11,7 +11,7 @@ public class AutoWelcomeBack extends BooleanSetting {
     public String lastName;
 
     public AutoWelcomeBack() {
-        super("Auto welcome back", false, "Automatically says wb when someone comes back from being afk or joins synergy.");
+        super("mflp.setting.autoWb.name", false, "mflp.setting.autoWb.tooltip");
     }
 
     @Override

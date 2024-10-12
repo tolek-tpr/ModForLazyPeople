@@ -34,7 +34,7 @@ public class MacroCommandsWidget extends ContainerWidget {
         this.x = x;
         this.y = y;
 
-        ButtonWidget remove = ButtonWidget.builder(Text.literal("Remove"), (button) -> {
+        ButtonWidget remove = ButtonWidget.builder(Text.translatable("mflp.remove"), (button) -> {
             macro.removeCommands(List.of(command));
             client.setScreen(new MflpConfigureMacroScreen(parent, macro));
         }).dimensions(x, y, 70, 20).build();

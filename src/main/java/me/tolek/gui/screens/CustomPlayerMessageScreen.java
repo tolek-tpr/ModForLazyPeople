@@ -32,7 +32,7 @@ public class CustomPlayerMessageScreen extends Screen {
         ScrollableListWidget slw = new ScrollableListWidget(this.client, width, height - 84, 80, 22);
         slw.setRenderBackground(false);
 
-        addDrawableChild(ButtonWidget.builder(Text.literal("Add"), (button) -> {
+        addDrawableChild(ButtonWidget.builder(Text.translatable("mflp.add"), (button) -> {
             list.addMessage(new Tuple<>("", ""));
             clearAndInit();
         }).dimensions(20 + 142, 63 - textRenderer.fontHeight / 2, 30, 20).build());
@@ -68,17 +68,17 @@ public class CustomPlayerMessageScreen extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
 
-        Text macroName = Text.literal("Custom player messages");
+        Text macroName = Text.translatable("mflp.customPlayerMessages.title");
         context.drawTextWithShadow(textRenderer, macroName, width / 2 - textRenderer.getWidth(macroName) / 2, 10, 0xffffff);
 
         if (list.getMessages().isEmpty()) {
-            Text noMessagesSet = Text.literal("No custom messages set!");
+            Text noMessagesSet = Text.translatable("mflp.customPlayerMessages.noMessagesSet");
             context.drawTextWithShadow(tx, noMessagesSet, width / 2 - tx.getWidth(noMessagesSet) / 2, height / 2, 0xffffff);
         }
 
-        context.drawTextWithShadow(tx, Text.literal("Player"),
+        context.drawTextWithShadow(tx, Text.translatable("mflp.customPlayerMessages.player"),
                 20, 65, 0xffffff);
-        context.drawTextWithShadow(tx, Text.literal("Message"),
+        context.drawTextWithShadow(tx, Text.translatable("mflp.customPlayerMessages.message"),
                 width / 2 + 5, 65, 0xffffff);
     }
 

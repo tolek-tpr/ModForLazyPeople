@@ -44,7 +44,7 @@ public class MacroSettingsBoxWidget extends ContainerWidget {
         this.width = width;
         this.height = height;
 
-        ButtonWidget rename = ButtonWidget.builder(Text.literal("Rename"), (button) -> {
+        ButtonWidget rename = ButtonWidget.builder(Text.translatable("mflp.rename"), (button) -> {
             InputBoxWidget inputBox = new InputBoxWidget(tx, width / 2 - 75, height / 2 - 40, 150, 20, Text.literal(this.m.getName()));
             inputBox.setKeyConsumer((keyCode -> {
                 if (keyCode == InputUtil.GLFW_KEY_ESCAPE) {
@@ -57,13 +57,13 @@ public class MacroSettingsBoxWidget extends ContainerWidget {
 
             addChild(inputBox);
         }).dimensions(x, y, 70, 20).build();
-        ButtonWidget duplicate = ButtonWidget.builder(Text.literal("Duplicate"), (button) -> {
+        ButtonWidget duplicate = ButtonWidget.builder(Text.translatable("mflp.duplicate"), (button) -> {
             Macro ma = this.m.copy();
             macroList.addMacro(ma);
             client.setScreen(parent);
         }).dimensions(x + 72, y, 70, 20).build();
-        ButtonWidget addCommand = ButtonWidget.builder(Text.literal("Add command"), (button) -> {
-            InputBoxWidget inputBox = new InputBoxWidget(tx, width / 2 - 75, height / 2 - 40, 150, 20, Text.literal("Command"));
+        ButtonWidget addCommand = ButtonWidget.builder(Text.translatable("mflp.macroSettings.addCommandButton"), (button) -> {
+            InputBoxWidget inputBox = new InputBoxWidget(tx, width / 2 - 75, height / 2 - 40, 150, 20, Text.translatable("mflp.macroSettings.command"));
             inputBox.setKeyConsumer((keyCode -> {
                 if (keyCode == InputUtil.GLFW_KEY_ESCAPE) {
                     client.setScreen(new MflpConfigureMacroScreen(this.parent, this.m));

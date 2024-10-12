@@ -62,15 +62,15 @@ public class MacroContainerWidget extends ContainerWidget {
 
         addChild(bw);
 
-        Text toggleText = m.getTurnedOn() ? Text.literal("True").formatted(Formatting.GREEN) :
-                Text.literal("False").formatted(Formatting.RED);
+        Text toggleText = m.getTurnedOn() ? Text.translatable("mflp.true").formatted(Formatting.GREEN) :
+                Text.translatable("mflp.false").formatted(Formatting.RED);
         ButtonWidget toggleButton = ButtonWidget.builder(toggleText, (button -> {
             m.setTurnedOn(!m.getTurnedOn());
             client.setScreen(new MflpConfig(client));
         })).dimensions(x + 82, y, 60, 20).build();
         addChild(toggleButton);
 
-        Text removeText = Text.translatable("mflp.configScreen.removeButton");
+        Text removeText = Text.translatable("mflp.remove");
         if (!m.getUneditable()) {
             ButtonWidget removeButton = ButtonWidget.builder(removeText, (button -> {
                 macroList.removeMacro(m);

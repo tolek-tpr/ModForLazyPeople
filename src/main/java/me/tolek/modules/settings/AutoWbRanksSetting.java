@@ -9,13 +9,13 @@ public class AutoWbRanksSetting extends ListSetting {
 
 
     public AutoWbRanksSetting() {
-        super("Auto WB rank setting", 0, "Rank filter for auto wb", null);
+        super("mflp.setting.autoWbRank.name", 0, "mflp.setting.autoWbRank.tooltip", null);
 
         this.setList(new ArrayList<>());
-        this.addOption("Everyone");
-        this.addOption("Member +");
-        this.addOption("Devoted +");
-        this.addOption("Trusted +");
+        this.addOption("mflp.setting.autoWbRank.everyone");
+        this.addOption("mflp.setting.autoWbRank.memberPlus");
+        this.addOption("mflp.setting.autoWbRank.devotedPlus");
+        this.addOption("mflp.setting.autoWbRank.trustedPlus");
     }
 
     @Override

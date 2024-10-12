@@ -43,7 +43,7 @@ public class ArReplyWidget extends ContainerWidget {
                 20, Text.literal(tr));
         widget.setText(tr);
         widget.setMaxLength(Integer.MAX_VALUE);
-        widget.setTooltip(Tooltip.of(Text.literal(tt)));
+        widget.setTooltip(Tooltip.of(Text.translatable(tt)));
 
         ibw = new TextIconButtonWidget.Builder(Text.of(""), pa, true).dimension(20, 20)
                 .texture(CROSS_ICON, 20, 20).build();

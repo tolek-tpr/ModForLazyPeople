@@ -15,7 +15,7 @@ public class IntegerWidget extends TextFieldWidget {
         super(tx, x + 6, y, 148, 20, Text.literal(String.valueOf(setting.getState())));
         this.setMaxLength(Integer.MAX_VALUE);
         this.setText(String.valueOf(setting.getState()));
-        this.setTooltip(Tooltip.of(Text.literal(setting.getTooltip())));
+        this.setTooltip(Tooltip.of(Text.translatable(setting.getTooltip())));
         this.setChangedListener((state) -> {
             if (setting.validateInt(state)) {
                 this.setEditableColor(14737632);

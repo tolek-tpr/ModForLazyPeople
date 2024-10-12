@@ -13,11 +13,11 @@ import net.minecraft.util.Formatting;
 @Environment(EnvType.CLIENT)
 public class BooleanWidget extends ButtonWidget {
     public BooleanWidget(int x, int y, BooleanSetting setting) {
-        super(x + 5, y, 150, 20, setting.getState() ? Text.literal("True").formatted(Formatting.GREEN)
-                : Text.literal("False").formatted(Formatting.RED), (button) -> {
+        super(x + 5, y, 150, 20, setting.getState() ? Text.translatable("mflp.true").formatted(Formatting.GREEN)
+                : Text.translatable("mflp.false").formatted(Formatting.RED), (button) -> {
             setting.run();
             MinecraftClient.getInstance().setScreen(new MflpSettingsScreen());
         }, ButtonWidget.DEFAULT_NARRATION_SUPPLIER);
-        this.setTooltip(Tooltip.of(Text.literal(setting.getTooltip())));
+        this.setTooltip(Tooltip.of(Text.translatable(setting.getTooltip())));
     }
 }
