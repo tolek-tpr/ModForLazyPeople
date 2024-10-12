@@ -2,8 +2,8 @@ package me.tolek.commands.client;
 
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
-import me.tolek.modules.Macro.Macro;
-import me.tolek.modules.Macro.MacroList;
+import me.tolek.modules.macro.Macro;
+import me.tolek.modules.macro.MacroList;
 import me.tolek.util.MflpUtil;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
