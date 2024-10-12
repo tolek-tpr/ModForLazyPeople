@@ -1,13 +1,9 @@
 package me.tolek.modules.settings;
 
-import me.tolek.interfaces.IScheduler;
 import me.tolek.modules.settings.base.BooleanSetting;
-import me.tolek.modules.settings.base.MflpSetting;
 import me.tolek.util.InstancedValues;
-import me.tolek.util.MflpUtil;
 import me.tolek.util.Tuple;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.text.Text;
 
 public class AutoWelcomeBack extends BooleanSetting {
@@ -42,7 +38,7 @@ public class AutoWelcomeBack extends BooleanSetting {
                 message = message.replace("%p", lastName);
             }
             MinecraftClient.getInstance().player.networkHandler.sendChatMessage(message);
-            InstancedValues.getInstance().timeSinceLastWbInMils = 0;
+            InstancedValues.getInstance().timeSinceLastWbMillis = 0;
         }
     }
 
@@ -60,7 +56,7 @@ public class AutoWelcomeBack extends BooleanSetting {
             }
 
             MinecraftClient.getInstance().player.networkHandler.sendChatMessage(reply);
-            InstancedValues.getInstance().timeSinceLastWbInMils = 0;
+            InstancedValues.getInstance().timeSinceLastWbMillis = 0;
         }
     }
 

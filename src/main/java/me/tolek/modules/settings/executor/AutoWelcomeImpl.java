@@ -3,11 +3,8 @@ package me.tolek.modules.settings.executor;
 import me.tolek.event.ChatListener;
 import me.tolek.event.EventImpl;
 import me.tolek.event.EventManager;
-import me.tolek.event.UpdateListener;
 import me.tolek.modules.settings.AutoWelcome;
-import me.tolek.modules.settings.AutoWelcomeBack;
 import me.tolek.modules.settings.MflpSettingsList;
-import me.tolek.modules.settings.base.MflpSetting;
 import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
 import net.fabricmc.api.EnvType;
@@ -46,7 +43,7 @@ public class AutoWelcomeImpl extends EventImpl implements ChatListener {
         if (!message.getString().contains(playerName)) {
             if (message.getString().contains("Welcome") && message.getString().contains(" to Synergy!")) {
                 if (!MflpUtil.isFakeMessage(message)) {
-                    if (iv.timeSinceLastInputInMils / 1000 < 30 && !iv.isAfk) {
+                    if (iv.timeSinceLastInputMillis / 1000 < 30 && !iv.isAfk) {
                         setting.lastName = message.getString().split(" ")[1];
                         setting.refresh();
                         iv.pauseWelcomeBack = true;

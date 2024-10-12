@@ -22,6 +22,9 @@ public class MflpSettingsList {
     public WbPlayerBlacklist WB_PLAYER_BLACKLIST = new WbPlayerBlacklist();
     public PerPlayerMessageButtonSetting PPMBS = new PerPlayerMessageButtonSetting();
 
+    public AutoIgnoreWbMessages AUTO_IGNORE_WB_MESSAGES = new AutoIgnoreWbMessages();
+    public AutoIgnoreWbMessagesDuration AUTO_IGNORE_WB_MESSAGES_DURATION = new AutoIgnoreWbMessagesDuration();
+
     public AutoWbJoinRegex WB_JOIN_REGEX = new AutoWbJoinRegex();
     public AutoWbUnAfkRegex WB_UN_AFK_REGEX = new AutoWbUnAfkRegex();
     public CustomMessagePerServerSetting WB_REGEX_SETTINGS = new CustomMessagePerServerSetting();
@@ -48,6 +51,10 @@ public class MflpSettingsList {
         settings.add(WB_WHITELIST);
         settings.add(WB_BLACKLIST);
         settings.add(WB_PLAYER_BLACKLIST);
+
+        settings.add(AUTO_IGNORE_WB_MESSAGES);
+        settings.add(AUTO_IGNORE_WB_MESSAGES_DURATION);
+
         settings.add(PPMBS);
 
         settings.add(WB_REGEX_SETTINGS);

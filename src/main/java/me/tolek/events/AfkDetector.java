@@ -30,14 +30,14 @@ public class AfkDetector extends EventImpl implements KeyboardListener, UpdateLi
 
     @Override
     public void onKey(int keyCode, int scanCode, int modifiers) {
-        iv.timeSinceLastInputInMils = 0;
+        iv.timeSinceLastInputMillis = 0;
     }
 
     @Override
     public void onUpdate() {
         if (client == null) this.client = MinecraftClient.getInstance();
         if (client.player != null && client.player.clientWorld != null) {
-            iv.timeSinceLastInputInMils += 50;
+            iv.timeSinceLastInputMillis += 50;
         }
     }
 

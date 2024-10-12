@@ -12,15 +12,4 @@ public class AutoWbDelay extends IntegerSetting {
     @Override
     public void run() {}
 
-    @Override
-    public boolean validateInt(String toValidate) {
-        String regex = "\\d+";
-        try {
-            return toValidate.matches(regex) && Integer.parseInt(toValidate) > 4
-                    && Integer.parseInt(toValidate) < Integer.MAX_VALUE;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
 }
