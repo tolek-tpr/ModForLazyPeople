@@ -105,5 +105,5 @@
   "mflp.customMessagesPerServer.defaultJoinRegexTitle": "Domyślna wiadomość dołączenia (RegEx)",
   "mflp.customMessagesPerServer.defaultUnAfkRegexTitle": "Domyślna wiadomość unafk (RegEx)",
   
-  "mflp.pause.settingsButton": "MFLP Settings"
+  "mflp.pause.settingsButton": "Ustawienia MFLP"
 }
