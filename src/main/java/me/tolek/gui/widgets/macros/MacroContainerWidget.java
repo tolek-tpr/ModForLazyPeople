@@ -5,6 +5,8 @@ import me.tolek.modules.Macro.MacroList;
 import me.tolek.gui.screens.MflpConfig;
 import me.tolek.gui.screens.MflpConfigureMacroScreen;
 import me.tolek.util.MflpUtil;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -24,6 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Environment(EnvType.CLIENT)
 public class MacroContainerWidget extends ContainerWidget {
 
     private List<ClickableWidget> children = new ArrayList<>();

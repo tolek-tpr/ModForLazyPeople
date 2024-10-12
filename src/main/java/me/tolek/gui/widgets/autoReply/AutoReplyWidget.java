@@ -7,6 +7,8 @@ import me.tolek.gui.screens.MflpConfigureMacroScreen;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;
 import me.tolek.util.MflpUtil;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -21,6 +23,7 @@ import net.minecraft.util.Formatting;
 import java.util.ArrayList;
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class AutoReplyWidget extends ContainerWidget {
 
     private List<ClickableWidget> children = new ArrayList<>();

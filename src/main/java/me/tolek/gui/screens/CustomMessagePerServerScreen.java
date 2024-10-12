@@ -8,6 +8,8 @@ import me.tolek.modules.settings.CustomMessagePerServerList;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.util.RegexUtil;
 import me.tolek.util.Tuple;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -18,8 +20,11 @@ import net.minecraft.client.gui.widget.TextIconButtonWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import java.util.function.Consumer;
+
 import static me.tolek.gui.widgets.autoReply.ArReplyWidget.CROSS_ICON;
 
+@Environment(EnvType.CLIENT)
 public class CustomMessagePerServerScreen extends Screen {
 
     public CustomMessagePerServerScreen() {
@@ -44,18 +49,16 @@ public class CustomMessagePerServerScreen extends Screen {
             clearAndInit();
         }).dimensions(20 + 142, 63 - textRenderer.fontHeight / 2, 30, 20).build());
 
-        TextInputWidget defaultJoinWidget = new TextInputWidget(tx, 20, 36, 150, 20, Text.literal(settingsList.WB_JOIN_REGEX.getState()), 
-                settingsList.WB_JOIN_REGEX::setState);
-        TextInputWidget defaultUnafkWidget = new TextInputWidget(tx, 200, 36, 150, 20, Text.literal(settingsList.WB_UN_AFK_REGEX.getState()),
-                settingsList.WB_UN_AFK_REGEX::setState);
+        TextInputWidget defaultJoinWidget = new TextInputWidget(tx, 20, 36, 150, 20, Text.literal(settingsList.WB_JOIN_REGEX.getState()));
+        TextInputWidget defaultUnafkWidget = new TextInputWidget(tx, 200, 36, 150, 20, Text.literal(settingsList.WB_UN_AFK_REGEX.getState()));
 
         addDrawableChild(defaultJoinWidget);
         addDrawableChild(defaultUnafkWidget);
 
-        IconButtonWidgetWithoutButtonTextures defaultJoinRegexValidityIcon = setupValidityIcon(defaultJoinWidget);
+        IconButtonWidgetWithoutButtonTextures defaultJoinRegexValidityIcon = setupValidityIcon(defaultJoinWidget, settingsList.WB_JOIN_REGEX::setState);
         defaultJoinRegexValidityIcon.setY(38);
 
-        IconButtonWidgetWithoutButtonTextures defaultUnafkRegexValidityIcon = setupValidityIcon(defaultUnafkWidget);
+        IconButtonWidgetWithoutButtonTextures defaultUnafkRegexValidityIcon = setupValidityIcon(defaultUnafkWidget, settingsList.WB_UN_AFK_REGEX::setState);
         defaultUnafkRegexValidityIcon.setY(38);
 
         addDrawableChild(defaultJoinRegexValidityIcon);
@@ -72,11 +75,11 @@ public class CustomMessagePerServerScreen extends Screen {
             ibw.setPosition(20 + 152, 83);
 
             TextInputWidget serverTIW = new TextInputWidget(tx, 20, 83, 150, 20, Text.literal(currentTuple.value1), (value) -> currentTuple.value1 = value);
-            TextInputWidget joinTIW = new TextInputWidget(tx, 200, 83, 150, 20, Text.literal(currentTuple.value2.value1), (value) -> currentTuple.value2.value1 = value);
-            TextInputWidget afkTIW = new TextInputWidget(tx, 380, 83, 150, 20, Text.literal(currentTuple.value2.value2), (value) -> currentTuple.value2.value2 = value);
+            TextInputWidget joinTIW = new TextInputWidget(tx, 200, 83, 150, 20, Text.literal(currentTuple.value2.value1));
+            TextInputWidget afkTIW = new TextInputWidget(tx, 380, 83, 150, 20, Text.literal(currentTuple.value2.value2));
 
-            IconButtonWidgetWithoutButtonTextures joinRegexValidityIcon = setupValidityIcon(joinTIW);
-            IconButtonWidgetWithoutButtonTextures afkRegexValidityIcon = setupValidityIcon(afkTIW);
+            IconButtonWidgetWithoutButtonTextures joinRegexValidityIcon = setupValidityIcon(joinTIW, (value) -> currentTuple.value2.value1 = value);
+            IconButtonWidgetWithoutButtonTextures afkRegexValidityIcon = setupValidityIcon(afkTIW, (value) -> currentTuple.value2.value2 = value);
 
             slw.addRow(serverTIW, ibw, joinTIW, joinRegexValidityIcon, afkTIW, afkRegexValidityIcon);
         }
@@ -84,12 +87,15 @@ public class CustomMessagePerServerScreen extends Screen {
         addDrawableChild(slw);
     }
 
-    private static IconButtonWidgetWithoutButtonTextures setupValidityIcon(TextInputWidget textInputWidget) {
+    private static IconButtonWidgetWithoutButtonTextures setupValidityIcon(TextInputWidget textInputWidget, Consumer<String> serializationListener) {
         IconButtonWidgetWithoutButtonTextures regexValidityIcon = new IconButtonWidgetWithoutButtonTextures(16, 16, Text.empty(), VALID_REGEX_ICON, (btn) -> {});
         regexValidityIcon.setX(textInputWidget.getX() + 152);
         updateRegexValidityIcon(regexValidityIcon, textInputWidget.getText());
 
-        textInputWidget.setChangedListener(state -> updateRegexValidityIcon(regexValidityIcon, state));
+        textInputWidget.setChangedListener(state -> {
+            serializationListener.accept(state);
+            updateRegexValidityIcon(regexValidityIcon, state);
+        });
 
         return regexValidityIcon;
     }

@@ -6,6 +6,8 @@ import me.tolek.gui.widgets.InputBoxWidget;
 import me.tolek.modules.Macro.MacroList;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -20,6 +22,7 @@ import net.minecraft.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class ArSettingsBoxWidget extends ContainerWidget {
 
     private List<ClickableWidget> children = new ArrayList<>();

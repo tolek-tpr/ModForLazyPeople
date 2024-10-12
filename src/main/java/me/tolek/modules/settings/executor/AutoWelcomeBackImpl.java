@@ -7,11 +7,14 @@ import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
 import me.tolek.util.RegexUtil;
 import me.tolek.util.Tuple;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.client.network.ServerInfo;
 import net.minecraft.text.Text;
 
+@Environment(EnvType.CLIENT)
 public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, UpdateListener {
 
     private MinecraftClient client;

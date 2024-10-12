@@ -2,6 +2,8 @@ package me.tolek.gui.screens;
 
 import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -9,6 +11,7 @@ import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
+@Environment(EnvType.CLIENT)
 public class MflpHelloScreen extends Screen {
 
     public MflpHelloScreen() {

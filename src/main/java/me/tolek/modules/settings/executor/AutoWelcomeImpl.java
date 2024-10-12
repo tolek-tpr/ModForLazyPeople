@@ -10,9 +10,12 @@ import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.modules.settings.base.MflpSetting;
 import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
+@Environment(EnvType.CLIENT)
 public class AutoWelcomeImpl extends EventImpl implements ChatListener {
 
     private MinecraftClient client;

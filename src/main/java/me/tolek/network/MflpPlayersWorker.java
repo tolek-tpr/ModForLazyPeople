@@ -7,6 +7,8 @@ import me.tolek.event.MinecraftStartListener;
 import me.tolek.event.UpdateListener;
 import me.tolek.gui.widgets.autoReply.ArReplyWidget;
 import me.tolek.interfaces.IScheduler;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,6 +16,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
+@Environment(EnvType.CLIENT)
 public class MflpPlayersWorker extends EventImpl implements UpdateListener {
 
     private static MflpPlayersWorker instance;

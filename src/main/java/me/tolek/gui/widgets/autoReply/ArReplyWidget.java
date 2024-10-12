@@ -2,6 +2,8 @@ package me.tolek.gui.widgets.autoReply;
 
 import me.tolek.ModForLazyPeople;
 import me.tolek.modules.autoReply.AutoReply;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
@@ -13,6 +15,7 @@ import net.minecraft.util.Identifier;
 import java.util.ArrayList;
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class ArReplyWidget extends ContainerWidget {
 
     private List<ClickableWidget> children = new ArrayList<>();

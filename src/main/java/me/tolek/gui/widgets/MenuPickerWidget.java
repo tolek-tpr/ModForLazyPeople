@@ -3,6 +3,8 @@ package me.tolek.gui.widgets;
 import me.tolek.gui.screens.AutoReplyScreen;
 import me.tolek.gui.screens.MflpConfig;
 import me.tolek.gui.screens.MflpSettingsScreen;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
@@ -14,6 +16,7 @@ import net.minecraft.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class MenuPickerWidget extends ContainerWidget {
 
     private List<ClickableWidget> children = new ArrayList<>();

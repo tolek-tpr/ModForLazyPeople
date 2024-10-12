@@ -1,5 +1,7 @@
 package me.tolek.gui.widgets;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Element;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class ScrollableListWidget extends ElementListWidget<ScrollableListWidget.ListEntry> {
 
     private int rowWidth = 220;

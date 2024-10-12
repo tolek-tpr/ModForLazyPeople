@@ -5,6 +5,8 @@ import me.tolek.gui.widgets.InputBoxWidget;
 import me.tolek.gui.widgets.MenuPickerWidget;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -14,6 +16,7 @@ import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 
+@Environment(EnvType.CLIENT)
 public class AutoReplyScreen extends Screen {
 
     private AutoRepliesList autoReplies = AutoRepliesList.getInstance();
