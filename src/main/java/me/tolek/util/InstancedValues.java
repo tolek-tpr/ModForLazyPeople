@@ -64,6 +64,7 @@ public class InstancedValues {
     public long timeSinceLastWbMillis = 0;
     public String githubUrl = "github.com/tolek-tpr/ModForLazyPeople/releases";
     public String modrinthUrl = "https://modrinth.com/mod/modforlazypeople/versions";
+    public String discordUrl = "https://discord.gg/z7aRsNKm9z";
     public boolean shownUpdateScreen = false;
     public boolean pauseWelcomeBack = false;
     public boolean isAfk = false;

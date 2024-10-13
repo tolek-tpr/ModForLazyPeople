@@ -1,6 +1,6 @@
 package me.tolek.mixin.client;
 
-import me.tolek.gui.screens.MflpConfig;
+import me.tolek.gui.screens.MflpMacroConfig;
 import me.tolek.util.InstancedValues;
 import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
@@ -28,7 +28,7 @@ public class PauseScreenMixin extends Screen {
         gridWidget.getMainPositioner().margin(4, 4, 4, 0);
         GridWidget.Adder adder = gridWidget.createAdder(2);
         adder.add(createButton(Text.translatable("mflp.pause.settingsButton"), () -> {
-            return new MflpConfig(client);
+            return new MflpMacroConfig(client);
         }));
 
         gridWidget.refreshPositions();

@@ -1,17 +1,23 @@
 package me.tolek.gui.widgets;
 
+import me.tolek.ModForLazyPeople;
 import me.tolek.gui.screens.AutoReplyScreen;
-import me.tolek.gui.screens.MflpConfig;
+import me.tolek.gui.screens.MflpMacroConfig;
 import me.tolek.gui.screens.MflpSettingsScreen;
+import me.tolek.util.InstancedValues;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.screen.ConfirmLinkScreen;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.ContainerWidget;
+import net.minecraft.client.gui.widget.TextIconButtonWidget;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +30,10 @@ public class MenuPickerWidget extends ContainerWidget {
     public MenuPickerWidget(int x, int y, MinecraftClient client) {
         super(x, y, 150, 20, Text.literal("test"));
 
+        Screen screen = client.currentScreen;
+
         ButtonWidget macrosButton = ButtonWidget.builder(Text.translatable("mflp.mainConfig.macrosButton"), (button) -> {
-            client.setScreen(new MflpConfig(client));
+            client.setScreen(new MflpMacroConfig(client));
         }).dimensions(width - width + 10, height - height + 22, 70, 20).build();
         ButtonWidget settingsWidget = ButtonWidget.builder(Text.translatable("mflp.mainConfig.settingsButton"), (button) -> {
             client.setScreen(new MflpSettingsScreen());
@@ -34,9 +42,16 @@ public class MenuPickerWidget extends ContainerWidget {
             client.setScreen(new AutoReplyScreen());
         }).dimensions(width - width + 154, height - height + 22, 80, 20).build();
 
+        TextIconButtonWidget discordWidget = TextIconButtonWidget.builder(Text.empty(), ConfirmLinkScreen.opening(screen, InstancedValues.getInstance().discordUrl), true)
+                .texture(Identifier.of(ModForLazyPeople.MOD_ID, "discord"), 16, 16)
+                .build();
+
+        discordWidget.setDimensionsAndPosition(20, 20, screen.width - 30, screen.height - 30);
+
         addChild(macrosButton);
         addChild(settingsWidget);
         addChild(autoReplyWidget);
+        addChild(discordWidget);
     }
 
     @Override
