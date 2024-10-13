@@ -20,6 +20,7 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.jetbrains.annotations.Nullable;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -130,10 +131,12 @@ public class MacroContainerWidget extends ContainerWidget {
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        System.out.println("Key PRESS");
         if (this.selectedKeyBinding != null) {
             KeyBinding kb = null;
-            if (keyCode == 256) {
+            if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
                 kb = macroList.setKeyBinding(this.selectedKeyBinding, InputUtil.UNKNOWN_KEY);
+                System.out.println("escape");
             } else {
                 kb = macroList.setKeyBinding(this.selectedKeyBinding, InputUtil.fromKeyCode(keyCode, scanCode));
             }

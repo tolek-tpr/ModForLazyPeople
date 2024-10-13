@@ -83,4 +83,10 @@ public class MflpConfig extends Screen {
         }
     }
 
+    @Override
+    public void close() {
+        if (this.selectedKeyBinding != null) return;
+        //this.client.setScreen(null);
+    }
+
 }
