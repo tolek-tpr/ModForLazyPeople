@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 @Environment(EnvType.CLIENT)
 public class MacroContainerWidget extends ContainerWidget {
@@ -42,6 +43,7 @@ public class MacroContainerWidget extends ContainerWidget {
     private int x;
     private int y;
     private TextRenderer tx;
+    public Consumer<KeyBinding> keyBindingConsumer = (b) -> {};
 
     public MacroContainerWidget(int x, int y, MinecraftClient client, KeyBinding selectedKeyBinding, Macro m, TextRenderer tx) {
         super(x, y, 150, 20, Text.literal("test"));
@@ -56,6 +58,7 @@ public class MacroContainerWidget extends ContainerWidget {
         ButtonWidget bw = ButtonWidget.builder(keyName, (button -> {
             this.selectedKeyBinding = m.getKeyBinding();
             selectedButton = editButtons.get(m);
+            keyBindingConsumer.accept(m.getKeyBinding());
 
             this.update(m.getKeyBinding(), m);
         })).dimensions(x, y, 80, 20).build();
@@ -121,6 +124,7 @@ public class MacroContainerWidget extends ContainerWidget {
             if (kb != null) this.update(selectedButton, kb);
             this.selectedKeyBinding = null;
             this.selectedButton = null;
+            this.keyBindingConsumer.accept(null);
 
             return true;
         } else {
@@ -131,12 +135,10 @@ public class MacroContainerWidget extends ContainerWidget {
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        System.out.println("Key PRESS");
         if (this.selectedKeyBinding != null) {
             KeyBinding kb = null;
             if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
                 kb = macroList.setKeyBinding(this.selectedKeyBinding, InputUtil.UNKNOWN_KEY);
-                System.out.println("escape");
             } else {
                 kb = macroList.setKeyBinding(this.selectedKeyBinding, InputUtil.fromKeyCode(keyCode, scanCode));
             }
@@ -144,6 +146,7 @@ public class MacroContainerWidget extends ContainerWidget {
             if (kb != null) this.update(selectedButton, kb);
             this.selectedKeyBinding = null;
             this.selectedButton = null;
+            this.keyBindingConsumer.accept(null);
             return true;
         } else {
             return super.keyPressed(keyCode, scanCode, modifiers);
