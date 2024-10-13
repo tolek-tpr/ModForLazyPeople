@@ -16,6 +16,7 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 
@@ -68,7 +69,7 @@ public class MflpMacroConfig extends Screen {
                     this.selectedKeyBinding, m, textRenderer);
             addDrawableChild(mcw);
             mcw.children().forEach(this::addDrawableChild);
-
+            mcw.keyBindingConsumer = (kb) -> {this.selectedKeyBinding = kb;};
 
             step += 22;
         }
@@ -81,6 +82,23 @@ public class MflpMacroConfig extends Screen {
             context.drawTextWithShadow(textRenderer, Text.translatable("mflp.macro.noMacrosAdded"),
                     width / 2 - textRenderer.getWidth(Text.translatable("mflp.macro.noMacrosAdded")) / 2, 46 + textRenderer.fontHeight / 2, 0xffffff);
         }
+    }
+
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if (this.selectedKeyBinding != null && keyCode == GLFW.GLFW_KEY_ESCAPE) {
+            children().forEach((c) -> {
+                if (c instanceof MacroContainerWidget) c.keyPressed(keyCode, scanCode, modifiers);
+            });
+            return true;
+        }
+        return super.keyPressed(keyCode, scanCode, modifiers);
+    }
+
+    @Override
+    public void close() {
+        if (this.selectedKeyBinding != null) return;
+        this.client.setScreen(null);
     }
 
 }

@@ -77,6 +77,12 @@
   "mflp.setting.customServerMessages.name": "Wiadomości od serwera",
   "mflp.setting.customServerMessages.tooltip": "Otwiera menu, gdzie można ustawić do jakich wiadomości auto wb bedzie reagował dla danego serwera.",
 
+  "mflp.setting.tabIconToggle.name": "Ikona gracza MFLP",
+  "mflp.setting.tabIconToggle.tooltip": "Włącza lub wyłącza pokazywanie ikony gracza używającego MFLP w liście graczy.",
+
+  "mflp.setting.nametagIconToggle.name": "Ikona gracza MFLP w nazwie",
+  "mflp.setting.nametagIconToggle.tooltip": "Włącza lub wyłącza pokazywanie ikony gracza używającego MFLP nad jego głową.",
+
   "mflp.macroSettings.addCommandButton": "Dodaj komendę.",
   "mflp.macroSettings.command": "Komęda.",
   "mflp.macro.noMacrosAdded": "Brak skrótów!",

@@ -78,6 +78,12 @@
   "mflp.setting.customServerMessages.name": "Custom server messages",
   "mflp.setting.customServerMessages.tooltip": "Opens the screen where you can modify the server join/afk messages.",
 
+  "mflp.setting.tabIconToggle.name": "MFLP tab list icon",
+  "mflp.setting.tabIconToggle.tooltip": "Toggles whether to show the MFLP icon in the tab list.",
+
+  "mflp.setting.nametagIconToggle.name": "MFLP nametag icon",
+  "mflp.setting.nametagIconToggle.tooltip": "Toggles whether to show the MFLP icon in the players nametag.",
+
   "mflp.macroSettings.addCommandButton": "Add Command",
   "mflp.macroSettings.command": "Command",
   "mflp.macro.noMacrosAdded": "No Macros Added!",

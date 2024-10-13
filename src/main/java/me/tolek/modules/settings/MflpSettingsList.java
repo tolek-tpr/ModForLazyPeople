@@ -22,6 +22,9 @@ public class MflpSettingsList {
     public WbPlayerBlacklist WB_PLAYER_BLACKLIST = new WbPlayerBlacklist();
     public PerPlayerMessageButtonSetting PPMBS = new PerPlayerMessageButtonSetting();
 
+    public MflpTabIconSetting TAB_ICON_TOGGLE = new MflpTabIconSetting();
+    public MflpNametagIconSetting NAMETAG_ICON_TOGGLE = new MflpNametagIconSetting();
+
     public AutoIgnoreWbMessages AUTO_IGNORE_WB_MESSAGES = new AutoIgnoreWbMessages();
     public AutoIgnoreWbMessagesDuration AUTO_IGNORE_WB_MESSAGES_DURATION = new AutoIgnoreWbMessagesDuration();
 
@@ -51,6 +54,9 @@ public class MflpSettingsList {
         settings.add(WB_WHITELIST);
         settings.add(WB_BLACKLIST);
         settings.add(WB_PLAYER_BLACKLIST);
+
+        settings.add(TAB_ICON_TOGGLE);
+        settings.add(NAMETAG_ICON_TOGGLE);
 
         settings.add(AUTO_IGNORE_WB_MESSAGES);
         settings.add(AUTO_IGNORE_WB_MESSAGES_DURATION);

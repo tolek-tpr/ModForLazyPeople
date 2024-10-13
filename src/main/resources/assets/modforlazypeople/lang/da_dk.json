@@ -78,6 +78,12 @@
   "mflp.setting.customServerMessages.name": "Brugerdefinerede server beskeder",
   "mflp.setting.customServerMessages.tooltip": "Åbner menuen, hvor du kan ændre server tilsluttelse og afk beskeder.",
 
+  "mflp.setting.tabIconToggle.name": "MFLP tab list icon",
+  "mflp.setting.tabIconToggle.tooltip": "Toggles whether to show the MFLP icon in the tab list.",
+
+  "mflp.setting.nametagIconToggle.name": "MFLP nametag icon",
+  "mflp.setting.nametagIconToggle.tooltip": "Toggles whether to show the MFLP icon in the players nametag.",
+
   "mflp.macroSettings.addCommandButton": "Tilføj Kommando",
   "mflp.macroSettings.command": "Kommando",
   "mflp.macro.noMacrosAdded": "Ingen Makroer Tilføjet!",

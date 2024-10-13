@@ -3,6 +3,7 @@ package me.tolek.mixin.client;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalIntRef;
 import com.mojang.blaze3d.systems.RenderSystem;
+import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.network.MflpPlayersWorker;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -27,6 +28,7 @@ public class PlayerListHudMixin {
     private final MflpPlayersWorker worker = MflpPlayersWorker.getInstance();
     @Unique
     private final Identifier logo = new Identifier("modforlazypeople", "mflp/user_logo");
+    private final MflpSettingsList settingsList = MflpSettingsList.getInstance();
 
     @Inject(method = "render", at = @At(value = "INVOKE", target="Lnet/minecraft/client/gui/hud/PlayerListHud;renderLatencyIcon(Lnet/minecraft/client/gui/DrawContext;IIILnet/minecraft/client/network/PlayerListEntry;)V"))
     private void onRenderHud(DrawContext context, int scaledWindowWidth, Scoreboard scoreboard, ScoreboardObjective objective,
@@ -38,7 +40,7 @@ public class PlayerListHudMixin {
 
     public void renderMflpTag(DrawContext context, int width, int x, int y, PlayerListEntry entry) {
         MinecraftClient client = MinecraftClient.getInstance();
-        if (client.world == null) return;
+        if (client.world == null || !settingsList.TAB_ICON_TOGGLE.getState()) return;
 
         PlayerEntity player = client.world.getPlayerByUuid(entry.getProfile().getId());
         String returnMessage = worker.data;
