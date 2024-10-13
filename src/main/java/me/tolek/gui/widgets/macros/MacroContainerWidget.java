@@ -2,7 +2,7 @@ package me.tolek.gui.widgets.macros;
 
 import me.tolek.modules.macro.Macro;
 import me.tolek.modules.macro.MacroList;
-import me.tolek.gui.screens.MflpConfig;
+import me.tolek.gui.screens.MflpMacroConfig;
 import me.tolek.gui.screens.MflpConfigureMacroScreen;
 import me.tolek.util.MflpUtil;
 import net.fabricmc.api.EnvType;
@@ -66,7 +66,7 @@ public class MacroContainerWidget extends ContainerWidget {
                 Text.translatable("mflp.false").formatted(Formatting.RED);
         ButtonWidget toggleButton = ButtonWidget.builder(toggleText, (button -> {
             m.setTurnedOn(!m.getTurnedOn());
-            client.setScreen(new MflpConfig(client));
+            client.setScreen(new MflpMacroConfig(client));
         })).dimensions(x + 82, y, 60, 20).build();
         addChild(toggleButton);
 
@@ -75,7 +75,7 @@ public class MacroContainerWidget extends ContainerWidget {
             ButtonWidget removeButton = ButtonWidget.builder(removeText, (button -> {
                 macroList.removeMacro(m);
                 if (client != null) {
-                    client.setScreen(new MflpConfig(client));
+                    client.setScreen(new MflpMacroConfig(client));
                 }
             })).dimensions(x + 144, y, 70, 20).build();
             addChild(removeButton);
@@ -83,7 +83,7 @@ public class MacroContainerWidget extends ContainerWidget {
             Text editText = Text.translatable("mflp.configScreen.editButton");
 
             TextIconButtonWidget tibw = new TextIconButtonWidget.Builder(editText, (button) ->
-                    client.setScreen(new MflpConfigureMacroScreen(new MflpConfig(client), m)), true)
+                    client.setScreen(new MflpConfigureMacroScreen(new MflpMacroConfig(client), m)), true)
                     .texture(MflpUtil.pencilIcon, 20, 20).dimension(20, 20).build();
             tibw.setPosition(x - 180, y);
             addChild(tibw);

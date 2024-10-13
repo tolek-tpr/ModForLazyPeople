@@ -20,9 +20,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 
 @Environment(EnvType.CLIENT)
-public class MflpConfig extends Screen {
+public class MflpMacroConfig extends Screen {
 
-    public MflpConfig(MinecraftClient client) {
+    public MflpMacroConfig(MinecraftClient client) {
         super(Text.translatable("mflp.configScreen.title"));
         this.client = client;
     }
@@ -47,7 +47,7 @@ public class MflpConfig extends Screen {
 
             ibw.setKeyConsumer((keyCode) -> {
                 if (keyCode == InputUtil.GLFW_KEY_ESCAPE) {
-                    client.setScreen(new MflpConfig(this.client));
+                    client.setScreen(new MflpMacroConfig(this.client));
                 } else if (keyCode == InputUtil.GLFW_KEY_ENTER) {
                     KeyBinding kb = new KeyBinding("mflp.keybinding.undefined",
                             InputUtil.UNKNOWN_KEY.getCode(),
@@ -55,7 +55,7 @@ public class MflpConfig extends Screen {
                     Macro m = new Macro(kb, new ArrayList<>(), ibw.getText(), 1);
                     m.setKey(InputUtil.UNKNOWN_KEY.getCode());
                     macroList.addMacro(m);
-                    client.setScreen(new MflpConfig(this.client));
+                    client.setScreen(new MflpMacroConfig(this.client));
                 }
             });
             addDrawableChild(ibw);
