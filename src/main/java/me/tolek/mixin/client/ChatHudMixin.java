@@ -20,6 +20,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import me.tolek.event.ChatListener.ChatModifyEvent;
 
+import java.util.Arrays;
+
 @Mixin(ChatHud.class)
 public class ChatHudMixin {
 

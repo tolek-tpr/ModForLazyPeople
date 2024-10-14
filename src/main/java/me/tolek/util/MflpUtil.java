@@ -1,5 +1,6 @@
 package me.tolek.util;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -29,6 +30,19 @@ public class MflpUtil {
 
     public static boolean isFakeMessage(Text message) {
         return message.getString().contains("From") || message.getString().contains("*") || message.getString().contains(":");
+    }
+
+    /**
+     *
+     * @param message - The message to process
+     * @return boolean - Returns true if the player that sent the message is the client, otherwise returns false
+     */
+    public static boolean isPlayerMessageAuthor(Text message) {
+        String m = message.getString();
+        String username = MinecraftClient.getInstance().getSession().getUsername();
+        String usernameRegex = "[a-zA-Z0-9_]{3,16}";
+
+        return m.replaceFirst(usernameRegex, username).equals(message.getString());
     }
 
 }

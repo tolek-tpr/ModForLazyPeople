@@ -5,6 +5,7 @@ import me.tolek.event.EventImpl;
 import me.tolek.event.EventManager;
 import me.tolek.event.UpdateListener;
 import me.tolek.util.InstancedValues;
+import me.tolek.util.MflpUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -33,6 +34,8 @@ public class AutoReplyExecutor extends EventImpl implements ChatListener {
     @Override
     public void onMessageAdd(Text a) {
         String message = a.getString();
+
+        if (MflpUtil.isPlayerMessageAuthor(a)) return;
 
         autoReplies.getAutoReplies().forEach((ar) -> {
             ar.getKeywords().forEach((String s) -> {
