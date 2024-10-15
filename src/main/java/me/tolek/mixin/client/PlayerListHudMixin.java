@@ -42,13 +42,10 @@ public class PlayerListHudMixin {
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.world == null || !settingsList.TAB_ICON_TOGGLE.getState()) return;
 
-        PlayerEntity player = client.world.getPlayerByUuid(entry.getProfile().getId());
         String returnMessage = worker.data;
 
-        if (entry.getProfile().getId() == null ||
-                player == null || player.getName() == null) return;
-
-        if (returnMessage != null && returnMessage.contains(player.getName().getString())) {
+        if (entry.getProfile() == null || entry.getProfile().getId() == null) return;
+        if (returnMessage != null && returnMessage.contains(entry.getProfile().getName())) {
             RenderSystem.enableBlend();
             context.getMatrices().push();
             context.getMatrices().translate(0.0f, 0.0f, 100.0f);
