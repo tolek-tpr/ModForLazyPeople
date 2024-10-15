@@ -8,7 +8,7 @@ public class MflpNetwork {
 
     public static Event<PartyListener> PartyEvents;
 
-    public static void invitePlayerToParty(String playerUsername) {
+    public static void invitePlayer(String player) {
         throw new NotImplementedException();
     }
 
@@ -16,7 +16,27 @@ public class MflpNetwork {
         throw new NotImplementedException();
     }
 
-    public static void sendMessageInParty(String message) {
+    public static void send(String message) {
+        throw new NotImplementedException();
+    }
+
+    public static void removeMember(String member) {
+        throw new NotImplementedException();
+    }
+
+    public static void leaveParty() {
+        throw new NotImplementedException();
+    }
+
+    public static void renameParty(String name) {
+        throw new NotImplementedException();
+    }
+
+    public static void createParty(String name) {
+        throw new NotImplementedException();
+    }
+
+    public static void getPartyInfo() {
         throw new NotImplementedException();
     }
 

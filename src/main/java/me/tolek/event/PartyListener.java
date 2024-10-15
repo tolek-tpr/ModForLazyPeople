@@ -5,9 +5,13 @@ import java.util.ArrayList;
 public interface PartyListener extends Listener {
 
     void onMessage(String message);
-    void playerAdded(String playerUsername);
-    void playerInvited(String playerUsername);
-    void onInvite(byte partyId);
+    void onPlayerAdded(String playerUsername);
+    void onPlayerInvited(String playerUsername);
+    void onClientInvited(byte partyId, String partyName);
+    void onPlayerLeft(String playerUsername);
+    void onPlayerRemoved(String playerUsername);
+    void onPartyRenamed(String newName);
+    void onPlayerJoined(String playerUsername);
 
     public static class MessageReceivedEvent extends Event<PartyListener> {
 
@@ -42,7 +46,7 @@ public interface PartyListener extends Listener {
         @Override
         public void fire(ArrayList<PartyListener> listeners) {
             for(PartyListener listener : listeners)
-                listener.playerAdded(this.username);
+                listener.onPlayerAdded(this.username);
         }
 
         @Override
@@ -64,7 +68,7 @@ public interface PartyListener extends Listener {
         @Override
         public void fire(ArrayList<PartyListener> listeners) {
             for(PartyListener listener : listeners)
-                listener.playerInvited(this.username);
+                listener.onPlayerInvited(this.username);
         }
 
         @Override
@@ -78,15 +82,17 @@ public interface PartyListener extends Listener {
     public static class InviteClientEvent extends Event<PartyListener> {
 
         private final byte partyID;
+        private final String partyName;
 
-        public InviteClientEvent(byte partyID) {
+        public InviteClientEvent(byte partyID, String partyName) {
             this.partyID = partyID;
+            this.partyName = partyName;
         }
 
         @Override
         public void fire(ArrayList<PartyListener> listeners) {
             for(PartyListener listener : listeners)
-                listener.onInvite(this.partyID);
+                listener.onClientInvited(this.partyID, partyName);
         }
 
         @Override
