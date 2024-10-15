@@ -28,14 +28,6 @@ public class MflpNetwork {
         throw new NotImplementedException();
     }
 
-    public static void renameParty(String name) {
-        throw new NotImplementedException();
-    }
-
-    public static void createParty(String name) {
-        throw new NotImplementedException();
-    }
-
     public static void getPartyInfo() {
         throw new NotImplementedException();
     }

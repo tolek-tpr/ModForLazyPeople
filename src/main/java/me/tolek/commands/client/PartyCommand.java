@@ -29,28 +29,11 @@ public class PartyCommand implements ClientModInitializer {
                     return 1;
                 }))
 
-
-                .then(literal("send").then(argument("message", StringArgumentType.greedyString())
+                .then(literal("chat").then(argument("message", StringArgumentType.greedyString())
                 .executes(context -> {
                     String message = StringArgumentType.getString(context, "message");
-                    ModForLazyPeople.LOGGER.info("SEND {}", message);
+                    ModForLazyPeople.LOGGER.info("CHAT {}", message);
                     context.getSource().sendFeedback(Text.literal("PARTY NAME GOES HERE - ").formatted(Formatting.BOLD).append(Text.literal("You: ").append(message).formatted(Formatting.ITALIC, Formatting.GRAY))); // TODO: Remove me in favor of the event listener
-                    return 1;
-                })))
-
-                .then(literal("create").then(argument("name", StringArgumentType.greedyString())
-                .executes(context -> {
-                    String name = StringArgumentType.getString(context, "name");
-                    ModForLazyPeople.LOGGER.info("CREATE {}", name);
-                    context.getSource().sendFeedback(Text.literal("Party created with name: " + name + "! (or not because it isn't implemented yet lmao)"));
-                    return 1;
-                })))
-
-                .then(literal("rename").then(argument("name", StringArgumentType.greedyString())
-                .executes(context -> {
-                    String name = StringArgumentType.getString(context, "name");
-                    ModForLazyPeople.LOGGER.info("RENAME {}", name);
-                    context.getSource().sendFeedback(Text.literal("Party renamed to: " + name + "! (or not because it isn't implemented yet lmao)"));
                     return 1;
                 })))
 
