@@ -6,8 +6,8 @@ import me.tolek.util.RegexUtil;
 public class AutoWbUnAfkRegex extends StringSetting {
 
     public AutoWbUnAfkRegex() {
-        super("mflp.setting.unAfkRegex.name", "^%u is no longer AFK\\.$", "mflp.setting.unAfkRegex.tooltip");
-        this.setState("^%u is no longer AFK\\.$");
+        super("mflp.setting.unAfkRegex.name", "^\\[!\\] %u is no longer AFK\\.$", "mflp.setting.unAfkRegex.tooltip");
+        this.setState("^\\[!\\] %u is no longer AFK\\.$");
         this.render = false;
     }
 
