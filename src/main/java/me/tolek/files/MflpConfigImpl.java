@@ -65,7 +65,7 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
 
             if (loadedData != null) {
                 if (loadedData.getFileVersion() != null) {
-                    ModForLazyPeople.LOGGER.info("File Version is " + loadedData.getFileVersion() + " no changes need to be applied");
+                    ModForLazyPeople.LOGGER.info("Loaded file Version is " + loadedData.getFileVersion() + " applying changes");
                 }
 
                 ArrayList<MflpConfigManager.ShortMacro> shortMacros = loadedData.getShortMacros();
@@ -105,8 +105,13 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
                     settings.WB_WHITELIST = loadedData.getSettings().WB_WHITELIST;
                     settings.WB_COOLDOWN = loadedData.getSettings().WB_COOLDOWN;
                     settings.WB_PLAYER_BLACKLIST = loadedData.getSettings().WB_PLAYER_BLACKLIST;
-                    settings.WB_UN_AFK_REGEX = loadedData.getSettings().WB_UN_AFK_REGEX;
-                    settings.WB_JOIN_REGEX = loadedData.getSettings().WB_JOIN_REGEX;
+
+                    if (loadedData.getFileVersion().equals(iv.getFileVersion())) {
+                        // File version is up to date;
+                        settings.WB_UN_AFK_REGEX = loadedData.getSettings().WB_UN_AFK_REGEX;
+                        settings.WB_JOIN_REGEX = loadedData.getSettings().WB_JOIN_REGEX;
+                    }
+
                     settings.AUTO_IGNORE_WB_MESSAGES = loadedData.getSettings().AUTO_IGNORE_WB_MESSAGES;
                     settings.AUTO_IGNORE_WB_MESSAGES_DURATION = loadedData.getSettings().AUTO_IGNORE_WB_MESSAGES_DURATION;
                     settings.TAB_ICON_TOGGLE = loadedData.getSettings().TAB_ICON_TOGGLE;

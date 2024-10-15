@@ -45,7 +45,7 @@ processResources {
 	filesMatching("fabric.mod.json") {
 		expand "version": project.version
 	}
-	filesMatching("**/settings.mflp") {
+	filesMatching("assets/modforlazypeople/mflp/settings.mflp") {
 		expand "version": project.version, "file_version": fileProps['file_version']
 	}
 
