@@ -25,7 +25,8 @@
 			"me.tolek.ModForLazyPeopleClient",
 			"me.tolek.commands.client.MacroCommand",
 			"me.tolek.commands.client.MflpWelcomeCommand",
-			"me.tolek.events.FabricEventsRegistry"
+			"me.tolek.events.FabricEventsRegistry",
+			"me.tolek.commands.client.ClientMlfpCommand"
 		],
 		"modmenu": [
 			"me.tolek.ModMenuImpl"
