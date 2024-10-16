@@ -32,4 +32,8 @@ public class MflpNetwork {
         throw new NotImplementedException();
     }
 
+    public static void declineInvite() {
+        throw new NotImplementedException();
+    }
+
 }

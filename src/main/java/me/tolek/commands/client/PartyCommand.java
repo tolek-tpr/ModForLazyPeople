@@ -20,22 +20,19 @@ public class PartyCommand implements ClientModInitializer {
                     .then(literal("invite").then(argument("player", StringArgumentType.word())
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
-                                ModForLazyPeople.LOGGER.info("INVITE {}", player);
-                                context.getSource().sendFeedback(Text.literal("Player has been invited. (or not because it isn't implemented yet lmao)")); // TODO: Text.translatable
+                                MflpNetwork.invitePlayer(player);
                                 return 1;
                             })))
 
                     .then(literal("accept")
                             .executes(context -> {
-                                ModForLazyPeople.LOGGER.info("ACCEPT");
-                                context.getSource().sendFeedback(Text.literal("Invite Accepted! (or not because it isn't implemented yet lmao)")); // TODO: Text.translatable
+                                MflpNetwork.acceptInvite();
                                 return 1;
                             }))
 
                     .then(literal("decline")
                             .executes(context -> {
-                                ModForLazyPeople.LOGGER.info("DECLINE");
-                                context.getSource().sendFeedback(Text.literal("Invite Declined! (or not because it isn't implemented yet lmao)")); // TODO: Text.translatable
+                                MflpNetwork.declineInvite();
                                 return 1;
                             }))
 
@@ -44,23 +41,20 @@ public class PartyCommand implements ClientModInitializer {
 
                     .then(literal("leave")
                             .executes(context -> {
-                                ModForLazyPeople.LOGGER.info("LEAVE");
-                                context.getSource().sendFeedback(Text.literal("Left party! (or not because it isn't implemented yet lmao)")); // TODO: Text.translatable
+                                MflpNetwork.leaveParty();
                                 return 1;
                             }))
 
                     .then(literal("info")
                             .executes(context -> {
-                                ModForLazyPeople.LOGGER.info("INFO");
-                                context.getSource().sendFeedback(Text.literal("party information goes here"));
+                                MflpNetwork.getPartyInfo();
                                 return 1;
                             }))
 
                     .then(literal("remove").then(argument("player", StringArgumentType.word())
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
-                                ModForLazyPeople.LOGGER.info("REMOVE {}", player);
-                                context.getSource().sendFeedback(Text.literal("Player has been removed. (or not because it isn't implemented yet lmao)")); // TODO: Text.translatable
+                                MflpNetwork.removeMember(player);
                                 return 1;
                             })))
             );
