@@ -121,5 +121,8 @@
   "mflp.party.acceptingInvite": "Accepting Invite...",
   "mflp.party.decliningInvite": "Declining Invite...",
   "mflp.party.leavingParty": "Leaving Party...",
-  "mflp.party.removingPlayer": "Removing %s from the party..."
+  "mflp.party.removingPlayer": "Removing %s from the party...",
+
+  "mflp.party.error.timeout": "ERROR: Connection was timed out!",
+  "mflp.party.error.notInParty": "ERROR: You're not in a party!"
 }

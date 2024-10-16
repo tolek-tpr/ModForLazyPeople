@@ -22,8 +22,7 @@ public class PartyNetworkHandler {
     }
 
     public static void send(String message) {
-        EventManager.getInstance().fire(new PartyListener.MessageReceivedEvent(message, MinecraftClient.getInstance().getSession().getUsername()));
-        //throw new NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public static void removeMember(String member) {
