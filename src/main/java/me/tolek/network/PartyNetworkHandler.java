@@ -11,7 +11,7 @@ import org.apache.commons.lang3.NotImplementedException;
 public class PartyNetworkHandler {
 
     public static Event<PartyListener> PartyEvents;
-    
+
     public static void invitePlayer(String player) {
         throw new NotImplementedException();
     }

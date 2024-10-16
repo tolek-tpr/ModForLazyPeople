@@ -2,7 +2,7 @@ package me.tolek.commands.client;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
-import me.tolek.network.MflpNetwork;
+import me.tolek.network.PartyNetworkHandler;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
@@ -20,21 +20,21 @@ public class PartyCommand implements ClientModInitializer {
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.invitingPlayer", player));
-                                MflpNetwork.invitePlayer(player);
+                                PartyNetworkHandler.invitePlayer(player);
                                 return 1;
                             })))
 
                     .then(literal("accept")
                             .executes(context -> {
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.acceptingInvite"));
-                                MflpNetwork.acceptInvite();
+                                PartyNetworkHandler.acceptInvite();
                                 return 1;
                             }))
 
                     .then(literal("decline")
                             .executes(context -> {
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.decliningInvite"));
-                                MflpNetwork.declineInvite();
+                                PartyNetworkHandler.declineInvite();
                                 return 1;
                             }))
 
@@ -44,13 +44,13 @@ public class PartyCommand implements ClientModInitializer {
                     .then(literal("leave")
                             .executes(context -> {
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.leavingParty"));
-                                MflpNetwork.leaveParty();
+                                PartyNetworkHandler.leaveParty();
                                 return 1;
                             }))
 
                     .then(literal("info")
                             .executes(context -> {
-                                MflpNetwork.getPartyInfo();
+                                PartyNetworkHandler.getPartyInfo();
                                 return 1;
                             }))
 
@@ -58,7 +58,7 @@ public class PartyCommand implements ClientModInitializer {
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.removingPlayer", player));
-                                MflpNetwork.removeMember(player);
+                                PartyNetworkHandler.removeMember(player);
                                 return 1;
                             })))
             );
@@ -69,7 +69,7 @@ public class PartyCommand implements ClientModInitializer {
 
     private static int chat(CommandContext<FabricClientCommandSource> context) {
         String message = StringArgumentType.getString(context, "message");
-        MflpNetwork.send(message);
+        PartyNetworkHandler.send(message);
         return 1;
     }
 
