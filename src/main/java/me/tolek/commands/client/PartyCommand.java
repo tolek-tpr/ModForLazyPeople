@@ -2,7 +2,6 @@ package me.tolek.commands.client;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
-import me.tolek.ModForLazyPeople;
 import me.tolek.network.MflpNetwork;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
@@ -20,18 +19,21 @@ public class PartyCommand implements ClientModInitializer {
                     .then(literal("invite").then(argument("player", StringArgumentType.word())
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
+                                context.getSource().sendFeedback(Text.literal("Inviting " + player + "..."));
                                 MflpNetwork.invitePlayer(player);
                                 return 1;
                             })))
 
                     .then(literal("accept")
                             .executes(context -> {
+                                context.getSource().sendFeedback(Text.literal("Accepting Invite..."));
                                 MflpNetwork.acceptInvite();
                                 return 1;
                             }))
 
                     .then(literal("decline")
                             .executes(context -> {
+                                context.getSource().sendFeedback(Text.literal("Declining Invite..."));
                                 MflpNetwork.declineInvite();
                                 return 1;
                             }))
@@ -41,12 +43,14 @@ public class PartyCommand implements ClientModInitializer {
 
                     .then(literal("leave")
                             .executes(context -> {
+                                context.getSource().sendFeedback(Text.literal("Leaving party..."));
                                 MflpNetwork.leaveParty();
                                 return 1;
                             }))
 
                     .then(literal("info")
                             .executes(context -> {
+                                context.getSource().sendFeedback(Text.literal("Acquiring Party Info..."));
                                 MflpNetwork.getPartyInfo();
                                 return 1;
                             }))
@@ -54,6 +58,7 @@ public class PartyCommand implements ClientModInitializer {
                     .then(literal("remove").then(argument("player", StringArgumentType.word())
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
+                                context.getSource().sendFeedback(Text.literal("Removing " + player + " from the party..."));
                                 MflpNetwork.removeMember(player);
                                 return 1;
                             })))
