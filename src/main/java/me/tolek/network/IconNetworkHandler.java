@@ -20,25 +20,31 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
     @Override
     public void onEnable() {
         EventManager.getInstance().add(UpdateListener.class, this);
+        EventManager.getInstance().add(MinecraftStartListener.class, this);
+        EventManager.getInstance().add(MinecraftQuitListener.class, this);
 
         serverHandler.addMessageHandler(message -> {
-            JsonObject json = JsonParser.parseString(message).getAsJsonObject();
+            try {
+                JsonObject json = JsonParser.parseString(message).getAsJsonObject();
 
-            String id = json.get("id").getAsString();
-            String cmd = json.get("cmd").getAsString();
-            String body = json.get("cmd").getAsString();
+                String id = json.get("id").getAsString();
+                String cmd = json.get("cmd").getAsString();
+                String body = json.get("body").getAsString();
 
-            if (cmd.equals("STATUS") && body.equals("JOIN")) {
-                serverHandler.mflpUsers.add(id);
-            } else if (cmd.equals("STATUS") && body.equals("PART")) {
-                serverHandler.mflpUsers.remove(id);
-            }
+                if (cmd.equals("STATUS") && body.equals("JOIN")) {
+                    serverHandler.mflpUsers.add(id);
+                } else if (cmd.equals("STATUS") && body.equals("PART")) {
+                    serverHandler.mflpUsers.remove(id);
+                }
+            } catch (NullPointerException ignored) { }
         });
     }
 
     @Override
     public void onDisable() {
         EventManager.getInstance().remove(UpdateListener.class, this);
+        EventManager.getInstance().remove(MinecraftStartListener.class, this);
+        EventManager.getInstance().remove(MinecraftQuitListener.class, this);
     }
 
     @Override
@@ -48,12 +54,15 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
             CompletableFuture.supplyAsync(() -> {
                 if (this.client.getSession() == null || this.client.getSession().getUsername() == null) return "";
 
+                System.out.println("thing");
+
                 JsonObject message = new JsonObject();
+                message.addProperty("key", serverHandler.clientKey);
                 message.addProperty("id", client.getSession().getUsername());
                 message.addProperty("cmd", "STATUS");
                 message.addProperty("body", "JOIN");
 
-                serverHandler.sendMessage("");
+                serverHandler.sendMessage(message.getAsString());
                 return "";
             });
             ticksPassed = 0;
@@ -71,12 +80,15 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
         CompletableFuture.supplyAsync(() -> {
             if (this.client.getSession() == null || this.client.getSession().getUsername() == null) return "";
 
+            System.out.println("thing v2");
+
             JsonObject message = new JsonObject();
+            message.addProperty("key", serverHandler.clientKey);
             message.addProperty("id", client.getSession().getUsername());
             message.addProperty("cmd", "STATUS");
             message.addProperty("body", "JOIN");
 
-            serverHandler.sendMessage("");
+            serverHandler.sendMessage(message.getAsString());
             return "";
         });
     }
@@ -88,11 +100,12 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
             if (this.client.getSession() == null || this.client.getSession().getUsername() == null) return "";
 
             JsonObject message = new JsonObject();
+            message.addProperty("key", serverHandler.clientKey);
             message.addProperty("id", client.getSession().getUsername());
             message.addProperty("cmd", "STATUS");
             message.addProperty("body", "PART");
 
-            serverHandler.sendMessage("");
+            serverHandler.sendMessage(message.getAsString());
             return "";
         });
     }

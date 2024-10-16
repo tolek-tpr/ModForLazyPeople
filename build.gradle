@@ -31,6 +31,7 @@ dependencies {
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
 	implementation 'javax.websocket:javax.websocket-api:1.1'
+	implementation 'org.glassfish.tyrus.bundles:tyrus-standalone-client:1.17' // Tyrus dependency
 }
 
 test {
