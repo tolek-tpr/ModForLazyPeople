@@ -2,9 +2,12 @@ package me.tolek.network;
 
 import me.tolek.event.Event;
 import me.tolek.event.PartyListener;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.apache.commons.lang3.NotImplementedException;
 
-public class MflpNetwork {
+@Environment(EnvType.CLIENT)
+public class PartyNetworkHandler {
 
     public static Event<PartyListener> PartyEvents;
 

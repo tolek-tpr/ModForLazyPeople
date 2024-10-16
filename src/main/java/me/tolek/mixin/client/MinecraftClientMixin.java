@@ -19,6 +19,7 @@ import java.util.UUID;
 import static me.tolek.event.UpdateListener.UpdateEvent;
 import static me.tolek.event.MinecraftQuitListener.MinecraftQuitEvent;
 import static me.tolek.event.MinecraftStartListener.MinecraftStartEvent;
+import static me.tolek.event.MinecraftStartListener.MinecraftStartFinishedEvent;
 import static me.tolek.network.MflpPlayersWorker.sendInfoToServer;
 
 @Mixin(MinecraftClient.class)
@@ -53,6 +54,11 @@ public class MinecraftClientMixin {
 
     @Inject(at = @At("TAIL"), method = "onInitFinished")
     private void onInitFinished(@Coerce Object loadingContext, CallbackInfoReturnable<Runnable> cir) {
+        MinecraftStartFinishedEvent event = new MinecraftStartFinishedEvent();
+        EventManager.getInstance().fire(event);
+
+        // Deprecated
+
         MinecraftClient client = MinecraftClient.getInstance();
         MflpServerConnection mflpServer = ModForLazyPeople.serverConnection;
         // If true then try to send again.
