@@ -4,48 +4,28 @@ import java.util.ArrayList;
 
 public interface PartyListener extends Listener {
 
-    void onMessage(String message);
-    void onPlayerAdded(String playerUsername);
+    void onMessage(String message, String author);
     void onPlayerInvited(String playerUsername);
-    void onClientInvited(byte partyId);
+    void onClientInvited(byte partyId, String partyOwnerUsername);
     void onPlayerLeft(String playerUsername);
     void onPlayerRemoved(String playerUsername);
     void onPlayerJoined(String playerUsername);
+    void onPartyInfoReturned(); // TODO: Proper arguments + events
 
     public static class MessageReceivedEvent extends Event<PartyListener> {
 
         private final String message;
+        private final String author;
 
-        public MessageReceivedEvent(String message) {
+        public MessageReceivedEvent(String message, String author) {
             this.message = message;
+            this.author = author;
         }
 
         @Override
         public void fire(ArrayList<PartyListener> listeners) {
             for(PartyListener listener : listeners)
-                listener.onMessage(this.message);
-        }
-
-        @Override
-        public Class<PartyListener> getListenerType()
-        {
-            return PartyListener.class;
-        }
-
-    }
-
-    public static class PlayerAddedEvent extends Event<PartyListener> {
-
-        private final String username;
-
-        public PlayerAddedEvent(String username) {
-            this.username = username;
-        }
-
-        @Override
-        public void fire(ArrayList<PartyListener> listeners) {
-            for(PartyListener listener : listeners)
-                listener.onPlayerAdded(this.username);
+                listener.onMessage(this.message, this.author);
         }
 
         @Override
@@ -81,15 +61,17 @@ public interface PartyListener extends Listener {
     public static class InviteClientEvent extends Event<PartyListener> {
 
         private final byte partyID;
+        private final String partyOwnerUsername;
 
-        public InviteClientEvent(byte partyID) {
+        public InviteClientEvent(byte partyID, String partyOwnerUsername) {
             this.partyID = partyID;
+            this.partyOwnerUsername = partyOwnerUsername;
         }
 
         @Override
         public void fire(ArrayList<PartyListener> listeners) {
             for(PartyListener listener : listeners)
-                listener.onClientInvited(this.partyID);
+                listener.onClientInvited(this.partyID, partyOwnerUsername);
         }
 
         @Override

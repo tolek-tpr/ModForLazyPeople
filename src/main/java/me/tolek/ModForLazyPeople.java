@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class ModForLazyPeople implements ModInitializer {
 
 	public static final String MOD_ID = "modforlazypeople";
-    public static final Logger LOGGER = LoggerFactory.getLogger("modforlazypeople");
+    public static final Logger LOGGER = LoggerFactory.getLogger("MFLP");
 	public static final MflpServerConnection serverConnection = new MflpServerConnection();
 
 	private final ArrayList<EventImpl> events = new ArrayList<>();

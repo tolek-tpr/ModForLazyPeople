@@ -1,6 +1,7 @@
 package me.tolek.network;
 
 import me.tolek.event.Event;
+import me.tolek.event.EventManager;
 import me.tolek.event.PartyListener;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -10,7 +11,7 @@ import org.apache.commons.lang3.NotImplementedException;
 public class PartyNetworkHandler {
 
     public static Event<PartyListener> PartyEvents;
-
+    
     public static void invitePlayer(String player) {
         throw new NotImplementedException();
     }
@@ -20,7 +21,8 @@ public class PartyNetworkHandler {
     }
 
     public static void send(String message) {
-        throw new NotImplementedException();
+        EventManager.getInstance().fire(new PartyListener.MessageReceivedEvent(message, MinecraftClient.getInstance().getSession().getUsername()));
+        //throw new NotImplementedException();
     }
 
     public static void removeMember(String member) {
@@ -32,6 +34,10 @@ public class PartyNetworkHandler {
     }
 
     public static void getPartyInfo() {
+        throw new NotImplementedException();
+    }
+
+    public static void declineInvite() {
         throw new NotImplementedException();
     }
 
