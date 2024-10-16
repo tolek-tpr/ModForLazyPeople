@@ -4,6 +4,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 import java.net.URI;
+import java.util.ArrayList;
 
 @Environment(EnvType.CLIENT)
 public class WebSocketServerHandler {
@@ -17,6 +18,7 @@ public class WebSocketServerHandler {
     }
 
     public WebSocketClientEndpoint endpoint;
+    public ArrayList<String> mflpUsers = new ArrayList<>();
 
     public static WebSocketServerHandler getInstance() {
         if (instance == null) instance = new WebSocketServerHandler();

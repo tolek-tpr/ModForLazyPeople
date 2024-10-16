@@ -7,6 +7,7 @@ import me.tolek.modules.macro.MacroExecutor;
 import me.tolek.modules.autoReply.AutoReplyExecutor;
 import me.tolek.modules.settings.executor.AutoWelcomeBackImpl;
 import me.tolek.modules.settings.executor.AutoWelcomeImpl;
+import me.tolek.network.IconNetworkHandler;
 import me.tolek.network.MflpPlayersWorker;
 import net.fabricmc.api.ClientModInitializer;
 
@@ -26,7 +27,8 @@ public class ModForLazyPeopleClient implements ClientModInitializer {
         events.add(new AutoWelcomeImpl());
         events.add(new AutoReplyExecutor());
         events.add(new PartyEvents());
-        events.add(MflpPlayersWorker.getInstance());
+        //events.add(MflpPlayersWorker.getInstance());
+        events.add(new IconNetworkHandler());
 
         events.forEach(e -> e.setEnabled(true));
     }

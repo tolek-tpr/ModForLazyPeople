@@ -5,6 +5,7 @@ import me.tolek.event.EventManager;
 import me.tolek.event.PartyListener;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import org.apache.commons.lang3.NotImplementedException;
 
 @Environment(EnvType.CLIENT)

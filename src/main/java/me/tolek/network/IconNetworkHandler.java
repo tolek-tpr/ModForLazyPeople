@@ -1,12 +1,8 @@
 package me.tolek.network;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import me.tolek.ModForLazyPeople;
-import me.tolek.event.EventImpl;
-import me.tolek.event.EventManager;
-import me.tolek.event.MinecraftStartListener;
-import me.tolek.event.UpdateListener;
+import com.google.gson.JsonParser;
+import me.tolek.event.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -14,7 +10,7 @@ import net.minecraft.client.MinecraftClient;
 import java.util.concurrent.CompletableFuture;
 
 @Environment(EnvType.CLIENT)
-public class IconNetworkHandler extends EventImpl implements UpdateListener, MinecraftStartListener {
+public class IconNetworkHandler extends EventImpl implements UpdateListener, MinecraftStartListener, MinecraftQuitListener {
 
     private final WebSocketServerHandler serverHandler = WebSocketServerHandler.getInstance();
     private final MinecraftClient client = MinecraftClient.getInstance();
@@ -24,6 +20,20 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
     @Override
     public void onEnable() {
         EventManager.getInstance().add(UpdateListener.class, this);
+
+        serverHandler.addMessageHandler(message -> {
+            JsonObject json = JsonParser.parseString(message).getAsJsonObject();
+
+            String id = json.get("id").getAsString();
+            String cmd = json.get("cmd").getAsString();
+            String body = json.get("cmd").getAsString();
+
+            if (cmd.equals("STATUS") && body.equals("JOIN")) {
+                serverHandler.mflpUsers.add(id);
+            } else if (cmd.equals("STATUS") && body.equals("PART")) {
+                serverHandler.mflpUsers.remove(id);
+            }
+        });
     }
 
     @Override
@@ -46,23 +56,6 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
                 serverHandler.sendMessage("");
                 return "";
             });
-            CompletableFuture<String> gets = CompletableFuture.supplyAsync(() -> {
-                String d = null;
-                try {
-                    d = mflpServer.sendGetRequest("/api/mflp");
-                } catch (Exception e) {
-                    ModForLazyPeople.LOGGER.info("Failed to connect to server! Make sure you're connected to the internet and the MFLP " +
-                            "server is up at epsi.ddns.net:3000!");
-                }
-                return d;
-            });
-            gets.thenApply((r) -> {
-                try {
-                    this.data = gets.get();
-                } catch (Exception ignored) {
-                }
-                return "";
-            });
             ticksPassed = 0;
         }
     }
@@ -74,6 +67,33 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
 
     @Override
     public void onStartFinished() {
+        // Send join message
+        CompletableFuture.supplyAsync(() -> {
+            if (this.client.getSession() == null || this.client.getSession().getUsername() == null) return "";
 
+            JsonObject message = new JsonObject();
+            message.addProperty("id", client.getSession().getUsername());
+            message.addProperty("cmd", "STATUS");
+            message.addProperty("body", "JOIN");
+
+            serverHandler.sendMessage("");
+            return "";
+        });
+    }
+
+    @Override
+    public void onQuit() {
+        // Send leave message
+        CompletableFuture.supplyAsync(() -> {
+            if (this.client.getSession() == null || this.client.getSession().getUsername() == null) return "";
+
+            JsonObject message = new JsonObject();
+            message.addProperty("id", client.getSession().getUsername());
+            message.addProperty("cmd", "STATUS");
+            message.addProperty("body", "PART");
+
+            serverHandler.sendMessage("");
+            return "";
+        });
     }
 }

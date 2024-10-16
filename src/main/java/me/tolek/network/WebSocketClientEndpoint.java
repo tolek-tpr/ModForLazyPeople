@@ -38,7 +38,7 @@ public class WebSocketClientEndpoint {
 
     @OnMessage
     public void onMessage(String message) {
-        if (this.messageHandlers != null && !this.messageHandlers.isEmpty()) {
+        if (!this.messageHandlers.isEmpty()) {
             this.messageHandlers.forEach(handler -> handler.handleMessage(message));
         }
     }

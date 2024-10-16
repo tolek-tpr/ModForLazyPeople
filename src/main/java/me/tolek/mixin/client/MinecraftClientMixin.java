@@ -58,7 +58,7 @@ public class MinecraftClientMixin {
         EventManager.getInstance().fire(event);
 
         // Deprecated
-
+        /*
         MinecraftClient client = MinecraftClient.getInstance();
         MflpServerConnection mflpServer = ModForLazyPeople.serverConnection;
         // If true then try to send again.
@@ -69,6 +69,6 @@ public class MinecraftClientMixin {
         } catch (Exception e) {
             ModForLazyPeople.LOGGER.info("Failed to connect to server! Make sure you're connected to the internet and the MFLP " +
                     "server is up at epsi.ddns.net:3000!");
-        }
+        }*/
     }
 }
