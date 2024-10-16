@@ -122,6 +122,14 @@
   "mflp.party.decliningInvite": "Declining Invite...",
   "mflp.party.leavingParty": "Leaving Party...",
   "mflp.party.removingPlayer": "Removing %s from the party...",
+  "mflp.party.infoTitle": "PARTY INFORMATION:",
+  "mflp.party.infoOwner": "Owner: %s",
+  "mflp.party.infoMembers": "Members:",
+  "mflp.party.playerJoined": "%s has joined the party!",
+  "mflp.party.playerRemoved": "%s was removed from the party!",
+  "mflp.party.playerLeft": "%s has left the party!",
+  "mflp.party.clientInvited": "%s invited you to their party! Use /party accept to accept the invite, or /party decline to decline the invite!",
+  "mflp.party.playerInvited": "%s was invited to the party!",
 
   "mflp.party.error.timeout": "ERROR: Connection was timed out!",
   "mflp.party.error.notInParty": "ERROR: You're not in a party!"
