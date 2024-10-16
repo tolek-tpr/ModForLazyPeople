@@ -115,5 +115,11 @@
   "mflp.pause.settingsButton": "MFLP Settings",
 
   "mflp.updateScreen.currentVersion": "Mod for lazy people version: ",
-  "mflp.updateAvailable": "Update Available!"
+  "mflp.updateAvailable": "Update Available!",
+
+  "mflp.party.invitingPlayer": "Inviting %s to the party...",
+  "mflp.party.acceptingInvite": "Accepting Invite...",
+  "mflp.party.decliningInvite": "Declining Invite...",
+  "mflp.party.leavingParty": "Leaving Party...",
+  "mflp.party.removingPlayer": "Removing %s from the party..."
 }

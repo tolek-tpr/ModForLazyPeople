@@ -19,21 +19,21 @@ public class PartyCommand implements ClientModInitializer {
                     .then(literal("invite").then(argument("player", StringArgumentType.word())
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
-                                context.getSource().sendFeedback(Text.literal("Inviting " + player + "..."));
+                                context.getSource().sendFeedback(Text.translatable("mflp.party.invitingPlayer", player));
                                 MflpNetwork.invitePlayer(player);
                                 return 1;
                             })))
 
                     .then(literal("accept")
                             .executes(context -> {
-                                context.getSource().sendFeedback(Text.literal("Accepting Invite..."));
+                                context.getSource().sendFeedback(Text.translatable("mflp.party.acceptingInvite"));
                                 MflpNetwork.acceptInvite();
                                 return 1;
                             }))
 
                     .then(literal("decline")
                             .executes(context -> {
-                                context.getSource().sendFeedback(Text.literal("Declining Invite..."));
+                                context.getSource().sendFeedback(Text.translatable("mflp.party.decliningInvite"));
                                 MflpNetwork.declineInvite();
                                 return 1;
                             }))
@@ -43,14 +43,13 @@ public class PartyCommand implements ClientModInitializer {
 
                     .then(literal("leave")
                             .executes(context -> {
-                                context.getSource().sendFeedback(Text.literal("Leaving party..."));
+                                context.getSource().sendFeedback(Text.translatable("mflp.party.leavingParty"));
                                 MflpNetwork.leaveParty();
                                 return 1;
                             }))
 
                     .then(literal("info")
                             .executes(context -> {
-                                context.getSource().sendFeedback(Text.literal("Acquiring Party Info..."));
                                 MflpNetwork.getPartyInfo();
                                 return 1;
                             }))
@@ -58,7 +57,7 @@ public class PartyCommand implements ClientModInitializer {
                     .then(literal("remove").then(argument("player", StringArgumentType.word())
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
-                                context.getSource().sendFeedback(Text.literal("Removing " + player + " from the party..."));
+                                context.getSource().sendFeedback(Text.translatable("mflp.party.removingPlayer", player));
                                 MflpNetwork.removeMember(player);
                                 return 1;
                             })))
