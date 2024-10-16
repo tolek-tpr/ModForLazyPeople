@@ -54,7 +54,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
             return;
         }
 
-        MinecraftClient.getInstance().player.sendMessage(Text.literal(playerUsername + " was invited to the party!").formatted(Formatting.ITALIC, Formatting.GRAY));
+        MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.party.playerInvited", playerUsername).formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 
     @Override
@@ -67,7 +67,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
             return;
         }
 
-        MinecraftClient.getInstance().player.sendMessage(Text.literal(partyOwnerUsername + " invited you to their party! User /party accept to accept the invite, or /party decline to decline the invite!").formatted(Formatting.ITALIC, Formatting.GRAY));
+        MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.party.clientInvited", partyOwnerUsername).formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 
     @Override
@@ -80,7 +80,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
             return;
         }
 
-        MinecraftClient.getInstance().player.sendMessage(Text.literal(playerUsername + " has left the party!"));
+        MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.party.playerLeft", playerUsername).formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 
     @Override
@@ -93,7 +93,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
             return;
         }
 
-        MinecraftClient.getInstance().player.sendMessage(Text.literal(playerUsername + " was removed from the party!"));
+        MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.party.playerRemoved", playerUsername).formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 
     @Override
@@ -106,7 +106,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
             return;
         }
 
-        MinecraftClient.getInstance().player.sendMessage(Text.literal(playerUsername + " has joined the party!"));
+        MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.party.playerJoined", playerUsername).formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 
     @Override
@@ -119,7 +119,17 @@ public class PartyEvents extends EventImpl implements PartyListener {
             return;
         }
 
-        MinecraftClient.getInstance().player.sendMessage(Text.literal("PARTY INFORMATION:")); // TODO: Proper message.
+        MutableText newLine = Text.literal("\n");
+        MutableText title = Text.translatable("mflp.party.infoTitle").styled(style -> style.withBold(true));
+        MutableText ownerText = Text.translatable("mflp.party.infoOwner", owner).styled(style -> style.withBold(false).withItalic(true));
+        MutableText membersTitle = Text.translatable("mflp.party.infoMembers").styled(style -> style.withBold(true));
+        MutableText membersText = Text.literal("").styled(style -> style.withBold(false).withItalic(true));
+        for (String member : members) {
+            membersText.append("\n%s".formatted(member));
+        }
+
+        MutableText info = title.append(newLine).append(ownerText).append(newLine).append(membersTitle).append(membersText);
+        MinecraftClient.getInstance().player.sendMessage(info);
     }
 
 }
