@@ -83,6 +83,14 @@ public class PartyNetworkHandler extends EventImpl {
         throw new NotImplementedException();
     }
 
+    public static void promotePlayer(String player) {
+        throw new NotImplementedException();
+    }
+
+    public static void demotePlayer(String player) {
+        throw new NotImplementedException();
+    }
+
     @Override
     public void onEnable() {
         serverHandler.addMessageHandler(message -> {
