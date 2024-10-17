@@ -2,6 +2,7 @@ package me.tolek.events;
 
 import me.tolek.ModForLazyPeople;
 import me.tolek.event.*;
+import me.tolek.util.ToastUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -54,14 +55,14 @@ public class PartyEvents extends EventImpl implements PartyListener {
     }
 
     @Override
-    public void onClientInvited(byte partyId, String partyOwnerUsername, String err) {
-        assert MinecraftClient.getInstance().player != null;
+    public void onClientInvited(byte partyId, String partyOwnerUsername) {
+        ToastUtil.showToast(Text.translatable("mflp.party.clientInvited.title", partyOwnerUsername), Text.translatable("mflp.party.clientInvited.description", partyOwnerUsername));
+        //MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.party.clientInvited", partyOwnerUsername).formatted(Formatting.ITALIC, Formatting.GRAY));
+    }
 
-        if (handleError(err)) {
-            return;
-        }
-
-        MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.party.clientInvited", partyOwnerUsername).formatted(Formatting.ITALIC, Formatting.GRAY));
+    @Override
+    public void onClientRemoved() {
+        ToastUtil.showToast(Text.translatable("mflp.party.clientRemoved.title"), Text.empty());
     }
 
     @Override

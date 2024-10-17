@@ -1,13 +1,13 @@
 package me.tolek.event;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 public interface PartyListener extends Listener {
 
     void onMessage(String message, String author, String err);
     void onPlayerInvited(String playerUsername, String err);
-    void onClientInvited(byte partyId, String partyOwnerUsername, String err);
+    void onClientInvited(byte partyId, String partyOwnerUsername);
+    void onClientRemoved();
     void onPlayerLeft(String playerUsername, String err);
     void onPlayerRemoved(String playerUsername, String err);
     void onPlayerJoined(String playerUsername, String err);
@@ -67,18 +67,16 @@ public interface PartyListener extends Listener {
 
         private final byte partyID;
         private final String partyOwnerUsername;
-        private final String err;
 
-        public InviteClientEvent(byte partyID, String partyOwnerUsername, String err) {
+        public InviteClientEvent(byte partyID, String partyOwnerUsername) {
             this.partyID = partyID;
             this.partyOwnerUsername = partyOwnerUsername;
-            this.err = err;
         }
 
         @Override
         public void fire(ArrayList<PartyListener> listeners) {
             for(PartyListener listener : listeners)
-                listener.onClientInvited(this.partyID, this.partyOwnerUsername, this.err);
+                listener.onClientInvited(this.partyID, this.partyOwnerUsername);
         }
 
         @Override
@@ -87,6 +85,20 @@ public interface PartyListener extends Listener {
             return PartyListener.class;
         }
 
+    }
+
+    public static class ClientRemovedEvent extends Event<PartyListener> {
+
+        @Override
+        public void fire(ArrayList<PartyListener> listeners) {
+            for(PartyListener listener : listeners)
+                listener.onClientRemoved();
+        }
+
+        @Override
+        public Class<PartyListener> getListenerType() {
+            return PartyListener.class;
+        }
     }
 
     public static class PlayerLeaveEvent extends Event<PartyListener> {
