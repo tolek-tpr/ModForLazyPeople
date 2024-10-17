@@ -116,7 +116,7 @@ public class PartyNetworkHandler extends EventImpl {
                     PartyChangedEvent event = new PartyChangedEvent(bodyObject.get("owner").toString(), mods, players);
                     EventManager.getInstance().fire(event);
                 }
-            } catch (NullPointerException ignored) { }
+            } catch (Exception ignored) { }
         });
     }
 }
