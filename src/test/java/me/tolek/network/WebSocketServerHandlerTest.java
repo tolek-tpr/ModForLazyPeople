@@ -27,7 +27,7 @@ class WebSocketServerHandlerTest {
         JsonObject m3 = new JsonObject();
         JsonObject body1 = new JsonObject();
         body1.addProperty("cmd", "INVITE");
-        body1.addProperty("player", "Player508" /*username*/);
+        body1.addProperty("player", "Player23" /*username*/);
         m3.addProperty("key", serverHandler.clientKey);
         m3.addProperty("id", "bearrr");
         m3.addProperty("cmd", "PARTY");
