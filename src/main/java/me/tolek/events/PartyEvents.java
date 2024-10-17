@@ -57,7 +57,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
     }
 
     @Override
-    public void onClientInvited(byte partyId, String partyOwnerUsername) {
+    public void onClientInvited(String partyOwnerUsername) {
         ToastUtil.showToast(Text.translatable("mflp.party.clientInvited.title", partyOwnerUsername), Text.translatable("mflp.party.clientInvited.description", partyOwnerUsername));
         //MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.party.clientInvited", partyOwnerUsername).formatted(Formatting.ITALIC, Formatting.GRAY));
     }

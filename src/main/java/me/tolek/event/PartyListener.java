@@ -6,7 +6,7 @@ public interface PartyListener extends Listener {
 
     void onMessage(String message, String author, String err);
     void onPlayerInvited(String playerUsername, String err);
-    void onClientInvited(byte partyId, String partyOwnerUsername);
+    void onClientInvited(String partyOwnerUsername);
     void onClientRemoved();
     void onPlayerLeft(String playerUsername, String err);
     void onPlayerRemoved(String playerUsername, String err);
@@ -67,18 +67,16 @@ public interface PartyListener extends Listener {
 
     public static class InviteClientEvent extends Event<PartyListener> {
 
-        private final byte partyID;
         private final String partyOwnerUsername;
 
-        public InviteClientEvent(byte partyID, String partyOwnerUsername) {
-            this.partyID = partyID;
+        public InviteClientEvent(String partyOwnerUsername) {
             this.partyOwnerUsername = partyOwnerUsername;
         }
 
         @Override
         public void fire(ArrayList<PartyListener> listeners) {
             for(PartyListener listener : listeners)
-                listener.onClientInvited(this.partyID, this.partyOwnerUsername);
+                listener.onClientInvited(this.partyOwnerUsername);
         }
 
         @Override
