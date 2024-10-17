@@ -1,5 +1,7 @@
 package me.tolek.network;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.junit.jupiter.api.Test;
 
@@ -22,9 +24,19 @@ class WebSocketServerHandlerTest {
         message.addProperty("cmd", "STATUS");
         message.addProperty("body", "JOIN");
 
-        System.out.println(message);
+        JsonObject m2 = new JsonObject();
+        JsonObject body = new JsonObject();
+        body.addProperty("cmd", "INVITE");
+        body.addProperty("player", "Player634");
+        m2.addProperty("key", serverHandler.clientKey);
+        m2.addProperty("id", "bearrr");
+        m2.addProperty("cmd", "PARTY");
+        m2.add("body", body);
 
         serverHandler.sendMessage(message.toString());
+        serverHandler.sendMessage(m2.toString());
+
+        serverHandler.addMessageHandler(System.out::println);
     }
 
 }
