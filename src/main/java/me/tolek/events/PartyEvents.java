@@ -28,9 +28,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
     public void onMessage(String message, String author, String err) {
         assert MinecraftClient.getInstance().player != null;
 
-        if (err != null) {
-            MinecraftClient.getInstance().player.sendMessage(Text.translatable(err).formatted(Formatting.RED, Formatting.BOLD));
-            ModForLazyPeople.LOGGER.warn(err);
+        if (handleError(err)) {
             return;
         }
 
@@ -48,9 +46,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
     public void onPlayerInvited(String playerUsername, String err) {
         assert MinecraftClient.getInstance().player != null;
 
-        if (err != null) {
-            MinecraftClient.getInstance().player.sendMessage(Text.translatable(err).formatted(Formatting.RED, Formatting.BOLD));
-            ModForLazyPeople.LOGGER.warn(err);
+        if (handleError(err)) {
             return;
         }
 
@@ -61,9 +57,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
     public void onClientInvited(byte partyId, String partyOwnerUsername, String err) {
         assert MinecraftClient.getInstance().player != null;
 
-        if (err != null) {
-            MinecraftClient.getInstance().player.sendMessage(Text.translatable(err).formatted(Formatting.RED, Formatting.BOLD));
-            ModForLazyPeople.LOGGER.warn(err);
+        if (handleError(err)) {
             return;
         }
 
@@ -74,9 +68,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
     public void onPlayerLeft(String playerUsername, String err) {
         assert MinecraftClient.getInstance().player != null;
 
-        if (err != null) {
-            MinecraftClient.getInstance().player.sendMessage(Text.translatable(err).formatted(Formatting.RED, Formatting.BOLD));
-            ModForLazyPeople.LOGGER.warn(err);
+        if (handleError(err)) {
             return;
         }
 
@@ -87,9 +79,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
     public void onPlayerRemoved(String playerUsername, String err) {
         assert MinecraftClient.getInstance().player != null;
 
-        if (err != null) {
-            MinecraftClient.getInstance().player.sendMessage(Text.translatable(err).formatted(Formatting.RED, Formatting.BOLD));
-            ModForLazyPeople.LOGGER.warn(err);
+        if (handleError(err)) {
             return;
         }
 
@@ -100,9 +90,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
     public void onPlayerJoined(String playerUsername, String err) {
         assert MinecraftClient.getInstance().player != null;
 
-        if (err != null) {
-            MinecraftClient.getInstance().player.sendMessage(Text.translatable(err).formatted(Formatting.RED, Formatting.BOLD));
-            ModForLazyPeople.LOGGER.warn(err);
+        if (handleError(err)) {
             return;
         }
 
@@ -113,9 +101,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
     public void onPartyInfoReturned(String owner, ArrayList<String> members, String err) {
         assert MinecraftClient.getInstance().player != null;
 
-        if (err != null) {
-            MinecraftClient.getInstance().player.sendMessage(Text.translatable(err).formatted(Formatting.RED, Formatting.BOLD));
-            ModForLazyPeople.LOGGER.warn(err);
+        if (handleError(err)) {
             return;
         }
 
@@ -130,6 +116,17 @@ public class PartyEvents extends EventImpl implements PartyListener {
 
         MutableText info = title.append(newLine).append(ownerText).append(newLine).append(membersTitle).append(membersText);
         MinecraftClient.getInstance().player.sendMessage(info);
+    }
+
+    private static boolean handleError(String err) {
+        if (err != null) {
+            assert MinecraftClient.getInstance().player != null;
+            MinecraftClient.getInstance().player.sendMessage(Text.translatable(err).formatted(Formatting.RED, Formatting.BOLD));
+            ModForLazyPeople.LOGGER.warn(err);
+            return true;
+        }
+
+        return false;
     }
 
 }
