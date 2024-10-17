@@ -14,6 +14,7 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
 
     private final WebSocketServerHandler serverHandler = WebSocketServerHandler.getInstance();
     private final MinecraftClient client = MinecraftClient.getInstance();
+    private boolean sentQuit = false;
 
     private int ticksPassed = 0;
 
@@ -83,8 +84,8 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
             message.addProperty("id", client.getSession().getUsername());
             message.addProperty("cmd", "STATUS");
             message.addProperty("body", "JOIN");
-
             serverHandler.sendMessage(message.toString());
+
             return "";
         });
     }
@@ -92,6 +93,7 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
     @Override
     public void onQuit() {
         // Send leave message
+        if (sentQuit) return;
         CompletableFuture.supplyAsync(() -> {
             if (this.client.getSession() == null || this.client.getSession().getUsername() == null) return "";
 
@@ -102,6 +104,7 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
             message.addProperty("body", "PART");
 
             serverHandler.sendMessage(message.toString());
+            sentQuit = true;
             return "";
         });
     }
