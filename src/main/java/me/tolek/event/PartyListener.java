@@ -12,6 +12,7 @@ public interface PartyListener extends Listener {
     void onPlayerRemoved(String playerUsername, String err);
     void onPlayerJoined(String playerUsername, String err);
     void onPartyInfoReturned(String owner, ArrayList<String> members, String err); // TODO: Proper arguments + events
+    void onPartyInviteFailed(String playerUsername);
 
     public static class MessageReceivedEvent extends Event<PartyListener> {
 
@@ -195,6 +196,28 @@ public interface PartyListener extends Listener {
         public Class<PartyListener> getListenerType() {
             return PartyListener.class;
         }
+    }
+
+    public static class PlayerInviteFailedEvent extends Event<PartyListener> {
+
+        private final String username;
+
+        public PlayerInviteFailedEvent(String username) {
+            this.username = username;
+        }
+
+        @Override
+        public void fire(ArrayList<PartyListener> listeners) {
+            for(PartyListener listener : listeners)
+                listener.onPartyInviteFailed(this.username);
+        }
+
+        @Override
+        public Class<PartyListener> getListenerType()
+        {
+            return PartyListener.class;
+        }
+
     }
 
 }

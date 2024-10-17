@@ -9,6 +9,7 @@ import me.tolek.modules.settings.executor.AutoWelcomeBackImpl;
 import me.tolek.modules.settings.executor.AutoWelcomeImpl;
 import me.tolek.network.IconNetworkHandler;
 import me.tolek.network.MflpPlayersWorker;
+import me.tolek.network.WebSocketServerHandler;
 import net.fabricmc.api.ClientModInitializer;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class ModForLazyPeopleClient implements ClientModInitializer {
 
     private final ArrayList<EventImpl> events = new ArrayList<>();
+    private final WebSocketServerHandler server = WebSocketServerHandler.getInstance(); // PRE-LOAD for key gen
 
     @Override
     public void onInitializeClient() {

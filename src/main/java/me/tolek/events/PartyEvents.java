@@ -119,6 +119,11 @@ public class PartyEvents extends EventImpl implements PartyListener {
         MinecraftClient.getInstance().player.sendMessage(info);
     }
 
+    @Override
+    public void onPartyInviteFailed(String username) {
+
+    }
+
     private static boolean handleError(String err) {
         if (err != null) {
             assert MinecraftClient.getInstance().player != null;

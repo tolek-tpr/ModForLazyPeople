@@ -54,15 +54,13 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
             CompletableFuture.supplyAsync(() -> {
                 if (this.client.getSession() == null || this.client.getSession().getUsername() == null) return "";
 
-                System.out.println("thing");
-
                 JsonObject message = new JsonObject();
                 message.addProperty("key", serverHandler.clientKey);
                 message.addProperty("id", client.getSession().getUsername());
                 message.addProperty("cmd", "STATUS");
                 message.addProperty("body", "JOIN");
 
-                serverHandler.sendMessage(message.getAsString());
+                serverHandler.sendMessage(message.toString());
                 return "";
             });
             ticksPassed = 0;
@@ -80,15 +78,13 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
         CompletableFuture.supplyAsync(() -> {
             if (this.client.getSession() == null || this.client.getSession().getUsername() == null) return "";
 
-            System.out.println("thing v2");
-
             JsonObject message = new JsonObject();
             message.addProperty("key", serverHandler.clientKey);
             message.addProperty("id", client.getSession().getUsername());
             message.addProperty("cmd", "STATUS");
             message.addProperty("body", "JOIN");
 
-            serverHandler.sendMessage(message.getAsString());
+            serverHandler.sendMessage(message.toString());
             return "";
         });
     }
@@ -105,7 +101,7 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
             message.addProperty("cmd", "STATUS");
             message.addProperty("body", "PART");
 
-            serverHandler.sendMessage(message.getAsString());
+            serverHandler.sendMessage(message.toString());
             return "";
         });
     }

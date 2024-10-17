@@ -20,17 +20,17 @@ public class WebSocketServerHandler {
             //endpoint = new WebSocketClientEndpoint(new URI("wss://epsi.ddns.net:3000"));
 
             endpoint = new WebSocketClientEndpoint(new URI("ws://localhost:3000"));
-        } catch (Exception ignored) {
-            ignored.printStackTrace();
-        }
+        } catch (Exception ignored) {}
 
         this.endpoint.addMessageHandler(message -> {
-            JsonObject json = JsonParser.parseString(message).getAsJsonObject();
+            try {
+                JsonObject json = JsonParser.parseString(message).getAsJsonObject();
 
-            String clientKey = json.get("key").getAsString();
+                String clientKey = json.get("key").getAsString();
 
-            if (clientKey != null) this.clientKey = clientKey;
-            System.out.println(clientKey);
+                if (clientKey != null) this.clientKey = clientKey;
+                System.out.println("Received client key, setting");
+            } catch (NullPointerException ignored) {}
         });
     }
 
