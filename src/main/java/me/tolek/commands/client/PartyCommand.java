@@ -2,15 +2,21 @@ package me.tolek.commands.client;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
+import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
+import me.tolek.gui.screens.PartyGui;
 import me.tolek.network.PartyNetworkHandler;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.argument;
 
+@Environment(EnvType.CLIENT)
 public class PartyCommand implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
@@ -61,6 +67,13 @@ public class PartyCommand implements ClientModInitializer {
                                 PartyNetworkHandler.removeMember(player);
                                 return 1;
                             })))
+
+                    .then(literal("manage")
+                            .executes(context -> {
+                                MinecraftClient client = context.getSource().getClient();
+                                client.send(() -> client.setScreen(new CottonClientScreen(Text.translatable("mflp.party.screen.title"), new PartyGui())));
+                                return 1;
+                            }))
             );
 
             dispatcher.register(literal("pc").then(argument("message", StringArgumentType.greedyString()).executes(PartyCommand::chat)));

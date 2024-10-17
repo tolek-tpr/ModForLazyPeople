@@ -2,6 +2,8 @@ package me.tolek.events;
 
 import me.tolek.ModForLazyPeople;
 import me.tolek.event.*;
+import me.tolek.gui.screens.PartyGui;
+import me.tolek.modules.party.Party;
 import me.tolek.util.ToastUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -99,7 +101,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
     }
 
     @Override
-    public void onPartyInfoReturned(String owner, ArrayList<String> members, String err) {
+    public void onPartyInfoReturned(String owner, ArrayList<String> moderators, ArrayList<String> members, String err) {
         assert MinecraftClient.getInstance().player != null;
 
         if (handleError(err)) {
@@ -109,19 +111,32 @@ public class PartyEvents extends EventImpl implements PartyListener {
         MutableText newLine = Text.literal("\n");
         MutableText title = Text.translatable("mflp.party.infoTitle").styled(style -> style.withBold(true));
         MutableText ownerText = Text.translatable("mflp.party.infoOwner", owner).styled(style -> style.withBold(false).withItalic(true));
-        MutableText membersTitle = Text.translatable("mflp.party.infoMembers").styled(style -> style.withBold(true));
+        MutableText moderatorsTitle = Text.translatable("mflp.party.moderators").styled(style -> style.withBold(true));
+        MutableText moderatorsText = Text.literal("").styled(style -> style.withBold(false).withItalic(true));
+        for (String moderator : moderators) {
+            moderatorsText.append("\n%s".formatted(moderator));
+        }
+        MutableText membersTitle = Text.translatable("mflp.party.members").styled(style -> style.withBold(true).withItalic(false));
         MutableText membersText = Text.literal("").styled(style -> style.withBold(false).withItalic(true));
         for (String member : members) {
             membersText.append("\n%s".formatted(member));
         }
 
-        MutableText info = title.append(newLine).append(ownerText).append(newLine).append(membersTitle).append(membersText);
+        MutableText info = title.append(newLine).append(ownerText).append(newLine).append(moderatorsTitle).append(moderatorsText).append(newLine).append(membersTitle).append(membersText);
         MinecraftClient.getInstance().player.sendMessage(info);
     }
 
     @Override
     public void onPartyInviteFailed(String username) {
+        ToastUtil.showToast(Text.translatable("mflp.party.failedToInvite.title", username), Text.translatable("mflp.party.failedToInvite.description"));
+    }
 
+    @Override
+    public void onPartyChanged(String owner, ArrayList<String> moderators, ArrayList<String> members) {
+        Party.setOwner(owner);
+        Party.setModerators(moderators);
+        Party.setMembers(members);
+        PartyGui.notifyPartyChanged();
     }
 
     private static boolean handleError(String err) {

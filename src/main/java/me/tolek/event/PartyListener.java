@@ -11,8 +11,9 @@ public interface PartyListener extends Listener {
     void onPlayerLeft(String playerUsername, String err);
     void onPlayerRemoved(String playerUsername, String err);
     void onPlayerJoined(String playerUsername, String err);
-    void onPartyInfoReturned(String owner, ArrayList<String> members, String err); // TODO: Proper arguments + events
+    void onPartyInfoReturned(String owner, ArrayList<String> moderators, ArrayList<String> members, String err);
     void onPartyInviteFailed(String playerUsername);
+    void onPartyChanged(String owner, ArrayList<String> moderators, ArrayList<String> members);
 
     public static class MessageReceivedEvent extends Event<PartyListener> {
 
@@ -177,11 +178,13 @@ public interface PartyListener extends Listener {
     public static class PartyInfoReturnedEvent extends Event<PartyListener> {
 
         private final String owner;
+        private final ArrayList<String> moderators;
         private final ArrayList<String> members;
         private final String err;
 
-        public PartyInfoReturnedEvent(String owner, ArrayList<String> members, String err) {
+        public PartyInfoReturnedEvent(String owner, ArrayList<String> moderators, ArrayList<String> members, String err) {
             this.owner = owner;
+            this.moderators = moderators;
             this.members = members;
             this.err = err;
         }
@@ -189,7 +192,7 @@ public interface PartyListener extends Listener {
         @Override
         public void fire(ArrayList<PartyListener> listeners) {
             for(PartyListener listener : listeners)
-                listener.onPartyInfoReturned(this.owner, this.members, this.err);
+                listener.onPartyInfoReturned(this.owner, this.moderators, this.members, this.err);
         }
 
         @Override
@@ -218,6 +221,30 @@ public interface PartyListener extends Listener {
             return PartyListener.class;
         }
 
+    }
+
+    public static class PartyChangedEvent extends Event<PartyListener> {
+
+        private final String owner;
+        private final ArrayList<String> moderators;
+        private final ArrayList<String> members;
+
+        public PartyChangedEvent(String owner, ArrayList<String> moderators, ArrayList<String> members) {
+            this.owner = owner;
+            this.moderators = moderators;
+            this.members = members;
+        }
+
+        @Override
+        public void fire(ArrayList<PartyListener> listeners) {
+            for(PartyListener listener : listeners)
+                listener.onPartyChanged(this.owner, this.moderators, this.members);
+        }
+
+        @Override
+        public Class<PartyListener> getListenerType() {
+            return PartyListener.class;
+        }
     }
 
 }
