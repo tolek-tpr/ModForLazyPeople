@@ -23,7 +23,6 @@ public class WebSocketServerHandler {
         } catch (Exception ignored) {}
 
         this.endpoint.addMessageHandler(message -> {
-            System.out.println(message);
             try {
                 JsonObject json = JsonParser.parseString(message).getAsJsonObject();
 

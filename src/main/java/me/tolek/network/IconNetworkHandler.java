@@ -7,6 +7,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 
+import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
 @Environment(EnvType.CLIENT)
@@ -28,14 +29,26 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
             try {
                 JsonObject json = JsonParser.parseString(message).getAsJsonObject();
 
-                String id = json.get("id").getAsString();
-                String cmd = json.get("cmd").getAsString();
-                String body = json.get("body").getAsString();
+                String id = json.get("id").toString().replaceAll("\"", "");
+                String cmd = json.get("cmd").toString().replaceAll("\"", "");
+                String body = json.get("body").toString().replaceAll("\"", "");
 
-                if (cmd.equals("STATUS") && body.equals("JOIN")) {
+                if (cmd.equalsIgnoreCase("STATUS") && body.equalsIgnoreCase("JOIN")) {
                     serverHandler.mflpUsers.add(id);
-                } else if (cmd.equals("STATUS") && body.equals("PART")) {
+                } else if (cmd.equalsIgnoreCase("STATUS") && body.equalsIgnoreCase("PART")) {
                     serverHandler.mflpUsers.remove(id);
+                } else if (cmd.equalsIgnoreCase("STATUS")) {
+                    JsonObject bodyObject = JsonParser.parseString(body).getAsJsonObject();
+
+                    if (bodyObject.get("cmd").toString().replaceAll("\"", "").equalsIgnoreCase("FULL_LIST")) {
+                        ArrayList<String> clients = new ArrayList<>();
+
+                        bodyObject.get("moderators").getAsJsonArray().forEach(element -> clients.add(element.toString().replaceAll("\"", "")));
+                        System.out.println("Received full list, " + bodyObject.get("clients").toString().replaceAll("\"", ""));
+                        serverHandler.mflpUsers = clients;
+                    }
+
+
                 }
             } catch (Exception ignored) { }
         });
@@ -76,6 +89,19 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
     @Override
     public void onStartFinished() {
         // Send join message
+        CompletableFuture.supplyAsync(() -> {
+            if (this.client.getSession() == null || this.client.getSession().getUsername() == null) return "";
+
+            JsonObject requestListMessage = new JsonObject();
+            requestListMessage.addProperty("key", serverHandler.clientKey);
+            requestListMessage.addProperty("id", this.client.getSession().getUsername());
+            requestListMessage.addProperty("cmd", "STATUS");
+            requestListMessage.addProperty("body", "REQUEST_LIST");
+
+            serverHandler.sendMessage(requestListMessage.toString());
+            return "";
+        });
+
         CompletableFuture.supplyAsync(() -> {
             if (this.client.getSession() == null || this.client.getSession().getUsername() == null) return "";
 
