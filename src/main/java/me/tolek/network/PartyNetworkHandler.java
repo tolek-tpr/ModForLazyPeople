@@ -75,10 +75,6 @@ public class PartyNetworkHandler extends EventImpl {
         serverHandler.sendMessage(message.toString());
     }
 
-    public static void getPartyInfo() {
-        throw new NotImplementedException();
-    }
-
     public static void declineInvite() {
         throw new NotImplementedException();
     }

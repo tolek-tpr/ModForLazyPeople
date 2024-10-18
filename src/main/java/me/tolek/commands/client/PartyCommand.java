@@ -4,6 +4,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
 import me.tolek.gui.screens.PartyGui;
+import me.tolek.modules.party.Party;
 import me.tolek.network.PartyNetworkHandler;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -11,6 +12,7 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
@@ -56,7 +58,22 @@ public class PartyCommand implements ClientModInitializer {
 
                     .then(literal("info")
                             .executes(context -> {
-                                PartyNetworkHandler.getPartyInfo();
+                                MutableText newLine = Text.literal("\n");
+                                MutableText title = Text.translatable("mflp.party.infoTitle").styled(style -> style.withBold(true));
+                                MutableText ownerText = Text.translatable("mflp.party.infoOwner", Party.getOwner()).styled(style -> style.withBold(false).withItalic(true));
+                                MutableText moderatorsTitle = Text.translatable("mflp.party.moderators").styled(style -> style.withBold(true));
+                                MutableText moderatorsText = Text.literal("").styled(style -> style.withBold(false).withItalic(true));
+                                for (String moderator : Party.getModerators()) {
+                                    moderatorsText.append("\n%s".formatted(moderator));
+                                }
+                                MutableText membersTitle = Text.translatable("mflp.party.members").styled(style -> style.withBold(true).withItalic(false));
+                                MutableText membersText = Text.literal("").styled(style -> style.withBold(false).withItalic(true));
+                                for (String member : Party.getMembers()) {
+                                    membersText.append("\n%s".formatted(member));
+                                }
+
+                                MutableText info = title.append(newLine).append(ownerText).append(newLine).append(moderatorsTitle).append(moderatorsText).append(newLine).append(membersTitle).append(membersText);
+                                context.getSource().sendFeedback(info);
                                 return 1;
                             }))
 

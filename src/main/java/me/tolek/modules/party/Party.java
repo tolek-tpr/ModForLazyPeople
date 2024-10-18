@@ -1,12 +1,15 @@
 package me.tolek.modules.party;
 
+import net.minecraft.client.MinecraftClient;
+
 import java.util.ArrayList;
 
 public class Party {
 
-    private static String owner;
-    private static ArrayList<String> moderators = new ArrayList<>();
-    private static ArrayList<String> members = new ArrayList<>();
+    private static String owner = "BeefyAndTheDucks";
+    private static ArrayList<String> moderators = new ArrayList<>() {{ add("wwwwwwwwwwwwwwww"); }};
+    private static ArrayList<String> members = new ArrayList<>() {{ add("bear_with_me_XD"); add("prof_tntalt"); add("vipelyrs"); }};
+    private static boolean isInParty = false;
 
     public static String getOwner() {
         return owner;
@@ -30,5 +33,21 @@ public class Party {
 
     public static void setMembers(ArrayList<String> members) {
         Party.members = members;
+    }
+
+    public static boolean isOwner() {
+        return MinecraftClient.getInstance().getSession().getUsername().equals(owner);
+    }
+
+    public static boolean isModeratorOrOwner() {
+        return moderators.contains(MinecraftClient.getInstance().getSession().getUsername()) || isOwner();
+    }
+
+    public static boolean isInParty() {
+        return isInParty;
+    }
+
+    public static void setInParty(boolean isInParty) {
+        Party.isInParty = isInParty;
     }
 }

@@ -11,7 +11,6 @@ public interface PartyListener extends Listener {
     void onPlayerLeft(String playerUsername, String err);
     void onPlayerRemoved(String playerUsername, String err);
     void onPlayerJoined(String playerUsername, String err);
-    void onPartyInfoReturned(String owner, ArrayList<String> moderators, ArrayList<String> members, String err);
     void onPartyInviteFailed(String playerUsername);
     void onPartyChanged(String owner, ArrayList<String> moderators, ArrayList<String> members);
 
@@ -171,32 +170,6 @@ public interface PartyListener extends Listener {
             return PartyListener.class;
         }
 
-    }
-
-    public static class PartyInfoReturnedEvent extends Event<PartyListener> {
-
-        private final String owner;
-        private final ArrayList<String> moderators;
-        private final ArrayList<String> members;
-        private final String err;
-
-        public PartyInfoReturnedEvent(String owner, ArrayList<String> moderators, ArrayList<String> members, String err) {
-            this.owner = owner;
-            this.moderators = moderators;
-            this.members = members;
-            this.err = err;
-        }
-
-        @Override
-        public void fire(ArrayList<PartyListener> listeners) {
-            for(PartyListener listener : listeners)
-                listener.onPartyInfoReturned(this.owner, this.moderators, this.members, this.err);
-        }
-
-        @Override
-        public Class<PartyListener> getListenerType() {
-            return PartyListener.class;
-        }
     }
 
     public static class PlayerInviteFailedEvent extends Event<PartyListener> {

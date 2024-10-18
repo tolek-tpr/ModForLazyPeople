@@ -139,5 +139,7 @@
   "mflp.party.error.timeout": "ERROR: Connection was timed out!",
   "mflp.party.error.notInParty": "ERROR: You're not in a party!",
   "mflp.party.failedToInvite.title": "Failed to invite %s",
-  "mflp.party.failedToInvite.description": "This could be because the MFLP servers are down, \nthe player is not online, or the player doesn't have MFLP installed."
+  "mflp.party.failedToInvite.description": "This could be because the MFLP servers are down, \nthe player is not online, or the player doesn't have MFLP installed.",
+  "mflp.party.screen.invitePlayer": "Player to invite",
+  "mflp.party.screen.invite": "Invite"
 }

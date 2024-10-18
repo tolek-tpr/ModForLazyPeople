@@ -15,4 +15,8 @@ public class WListPanelWithModifiableData<D, W extends WWidget> extends WListPan
     public void setData(List<D> data) {
         this.data = data;
     }
+
+    public void setConfigurator(BiConsumer<D, W> configurator) {
+        this.configurator = configurator;
+    }
 }

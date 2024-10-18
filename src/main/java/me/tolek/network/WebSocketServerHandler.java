@@ -22,7 +22,7 @@ public class WebSocketServerHandler {
             endpoint = new WebSocketClientEndpoint(new URI("ws://localhost:3000"));
         } catch (Exception ignored) {}
 
-        this.endpoint.addMessageHandler(message -> {
+        /*this.endpoint.addMessageHandler(message -> {
             System.out.println(message);
             try {
                 JsonObject json = JsonParser.parseString(message).getAsJsonObject();
@@ -32,7 +32,7 @@ public class WebSocketServerHandler {
                 if (clientKey != null) this.clientKey = clientKey;
                 System.out.println("Received client key, setting");
             } catch (NullPointerException ignored) {}
-        });
+        });*/
     }
 
     public WebSocketClientEndpoint endpoint;
