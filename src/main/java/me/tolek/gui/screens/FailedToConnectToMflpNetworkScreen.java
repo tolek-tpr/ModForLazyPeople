@@ -18,7 +18,10 @@ public class FailedToConnectToMflpNetworkScreen extends Screen {
                 .build();
         addDrawableChild(okayButton);
 
-        ButtonWidget retryButton = ButtonWidget.builder(Text.translatable("mflp.retry"), (b) -> close())
+        ButtonWidget retryButton = ButtonWidget.builder(Text.translatable("mflp.retry"), (b) -> {
+                    // TODO: RECONNECTION CALL
+                    close();
+                })
                 .dimensions(width / 2 - 120, height / 2 + height / 3, 100, 18)
                 .build();
         addDrawableChild(retryButton);
