@@ -21,6 +21,7 @@
   "mflp.duplicate": "Duplicate",
   "mflp.name": "Name",
   "mflp.download": "Download",
+  "mflp.retry": "Retry",
 
   "mflp.mainConfig.macrosButton": "Macros",
   "mflp.mainConfig.settingsButton": "Settings",
@@ -135,11 +136,14 @@
   "mflp.party.clientRemoved.title": "You were removed from the party!",
   "mflp.party.screen.title": "Manage Party",
   "mflp.party.screen.ownership": "%s's party",
+  "mflp.party.screen.invitePlayer": "Player to invite",
+  "mflp.party.screen.invite": "Invite",
 
   "mflp.party.error.timeout": "ERROR: Connection was timed out!",
   "mflp.party.error.notInParty": "ERROR: You're not in a party!",
   "mflp.party.failedToInvite.title": "Failed to invite %s",
   "mflp.party.failedToInvite.description": "This could be because the MFLP servers are down, \nthe player is not online, or the player doesn't have MFLP installed.",
-  "mflp.party.screen.invitePlayer": "Player to invite",
-  "mflp.party.screen.invite": "Invite"
+
+  "mflp.failedToConnectScreen.title": "Failed to connect to MFLP Network",
+  "mflp.failedToConnectScreen.description": "This is either because the servers are down, or you aren't connected to the internet."
 }
