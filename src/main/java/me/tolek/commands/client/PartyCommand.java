@@ -24,7 +24,7 @@ public class PartyCommand implements ClientModInitializer {
     public void onInitializeClient() {
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
             dispatcher.register(literal("party")
-                    .then(literal("invite").then(argument("player", StringArgumentType.word())
+                    .then(literal("invite").then(argument("player", StringArgumentType.word()).requires((cmdSource) -> Party.isModeratorOrOwner()).requires((cmdSource) -> Party.isInParty())
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.invitingPlayer", player));
@@ -46,30 +46,30 @@ public class PartyCommand implements ClientModInitializer {
                                 return 1;
                             }))
 
-                    .then(literal("chat").then(argument("message", StringArgumentType.greedyString())
+                    .then(literal("chat").then(argument("message", StringArgumentType.greedyString()).requires((cmdSource) -> Party.isInParty())
                             .executes(PartyCommand::chat)))
 
-                    .then(literal("leave")
+                    .then(literal("leave").requires((cmdSource) -> Party.isInParty())
                             .executes(context -> {
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.leavingParty"));
                                 PartyNetworkHandler.leaveParty();
                                 return 1;
                             }))
 
-                    .then(literal("info")
+                    .then(literal("info").requires((cmdSource) -> Party.isInParty())
                             .executes(context -> {
                                 MutableText newLine = Text.literal("\n");
                                 MutableText title = Text.translatable("mflp.party.infoTitle").styled(style -> style.withBold(true));
-                                MutableText ownerText = Text.translatable("mflp.party.infoOwner", Party.getOwner()).styled(style -> style.withBold(false).withItalic(true));
-                                MutableText moderatorsTitle = Text.translatable("mflp.party.moderators").styled(style -> style.withBold(true));
+                                MutableText ownerText = Text.literal("  ").append(Text.translatable("mflp.party.infoOwner", Party.getOwner())).styled(style -> style.withBold(false).withItalic(true));
+                                MutableText moderatorsTitle = Text.literal("  ").append(Text.translatable("mflp.party.moderators")).styled(style -> style.withBold(true));
                                 MutableText moderatorsText = Text.literal("").styled(style -> style.withBold(false).withItalic(true));
                                 for (String moderator : Party.getModerators()) {
-                                    moderatorsText.append("\n%s".formatted(moderator));
+                                    moderatorsText.append("\n    -%s".formatted(moderator));
                                 }
-                                MutableText membersTitle = Text.translatable("mflp.party.members").styled(style -> style.withBold(true).withItalic(false));
+                                MutableText membersTitle = Text.literal("  ").append(Text.translatable("mflp.party.members")).styled(style -> style.withBold(true).withItalic(false));
                                 MutableText membersText = Text.literal("").styled(style -> style.withBold(false).withItalic(true));
                                 for (String member : Party.getMembers()) {
-                                    membersText.append("\n%s".formatted(member));
+                                    membersText.append("\n    -%s".formatted(member));
                                 }
 
                                 MutableText info = title.append(newLine).append(ownerText).append(newLine).append(moderatorsTitle).append(moderatorsText).append(newLine).append(membersTitle).append(membersText);
@@ -77,7 +77,7 @@ public class PartyCommand implements ClientModInitializer {
                                 return 1;
                             }))
 
-                    .then(literal("remove").then(argument("player", StringArgumentType.word())
+                    .then(literal("remove").then(argument("player", StringArgumentType.word()).requires((cmdSource) -> Party.isModeratorOrOwner()).requires((cmdSource) -> Party.isInParty())
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.removingPlayer", player));
@@ -85,7 +85,23 @@ public class PartyCommand implements ClientModInitializer {
                                 return 1;
                             })))
 
-                    .then(literal("manage")
+                    .then(literal("promote").then(argument("player", StringArgumentType.word()).requires((cmdSource) -> Party.isOwner()).requires((cmdSource) -> Party.isInParty())
+                            .executes(context -> {
+                                String player = StringArgumentType.getString(context, "player");
+                                context.getSource().sendFeedback(Text.translatable("mflp.party.removingPlayer", player));
+                                PartyNetworkHandler.removeMember(player);
+                                return 1;
+                            })))
+
+                    .then(literal("demote").then(argument("player", StringArgumentType.word()).requires((cmdSource) -> Party.isOwner()).requires((cmdSource) -> Party.isInParty())
+                            .executes(context -> {
+                                String player = StringArgumentType.getString(context, "player");
+                                context.getSource().sendFeedback(Text.translatable("mflp.party.removingPlayer", player));
+                                PartyNetworkHandler.removeMember(player);
+                                return 1;
+                            })))
+
+                    .then(literal("manage").requires((cmdSource) -> Party.isInParty())
                             .executes(context -> {
                                 MinecraftClient client = context.getSource().getClient();
                                 client.send(() -> client.setScreen(new CottonClientScreen(Text.translatable("mflp.party.screen.title"), new PartyGui())));
