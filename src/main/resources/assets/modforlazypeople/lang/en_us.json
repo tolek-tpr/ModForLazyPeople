@@ -145,5 +145,6 @@
   "mflp.party.failedToInvite.description": "This could be because the MFLP servers are down, \nthe player is not online, or the player doesn't have MFLP installed.",
 
   "mflp.failedToConnectScreen.title": "Failed to connect to MFLP Network",
-  "mflp.failedToConnectScreen.description": "This is either because the servers are down, or you aren't connected to the internet."
+  "mflp.failedToConnectScreen.description": "This is either because the servers are down, or you aren't connected to the internet.",
+  "mflp.failedToConnectScreen.reconnectionText": "To reconnect, either use the button below, /mflpnet reconnect, or the button in the settings screen."
 }
