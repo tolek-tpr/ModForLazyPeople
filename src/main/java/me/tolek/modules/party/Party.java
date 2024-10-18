@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class Party {
 
-    private static String owner = "BeefyAndTheDucks";
-    private static ArrayList<String> moderators = new ArrayList<>() {{ add("wwwwwwwwwwwwwwww"); }};
-    private static ArrayList<String> members = new ArrayList<>() {{ add("bear_with_me_XD"); add("prof_tntalt"); add("vipelyrs"); }};
-    private static boolean isInParty = true;
+    private static String owner;
+    private static ArrayList<String> moderators = new ArrayList<>();
+    private static ArrayList<String> members = new ArrayList<>();
+    private static boolean isInParty = false;
 
     public static String getOwner() {
         return owner;
