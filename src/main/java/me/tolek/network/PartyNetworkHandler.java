@@ -6,6 +6,7 @@ import me.tolek.event.EventImpl;
 import me.tolek.event.EventManager;
 import me.tolek.event.MinecraftStartListener;
 import me.tolek.event.PartyListener;
+import me.tolek.modules.party.Party;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -107,7 +108,11 @@ public class PartyNetworkHandler extends EventImpl {
                     ArrayList<String> players = new ArrayList<>();
 
                     bodyObject.get("moderators").getAsJsonArray().forEach(element -> mods.add(element.getAsString().replaceAll("\"", "")));
-                    bodyObject.get("players").getAsJsonArray().forEach(element -> mods.add(element.getAsString().replaceAll("\"", "")));
+                    bodyObject.get("players").getAsJsonArray().forEach(element -> players.add(element.getAsString().replaceAll("\"", "")));
+
+                    if (players.contains(client.getSession().getUsername())) {
+                        Party.setInParty(true);
+                    }
 
                     PartyChangedEvent event = new PartyChangedEvent(bodyObject.get("owner").toString().replaceAll("\"", ""), mods, players);
                     EventManager.getInstance().fire(event);

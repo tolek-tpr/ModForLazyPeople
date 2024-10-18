@@ -9,6 +9,7 @@ import javax.net.ssl.*;
 import java.net.URI;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
 
 @Environment(EnvType.CLIENT)
 public class WebSocketServerHandler {
@@ -16,22 +17,7 @@ public class WebSocketServerHandler {
     private static WebSocketServerHandler instance;
 
     private WebSocketServerHandler() {
-        try {
-            //endpoint = new WebSocketClientEndpoint(new URI("wss://epsi.ddns.net:3000"));
-
-            endpoint = new WebSocketClientEndpoint(new URI("ws://localhost:3000"));
-        } catch (Exception ignored) {}
-
-        this.endpoint.addMessageHandler(message -> {
-            try {
-                JsonObject json = JsonParser.parseString(message).getAsJsonObject();
-
-                String clientKey = json.get("key").getAsString();
-
-                if (clientKey != null) this.clientKey = clientKey;
-                System.out.println("Received client key, setting");
-            } catch (NullPointerException ignored) {}
-        });
+        this.connect();
     }
 
     public WebSocketClientEndpoint endpoint;
@@ -46,6 +32,31 @@ public class WebSocketServerHandler {
     public void addMessageHandler(WebSocketClientEndpoint.MessageHandler handler) { if (this.endpoint != null) this.endpoint.addMessageHandler(handler); }
     public void sendMessage(String json) { if (this.endpoint != null) endpoint.sendMessage(json); }
 
+    private void connect() {
+        try {
+            //endpoint = new WebSocketClientEndpoint(new URI("wss://epsi.ddns.net:3000"));
 
+            endpoint = new WebSocketClientEndpoint(new URI("ws://localhost:3000"));
+            this.endpoint.addMessageHandler(message -> {
+                try {
+                    JsonObject json = JsonParser.parseString(message).getAsJsonObject();
+
+                    String clientKey = json.get("key").getAsString();
+
+                    if (clientKey != null) this.clientKey = clientKey;
+                    System.out.println("Received client key, setting");
+                } catch (NullPointerException ignored) {}
+            });
+        } catch (Exception ignored) {}
+    }
+
+    public void reconnect() {
+        if (this.endpoint == null) {
+            CompletableFuture.supplyAsync(() -> {
+                this.connect();
+                return this.endpoint == null;
+            });
+        }
+    }
 
 }
