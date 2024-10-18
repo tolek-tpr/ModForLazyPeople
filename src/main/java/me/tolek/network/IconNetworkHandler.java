@@ -39,11 +39,13 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
                     serverHandler.mflpUsers.remove(id);
                 } else if (cmd.equalsIgnoreCase("STATUS")) {
                     JsonObject bodyObject = JsonParser.parseString(body).getAsJsonObject();
+                    System.out.println("statyus");
 
                     if (bodyObject.get("cmd").toString().replaceAll("\"", "").equalsIgnoreCase("FULL_LIST")) {
+                        System.out.println("thing");
                         ArrayList<String> clients = new ArrayList<>();
 
-                        bodyObject.get("moderators").getAsJsonArray().forEach(element -> clients.add(element.toString().replaceAll("\"", "")));
+                        bodyObject.get("clients").getAsJsonArray().forEach(element -> clients.add(element.toString().replaceAll("\"", "")));
                         System.out.println("Received full list, " + bodyObject.get("clients").toString().replaceAll("\"", ""));
                         serverHandler.mflpUsers = clients;
                     }
