@@ -9,7 +9,7 @@ public class Party {
     private static String owner = "BeefyAndTheDucks";
     private static ArrayList<String> moderators = new ArrayList<>() {{ add("wwwwwwwwwwwwwwww"); }};
     private static ArrayList<String> members = new ArrayList<>() {{ add("bear_with_me_XD"); add("prof_tntalt"); add("vipelyrs"); }};
-    private static boolean isInParty = false;
+    private static boolean isInParty = true;
 
     public static String getOwner() {
         return owner;
