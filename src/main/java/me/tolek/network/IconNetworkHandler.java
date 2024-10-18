@@ -37,7 +37,7 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
                 } else if (cmd.equals("STATUS") && body.equals("PART")) {
                     serverHandler.mflpUsers.remove(id);
                 }
-            } catch (NullPointerException ignored) { }
+            } catch (Exception ignored) { }
         });
     }
 
