@@ -14,17 +14,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(TitleScreen.class)
 public class MainMenuMixin {
 
-    private InstancedValues iv = InstancedValues.getInstance();
-
     @Inject(at = @At("TAIL"), method = "init")
     private void init(CallbackInfo ci) {
         InstancedValues iv = InstancedValues.getInstance();
-
-
-
-        // Example usage: Load data
-
-
         if (iv.failedToConnect) MinecraftClient.getInstance().setScreen(new FailedToConnectToMflpNetworkScreen());
         if (!iv.shownWelcomeScreen) MinecraftClient.getInstance().setScreen(new MflpHelloScreen(iv.failedToConnect ? new FailedToConnectToMflpNetworkScreen() : null));
         if (iv.updateAvailable && !iv.shownUpdateScreen) MinecraftClient.getInstance().setScreen(iv.shownWelcomeScreen ? new MflpUpdateScreen(null) : new MflpUpdateScreen(new MflpHelloScreen(iv.failedToConnect ? new FailedToConnectToMflpNetworkScreen() : null)));
