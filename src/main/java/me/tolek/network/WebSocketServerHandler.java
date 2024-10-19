@@ -2,12 +2,14 @@ package me.tolek.network;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import me.tolek.ModForLazyPeople;
+import me.tolek.gui.screens.FailedToConnectToMflpNetworkScreen;
+import me.tolek.util.InstancedValues;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 
-import javax.net.ssl.*;
 import java.net.URI;
-import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
@@ -17,7 +19,10 @@ public class WebSocketServerHandler {
     private static WebSocketServerHandler instance;
 
     private WebSocketServerHandler() {
-        this.connect();
+        CompletableFuture.runAsync(() -> {
+            connect();
+            InstancedValues.getInstance().failedToConnect = this.endpoint == null;
+        });
     }
 
     public WebSocketClientEndpoint endpoint;
@@ -55,6 +60,11 @@ public class WebSocketServerHandler {
         if (this.endpoint == null) {
             CompletableFuture.supplyAsync(() -> {
                 this.connect();
+                if (this.endpoint == null) {
+                    ModForLazyPeople.LOGGER.warn("Failed to Reconnect");
+                    MinecraftClient client = MinecraftClient.getInstance();
+                    client.executeSync(() -> client.setScreen(new FailedToConnectToMflpNetworkScreen()));
+                }
                 return this.endpoint == null;
             });
         }

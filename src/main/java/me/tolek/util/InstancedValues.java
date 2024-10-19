@@ -68,6 +68,6 @@ public class InstancedValues {
     public boolean shownUpdateScreen = false;
     public boolean pauseWelcomeBack = false;
     public boolean isAfk = false;
-    public boolean ignoreWbMessages = true;
+    public boolean failedToConnect = true;
 
 }

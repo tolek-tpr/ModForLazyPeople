@@ -11,19 +11,29 @@ import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
+import java.util.Objects;
+
 @Environment(EnvType.CLIENT)
 public class MflpHelloScreen extends Screen {
 
+    private final Screen parent;
+
     public MflpHelloScreen() {
         super(Text.translatable("mflp.welcomeScreen.quickGuide.title"));
+        this.parent = null;
     }
-    private InstancedValues iv = InstancedValues.getInstance();
-    private MflpUtil mflpUtil = new MflpUtil();
+
+    public MflpHelloScreen(Screen parent) {
+        super(Text.translatable("mflp.welcomeScreen.quickGuide.title"));
+        this.parent = parent;
+    }
+
+    private final InstancedValues iv = InstancedValues.getInstance();
 
     @Override
     public void init() {
         addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, (button) -> {
-            client.setScreen(null);
+            Objects.requireNonNull(client).setScreen(null);
         }).dimensions(width / 2 - 75, height / 2 + 80, 150, 20).build());
         iv.shownWelcomeScreen = true;
     }
@@ -59,7 +69,7 @@ public class MflpHelloScreen extends Screen {
 
     @Override
     public void close() {
-        client.setScreen((Screen) null);
+        Objects.requireNonNull(client).setScreen(parent);
     }
 
 }

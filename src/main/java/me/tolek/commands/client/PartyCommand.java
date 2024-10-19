@@ -6,6 +6,7 @@ import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
 import me.tolek.gui.screens.PartyGui;
 import me.tolek.modules.party.Party;
 import me.tolek.network.PartyNetworkHandler;
+import me.tolek.util.ScreenUtil;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -103,8 +104,7 @@ public class PartyCommand implements ClientModInitializer {
 
                     .then(literal("manage").requires((cmdSource) -> Party.isInParty())
                             .executes(context -> {
-                                MinecraftClient client = context.getSource().getClient();
-                                client.send(() -> client.setScreen(new CottonClientScreen(Text.translatable("mflp.party.screen.title"), new PartyGui())));
+                                ScreenUtil.openScreenAfterDelay(new CottonClientScreen(Text.translatable("mflp.party.screen.title"), new PartyGui()));
                                 return 1;
                             }))
             );

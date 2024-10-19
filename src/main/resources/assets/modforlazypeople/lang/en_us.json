@@ -21,7 +21,8 @@
   "mflp.duplicate": "Duplicate",
   "mflp.name": "Name",
   "mflp.download": "Download",
-  "mflp.retry": "Retry",
+  "mflp.reconnect": "Reconnect",
+  "mflp.reconnect.tooltip": "Try reconnecting to the MFLP network.",
 
   "mflp.mainConfig.macrosButton": "Macros",
   "mflp.mainConfig.settingsButton": "Settings",

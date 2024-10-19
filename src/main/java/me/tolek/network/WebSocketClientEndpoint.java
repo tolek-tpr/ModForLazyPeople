@@ -3,12 +3,9 @@ package me.tolek.network;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-import javax.net.ssl.*;
 import javax.websocket.*;
-import java.io.IOException;
 import java.net.URI;
 import java.nio.ByteBuffer;
-import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 
 @ClientEndpoint
