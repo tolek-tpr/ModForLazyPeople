@@ -1,6 +1,8 @@
 package me.tolek.gui.screens;
 
+import me.tolek.ModForLazyPeople;
 import me.tolek.network.WebSocketServerHandler;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.tooltip.Tooltip;
