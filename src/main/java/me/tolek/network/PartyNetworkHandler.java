@@ -4,8 +4,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import me.tolek.event.EventImpl;
 import me.tolek.event.EventManager;
-import me.tolek.event.MinecraftStartListener;
-import me.tolek.event.PartyListener;
 import me.tolek.modules.party.Party;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -92,6 +90,8 @@ public class PartyNetworkHandler extends EventImpl {
     public void onEnable() {
         serverHandler.addMessageHandler(message -> {
             try {
+                if (serverHandler.endpoint == null) return;
+
                 JsonObject json = JsonParser.parseString(message).getAsJsonObject();
 
                 String id = json.get("id").getAsString().replaceAll("\"", "");

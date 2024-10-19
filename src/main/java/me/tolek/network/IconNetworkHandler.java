@@ -3,6 +3,7 @@ package me.tolek.network;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import me.tolek.event.*;
+import me.tolek.gui.screens.FailedToConnectToMflpNetworkScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -27,6 +28,8 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
 
         serverHandler.addMessageHandler(message -> {
             try {
+                if (serverHandler.endpoint == null) return;
+
                 JsonObject json = JsonParser.parseString(message).getAsJsonObject();
 
                 String id = json.get("id").toString().replaceAll("\"", "");
@@ -46,7 +49,7 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
                         ArrayList<String> clients = new ArrayList<>();
 
                         bodyObject.get("clients").getAsJsonArray().forEach(element -> clients.add(element.toString().replaceAll("\"", "")));
-                        System.out.println("Received full list, " + bodyObject.get("clients").toString().replaceAll("\"", ""));
+                        System.out.println(clients);
                         serverHandler.mflpUsers = clients;
                     }
 
@@ -116,6 +119,8 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
 
             return "";
         });
+
+
     }
 
     @Override

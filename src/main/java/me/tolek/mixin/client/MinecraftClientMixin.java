@@ -56,19 +56,5 @@ public class MinecraftClientMixin {
     private void onInitFinished(@Coerce Object loadingContext, CallbackInfoReturnable<Runnable> cir) {
         MinecraftStartFinishedEvent event = new MinecraftStartFinishedEvent();
         EventManager.getInstance().fire(event);
-
-        // Deprecated
-        /*
-        MinecraftClient client = MinecraftClient.getInstance();
-        MflpServerConnection mflpServer = ModForLazyPeople.serverConnection;
-        // If true then try to send again.
-        sendInfoToServer();
-
-        try {
-            MflpPlayersWorker.getInstance().data = mflpServer.sendGetRequest("/api/mflp");
-        } catch (Exception e) {
-            ModForLazyPeople.LOGGER.info("Failed to connect to server! Make sure you're connected to the internet and the MFLP " +
-                    "server is up at epsi.ddns.net:3000!");
-        }*/
     }
 }
