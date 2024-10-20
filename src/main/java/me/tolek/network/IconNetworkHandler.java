@@ -43,14 +43,12 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
                 } else if (cmd.equalsIgnoreCase("STATUS")) {
                     JsonObject bodyObject = JsonParser.parseString(body).getAsJsonObject();
 
-                    if (bodyObject.get("cmd").getAsString().equalsIgnoreCase("FULL_LIST")) {
+                    if (bodyObject.get("body_cmd").getAsString().equalsIgnoreCase("FULL_LIST")) {
                         ArrayList<String> clients = new ArrayList<>();
 
                         bodyObject.get("clients").getAsJsonArray().forEach(element -> clients.add(element.getAsString()));
                         serverHandler.mflpUsers = clients;
                     }
-
-
                 }
             } catch (Exception ignored) { }
         });
@@ -91,6 +89,10 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
     @Override
     public void onStartFinished() {
         // Send join message
+        requestListAndSendJoin();
+    }
+
+    public void requestListAndSendJoin() {
         CompletableFuture.supplyAsync(() -> {
             if (this.client.getSession() == null || this.client.getSession().getUsername() == null) return "";
 
@@ -116,8 +118,6 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
 
             return "";
         });
-
-
     }
 
     @Override

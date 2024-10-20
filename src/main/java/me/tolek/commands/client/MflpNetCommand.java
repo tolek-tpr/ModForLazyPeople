@@ -4,6 +4,8 @@ import me.tolek.network.WebSocketServerHandler;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
 
@@ -14,6 +16,11 @@ public class MflpNetCommand implements ClientModInitializer {
             dispatcher.register(ClientCommandManager.literal("mflpnet")
                     .then(literal("reconnect").executes(context -> {
                         WebSocketServerHandler.getInstance().reconnect();
+                        if (WebSocketServerHandler.getInstance().endpoint == null) {
+                            context.getSource().sendFeedback(Text.literal("MFLP > Failed to reconnect!").formatted(Formatting.RED));
+                        } else {
+                            context.getSource().sendFeedback(Text.literal("MFLP > Connection succeeded!").formatted(Formatting.GREEN));
+                        }
                         return 1;
                     }))
             );

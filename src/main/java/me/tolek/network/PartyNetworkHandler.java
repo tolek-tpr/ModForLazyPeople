@@ -25,7 +25,7 @@ public class PartyNetworkHandler extends EventImpl {
         JsonObject message = new JsonObject();
 
         JsonObject body = new JsonObject();
-        body.addProperty("cmd", "INVITE");
+        body.addProperty("body_cmd", "INVITE");
         body.addProperty("player", player);
 
         message.addProperty("key", serverHandler.clientKey);
@@ -40,7 +40,7 @@ public class PartyNetworkHandler extends EventImpl {
         JsonObject message = new JsonObject();
 
         JsonObject body = new JsonObject();
-        body.addProperty("cmd", "ACCEPT");
+        body.addProperty("body_cmd", "ACCEPT");
         body.addProperty("player", client.getSession().getUsername());
 
         message.addProperty("key", serverHandler.clientKey);
@@ -63,7 +63,7 @@ public class PartyNetworkHandler extends EventImpl {
         JsonObject message = new JsonObject();
 
         JsonObject body = new JsonObject();
-        body.addProperty("cmd", "LEAVE");
+        body.addProperty("body_cmd", "LEAVE");
         body.addProperty("player", client.getSession().getUsername());
 
         message.addProperty("key", serverHandler.clientKey);
@@ -75,7 +75,18 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void declineInvite() {
-        throw new NotImplementedException();
+        JsonObject message = new JsonObject();
+
+        JsonObject body = new JsonObject();
+        body.addProperty("body_cmd", "DECLINE");
+        body.addProperty("player", client.getSession().getUsername());
+
+        message.addProperty("key", serverHandler.clientKey);
+        message.addProperty("id", client.getSession().getUsername());
+        message.addProperty("cmd", "PARTY");
+        message.add("body", body);
+
+        serverHandler.sendMessage(message.toString());
     }
 
     public static void promotePlayer(String player) {
@@ -96,13 +107,22 @@ public class PartyNetworkHandler extends EventImpl {
 
                 String id = json.get("id").getAsString();
                 String cmd = json.get("cmd").getAsString();
-                String body = json.get("body").getAsString();
 
-                if (cmd.equals("CLIENT_INVITED") && body.equals("CLIENT_INVITED")) {
+                // Errors
+                if (cmd.equals("ERROR")) {
+                    // NO_PENDING_INVITE
+                    // NO_PERMISSION
+                    // INVALID_PLAYER
+                    // PLAYER_OFFLINE
+                    // PLAYER_IN_PARTY
+                }
+
+                if (cmd.equals("CLIENT_INVITED")) {
                     InviteClientEvent event = new InviteClientEvent(id);
                     EventManager.getInstance().fire(event);
-                } else if (cmd.equals("PARTY_CHANGE")) {
-                    JsonObject bodyObject = JsonParser.parseString(body).getAsJsonObject();
+                }
+                if (cmd.equals("PARTY_CHANGE")) {
+                    JsonObject bodyObject = json.getAsJsonObject("body");
 
                     ArrayList<String> mods = new ArrayList<>();
                     ArrayList<String> players = new ArrayList<>();
@@ -113,10 +133,24 @@ public class PartyNetworkHandler extends EventImpl {
                     if (players.contains(client.getSession().getUsername()) || mods.contains(client.getSession().getUsername()) ||
                             bodyObject.get("owner").getAsString().equals(client.getSession().getUsername())) {
                         Party.setInParty(true);
+                        System.out.println("true");
                     }
 
                     PartyChangedEvent event = new PartyChangedEvent(bodyObject.get("owner").getAsString(), mods, players);
                     EventManager.getInstance().fire(event);
+                }
+                if (cmd.equals("INVITE_DECLINED")) {
+                    String body = json.get("body").getAsString();
+
+                    if (!body.equals(client.getSession().getUsername())) {
+                        // CALL PLAYER DECLINED
+                    }
+                }
+                if (cmd.equals("PLAYER_KICKED")) {
+
+                }
+                if (cmd.equals("CLIENT_KICKED")) {
+
                 }
             } catch (Exception ignored) { }
         });

@@ -15,6 +15,7 @@ import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.argument;
@@ -25,7 +26,7 @@ public class PartyCommand implements ClientModInitializer {
     public void onInitializeClient() {
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
             dispatcher.register(literal("party")
-                    .then(literal("invite").then(argument("player", StringArgumentType.word()).requires((cmdSource) -> Party.isModeratorOrOwner()).requires((cmdSource) -> Party.isInParty())
+                    .then(literal("invite").then(argument("player", StringArgumentType.word())/*.requires((cmdSource) -> Party.isModeratorOrOwner()).requires((cmdSource) -> Party.isInParty())*/
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.invitingPlayer", player));
@@ -50,10 +51,14 @@ public class PartyCommand implements ClientModInitializer {
                     .then(literal("chat").then(argument("message", StringArgumentType.greedyString()).requires((cmdSource) -> Party.isInParty())
                             .executes(PartyCommand::chat)))
 
-                    .then(literal("leave").requires((cmdSource) -> Party.isInParty())
+                    .then(literal("leave")
                             .executes(context -> {
-                                context.getSource().sendFeedback(Text.translatable("mflp.party.leavingParty"));
-                                PartyNetworkHandler.leaveParty();
+                                if (Party.isInParty()) {
+                                    context.getSource().sendFeedback(Text.translatable("mflp.party.leavingParty"));
+                                    PartyNetworkHandler.leaveParty();
+                                } else {
+                                    context.getSource().sendFeedback(Text.literal("You are not in a party!").formatted(Formatting.RED));
+                                }
                                 return 1;
                             }))
 

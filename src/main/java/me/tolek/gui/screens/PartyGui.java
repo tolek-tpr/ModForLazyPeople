@@ -84,6 +84,9 @@ public class PartyGui extends LightweightGuiDescription {
     }
 
     public static void notifyPartyChanged() {
+        if (membersList == null)
+            return;
+
         membersList.setData(Party.getMembers());
         moderatorsList.setData(Party.getModerators());
         ownerLabel.setText(Text.translatable("mflp.party.screen.ownership", Party.getOwner()));

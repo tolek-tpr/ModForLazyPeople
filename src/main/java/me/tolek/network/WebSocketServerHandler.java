@@ -11,7 +11,6 @@ import net.minecraft.client.MinecraftClient;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.concurrent.CompletableFuture;
 
 @Environment(EnvType.CLIENT)
 public class WebSocketServerHandler {
@@ -19,10 +18,8 @@ public class WebSocketServerHandler {
     private static WebSocketServerHandler instance;
 
     private WebSocketServerHandler() {
-        CompletableFuture.runAsync(() -> {
-            connect();
-            InstancedValues.getInstance().failedToConnect = this.endpoint == null;
-        });
+        connect();
+        InstancedValues.getInstance().failedToConnect = this.endpoint == null;
     }
 
     public WebSocketClientEndpoint endpoint;
@@ -53,20 +50,17 @@ public class WebSocketServerHandler {
                     System.out.println("Received client key, setting");
                 } catch (Exception ignored) {}
             });
+
+            //new IconNetworkHandler().requestListAndSendJoin();
         } catch (Exception ignored) {}
     }
 
     public void reconnect() {
+        this.connect();
         if (this.endpoint == null) {
-            CompletableFuture.supplyAsync(() -> {
-                this.connect();
-                if (this.endpoint == null) {
-                    ModForLazyPeople.LOGGER.warn("Failed to Reconnect");
-                    MinecraftClient client = MinecraftClient.getInstance();
-                    client.executeSync(() -> client.setScreen(new FailedToConnectToMflpNetworkScreen()));
-                }
-                return this.endpoint == null;
-            });
+            ModForLazyPeople.LOGGER.warn("Failed to Reconnect");
+            MinecraftClient client = MinecraftClient.getInstance();
+            client.executeSync(() -> client.setScreen(new FailedToConnectToMflpNetworkScreen()));
         }
     }
 
