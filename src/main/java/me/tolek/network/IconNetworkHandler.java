@@ -32,9 +32,9 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
 
                 JsonObject json = JsonParser.parseString(message).getAsJsonObject();
 
-                String id = json.get("id").toString().replaceAll("\"", "");
-                String cmd = json.get("cmd").toString().replaceAll("\"", "");
-                String body = json.get("body").toString().replaceAll("\"", "");
+                String id = json.get("id").getAsString();
+                String cmd = json.get("cmd").getAsString();
+                String body = json.get("body").getAsString();
 
                 if (cmd.equalsIgnoreCase("STATUS") && body.equalsIgnoreCase("JOIN")) {
                     serverHandler.mflpUsers.add(id);
@@ -42,14 +42,11 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
                     serverHandler.mflpUsers.remove(id);
                 } else if (cmd.equalsIgnoreCase("STATUS")) {
                     JsonObject bodyObject = JsonParser.parseString(body).getAsJsonObject();
-                    System.out.println("statyus");
 
-                    if (bodyObject.get("cmd").toString().replaceAll("\"", "").equalsIgnoreCase("FULL_LIST")) {
-                        System.out.println("thing");
+                    if (bodyObject.get("cmd").getAsString().equalsIgnoreCase("FULL_LIST")) {
                         ArrayList<String> clients = new ArrayList<>();
 
-                        bodyObject.get("clients").getAsJsonArray().forEach(element -> clients.add(element.toString().replaceAll("\"", "")));
-                        System.out.println(clients);
+                        bodyObject.get("clients").getAsJsonArray().forEach(element -> clients.add(element.getAsString()));
                         serverHandler.mflpUsers = clients;
                     }
 

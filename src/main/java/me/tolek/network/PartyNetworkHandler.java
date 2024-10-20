@@ -94,9 +94,9 @@ public class PartyNetworkHandler extends EventImpl {
 
                 JsonObject json = JsonParser.parseString(message).getAsJsonObject();
 
-                String id = json.get("id").getAsString().replaceAll("\"", "");
-                String cmd = json.get("cmd").getAsString().replaceAll("\"", "");
-                String body = json.get("body").getAsString().replaceAll("\"", "");
+                String id = json.get("id").getAsString();
+                String cmd = json.get("cmd").getAsString();
+                String body = json.get("body").getAsString();
 
                 if (cmd.equals("CLIENT_INVITED") && body.equals("CLIENT_INVITED")) {
                     InviteClientEvent event = new InviteClientEvent(id);
@@ -107,14 +107,15 @@ public class PartyNetworkHandler extends EventImpl {
                     ArrayList<String> mods = new ArrayList<>();
                     ArrayList<String> players = new ArrayList<>();
 
-                    bodyObject.get("moderators").getAsJsonArray().forEach(element -> mods.add(element.getAsString().replaceAll("\"", "")));
-                    bodyObject.get("players").getAsJsonArray().forEach(element -> players.add(element.getAsString().replaceAll("\"", "")));
+                    bodyObject.get("moderators").getAsJsonArray().forEach(element -> mods.add(element.getAsString()));
+                    bodyObject.get("players").getAsJsonArray().forEach(element -> players.add(element.getAsString()));
 
-                    if (players.contains(client.getSession().getUsername())) {
+                    if (players.contains(client.getSession().getUsername()) || mods.contains(client.getSession().getUsername()) ||
+                            bodyObject.get("owner").getAsString().equals(client.getSession().getUsername())) {
                         Party.setInParty(true);
                     }
 
-                    PartyChangedEvent event = new PartyChangedEvent(bodyObject.get("owner").toString().replaceAll("\"", ""), mods, players);
+                    PartyChangedEvent event = new PartyChangedEvent(bodyObject.get("owner").getAsString(), mods, players);
                     EventManager.getInstance().fire(event);
                 }
             } catch (Exception ignored) { }
