@@ -143,7 +143,8 @@ public class PartyNetworkHandler extends EventImpl {
                 if (cmd.equals("INVITE_DECLINED")) {
                     String body = json.get("body").getAsString();
 
-
+                    PartyListener.PlayerDeclinedEvent event = new PartyListener.PlayerDeclinedEvent(body);
+                    EventManager.getInstance().fire(event);
                 }
                 if (cmd.equals("PLAYER_KICKED")) {
                     String body = json.get("body").getAsString();
@@ -157,9 +158,17 @@ public class PartyNetworkHandler extends EventImpl {
                 }
                 if (cmd.equals("PLAYER_PROMOTED")) {
                     partyChanged(json);
+
+                    PartyListener.PlayerPromotedEvent event = new PartyListener.PlayerPromotedEvent(json.getAsJsonObject("body")
+                            .get("promoted").getAsString());
+                    EventManager.getInstance().fire(event);
                 }
                 if (cmd.equals("PLAYER_DEMOTED")) {
                     partyChanged(json);
+
+                    PartyListener.PlayerPromotedEvent event = new PartyListener.PlayerPromotedEvent(json.getAsJsonObject("body")
+                            .get("demoted").getAsString());
+                    EventManager.getInstance().fire(event);
                 }
             } catch (Exception ignored) { }
         });
