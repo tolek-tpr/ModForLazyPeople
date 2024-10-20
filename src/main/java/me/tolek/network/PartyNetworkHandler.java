@@ -188,6 +188,8 @@ public class PartyNetworkHandler extends EventImpl {
                     EventManager.getInstance().fire(event);
                 }
                 if (cmd.equals("CLIENT_KICKED")) {
+                    Party.setInParty(false);
+
                     PartyListener.ClientRemovedEvent event = new PartyListener.ClientRemovedEvent();
                     EventManager.getInstance().fire(event);
                 }
