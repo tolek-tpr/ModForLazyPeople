@@ -158,15 +158,48 @@ public class PartyNetworkHandler extends EventImpl {
 
                 // Errors
                 if (cmd.equals("ERROR")) {
-                    // NO_PENDING_INVITE
-                    // NO_PERMISSION
-                    // INVALID_PLAYER
-                    // PLAYER_OFFLINE
-                    // PLAYER_IN_PARTY
-                    // SELF_INVITE
-                    // NOT_IN_PARTY
-                    // INVALID_PARTY
-                    // UNSUPPORTED_OPERATION
+                    String titleKey = "mflp.error.unexpected.title";
+                    String descriptionKey = "mflp.error.unexpected.description";
+                    switch (json.get("body").getAsString()) {
+                        case "NO_PENDING_INVITE":
+                            titleKey = "mflp.error.noPendingInvite.title";
+                            descriptionKey = "mflp.error.noPendingInvite.description";
+                            break;
+                        case "NO_PERMISSION":
+                            titleKey = "mflp.error.noPermission.title";
+                            descriptionKey = "mflp.error.noPermission.description";
+                            break;
+                        case "INVALID_PLAYER":
+                            titleKey = "mflp.error.invalidPlayer.title";
+                            descriptionKey = "mflp.error.invalidPlayer.description";
+                            break;
+                        case "PLAYER_OFFLINE":
+                            titleKey = "mflp.error.playerOffline.title";
+                            descriptionKey = "mflp.error.playerOffline.description";
+                            break;
+                        case "PLAYER_IN_PARTY":
+                            titleKey = "mflp.error.playerInParty.title";
+                            descriptionKey = "mflp.error.playerInParty.description";
+                            break;
+                        case "SELF_INVITE":
+                            titleKey = "mflp.error.selfInvite.title";
+                            descriptionKey = "mflp.error.selfInvite.description";
+                            break;
+                        case "NOT_IN_PARTY":
+                            titleKey = "mflp.error.notInParty.title";
+                            descriptionKey = "mflp.error.notInParty.description";
+                            break;
+                        case "INVALID_PARTY":
+                            titleKey = "mflp.error.invalidParty.title";
+                            descriptionKey = "mflp.error.invalidParty.description";
+                            break;
+                        case "UNSUPPORTED_OPERATION":
+                            titleKey = "mflp.error.unsupportedOperation.title";
+                            descriptionKey = "mflp.error.unsupportedOperation.description";
+                            break;
+                    }
+                    PartyListener.ErrorEvent event = new PartyListener.ErrorEvent(titleKey, descriptionKey);
+                    EventManager.getInstance().fire(event);
                 }
 
                 if (cmd.equals("CLIENT_INVITED")) {
