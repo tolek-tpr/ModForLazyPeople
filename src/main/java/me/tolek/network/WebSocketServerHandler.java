@@ -60,7 +60,7 @@ public class WebSocketServerHandler {
         if (this.endpoint == null) {
             ModForLazyPeople.LOGGER.warn("Failed to Reconnect");
             MinecraftClient client = MinecraftClient.getInstance();
-            client.executeSync(() -> client.setScreen(new FailedToConnectToMflpNetworkScreen()));
+            client.setScreen(new FailedToConnectToMflpNetworkScreen());
         }
     }
 
