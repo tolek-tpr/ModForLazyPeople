@@ -29,6 +29,9 @@ public class MenuPickerWidget extends ContainerWidget {
 
     private List<ClickableWidget> children = new ArrayList<>();
 
+    private static final Identifier CONNECTED_ICON = Identifier.of(ModForLazyPeople.MOD_ID, "checkmark");
+    private static final Identifier DISCONNECTED_ICON = Identifier.of(ModForLazyPeople.MOD_ID, "cross");
+
     public MenuPickerWidget(int x, int y, MinecraftClient client) {
         super(x, y, 150, 20, Text.literal("test"));
 
@@ -50,19 +53,25 @@ public class MenuPickerWidget extends ContainerWidget {
 
         discordWidget.setDimensionsAndPosition(20, 20, screen.width - 30, screen.height - 30);
 
+        boolean isConnected = !WebSocketServerHandler.getInstance().isDisconnected();
+
         ButtonWidget reconnectButton = ButtonWidget.builder(Text.translatable("mflp.reconnect"), (button) -> {
                     WebSocketServerHandler.getInstance().reconnect();
                 }).dimensions(10, screen.height - 30, 70, 20)
                 .tooltip(Tooltip.of(Text.translatable("mflp.reconnect.tooltip")))
                 .build();
+        reconnectButton.active = !isConnected;
+
+        IconWithTooltipWidget connectionStatusIcon = new IconWithTooltipWidget(16, 16, Text.empty(), isConnected ? CONNECTED_ICON : DISCONNECTED_ICON);
+        connectionStatusIcon.setTooltip(Tooltip.of(isConnected ? Text.translatable("mflp.mainConfig.connected.tooltip") : Text.translatable("mflp.mainConfig.disconnected.tooltip")));
+        connectionStatusIcon.setPosition(82, screen.height - 28);
 
         addChild(macrosButton);
         addChild(settingsWidget);
         addChild(autoReplyWidget);
         addChild(discordWidget);
         addChild(reconnectButton);
-
-
+        addChild(connectionStatusIcon);
     }
 
     @Override
