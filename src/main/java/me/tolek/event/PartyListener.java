@@ -4,32 +4,31 @@ import java.util.ArrayList;
 
 public interface PartyListener extends Listener {
 
-    void onMessage(String message, String author, String err);
-    void onPlayerInvited(String playerUsername, String err);
+    void onMessage(String message, String author);
+    void onPlayerInvited(String playerUsername);
     void onClientInvited(String partyOwnerUsername);
     void onClientRemoved();
-    void onPlayerLeft(String playerUsername, String err);
-    void onPlayerRemoved(String playerUsername, String err);
-    void onPlayerJoined(String playerUsername, String err);
+    void onPlayerLeft(String playerUsername);
+    void onPlayerRemoved(String playerUsername);
+    void onPlayerJoined(String playerUsername);
     void onPartyInviteFailed(String playerUsername);
     void onPartyChanged(String owner, ArrayList<String> moderators, ArrayList<String> members);
+    void onError(String errorTitleTranslationKey, String errorDescriptionTranslationKey);
 
     public static class MessageReceivedEvent extends Event<PartyListener> {
 
         private final String message;
         private final String author;
-        private final String err;
 
-        public MessageReceivedEvent(String message, String author, String err) {
+        public MessageReceivedEvent(String message, String author) {
             this.message = message;
             this.author = author;
-            this.err = err;
         }
 
         @Override
         public void fire(ArrayList<PartyListener> listeners) {
             for(PartyListener listener : listeners)
-                listener.onMessage(this.message, this.author, this.err);
+                listener.onMessage(this.message, this.author);
         }
 
         @Override
@@ -43,17 +42,15 @@ public interface PartyListener extends Listener {
     public static class PlayerInviteEvent extends Event<PartyListener> {
 
         private final String username;
-        private final String err;
 
-        public PlayerInviteEvent(String username, String err) {
+        public PlayerInviteEvent(String username) {
             this.username = username;
-            this.err = err;
         }
 
         @Override
         public void fire(ArrayList<PartyListener> listeners) {
             for(PartyListener listener : listeners)
-                listener.onPlayerInvited(this.username, this.err);
+                listener.onPlayerInvited(this.username);
         }
 
         @Override
@@ -103,17 +100,15 @@ public interface PartyListener extends Listener {
     public static class PlayerLeaveEvent extends Event<PartyListener> {
 
         private final String username;
-        private final String err;
 
-        public PlayerLeaveEvent(String username, String err) {
+        public PlayerLeaveEvent(String username) {
             this.username = username;
-            this.err = err;
         }
 
         @Override
         public void fire(ArrayList<PartyListener> listeners) {
             for(PartyListener listener : listeners)
-                listener.onPlayerLeft(this.username, this.err);
+                listener.onPlayerLeft(this.username);
         }
 
         @Override
@@ -127,17 +122,15 @@ public interface PartyListener extends Listener {
     public static class PlayerRemovedEvent extends Event<PartyListener> {
 
         private final String username;
-        private final String err;
 
-        public PlayerRemovedEvent(String username, String err) {
+        public PlayerRemovedEvent(String username) {
             this.username = username;
-            this.err = err;
         }
 
         @Override
         public void fire(ArrayList<PartyListener> listeners) {
             for(PartyListener listener : listeners)
-                listener.onPlayerRemoved(this.username, this.err);
+                listener.onPlayerRemoved(this.username);
         }
 
         @Override
@@ -151,17 +144,15 @@ public interface PartyListener extends Listener {
     public static class PlayerJoinedEvent extends Event<PartyListener> {
 
         private final String username;
-        private final String err;
 
-        public PlayerJoinedEvent(String username, String err) {
+        public PlayerJoinedEvent(String username) {
             this.username = username;
-            this.err = err;
         }
 
         @Override
         public void fire(ArrayList<PartyListener> listeners) {
             for(PartyListener listener : listeners)
-                listener.onPlayerJoined(this.username, this.err);
+                listener.onPlayerJoined(this.username);
         }
 
         @Override
@@ -210,6 +201,27 @@ public interface PartyListener extends Listener {
         public void fire(ArrayList<PartyListener> listeners) {
             for(PartyListener listener : listeners)
                 listener.onPartyChanged(this.owner, this.moderators, this.members);
+        }
+
+        @Override
+        public Class<PartyListener> getListenerType() {
+            return PartyListener.class;
+        }
+    }
+
+    public static class ErrorEvent extends Event<PartyListener> {
+        private final String errorTitleTranslationKey;
+        private final String errorDescriptionTranslationKey;
+
+        public ErrorEvent(String errorTitleTranslationKey, String errorDescriptionTranslationKey) {
+            this.errorTitleTranslationKey = errorTitleTranslationKey;
+            this.errorDescriptionTranslationKey = errorDescriptionTranslationKey;
+        }
+
+        @Override
+        public void fire(ArrayList<PartyListener> listeners) {
+            for (PartyListener listener : listeners)
+                listener.onError(this.errorTitleTranslationKey, this.errorDescriptionTranslationKey);
         }
 
         @Override
