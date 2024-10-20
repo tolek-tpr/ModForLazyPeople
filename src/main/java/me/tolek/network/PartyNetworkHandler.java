@@ -138,41 +138,50 @@ public class PartyNetworkHandler extends EventImpl {
                     EventManager.getInstance().fire(event);
                 }
                 if (cmd.equals("PARTY_CHANGE")) {
-                    JsonObject bodyObject = json.getAsJsonObject("body");
-
-                    ArrayList<String> mods = new ArrayList<>();
-                    ArrayList<String> players = new ArrayList<>();
-
-                    bodyObject.get("moderators").getAsJsonArray().forEach(element -> mods.add(element.getAsString()));
-                    bodyObject.get("players").getAsJsonArray().forEach(element -> players.add(element.getAsString()));
-
-                    if (players.contains(client.getSession().getUsername()) || mods.contains(client.getSession().getUsername()) ||
-                            bodyObject.get("owner").getAsString().equals(client.getSession().getUsername())) {
-                        Party.setInParty(true);
-                        System.out.println("true");
-                    }
-
-                    PartyChangedEvent event = new PartyChangedEvent(bodyObject.get("owner").getAsString(), mods, players);
-                    EventManager.getInstance().fire(event);
+                    partyChanged(json);
                 }
                 if (cmd.equals("INVITE_DECLINED")) {
                     String body = json.get("body").getAsString();
 
-                    if (!body.equals(client.getSession().getUsername())) {
-                        // CALL PLAYER DECLINED
-                    }
+
                 }
                 if (cmd.equals("PLAYER_KICKED")) {
                     String body = json.get("body").getAsString();
 
-                    PartyListener.PlayerRemovedEvent event = new PartyListener.PlayerRemovedEvent(body, "");
+                    PartyListener.PlayerRemovedEvent event = new PartyListener.PlayerRemovedEvent(body);
                     EventManager.getInstance().fire(event);
                 }
                 if (cmd.equals("CLIENT_KICKED")) {
                     PartyListener.ClientRemovedEvent event = new PartyListener.ClientRemovedEvent();
                     EventManager.getInstance().fire(event);
                 }
+                if (cmd.equals("PLAYER_PROMOTED")) {
+                    partyChanged(json);
+                }
+                if (cmd.equals("PLAYER_DEMOTED")) {
+                    partyChanged(json);
+                }
             } catch (Exception ignored) { }
         });
     }
+
+    private void partyChanged(JsonObject json) {
+        JsonObject bodyObject = json.getAsJsonObject("body");
+
+        ArrayList<String> mods = new ArrayList<>();
+        ArrayList<String> players = new ArrayList<>();
+
+        bodyObject.get("moderators").getAsJsonArray().forEach(element -> mods.add(element.getAsString()));
+        bodyObject.get("players").getAsJsonArray().forEach(element -> players.add(element.getAsString()));
+
+        if (players.contains(client.getSession().getUsername()) || mods.contains(client.getSession().getUsername()) ||
+                bodyObject.get("owner").getAsString().equals(client.getSession().getUsername())) {
+            Party.setInParty(true);
+            System.out.println("true");
+        }
+
+        PartyChangedEvent event = new PartyChangedEvent(bodyObject.get("owner").getAsString(), mods, players);
+        EventManager.getInstance().fire(event);
+    }
+
 }
