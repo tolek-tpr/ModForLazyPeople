@@ -26,7 +26,7 @@ public class PartyCommand implements ClientModInitializer {
     public void onInitializeClient() {
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
             dispatcher.register(literal("party")
-                    .then(literal("invite").then(argument("player", StringArgumentType.word())/*.requires((cmdSource) -> Party.isModeratorOrOwner()).requires((cmdSource) -> Party.isInParty())*/
+                    .then(literal("invite").then(argument("player", StringArgumentType.word())
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.invitingPlayer", player));
@@ -48,7 +48,7 @@ public class PartyCommand implements ClientModInitializer {
                                 return 1;
                             }))
 
-                    .then(literal("chat").then(argument("message", StringArgumentType.greedyString()).requires((cmdSource) -> Party.isInParty())
+                    .then(literal("chat").then(argument("message", StringArgumentType.greedyString())
                             .executes(PartyCommand::chat)))
 
                     .then(literal("leave")
@@ -62,7 +62,7 @@ public class PartyCommand implements ClientModInitializer {
                                 return 1;
                             }))
 
-                    .then(literal("info").requires((cmdSource) -> Party.isInParty())
+                    .then(literal("info")
                             .executes(context -> {
                                 MutableText newLine = Text.literal("\n");
                                 MutableText title = Text.translatable("mflp.party.infoTitle").styled(style -> style.withBold(true));
@@ -83,7 +83,7 @@ public class PartyCommand implements ClientModInitializer {
                                 return 1;
                             }))
 
-                    .then(literal("remove").then(argument("player", StringArgumentType.word()).requires((cmdSource) -> Party.isModeratorOrOwner()).requires((cmdSource) -> Party.isInParty())
+                    .then(literal("remove").then(argument("player", StringArgumentType.word())
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.removingPlayer", player));
@@ -91,23 +91,23 @@ public class PartyCommand implements ClientModInitializer {
                                 return 1;
                             })))
 
-                    .then(literal("promote").then(argument("player", StringArgumentType.word()).requires((cmdSource) -> Party.isOwner()).requires((cmdSource) -> Party.isInParty())
+                    .then(literal("promote").then(argument("player", StringArgumentType.word())
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
-                                context.getSource().sendFeedback(Text.translatable("mflp.party.removingPlayer", player));
+                                context.getSource().sendFeedback(Text.translatable("mflp.party.promotingPlayer", player));
                                 PartyNetworkHandler.promotePlayer(player);
                                 return 1;
                             })))
 
-                    .then(literal("demote").then(argument("player", StringArgumentType.word()).requires((cmdSource) -> Party.isOwner()).requires((cmdSource) -> Party.isInParty())
+                    .then(literal("demote").then(argument("player", StringArgumentType.word())
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
-                                context.getSource().sendFeedback(Text.translatable("mflp.party.removingPlayer", player));
+                                context.getSource().sendFeedback(Text.translatable("mflp.party.demotingPlayer", player));
                                 PartyNetworkHandler.demotePlayer(player);
                                 return 1;
                             })))
 
-                    .then(literal("manage").requires((cmdSource) -> Party.isInParty())
+                    .then(literal("manage")
                             .executes(context -> {
                                 ScreenUtil.openScreenAfterDelay(new CottonClientScreen(Text.translatable("mflp.party.screen.title"), new PartyGui()));
                                 return 1;

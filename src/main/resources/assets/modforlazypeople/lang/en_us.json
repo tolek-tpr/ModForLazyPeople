@@ -124,6 +124,8 @@
   "mflp.party.decliningInvite": "Declining Invite...",
   "mflp.party.leavingParty": "Leaving Party...",
   "mflp.party.removingPlayer": "Removing %s from the party...",
+  "mflp.party.promotingPlayer": "Promoting %s...",
+  "mflp.party.demotingPlayer": "Demoting %s...",
   "mflp.party.infoTitle": "PARTY INFORMATION:",
   "mflp.party.infoOwner": "Owner: %s",
   "mflp.party.moderators": "Moderators:",
