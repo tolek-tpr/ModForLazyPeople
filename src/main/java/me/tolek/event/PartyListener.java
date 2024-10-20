@@ -14,6 +14,9 @@ public interface PartyListener extends Listener {
     void onPartyInviteFailed(String playerUsername);
     void onPartyChanged(String owner, ArrayList<String> moderators, ArrayList<String> members);
     void onError(String errorTitleTranslationKey, String errorDescriptionTranslationKey);
+    void onPlayerDemoted(String player);
+    void onPlayerPromoted(String player);
+    void onPlayerDeclinedInvite(String player);
 
     public static class MessageReceivedEvent extends Event<PartyListener> {
 
@@ -222,6 +225,63 @@ public interface PartyListener extends Listener {
         public void fire(ArrayList<PartyListener> listeners) {
             for (PartyListener listener : listeners)
                 listener.onError(this.errorTitleTranslationKey, this.errorDescriptionTranslationKey);
+        }
+
+        @Override
+        public Class<PartyListener> getListenerType() {
+            return PartyListener.class;
+        }
+    }
+
+    public static class PlayerDemotedEvent extends Event<PartyListener> {
+        private final String player;
+
+        public PlayerDemotedEvent(String player) {
+            this.player = player;
+        }
+
+        @Override
+        public void fire(ArrayList<PartyListener> listeners) {
+            for (PartyListener listener : listeners)
+                listener.onPlayerDemoted(this.player);
+        }
+
+        @Override
+        public Class<PartyListener> getListenerType() {
+            return PartyListener.class;
+        }
+    }
+
+    public static class PlayerPromotedEvent extends Event<PartyListener> {
+        private final String player;
+
+        public PlayerPromotedEvent(String player) {
+            this.player = player;
+        }
+
+        @Override
+        public void fire(ArrayList<PartyListener> listeners) {
+            for (PartyListener listener : listeners)
+                listener.onPlayerPromoted(this.player);
+        }
+
+        @Override
+        public Class<PartyListener> getListenerType() {
+            return PartyListener.class;
+        }
+    }
+
+    public static class PlayerDeclinedEvent extends Event<PartyListener> {
+        private final String player;
+
+        public PlayerDeclinedEvent(String player) {
+            this.player = player;
+        }
+
+        @Override
+        public void fire(ArrayList<PartyListener> listeners) {
+            for (PartyListener listener : listeners)
+                listener.onPlayerDeclinedInvite(this.player);
         }
 
         @Override
