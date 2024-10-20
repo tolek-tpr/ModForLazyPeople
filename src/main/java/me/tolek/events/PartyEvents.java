@@ -47,13 +47,18 @@ public class PartyEvents extends EventImpl implements PartyListener {
     @Override
     public void onClientInvited(String partyOwnerUsername) {
         ToastUtil.showToast(Text.translatable("mflp.party.clientInvited.title", partyOwnerUsername), Text.translatable("mflp.party.clientInvited.description", partyOwnerUsername));
-        sendFeedback(Text.translatable("mflp.party.clientInvited.title", partyOwnerUsername));
+        sendFeedback(Text.translatable("mflp.party.clientInvited.title", partyOwnerUsername).formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 
     @Override
     public void onClientRemoved() {
         ToastUtil.showToast(Text.translatable("mflp.party.clientRemoved.title"), Text.empty());
-        sendFeedback(Text.translatable("mflp.party.clientRemoved.title"));
+        sendFeedback(Text.translatable("mflp.party.clientRemoved.title").formatted(Formatting.ITALIC, Formatting.GRAY));
+    }
+
+    @Override
+    public void onClientLeft() {
+        sendFeedback(Text.translatable("mflp.party.clientLeft").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 
     @Override
@@ -74,7 +79,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
     @Override
     public void onPartyInviteFailed(String username) {
         ToastUtil.showToast(Text.translatable("mflp.party.failedToInvite.title", username), Text.translatable("mflp.party.failedToInvite.description"));
-        sendFeedback(Text.translatable("mflp.party.failedToInvite.title", username));
+        sendFeedback(Text.translatable("mflp.party.failedToInvite.title", username).formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 
     @Override
@@ -111,7 +116,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
         MinecraftClient.getInstance().player.sendMessage(message);
 
         if (playSound)
-            MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0f, 1.0f));
+            MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0f, 0.5f));
     }
 
     private static void sendFeedback(Text message) {

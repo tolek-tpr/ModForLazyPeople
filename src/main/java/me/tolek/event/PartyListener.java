@@ -8,6 +8,7 @@ public interface PartyListener extends Listener {
     void onPlayerInvited(String playerUsername);
     void onClientInvited(String partyOwnerUsername);
     void onClientRemoved();
+    void onClientLeft();
     void onPlayerLeft(String playerUsername);
     void onPlayerRemoved(String playerUsername);
     void onPlayerJoined(String playerUsername);
@@ -92,6 +93,20 @@ public interface PartyListener extends Listener {
         public void fire(ArrayList<PartyListener> listeners) {
             for(PartyListener listener : listeners)
                 listener.onClientRemoved();
+        }
+
+        @Override
+        public Class<PartyListener> getListenerType() {
+            return PartyListener.class;
+        }
+    }
+
+    public static class ClientLeftEvent extends Event<PartyListener> {
+
+        @Override
+        public void fire(ArrayList<PartyListener> listeners) {
+            for(PartyListener listener : listeners)
+                listener.onClientLeft();
         }
 
         @Override

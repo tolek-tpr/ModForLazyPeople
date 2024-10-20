@@ -140,6 +140,7 @@
   "mflp.party.clientInvited.description": "Use /party accept or /party decline to accept or decline the invite!",
   "mflp.party.playerInvited": "%s was invited to the party!",
   "mflp.party.clientRemoved.title": "You were removed from the party!",
+  "mflp.party.clientLeft": "You left the party!",
   "mflp.party.screen.title": "Manage Party",
   "mflp.party.screen.ownership": "%s's party",
   "mflp.party.screen.invitePlayer": "Player to invite",
@@ -157,7 +158,7 @@
   "mflp.failedToConnectScreen.reconnectionText": "To reconnect, either use the button below, /mflpnet reconnect, or the button in the settings screen.",
   "mflp.mainConfig.connected.tooltip": "You are connected to the MFLP network.",
   "mflp.mainConfig.disconnected.tooltip": "You are not connected to the MFLP network.",
-  
+
   "mflp.net.reconnect.failure": "MFLP > Failed to reconnect!",
   "mflp.net.reconnect.success": "MFLP > Connection succeeded!",
   "mflp.net.status.notConnected": "MFLP > You are NOT connected to the MFLP server!",

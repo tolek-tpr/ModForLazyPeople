@@ -64,6 +64,11 @@ public class PartyCommand implements ClientModInitializer {
 
                     .then(literal("info")
                             .executes(context -> {
+                                if (!Party.isInParty()) {
+                                    context.getSource().sendError(Text.translatable("mflp.party.error.notInParty"));
+                                    return 2;
+                                }
+
                                 MutableText newLine = Text.literal("\n");
                                 MutableText title = Text.translatable("mflp.party.infoTitle").styled(style -> style.withBold(true));
                                 MutableText ownerText = Text.literal("  ").append(Text.translatable("mflp.party.infoOwner", Party.getOwner())).styled(style -> style.withBold(false).withItalic(true));
