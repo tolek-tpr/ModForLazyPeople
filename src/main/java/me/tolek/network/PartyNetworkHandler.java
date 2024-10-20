@@ -152,6 +152,7 @@ public class PartyNetworkHandler extends EventImpl {
                 if (serverHandler.endpoint == null) return;
 
                 JsonObject json = JsonParser.parseString(message).getAsJsonObject();
+                System.out.println(json);
 
                 String id = json.get("id").getAsString();
                 String cmd = json.get("cmd").getAsString();
