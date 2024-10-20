@@ -56,7 +56,7 @@ public class WebSocketServerHandler {
                     String clientKey = json.get("key").getAsString();
 
                     if (clientKey != null) this.clientKey = clientKey;
-                    System.out.println("Received client key, setting");
+                    ModForLazyPeople.LOGGER.info("Received MFLP client key, setting");
                 } catch (Exception ignored) {}
             });
 
@@ -70,8 +70,10 @@ public class WebSocketServerHandler {
             ModForLazyPeople.LOGGER.warn("Failed to Reconnect");
             MinecraftClient client = MinecraftClient.getInstance();
             client.setScreen(new FailedToConnectToMflpNetworkScreen());
+        } else {
+            this.messageHandlers.forEach(endpoint::addMessageHandler);
+            IconNetworkHandler.getInstance().requestListAndSendJoin();
         }
-        this.messageHandlers.forEach(endpoint::addMessageHandler);
     }
 
     public boolean isDisconnected() {

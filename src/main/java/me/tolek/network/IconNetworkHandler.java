@@ -20,6 +20,14 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
 
     private int ticksPassed = 0;
 
+    private static IconNetworkHandler instance;
+    private IconNetworkHandler() {}
+
+    public static IconNetworkHandler getInstance() {
+        if (instance == null) instance = new IconNetworkHandler();
+        return instance;
+    }
+
     @Override
     public void onEnable() {
         EventManager.getInstance().add(UpdateListener.class, this);
@@ -34,22 +42,25 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
 
                 String id = json.get("id").getAsString();
                 String cmd = json.get("cmd").getAsString();
-                String body = json.get("body").getAsString();
 
-                if (cmd.equalsIgnoreCase("STATUS") && body.equalsIgnoreCase("JOIN")) {
-                    serverHandler.mflpUsers.add(id);
-                } else if (cmd.equalsIgnoreCase("STATUS") && body.equalsIgnoreCase("PART")) {
-                    serverHandler.mflpUsers.remove(id);
-                } else if (cmd.equalsIgnoreCase("STATUS")) {
-                    JsonObject bodyObject = JsonParser.parseString(body).getAsJsonObject();
+                if (cmd.equals("STATUS")) {
+                    if (json.get("body").getAsString().equalsIgnoreCase("JOIN")) {
+                        serverHandler.mflpUsers.add(id);
+                    } else if (json.get("body").getAsString().equalsIgnoreCase("PART")) {
+                        serverHandler.mflpUsers.remove(id);
+                    } else {
+                        JsonObject bodyObject = json.getAsJsonObject("body");
 
-                    if (bodyObject.get("body_cmd").getAsString().equalsIgnoreCase("FULL_LIST")) {
-                        ArrayList<String> clients = new ArrayList<>();
+                        if (bodyObject.get("body_cmd").getAsString().equalsIgnoreCase("FULL_LIST")) {
+                            ArrayList<String> clients = new ArrayList<>();
 
-                        bodyObject.get("clients").getAsJsonArray().forEach(element -> clients.add(element.getAsString()));
-                        serverHandler.mflpUsers = clients;
+                            bodyObject.get("clients").getAsJsonArray().forEach(element -> clients.add(element.getAsString()));
+                            serverHandler.mflpUsers = clients;
+                        }
                     }
                 }
+
+
             } catch (Exception ignored) { }
         });
     }

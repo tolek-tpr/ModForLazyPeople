@@ -23,14 +23,14 @@ public class MflpNetCommand implements ClientModInitializer {
                         }
                         return 1;
                     }))
-                    .then(literal("status")).executes(context -> {
+                    .then(literal("status").executes(context -> {
                         if (WebSocketServerHandler.getInstance().endpoint == null) {
                             context.getSource().sendFeedback(Text.translatable("mflp.net.status.notConnected").formatted(Formatting.RED));
                         } else {
                             context.getSource().sendFeedback(Text.translatable("mflp.net.status.connected").formatted(Formatting.GREEN));
                         }
                         return 1;
-                    })
+                    }))
             );
         });
     }

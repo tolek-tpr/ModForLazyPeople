@@ -57,6 +57,7 @@ public class MenuPickerWidget extends ContainerWidget {
 
         ButtonWidget reconnectButton = ButtonWidget.builder(Text.translatable("mflp.reconnect"), (button) -> {
                     WebSocketServerHandler.getInstance().reconnect();
+                    client.setScreen(screen);
                 }).dimensions(10, screen.height - 30, 70, 20)
                 .tooltip(Tooltip.of(Text.translatable("mflp.reconnect.tooltip")))
                 .build();

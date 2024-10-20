@@ -1,5 +1,6 @@
 package me.tolek.network;
 
+import me.tolek.ModForLazyPeople;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
@@ -26,13 +27,13 @@ public class WebSocketClientEndpoint {
 
     @OnOpen
     public void onOpen(Session userSession) {
-        System.out.println("opening websocket");
+        ModForLazyPeople.LOGGER.info("Opening MFLP websocket");
         this.userSession = userSession;
     }
 
     @OnClose
     public void onClose(Session userSession, CloseReason reason) {
-        System.out.println("closing websocket");
+        ModForLazyPeople.LOGGER.info("Closing MFLP websocket");
         WebSocketServerHandler.getInstance().endpoint = null;
         this.userSession = null;
     }
@@ -46,7 +47,7 @@ public class WebSocketClientEndpoint {
 
     @OnMessage
     public void onMessage(ByteBuffer bytes) {
-        System.out.println("Handle byte buffer");
+        ModForLazyPeople.LOGGER.warn("Received byte buffer, not handled!");
     }
 
     public void addMessageHandler(MessageHandler msgHandler) {

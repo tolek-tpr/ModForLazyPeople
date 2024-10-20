@@ -152,7 +152,6 @@ public class PartyNetworkHandler extends EventImpl {
                 if (serverHandler.endpoint == null) return;
 
                 JsonObject json = JsonParser.parseString(message).getAsJsonObject();
-                System.out.println(json);
 
                 String id = json.get("id").getAsString();
                 String cmd = json.get("cmd").getAsString();
@@ -217,9 +216,10 @@ public class PartyNetworkHandler extends EventImpl {
                     EventManager.getInstance().fire(event);
                 }
                 if (cmd.equals("PLAYER_KICKED")) {
-                    String body = json.get("body").getAsString();
+                    partyChanged(json);
 
-                    PartyListener.PlayerRemovedEvent event = new PartyListener.PlayerRemovedEvent(body);
+                    PartyListener.PlayerRemovedEvent event = new PartyListener.PlayerRemovedEvent(json.getAsJsonObject("body")
+                            .get("kicked").getAsString());
                     EventManager.getInstance().fire(event);
                 }
                 if (cmd.equals("CLIENT_KICKED")) {
@@ -263,7 +263,6 @@ public class PartyNetworkHandler extends EventImpl {
         if (players.contains(client.getSession().getUsername()) || mods.contains(client.getSession().getUsername()) ||
                 bodyObject.get("owner").getAsString().equals(client.getSession().getUsername())) {
             Party.setInParty(true);
-            System.out.println("true");
         }
 
         PartyChangedEvent event = new PartyChangedEvent(bodyObject.get("owner").getAsString(), mods, players);

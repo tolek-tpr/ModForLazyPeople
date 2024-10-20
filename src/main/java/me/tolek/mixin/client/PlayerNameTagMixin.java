@@ -2,7 +2,6 @@ package me.tolek.mixin.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.tolek.modules.settings.MflpSettingsList;
-import me.tolek.network.MflpPlayersWorker;
 import me.tolek.network.WebSocketServerHandler;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -12,7 +11,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.EntityView;
 import org.joml.Matrix4f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
