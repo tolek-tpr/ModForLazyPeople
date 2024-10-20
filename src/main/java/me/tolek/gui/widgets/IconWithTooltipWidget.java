@@ -13,12 +13,12 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
-public class IconButtonWidgetWithoutButtonTextures extends TextIconButtonWidget.IconOnly {
+public class IconWithTooltipWidget extends TextIconButtonWidget.IconOnly {
 
     private Identifier modifiableTexture;
 
-    public IconButtonWidgetWithoutButtonTextures(int width, int height, Text message, Identifier texture, ButtonWidget.PressAction onPress) {
-        super(width, height, message, width, height, texture, onPress);
+    public IconWithTooltipWidget(int width, int height, Text message, Identifier texture) {
+        super(width, height, message, width, height, texture, (btn) -> {});
         modifiableTexture = texture;
     }
 

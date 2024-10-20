@@ -64,4 +64,8 @@ public class WebSocketServerHandler {
         }
     }
 
+    public boolean isDisconnected() {
+        return this.endpoint == null;
+    }
+
 }
