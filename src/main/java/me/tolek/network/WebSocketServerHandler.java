@@ -47,8 +47,6 @@ public class WebSocketServerHandler {
         try {
             endpoint = new WebSocketClientEndpoint(new URI("ws://epsi.ddns.net:8080"));
 
-            //endpoint = new WebSocketClientEndpoint(new URI("ws://localhost:3000"));
-
             this.endpoint.addMessageHandler(message -> {
                 try {
                     JsonObject json = JsonParser.parseString(message).getAsJsonObject();
@@ -59,8 +57,6 @@ public class WebSocketServerHandler {
                     ModForLazyPeople.LOGGER.info("Received MFLP client key, setting");
                 } catch (Exception ignored) {}
             });
-
-            //new IconNetworkHandler().requestListAndSendJoin();
         } catch (Exception ignored) {}
     }
 
