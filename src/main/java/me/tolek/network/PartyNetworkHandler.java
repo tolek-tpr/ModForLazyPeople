@@ -58,7 +58,18 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void removeMember(String member) {
-        throw new NotImplementedException();
+        JsonObject message = new JsonObject();
+
+        JsonObject body = new JsonObject();
+        body.addProperty("body_cmd", "KICK");
+        body.addProperty("player", member);
+
+        message.addProperty("key", serverHandler.clientKey);
+        message.addProperty("id", client.getSession().getUsername());
+        message.addProperty("cmd", "PARTY");
+        message.add("body", body);
+
+        serverHandler.sendMessage(message.toString());
     }
 
     public static void leaveParty() {
@@ -117,6 +128,9 @@ public class PartyNetworkHandler extends EventImpl {
                     // INVALID_PLAYER
                     // PLAYER_OFFLINE
                     // PLAYER_IN_PARTY
+                    // SELF_INVITE
+                    // NOT_IN_PARTY
+                    // INVALID_PARTY
                 }
 
                 if (cmd.equals("CLIENT_INVITED")) {

@@ -33,6 +33,7 @@ public class WebSocketClientEndpoint {
     @OnClose
     public void onClose(Session userSession, CloseReason reason) {
         System.out.println("closing websocket");
+        WebSocketServerHandler.getInstance().endpoint = null;
         this.userSession = null;
     }
 
