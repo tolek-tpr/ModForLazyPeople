@@ -89,7 +89,6 @@ public class PartyEvents extends EventImpl implements PartyListener {
         Party.setOwner(owner);
         Party.setModerators(moderators);
         Party.setMembers(members);
-        PartyGui.notifyPartyChanged();
     }
 
     @Override

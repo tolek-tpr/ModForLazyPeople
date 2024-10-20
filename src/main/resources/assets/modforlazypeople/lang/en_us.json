@@ -142,6 +142,8 @@
   "mflp.party.screen.ownership": "%s's party",
   "mflp.party.screen.invitePlayer": "Player to invite",
   "mflp.party.screen.invite": "Invite",
+  "mflp.party.screen.notInParty": "You are not in a party!",
+  "mflp.party.screen.leave.tooltip": "Leave party",
 
   "mflp.party.error.timeout": "ERROR: Connection was timed out!",
   "mflp.party.error.notInParty": "ERROR: You're not in a party!",

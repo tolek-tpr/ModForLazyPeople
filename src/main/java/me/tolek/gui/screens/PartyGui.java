@@ -5,7 +5,6 @@ import io.github.cottonmc.cotton.gui.widget.*;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import io.github.cottonmc.cotton.gui.widget.icon.TextureIcon;
 import me.tolek.ModForLazyPeople;
-import me.tolek.gui.widgets.WListPanelWithModifiableData;
 import me.tolek.gui.widgets.WPartyMember;
 import me.tolek.modules.party.Party;
 import me.tolek.network.PartyNetworkHandler;
@@ -18,13 +17,6 @@ import java.util.Objects;
 import java.util.function.BiConsumer;
 
 public class PartyGui extends LightweightGuiDescription {
-
-    private static WListPanelWithModifiableData<String, WPartyMember> moderatorsList;
-    private static WListPanelWithModifiableData<String, WPartyMember> membersList;
-    private static WLabel ownerLabel;
-    private static WTextField inviteTextField;
-    private static WButton inviteButton;
-
     private static final BiConsumer<String, WPartyMember> MEMBER_MEMBER_CONFIGURATOR = (String s, WPartyMember partyMember) -> {
         partyMember.usernameLabel.setText(Text.literal(s));
     };
@@ -48,29 +40,38 @@ public class PartyGui extends LightweightGuiDescription {
         setRootPanel(root);
         root.setInsets(Insets.ROOT_PANEL);
 
-        ownerLabel = new WLabel(Text.translatable("mflp.party.screen.ownership", Party.getOwner()));
+        if (!Party.isInParty()) {
+            WLabel youAreNotInAPartyLabel = new WLabel(Text.translatable("mflp.party.screen.notInParty", Party.getOwner()));
+            root.add(youAreNotInAPartyLabel, 0, 1, 8, 1);
+            root.validate(this);
+            return;
+        }
+
+        WLabel ownerLabel = new WLabel(Text.translatable("mflp.party.screen.ownership", Party.getOwner()));
         root.add(ownerLabel, 0, 1);
 
         WLabel moderatorsLabel = new WLabel(Text.translatable("mflp.party.moderators"));
         root.add(moderatorsLabel, 0, 2);
 
-        moderatorsList = new WListPanelWithModifiableData<>(Party.getModerators(), () -> new WPartyMember(Party.isOwner()), Party.isOwner() ? OWNER_MODERATOR_CONFIGURATOR : MEMBER_MEMBER_CONFIGURATOR);
+        WListPanel<String, WPartyMember> moderatorsList = new WListPanel<>(Party.getModerators(), () -> new WPartyMember(Party.isOwner()), Party.isOwner() ? OWNER_MODERATOR_CONFIGURATOR : MEMBER_MEMBER_CONFIGURATOR);
         moderatorsList.setListItemHeight(15);
         root.add(moderatorsList, 0, 3, 8, 6);
 
         WLabel membersLabel = new WLabel(Text.translatable("mflp.party.members"));
         root.add(membersLabel, 8, 2);
 
-        membersList = new WListPanelWithModifiableData<>(Party.getMembers(), () -> new WPartyMember(Party.isOwner()), Party.isOwner() ? OWNER_MEMBER_CONFIGURATOR : MEMBER_MEMBER_CONFIGURATOR);
+        WListPanel<String, WPartyMember> membersList = new WListPanel<>(Party.getMembers(), () -> new WPartyMember(Party.isOwner()), Party.isOwner() ? OWNER_MEMBER_CONFIGURATOR : MEMBER_MEMBER_CONFIGURATOR);
         membersList.setListItemHeight(15);
         root.add(membersList, 8, 3, 8, 6);
 
-        inviteTextField = new WTextField();
+        WTextField inviteTextField = new WTextField();
         inviteTextField.setSuggestion(Text.translatable("mflp.party.screen.invitePlayer"));
+        inviteTextField.setEditable(Party.isModeratorOrOwner());
         root.add(inviteTextField, 0, 10, 6, 1);
 
-        inviteButton = new WButton(Text.translatable("mflp.party.screen.invite"));
+        WButton inviteButton = new WButton(Text.translatable("mflp.party.screen.invite"));
         inviteButton.setOnClick(() -> PartyNetworkHandler.invitePlayer(inviteTextField.getText()));
+        inviteButton.setEnabled(Party.isModeratorOrOwner());
         root.add(inviteButton, 7, 10, 3, 1);
 
         final int closeButtonWidth = 6;
@@ -78,23 +79,11 @@ public class PartyGui extends LightweightGuiDescription {
         closeButton.setOnClick(() -> MinecraftClient.getInstance().setScreen(null));
         root.add(closeButton, root.getWidth() / 2 / pixelsPerCell - (closeButtonWidth / 2), 12, closeButtonWidth, 1);
 
-        notifyPartyChanged();
+        WButton leaveButton = new WButton(new TextureIcon(Objects.requireNonNull(Identifier.of(ModForLazyPeople.MOD_ID, "textures/gui/sprites/leave.png"))));
+        leaveButton.setOnClick(PartyNetworkHandler::leaveParty);
+        //leaveButton.addTooltip(new TooltipBuilder().add(Text.translatable("mflp.party.screen.leave.tooltip")));
+        root.add(leaveButton, root.getWidth() / pixelsPerCell, 1, 1, 1);
 
         root.validate(this);
-    }
-
-    public static void notifyPartyChanged() {
-        if (membersList == null)
-            return;
-
-        membersList.setData(Party.getMembers());
-        moderatorsList.setData(Party.getModerators());
-        ownerLabel.setText(Text.translatable("mflp.party.screen.ownership", Party.getOwner()));
-
-        moderatorsList.setConfigurator(Party.isOwner() ? OWNER_MODERATOR_CONFIGURATOR : MEMBER_MEMBER_CONFIGURATOR);
-        membersList.setConfigurator(Party.isOwner() ? OWNER_MEMBER_CONFIGURATOR : MEMBER_MEMBER_CONFIGURATOR);
-
-        inviteButton.setEnabled(Party.isModeratorOrOwner());
-        inviteTextField.setEditable(Party.isModeratorOrOwner());
     }
 }
