@@ -95,7 +95,7 @@ public class PartyCommand implements ClientModInitializer {
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.removingPlayer", player));
-                                PartyNetworkHandler.removeMember(player);
+                                PartyNetworkHandler.promotePlayer(player);
                                 return 1;
                             })))
 
@@ -103,7 +103,7 @@ public class PartyCommand implements ClientModInitializer {
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.removingPlayer", player));
-                                PartyNetworkHandler.removeMember(player);
+                                PartyNetworkHandler.demotePlayer(player);
                                 return 1;
                             })))
 

@@ -97,6 +97,7 @@ public class PartyNetworkHandler extends EventImpl {
         message.add("body", body);
 
         serverHandler.sendMessage(message.toString());
+        Party.setInParty(false);
     }
 
     public static void declineInvite() {
@@ -203,7 +204,7 @@ public class PartyNetworkHandler extends EventImpl {
                 if (cmd.equals("PLAYER_DEMOTED")) {
                     partyChanged(json);
 
-                    PartyListener.PlayerPromotedEvent event = new PartyListener.PlayerPromotedEvent(json.getAsJsonObject("body")
+                    PartyListener.PlayerDemotedEvent event = new PartyListener.PlayerDemotedEvent(json.getAsJsonObject("body")
                             .get("demoted").getAsString());
                     EventManager.getInstance().fire(event);
                 }
