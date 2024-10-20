@@ -54,7 +54,19 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void send(String message) {
-        throw new NotImplementedException();
+        JsonObject messageS = new JsonObject();
+
+        JsonObject body = new JsonObject();
+        body.addProperty("body_cmd", "CHAT");
+        body.addProperty("player", client.getSession().getUsername());
+        body.addProperty("message", message);
+
+        messageS.addProperty("key", serverHandler.clientKey);
+        messageS.addProperty("id", client.getSession().getUsername());
+        messageS.addProperty("cmd", "PARTY");
+        messageS.add("body", body);
+
+        serverHandler.sendMessage(messageS.toString());
     }
 
     public static void removeMember(String member) {
@@ -103,11 +115,33 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void promotePlayer(String player) {
-        throw new NotImplementedException();
+        JsonObject message = new JsonObject();
+
+        JsonObject body = new JsonObject();
+        body.addProperty("body_cmd", "PROMOTE");
+        body.addProperty("player", player);
+
+        message.addProperty("key", serverHandler.clientKey);
+        message.addProperty("id", client.getSession().getUsername());
+        message.addProperty("cmd", "PARTY");
+        message.add("body", body);
+
+        serverHandler.sendMessage(message.toString());
     }
 
     public static void demotePlayer(String player) {
-        throw new NotImplementedException();
+        JsonObject message = new JsonObject();
+
+        JsonObject body = new JsonObject();
+        body.addProperty("body_cmd", "DEMOTE");
+        body.addProperty("player", player);
+
+        message.addProperty("key", serverHandler.clientKey);
+        message.addProperty("id", client.getSession().getUsername());
+        message.addProperty("cmd", "PARTY");
+        message.add("body", body);
+
+        serverHandler.sendMessage(message.toString());
     }
 
     @Override
@@ -131,6 +165,7 @@ public class PartyNetworkHandler extends EventImpl {
                     // SELF_INVITE
                     // NOT_IN_PARTY
                     // INVALID_PARTY
+                    // UNSUPPORTED_OPERATION
                 }
 
                 if (cmd.equals("CLIENT_INVITED")) {
@@ -168,6 +203,11 @@ public class PartyNetworkHandler extends EventImpl {
 
                     PartyListener.PlayerPromotedEvent event = new PartyListener.PlayerPromotedEvent(json.getAsJsonObject("body")
                             .get("demoted").getAsString());
+                    EventManager.getInstance().fire(event);
+                }
+                if (cmd.equals("CHAT")) {
+                    PartyListener.MessageReceivedEvent event = new PartyListener.MessageReceivedEvent(json.getAsJsonObject("body")
+                            .get("message").getAsString(), json.getAsJsonObject("body").get("author").getAsString());
                     EventManager.getInstance().fire(event);
                 }
             } catch (Exception ignored) { }
