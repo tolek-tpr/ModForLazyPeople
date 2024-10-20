@@ -26,12 +26,19 @@ public class WebSocketServerHandler {
     public ArrayList<String> mflpUsers = new ArrayList<>();
     public String clientKey;
 
+    private final ArrayList<WebSocketClientEndpoint.MessageHandler> messageHandlers = new ArrayList<>();
+
     public static WebSocketServerHandler getInstance() {
         if (instance == null) instance = new WebSocketServerHandler();
         return instance;
     }
 
-    public void addMessageHandler(WebSocketClientEndpoint.MessageHandler handler) { if (this.endpoint != null) this.endpoint.addMessageHandler(handler); }
+    public void addMessageHandler(WebSocketClientEndpoint.MessageHandler handler) {
+        if (this.endpoint != null) {
+            this.endpoint.addMessageHandler(handler);
+            this.messageHandlers.add(handler);
+        }
+    }
     public void sendMessage(String json) { if (this.endpoint != null) endpoint.sendMessage(json); }
 
     private void connect() {
@@ -62,6 +69,7 @@ public class WebSocketServerHandler {
             MinecraftClient client = MinecraftClient.getInstance();
             client.setScreen(new FailedToConnectToMflpNetworkScreen());
         }
+        this.messageHandlers.forEach(this::addMessageHandler);
     }
 
     public boolean isDisconnected() {
