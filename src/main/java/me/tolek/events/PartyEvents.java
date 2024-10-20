@@ -96,4 +96,25 @@ public class PartyEvents extends EventImpl implements PartyListener {
     public void onError(String errorTitleTranslationKey, String errorDescriptionTranslationKey) {
         ToastUtil.showToast(Text.translatable(errorTitleTranslationKey), Text.translatable(errorDescriptionTranslationKey));
     }
+
+    @Override
+    public void onPlayerDemoted(String player) {
+        assert MinecraftClient.getInstance().player != null;
+
+        MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.party.playerDemoted", player).formatted(Formatting.ITALIC, Formatting.GRAY));
+    }
+
+    @Override
+    public void onPlayerPromoted(String player) {
+        assert MinecraftClient.getInstance().player != null;
+
+        MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.party.playerPromoted", player).formatted(Formatting.ITALIC, Formatting.GRAY));
+    }
+
+    @Override
+    public void onPlayerDeclinedInvite(String player) {
+        assert MinecraftClient.getInstance().player != null;
+
+        MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.party.playerDeclined", player).formatted(Formatting.ITALIC, Formatting.GRAY));
+    }
 }

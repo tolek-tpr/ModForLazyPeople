@@ -149,5 +149,8 @@
   "mflp.failedToConnectScreen.description": "This is either because the servers are down, or you aren't connected to the internet.",
   "mflp.failedToConnectScreen.reconnectionText": "To reconnect, either use the button below, /mflpnet reconnect, or the button in the settings screen.",
   "mflp.mainConfig.connected.tooltip": "You are connected to the MFLP network.",
-  "mflp.mainConfig.disconnected.tooltip": "You are not connected to the MFLP network."
+  "mflp.mainConfig.disconnected.tooltip": "You are not connected to the MFLP network.",
+  "mflp.party.playerDemoted": "%s was demoted.",
+  "mflp.party.playerPromoted": "%s was promoted.",
+  "mflp.party.playerDeclined": "%s declined their invite."
 }
