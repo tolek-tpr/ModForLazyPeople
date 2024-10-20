@@ -2,8 +2,10 @@ package me.tolek.network;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import me.tolek.event.Event;
 import me.tolek.event.EventImpl;
 import me.tolek.event.EventManager;
+import me.tolek.event.PartyListener;
 import me.tolek.modules.party.Party;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -147,10 +149,14 @@ public class PartyNetworkHandler extends EventImpl {
                     }
                 }
                 if (cmd.equals("PLAYER_KICKED")) {
+                    String body = json.get("body").getAsString();
 
+                    PartyListener.PlayerRemovedEvent event = new PartyListener.PlayerRemovedEvent(body, "");
+                    EventManager.getInstance().fire(event);
                 }
                 if (cmd.equals("CLIENT_KICKED")) {
-
+                    PartyListener.ClientRemovedEvent event = new PartyListener.ClientRemovedEvent();
+                    EventManager.getInstance().fire(event);
                 }
             } catch (Exception ignored) { }
         });
