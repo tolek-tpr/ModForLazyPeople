@@ -1,6 +1,5 @@
 package me.tolek.events;
 
-import me.tolek.ModForLazyPeople;
 import me.tolek.event.*;
 import me.tolek.gui.screens.PartyGui;
 import me.tolek.modules.party.Party;
@@ -28,12 +27,8 @@ public class PartyEvents extends EventImpl implements PartyListener {
     }
 
     @Override
-    public void onMessage(String message, String author, String err) {
+    public void onMessage(String message, String author) {
         assert MinecraftClient.getInstance().player != null;
-
-        if (handleError(err)) {
-            return;
-        }
 
         // Terrifying. Minecraft hates me and this was the only way it works. MutableText.formatting didn't work properly.
         MutableText authorText = Text.literal(author).styled(style -> style.withBold(true));
@@ -46,12 +41,8 @@ public class PartyEvents extends EventImpl implements PartyListener {
     }
 
     @Override
-    public void onPlayerInvited(String playerUsername, String err) {
+    public void onPlayerInvited(String playerUsername) {
         assert MinecraftClient.getInstance().player != null;
-
-        if (handleError(err)) {
-            return;
-        }
 
         MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.party.playerInvited", playerUsername).formatted(Formatting.ITALIC, Formatting.GRAY));
     }
@@ -68,34 +59,22 @@ public class PartyEvents extends EventImpl implements PartyListener {
     }
 
     @Override
-    public void onPlayerLeft(String playerUsername, String err) {
+    public void onPlayerLeft(String playerUsername) {
         assert MinecraftClient.getInstance().player != null;
-
-        if (handleError(err)) {
-            return;
-        }
 
         MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.party.playerLeft", playerUsername).formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 
     @Override
-    public void onPlayerRemoved(String playerUsername, String err) {
+    public void onPlayerRemoved(String playerUsername) {
         assert MinecraftClient.getInstance().player != null;
-
-        if (handleError(err)) {
-            return;
-        }
 
         MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.party.playerRemoved", playerUsername).formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 
     @Override
-    public void onPlayerJoined(String playerUsername, String err) {
+    public void onPlayerJoined(String playerUsername) {
         assert MinecraftClient.getInstance().player != null;
-
-        if (handleError(err)) {
-            return;
-        }
 
         MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.party.playerJoined", playerUsername).formatted(Formatting.ITALIC, Formatting.GRAY));
     }
@@ -113,15 +92,8 @@ public class PartyEvents extends EventImpl implements PartyListener {
         PartyGui.notifyPartyChanged();
     }
 
-    private static boolean handleError(String err) {
-        if (err != null) {
-            assert MinecraftClient.getInstance().player != null;
-            MinecraftClient.getInstance().player.sendMessage(Text.translatable(err).formatted(Formatting.RED, Formatting.BOLD));
-            ModForLazyPeople.LOGGER.warn(err);
-            return true;
-        }
-
-        return false;
+    @Override
+    public void onError(String errorTitleTranslationKey, String errorDescriptionTranslationKey) {
+        ToastUtil.showToast(Text.translatable(errorTitleTranslationKey), Text.translatable(errorDescriptionTranslationKey));
     }
-
 }
