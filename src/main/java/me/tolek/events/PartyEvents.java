@@ -111,6 +111,11 @@ public class PartyEvents extends EventImpl implements PartyListener {
         sendFeedback(Text.translatable("mflp.party.playerDeclined", player).formatted(Formatting.ITALIC, Formatting.RED));
     }
 
+    @Override
+    public void onInviteTimedOut(String player) {
+        sendFeedback(Text.translatable("mflp.party.inviteTimeout", player).formatted(Formatting.ITALIC, Formatting.RED));
+    }
+
     private static void sendFeedback(Text message, boolean playSound) {
         assert MinecraftClient.getInstance().player != null;
 

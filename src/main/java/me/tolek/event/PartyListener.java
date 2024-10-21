@@ -18,6 +18,7 @@ public interface PartyListener extends Listener {
     void onPlayerDemoted(String player);
     void onPlayerPromoted(String player);
     void onPlayerDeclinedInvite(String player);
+    void onInviteTimedOut(String player);
 
     public static class MessageReceivedEvent extends Event<PartyListener> {
 
@@ -303,6 +304,28 @@ public interface PartyListener extends Listener {
         public Class<PartyListener> getListenerType() {
             return PartyListener.class;
         }
+    }
+
+    public static class InviteTimedOutEvent extends Event<PartyListener> {
+
+        private final String username;
+
+        public InviteTimedOutEvent(String username) {
+            this.username = username;
+        }
+
+        @Override
+        public void fire(ArrayList<PartyListener> listeners) {
+            for(PartyListener listener : listeners)
+                listener.onInviteTimedOut(this.username);
+        }
+
+        @Override
+        public Class<PartyListener> getListenerType()
+        {
+            return PartyListener.class;
+        }
+
     }
 
 }

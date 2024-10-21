@@ -267,6 +267,10 @@ public class PartyNetworkHandler extends EventImpl {
                             .get("joined").getAsString());
                     EventManager.getInstance().fire(event);
                 }
+                if (cmd.equals("INVITE_TIMEOUT")) {
+                    PartyListener.InviteTimedOutEvent event = new PartyListener.InviteTimedOutEvent(json.get("body").getAsString());
+                    EventManager.getInstance().fire(event);
+                }
             } catch (Exception ignored) { }
         });
     }

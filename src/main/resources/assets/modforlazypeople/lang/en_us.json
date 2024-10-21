@@ -143,6 +143,7 @@
   "mflp.party.clientLeft": "You left the party!",
   "mflp.party.screen.title": "Manage Party",
   "mflp.party.screen.ownership": "%s's party",
+  "mflp.party.inviteTimeout":  "The invite for %s has timed out!",
   "mflp.party.screen.invitePlayer": "Player to invite",
   "mflp.party.screen.invite": "Invite",
   "mflp.party.screen.notInParty": "You are not in a party!",
