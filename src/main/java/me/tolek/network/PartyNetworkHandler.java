@@ -98,6 +98,8 @@ public class PartyNetworkHandler extends EventImpl {
 
         serverHandler.sendMessage(message.toString());
         Party.setInParty(false);
+        PartyListener.ClientLeftEvent event = new PartyListener.ClientLeftEvent();
+        EventManager.getInstance().fire(event);
     }
 
     public static void declineInvite() {
@@ -245,6 +247,24 @@ public class PartyNetworkHandler extends EventImpl {
                 if (cmd.equals("CHAT")) {
                     PartyListener.MessageReceivedEvent event = new PartyListener.MessageReceivedEvent(json.getAsJsonObject("body")
                             .get("message").getAsString(), json.getAsJsonObject("body").get("author").getAsString());
+                    EventManager.getInstance().fire(event);
+                }
+                if (cmd.equals("INVITE_SUCCESS")) {
+                    PartyListener.PlayerInviteEvent event = new PartyListener.PlayerInviteEvent(json.get("body").getAsString());
+                    EventManager.getInstance().fire(event);
+                }
+                if (cmd.equals("PLAYER_LEAVE")) {
+                    partyChanged(json);
+
+                    PartyListener.PlayerLeaveEvent event = new PartyListener.PlayerLeaveEvent(json.getAsJsonObject("body")
+                            .get("left").getAsString());
+                    EventManager.getInstance().fire(event);
+                }
+                if (cmd.equals("PLAYER_LEAVE")) {
+                    partyChanged(json);
+
+                    PartyListener.PlayerJoinedEvent event = new PartyListener.PlayerJoinedEvent(json.getAsJsonObject("body")
+                            .get("joined").getAsString());
                     EventManager.getInstance().fire(event);
                 }
             } catch (Exception ignored) { }
