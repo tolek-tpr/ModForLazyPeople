@@ -24,6 +24,8 @@ public class PartyNetworkHandler extends EventImpl {
     private static final MinecraftClient client = MinecraftClient.getInstance();
 
     public static void invitePlayer(String player) {
+        if (!checkConnection()) return;
+
         JsonObject message = new JsonObject();
 
         JsonObject body = new JsonObject();
@@ -39,6 +41,8 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void acceptInvite() {
+        if (!checkConnection()) return;
+
         JsonObject message = new JsonObject();
 
         JsonObject body = new JsonObject();
@@ -54,6 +58,8 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void send(String message) {
+        if (!checkConnection()) return;
+
         JsonObject messageS = new JsonObject();
 
         JsonObject body = new JsonObject();
@@ -70,6 +76,8 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void removeMember(String member) {
+        if (!checkConnection()) return;
+
         JsonObject message = new JsonObject();
 
         JsonObject body = new JsonObject();
@@ -85,6 +93,8 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void leaveParty() {
+        if (!checkConnection()) return;
+        
         JsonObject message = new JsonObject();
 
         JsonObject body = new JsonObject();
@@ -103,6 +113,8 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void declineInvite() {
+        if (!checkConnection()) return;
+        
         JsonObject message = new JsonObject();
 
         JsonObject body = new JsonObject();
@@ -118,6 +130,8 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void promotePlayer(String player) {
+        if (!checkConnection()) return;
+        
         JsonObject message = new JsonObject();
 
         JsonObject body = new JsonObject();
@@ -133,6 +147,8 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void demotePlayer(String player) {
+        if (!checkConnection()) return;
+        
         JsonObject message = new JsonObject();
 
         JsonObject body = new JsonObject();
@@ -293,4 +309,17 @@ public class PartyNetworkHandler extends EventImpl {
         EventManager.getInstance().fire(event);
     }
 
+    public static boolean checkConnection() {
+        if (serverHandler.isDisconnected()) {
+            PartyListener.ErrorEvent event = new PartyListener.ErrorEvent("mflp.error.notConnected.title",
+                    "mflp.error.notConnected.description");
+            EventManager.getInstance().fire(event);
+
+            Party.setInParty(false);
+            return false;
+        }
+        
+        return true;
+    }
+    
 }

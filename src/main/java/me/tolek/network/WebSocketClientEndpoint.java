@@ -1,8 +1,11 @@
 package me.tolek.network;
 
 import me.tolek.ModForLazyPeople;
+import me.tolek.util.ToastUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.text.Text;
 
 import javax.websocket.*;
 import java.net.URI;
@@ -35,6 +38,10 @@ public class WebSocketClientEndpoint {
     public void onClose(Session userSession, CloseReason reason) {
         ModForLazyPeople.LOGGER.info("Closing MFLP websocket");
         WebSocketServerHandler.getInstance().endpoint = null;
+
+        if (MinecraftClient.getInstance().getSession().getUsername() != null) {
+            ToastUtil.showToast(Text.translatable("mflp.error.lostConnection.title"), Text.translatable("mflp.error.lostConnection.description"));
+        }
         this.userSession = null;
     }
 
