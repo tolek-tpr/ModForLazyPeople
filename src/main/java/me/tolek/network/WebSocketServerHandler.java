@@ -41,6 +41,7 @@ public class WebSocketServerHandler {
             }
         }
     }
+
     public void sendMessage(String json) { if (this.endpoint != null) endpoint.sendMessage(json); }
 
     private void connect() {
