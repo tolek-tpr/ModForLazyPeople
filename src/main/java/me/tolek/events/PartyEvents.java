@@ -117,9 +117,13 @@ public class PartyEvents extends EventImpl implements PartyListener {
     }
 
     private static void sendFeedback(Text message, boolean playSound) {
-        assert MinecraftClient.getInstance().player != null;
+        if (MinecraftClient.getInstance().world == null) {
+            ToastUtil.showToast(message, Text.empty());
+        } else {
+            assert MinecraftClient.getInstance().player != null;
 
-        MinecraftClient.getInstance().player.sendMessage(message);
+            MinecraftClient.getInstance().player.sendMessage(message);
+        }
 
         if (playSound)
             MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0f, 0.5f));
