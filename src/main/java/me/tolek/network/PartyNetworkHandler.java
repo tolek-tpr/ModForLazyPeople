@@ -260,7 +260,7 @@ public class PartyNetworkHandler extends EventImpl {
                             .get("left").getAsString());
                     EventManager.getInstance().fire(event);
                 }
-                if (cmd.equals("PLAYER_LEAVE")) {
+                if (cmd.equals("PLAYER_JOIN")) {
                     partyChanged(json);
 
                     PartyListener.PlayerJoinedEvent event = new PartyListener.PlayerJoinedEvent(json.getAsJsonObject("body")
