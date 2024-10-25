@@ -1,5 +1,6 @@
 package me.tolek.gui.widgets;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import me.tolek.ModForLazyPeople;
 import me.tolek.gui.screens.AutoReplyScreen;
 import me.tolek.gui.screens.MflpMacroConfig;
@@ -47,9 +48,11 @@ public class MenuPickerWidget extends ContainerWidget {
             client.setScreen(new AutoReplyScreen());
         }).dimensions(154, 22, 80, 20).build();
 
+        RenderSystem.enableBlend();
         TextIconButtonWidget discordWidget = TextIconButtonWidget.builder(Text.empty(), ConfirmLinkScreen.opening(screen, InstancedValues.getInstance().discordUrl), true)
                 .texture(Identifier.of(ModForLazyPeople.MOD_ID, "discord"), 16, 16)
                 .build();
+        RenderSystem.disableBlend();
 
         discordWidget.setDimensionsAndPosition(20, 20, screen.width - 30, screen.height - 30);
 
