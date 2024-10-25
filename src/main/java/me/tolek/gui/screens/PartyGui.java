@@ -40,7 +40,19 @@ public class PartyGui extends LightweightGuiDescription {
         setRootPanel(root);
         root.setInsets(Insets.ROOT_PANEL);
 
-        if (!Party.isInParty()) {
+        boolean isInParty = Party.isInParty();
+
+        WTextField inviteTextField = new WTextField();
+        inviteTextField.setSuggestion(Text.translatable("mflp.party.screen.invitePlayer"));
+        inviteTextField.setEditable(!isInParty || Party.isModeratorOrOwner());
+        root.add(inviteTextField, 0, isInParty ? 10 : 2, 6, 1);
+
+        WButton inviteButton = new WButton(Text.translatable("mflp.party.screen.invite"));
+        inviteButton.setOnClick(() -> PartyNetworkHandler.invitePlayer(inviteTextField.getText()));
+        inviteButton.setEnabled(!isInParty || Party.isModeratorOrOwner());
+        root.add(inviteButton, 7, isInParty ? 10 : 2, 3, 1);
+
+        if (!isInParty) {
             WLabel youAreNotInAPartyLabel = new WLabel(Text.translatable("mflp.party.screen.notInParty", Party.getOwner()));
             root.add(youAreNotInAPartyLabel, 0, 1, 8, 1);
             root.validate(this);
@@ -64,15 +76,7 @@ public class PartyGui extends LightweightGuiDescription {
         membersList.setListItemHeight(15);
         root.add(membersList, 8, 3, 8, 6);
 
-        WTextField inviteTextField = new WTextField();
-        inviteTextField.setSuggestion(Text.translatable("mflp.party.screen.invitePlayer"));
-        inviteTextField.setEditable(Party.isModeratorOrOwner());
-        root.add(inviteTextField, 0, 10, 6, 1);
 
-        WButton inviteButton = new WButton(Text.translatable("mflp.party.screen.invite"));
-        inviteButton.setOnClick(() -> PartyNetworkHandler.invitePlayer(inviteTextField.getText()));
-        inviteButton.setEnabled(Party.isModeratorOrOwner());
-        root.add(inviteButton, 7, 10, 3, 1);
 
         final int closeButtonWidth = 6;
         WButton closeButton = new WButton(ScreenTexts.DONE);
