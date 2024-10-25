@@ -2,15 +2,19 @@ package me.tolek.network;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import me.tolek.event.Event;
 import me.tolek.event.EventImpl;
 import me.tolek.event.EventManager;
 import me.tolek.event.PartyListener;
+import me.tolek.gui.screens.FailedToConnectToMflpNetworkScreen;
 import me.tolek.modules.party.Party;
+import me.tolek.modules.settings.MflpSettingsList;
+import me.tolek.util.ScreenUtil;
+import me.tolek.util.ToastUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
-import org.apache.commons.lang3.NotImplementedException;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 
@@ -24,7 +28,7 @@ public class PartyNetworkHandler extends EventImpl {
     private static final MinecraftClient client = MinecraftClient.getInstance();
 
     public static void invitePlayer(String player) {
-        if (!checkConnection()) return;
+        if (checkDisconnected()) return;
 
         JsonObject message = new JsonObject();
 
@@ -41,7 +45,7 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void acceptInvite() {
-        if (!checkConnection()) return;
+        if (checkDisconnected()) return;
 
         JsonObject message = new JsonObject();
 
@@ -58,7 +62,7 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void send(String message) {
-        if (!checkConnection()) return;
+        if (checkDisconnected()) return;
 
         JsonObject messageS = new JsonObject();
 
@@ -76,7 +80,7 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void removeMember(String member) {
-        if (!checkConnection()) return;
+        if (checkDisconnected()) return;
 
         JsonObject message = new JsonObject();
 
@@ -93,7 +97,7 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void leaveParty() {
-        if (!checkConnection()) return;
+        if (checkDisconnected()) return;
         
         JsonObject message = new JsonObject();
 
@@ -113,7 +117,7 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void declineInvite() {
-        if (!checkConnection()) return;
+        if (checkDisconnected()) return;
         
         JsonObject message = new JsonObject();
 
@@ -130,7 +134,7 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void promotePlayer(String player) {
-        if (!checkConnection()) return;
+        if (checkDisconnected()) return;
         
         JsonObject message = new JsonObject();
 
@@ -147,7 +151,7 @@ public class PartyNetworkHandler extends EventImpl {
     }
 
     public static void demotePlayer(String player) {
-        if (!checkConnection()) return;
+        if (checkDisconnected()) return;
         
         JsonObject message = new JsonObject();
 
@@ -309,17 +313,29 @@ public class PartyNetworkHandler extends EventImpl {
         EventManager.getInstance().fire(event);
     }
 
-    public static boolean checkConnection() {
+    public static boolean checkDisconnected() {
         if (serverHandler.isDisconnected()) {
-            PartyListener.ErrorEvent event = new PartyListener.ErrorEvent("mflp.error.notConnected.title",
-                    "mflp.error.notConnected.description");
-            EventManager.getInstance().fire(event);
+            switch (MflpSettingsList.getInstance().SERVER_DISCONNECTION_ACTION.stateIndex) {
+                case 0: // Chat
+                    assert MinecraftClient.getInstance().player != null;
+
+                    MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.error.notConnected.title").formatted(Formatting.ITALIC, Formatting.BOLD, Formatting.RED));
+                    break;
+                case 1: // Toast
+                    ToastUtil.showToast(Text.translatable("mflp.error.notConnected.title"), Text.translatable("mflp.error.notConnected.description"));
+                    break;
+                case 2: // Screen
+                    ScreenUtil.openScreenAfterDelay(new FailedToConnectToMflpNetworkScreen());
+                    break;
+                default:
+                    throw new IndexOutOfBoundsException(MflpSettingsList.getInstance().SERVER_DISCONNECTION_ACTION.stateIndex);
+            }
 
             Party.setInParty(false);
-            return false;
+            return true;
         }
         
-        return true;
+        return false;
     }
     
 }

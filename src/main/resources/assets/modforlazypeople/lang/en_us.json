@@ -86,6 +86,12 @@
   "mflp.setting.nametagIconToggle.name": "MFLP nametag icon",
   "mflp.setting.nametagIconToggle.tooltip": "Toggles whether to show the MFLP icon in the players nametag.",
 
+  "mflp.setting.serverDisconnectionAction.name": "Disconnection Action",
+  "mflp.setting.serverDisconnectionAction.tooltip": "What MFLP should do whenever you get disconnected from the MFLP network.",
+  "mflp.setting.serverDisconnectionAction.chatMessage": "Chat Message",
+  "mflp.setting.serverDisconnectionAction.toast": "Toast",
+  "mflp.setting.serverDisconnectionAction.screen": "Screen",
+
   "mflp.macroSettings.addCommandButton": "Add Command",
   "mflp.macroSettings.command": "Command",
   "mflp.macro.noMacrosAdded": "No Macros Added!",

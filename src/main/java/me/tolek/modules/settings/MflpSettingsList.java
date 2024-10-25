@@ -28,6 +28,8 @@ public class MflpSettingsList {
     public AutoIgnoreWbMessages AUTO_IGNORE_WB_MESSAGES = new AutoIgnoreWbMessages();
     public AutoIgnoreWbMessagesDuration AUTO_IGNORE_WB_MESSAGES_DURATION = new AutoIgnoreWbMessagesDuration();
 
+    public ServerDisconnectionActionSetting SERVER_DISCONNECTION_ACTION = new ServerDisconnectionActionSetting();
+
     public AutoWbJoinRegex WB_JOIN_REGEX = new AutoWbJoinRegex();
     public AutoWbUnAfkRegex WB_UN_AFK_REGEX = new AutoWbUnAfkRegex();
     public CustomMessagePerServerSetting WB_REGEX_SETTINGS = new CustomMessagePerServerSetting();
@@ -60,6 +62,8 @@ public class MflpSettingsList {
 
         settings.add(AUTO_IGNORE_WB_MESSAGES);
         settings.add(AUTO_IGNORE_WB_MESSAGES_DURATION);
+
+        settings.add(SERVER_DISCONNECTION_ACTION);
 
         settings.add(PPMBS);
 

@@ -116,6 +116,7 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
                     settings.AUTO_IGNORE_WB_MESSAGES_DURATION = loadedData.getSettings().AUTO_IGNORE_WB_MESSAGES_DURATION;
                     settings.TAB_ICON_TOGGLE = loadedData.getSettings().TAB_ICON_TOGGLE;
                     settings.NAMETAG_ICON_TOGGLE = loadedData.getSettings().NAMETAG_ICON_TOGGLE;
+                    settings.SERVER_DISCONNECTION_ACTION = loadedData.getSettings().SERVER_DISCONNECTION_ACTION;
                 }
                 if (loadedData.getAutoReplies() != null) {
                     arl.setAutoReplies(loadedData.getAutoReplies());
