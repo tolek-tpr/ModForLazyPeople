@@ -317,9 +317,13 @@ public class PartyNetworkHandler extends EventImpl {
         if (serverHandler.isDisconnected()) {
             switch (MflpSettingsList.getInstance().SERVER_DISCONNECTION_ACTION.stateIndex) {
                 case 0: // Chat
-                    assert MinecraftClient.getInstance().player != null;
+                    if (MinecraftClient.getInstance().player != null && MinecraftClient.getInstance().world != null) {
+                        MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.error.notConnected.title")
+                                .formatted(Formatting.ITALIC, Formatting.BOLD, Formatting.RED));
+                    } else {
+                        ToastUtil.showToast(Text.translatable("mflp.error.notConnected.title"), Text.translatable("mflp.error.notConnected.description"));
+                    }
 
-                    MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.error.notConnected.title").formatted(Formatting.ITALIC, Formatting.BOLD, Formatting.RED));
                     break;
                 case 1: // Toast
                     ToastUtil.showToast(Text.translatable("mflp.error.notConnected.title"), Text.translatable("mflp.error.notConnected.description"));
