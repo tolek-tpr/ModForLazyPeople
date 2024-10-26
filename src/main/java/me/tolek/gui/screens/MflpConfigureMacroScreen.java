@@ -1,5 +1,6 @@
 package me.tolek.gui.screens;
 
+import me.tolek.gui.widgets.TextInputWidget;
 import me.tolek.modules.macro.Macro;
 import me.tolek.gui.widgets.macros.MacroCommandsWidget;
 import me.tolek.gui.widgets.macros.MacroSettingsBoxWidget;
@@ -7,6 +8,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
@@ -14,8 +16,8 @@ import net.minecraft.text.Text;
 @Environment(EnvType.CLIENT)
 public class MflpConfigureMacroScreen extends Screen {
 
-    private Screen parent;
-    private Macro macro;
+    private final Screen parent;
+    private final Macro macro;
 
     private MacroSettingsBoxWidget msbw;
 
@@ -47,6 +49,20 @@ public class MflpConfigureMacroScreen extends Screen {
                 step += 22;
             }
         }
+
+        int buttonBegin = 280 + textRenderer.getWidth(Text.translatable("mflp.macroSettings.worldOptionButton")) + 10;
+        ButtonWidget worldSpecificOption = ButtonWidget.builder(Text.translatable(macro.getNameForSpecificWorld()), (button) -> {
+            macro.nextWorldSpecificSetting();
+            clearAndInit();
+        }).dimensions(buttonBegin, 52, 100, 20).build();
+        worldSpecificOption.setTooltip(Tooltip.of(Text.translatable("mflp.macroSettings.worldOptionButton.tooltip")));
+        addDrawableChild(worldSpecificOption);
+
+        int textFieldBegin = buttonBegin + 110 + textRenderer.getWidth(Text.translatable("mflp.macroSettings.worldOptionTextField")) + 10;
+        TextInputWidget inputWidget = new TextInputWidget(textRenderer, textFieldBegin, 52, 150, 20, Text.literal(macro.getAllowedServers()));
+        inputWidget.setChangedListener(macro::setAllowedServers);
+        inputWidget.setTooltip(Tooltip.of(Text.translatable("mflp.macroSettings.worldOptionTextField.tooltip")));
+        addDrawableChild(inputWidget);
     }
 
     @Override
@@ -63,6 +79,12 @@ public class MflpConfigureMacroScreen extends Screen {
         addDrawableChild(msbw);
         msbw.children().forEach(this::addDrawableChild);
         context.getScaledWindowHeight();
+
+        int buttonBegin = 280 + textRenderer.getWidth(Text.translatable("mflp.macroSettings.worldOptionButton")) + 10;
+        int yOffset = 10 - textRenderer.fontHeight / 2;
+
+        context.drawTextWithShadow(textRenderer, Text.translatable("mflp.macroSettings.worldOptionButton"), 280, 52 + yOffset, 0xffffff);
+        context.drawTextWithShadow(textRenderer, Text.translatable("mflp.macroSettings.worldOptionTextField"), buttonBegin + 110, 52 + yOffset, 0xffffff);
     }
 
     @Override
