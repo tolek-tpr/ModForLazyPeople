@@ -3,6 +3,7 @@ package me.tolek.gui.widgets;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.tolek.ModForLazyPeople;
 import me.tolek.gui.screens.AutoReplyScreen;
+import me.tolek.gui.screens.ChangelogsScreen;
 import me.tolek.gui.screens.MflpMacroConfig;
 import me.tolek.gui.screens.MflpSettingsScreen;
 import me.tolek.network.WebSocketServerHandler;
@@ -52,9 +53,14 @@ public class MenuPickerWidget extends ContainerWidget {
         TextIconButtonWidget discordWidget = TextIconButtonWidget.builder(Text.empty(), ConfirmLinkScreen.opening(screen, InstancedValues.getInstance().discordUrl), true)
                 .texture(Identifier.of(ModForLazyPeople.MOD_ID, "discord"), 16, 16)
                 .build();
+
+        TextIconButtonWidget changelogsWidget = TextIconButtonWidget.builder(Text.empty(), (msg) -> client.setScreen(new ChangelogsScreen(screen)), true)
+                .texture(Identifier.of(ModForLazyPeople.MOD_ID, "changelogs"), 16, 16)
+                .build();
         RenderSystem.disableBlend();
 
         discordWidget.setDimensionsAndPosition(20, 20, screen.width - 30, screen.height - 30);
+        changelogsWidget.setDimensionsAndPosition(20, 20, screen.width - 55, screen.height - 30);
 
         boolean isConnected = !WebSocketServerHandler.getInstance().isDisconnected();
 
@@ -74,6 +80,7 @@ public class MenuPickerWidget extends ContainerWidget {
         addChild(settingsWidget);
         addChild(autoReplyWidget);
         addChild(discordWidget);
+        addChild(changelogsWidget);
         addChild(reconnectButton);
         addChild(connectionStatusIcon);
     }
