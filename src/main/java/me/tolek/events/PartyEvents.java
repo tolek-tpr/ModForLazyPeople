@@ -31,7 +31,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
     public void onMessage(String message, String author) {
         // Terrifying. Minecraft hates me and this was the only way it works. MutableText.formatting didn't work properly.
         MutableText partyText = Text.literal("MFLP Party > ").formatted(Formatting.BLUE);
-        MutableText authorText = Text.literal(author).styled(style -> { style.withBold(true);  style.withColor(Formatting.WHITE); return style; });
+        MutableText authorText = Text.literal(author).styled(style -> style.withBold(true).withColor(Formatting.WHITE));
         MutableText colonText = Text.literal(": ").styled(style -> style.withBold(false)); // Reset the bold for colon
         MutableText messageText = Text.literal(message).styled(style -> style.withItalic(true).withColor(Formatting.GRAY).withBold(false));
 

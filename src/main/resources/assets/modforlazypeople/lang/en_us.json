@@ -194,5 +194,6 @@
   "mflp.error.notConnected.title": "You are not connected to the MFLP network!",
   "mflp.error.notConnected.description": "Use /mflpnet reconnect or use the MFLP screen to reconnect.",
   "mflp.error.lostConnection.title": "You have lost the connection to the MFLP network!",
-  "mflp.error.lostConnection.description": "use /mflpnet reconnect or use the MFLP screen to reconnect."
+  "mflp.error.lostConnection.description": "use /mflpnet reconnect or use the MFLP screen to reconnect.",
+  "mflp.changelogsScreen.title": "Changelogs"
 }
