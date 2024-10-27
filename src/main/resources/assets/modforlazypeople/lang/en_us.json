@@ -204,5 +204,8 @@
   "mflp.error.notConnected.description": "Use /mflpnet reconnect or use the MFLP screen to reconnect.",
   "mflp.error.lostConnection.title": "You have lost the connection to the MFLP network!",
   "mflp.error.lostConnection.description": "use /mflpnet reconnect or use the MFLP screen to reconnect.",
-  "mflp.changelogsScreen.title": "Changelogs"
+  "mflp.changelogsScreen.title": "Changelogs",
+  "mflp.nonMflpUserScreen.name": "Non MFLP User",
+  "mflp.nonMflpUserScreen.title": "You tried to invite %s but they don't have MFLP installed. Would you like to message them about MFLP?",
+  "mflp.nonMflpUserScreen.messagePreview": "Below is the message that will be sent to them."
 }

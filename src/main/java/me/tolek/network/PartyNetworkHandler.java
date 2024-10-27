@@ -6,6 +6,7 @@ import me.tolek.event.EventImpl;
 import me.tolek.event.EventManager;
 import me.tolek.event.PartyListener;
 import me.tolek.gui.screens.FailedToConnectToMflpNetworkScreen;
+import me.tolek.gui.screens.NonMflpUserScreen;
 import me.tolek.modules.party.Party;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.util.ScreenUtil;
@@ -13,10 +14,13 @@ import me.tolek.util.ToastUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static me.tolek.event.PartyListener.InviteClientEvent;
 import static me.tolek.event.PartyListener.PartyChangedEvent;
@@ -194,6 +198,9 @@ public class PartyNetworkHandler extends EventImpl {
                         case "INVALID_PLAYER":
                             titleKey = "mflp.error.invalidPlayer.title";
                             descriptionKey = "mflp.error.invalidPlayer.description";
+
+                            handleInvalidPlayer("bear_with_me_XD"); // FIXME: Server needs to return the player name on INVALID_PLAYER error
+
                             break;
                         case "PLAYER_OFFLINE":
                             titleKey = "mflp.error.playerOffline.title";
@@ -293,6 +300,18 @@ public class PartyNetworkHandler extends EventImpl {
                 }
             } catch (Exception ignored) { }
         });
+    }
+
+    private void handleInvalidPlayer(String playerName) {
+        if (client.getNetworkHandler() == null)
+            return;
+
+        List<String> connectedPlayers = client.getNetworkHandler().getPlayerList().stream().map(x -> x.getProfile().getName()).toList();
+
+        if (connectedPlayers.contains(playerName)) {
+            // Tell the user that they can tell them that they tried to invite a non MFLP user
+            ScreenUtil.openScreenAfterDelay(new NonMflpUserScreen(playerName));
+        }
     }
 
     private void partyChanged(JsonObject json) {
