@@ -1,6 +1,7 @@
 package me.tolek.modules.macro;
 
 import me.tolek.util.KeyBindingUtil;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 
@@ -16,21 +17,19 @@ public class Macro {
     private int repeatAmount;
     private boolean isUneditable;
     private boolean isTurnedOn = true;
+    private int worldSpecificOptionIndex = 0;
+    private String allowedServers = "";
 
     public Macro(KeyBinding keyBinding, List<String> commands, String macroName, int repeatAmount) {
         this.keyBinding = keyBinding;
-        ArrayList<String> cmds = new ArrayList<>();
-        commands.forEach(cmd -> {cmds.add(cmd);});
-        this.commands = cmds;
+        this.commands = new ArrayList<>(commands);
         this.macroName = macroName;
         this.repeatAmount = repeatAmount;
     }
 
     public Macro(KeyBinding keyBinding, List<String> commands, String macroName, int repeatAmount, boolean isUneditable, boolean isTurnedOn) {
         this.keyBinding = keyBinding;
-        ArrayList<String> cmds = new ArrayList<>();
-        commands.forEach(cmd -> {cmds.add(cmd);});
-        this.commands = cmds;
+        this.commands = new ArrayList<>(commands);
         this.macroName = macroName;
         this.repeatAmount = repeatAmount;
         this.isUneditable = isUneditable;
@@ -38,7 +37,18 @@ public class Macro {
     }
 
     public void runMacro(ClientPlayerEntity p) {
+        MinecraftClient client = MinecraftClient.getInstance();
+        boolean connectedToServer = client.getNetworkHandler() != null && client.getNetworkHandler().getServerInfo() != null;
+
         if (!this.isTurnedOn) return;
+
+        if (this.worldSpecificOptionIndex == 1) { // SP ONLY
+            if (connectedToServer) return;
+        } else if (this.worldSpecificOptionIndex == 2) { // SERVER SPECIFIC
+            if (!connectedToServer || !allowedServers.contains(client.getNetworkHandler().getServerInfo().address)) return;
+        } else if (this.worldSpecificOptionIndex == 3) {
+            if (!connectedToServer) return;
+        }
         for (int i = 0; i < repeatAmount; ++i) {
             commands.forEach((cmd) -> {
                 p.networkHandler.sendChatCommand(cmd.startsWith("/") ?
@@ -72,14 +82,12 @@ public class Macro {
 
     public void setCommands(ArrayList<String> commands) { this.commands = commands; }
     public void addCommands(List<String> commands) {
-        for (String cmd : commands) {
-            this.commands.add(cmd);
-        }
+        this.commands.addAll(commands);
     }
 
-    public boolean removeCommands(List<String> commandss) {
-        for (String ccmd : commandss) {
-            this.commands.remove(ccmd);
+    public boolean removeCommands(List<String> commands) {
+        for (String cmd : commands) {
+            this.commands.remove(cmd);
         }
         return true;
     }
@@ -89,4 +97,27 @@ public class Macro {
     public boolean getUneditable() { return this.isUneditable; }
     public void setTurnedOn(boolean turnedOn) { this.isTurnedOn = turnedOn; }
     public boolean getTurnedOn() { return this.isTurnedOn; }
+
+    public void nextWorldSpecificSetting() {
+        int maxWorldSpecificOptionIndex = 3;
+        if (this.worldSpecificOptionIndex == maxWorldSpecificOptionIndex) {
+            this.worldSpecificOptionIndex = 0;
+        } else {
+            this.worldSpecificOptionIndex++;
+        }
+    }
+
+    public String getNameForSpecificWorld() {
+        switch (this.worldSpecificOptionIndex) {
+            case 0 -> { return "mflp.macroSettings.anyWorld"; }
+            case 1 -> { return "mflp.macroSettings.spOnly"; }
+            case 2 -> { return "mflp.macroSettings.serverSpecific"; }
+            case 3 -> { return "mflp.macroSettings.mpOnly"; }
+        }
+        return null;
+    }
+
+    public void setAllowedServers(String allowedServers) { this.allowedServers = allowedServers; }
+    public String getAllowedServers() { return this.allowedServers; }
+
 }

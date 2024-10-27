@@ -2,7 +2,6 @@ package me.tolek;
 
 import me.tolek.event.EventImpl;
 import me.tolek.files.MflpConfigImpl;
-import me.tolek.network.MflpServerConnection;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -13,8 +12,7 @@ import java.util.ArrayList;
 public class ModForLazyPeople implements ModInitializer {
 
 	public static final String MOD_ID = "modforlazypeople";
-    public static final Logger LOGGER = LoggerFactory.getLogger("modforlazypeople");
-	public static final MflpServerConnection serverConnection = new MflpServerConnection();
+    public static final Logger LOGGER = LoggerFactory.getLogger("MFLP");
 
 	private final ArrayList<EventImpl> events = new ArrayList<>();
 

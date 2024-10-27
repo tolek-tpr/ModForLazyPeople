@@ -11,7 +11,12 @@ base {
 }
 
 repositories {
+	mavenCentral()
 	maven { url "https://maven.terraformersmc.com/releases/" }
+	maven {
+		name = "CottonMC"
+		url = "https://server.bbkr.space/artifactory/libs-release"
+	}
 }
 
 dependencies {
@@ -28,6 +33,11 @@ dependencies {
 
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+	implementation 'javax.websocket:javax.websocket-api:1.1'
+	implementation 'org.glassfish.tyrus.bundles:tyrus-standalone-client:1.17' // Tyrus dependency
+
+	modImplementation include("io.github.cottonmc:LibGui:${project.libgui_version}")
 }
 
 test {

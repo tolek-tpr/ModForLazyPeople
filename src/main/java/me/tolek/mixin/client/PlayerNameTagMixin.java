@@ -2,7 +2,7 @@ package me.tolek.mixin.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.tolek.modules.settings.MflpSettingsList;
-import me.tolek.network.MflpPlayersWorker;
+import me.tolek.network.WebSocketServerHandler;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.*;
@@ -11,7 +11,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.EntityView;
 import org.joml.Matrix4f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -20,11 +19,14 @@ import org.spongepowered.asm.mixin.injection.Coerce;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.ArrayList;
+
 @Mixin(EntityRenderer.class)
 public class PlayerNameTagMixin {
 
     @Unique
-    private final MflpPlayersWorker worker = MflpPlayersWorker.getInstance();
+    //private final MflpPlayersWorker worker = MflpPlayersWorker.getInstance();
+    private final WebSocketServerHandler serverHandler = WebSocketServerHandler.getInstance();
     @Unique
     private final Identifier logo = new Identifier("modforlazypeople", "textures/gui/sprites/mflp/user_logo.png");
     @Unique
@@ -35,8 +37,8 @@ public class PlayerNameTagMixin {
 
     @Inject(method = "renderLabelIfPresent", at = @At(value = "INVOKE", target="Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/text/Text;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/client/font/TextRenderer$TextLayerType;II)I"))
     private void drawLogo(@Coerce Object entity, Text text, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
-        if (this.worker == null || !settingsList.NAMETAG_ICON_TOGGLE.getState()) return;
-        String returnMessage = worker.data;
+        if (this.serverHandler == null || !settingsList.NAMETAG_ICON_TOGGLE.getState()) return;
+        ArrayList<String> returnMessage = serverHandler.mflpUsers;
 
         if (!(entity instanceof PlayerEntity e)) return;
 
