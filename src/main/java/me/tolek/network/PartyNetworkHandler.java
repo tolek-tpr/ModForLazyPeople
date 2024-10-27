@@ -199,7 +199,7 @@ public class PartyNetworkHandler extends EventImpl {
                             titleKey = "mflp.error.invalidPlayer.title";
                             descriptionKey = "mflp.error.invalidPlayer.description";
 
-                            handleInvalidPlayer("bear_with_me_XD"); // FIXME: Server needs to return the player name on INVALID_PLAYER error
+                            handleInvalidPlayer(json.get("player").getAsString());
 
                             break;
                         case "PLAYER_OFFLINE":
