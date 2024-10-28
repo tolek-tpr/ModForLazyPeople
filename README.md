@@ -14,5 +14,5 @@ Party Chat allows you to chat with multiple players at once - even if they're no
 ## QOL
 We have a custom, better unified /tick freeze command (/mflp freezeGame) instead of /tick freeze and /tick unfreeze.
 
-## General Info
+## Contact
 If you would like to suggest any feature, message one of us on Discord or in our [Discord Server](https://discord.gg/z7aRsNKm9z).
