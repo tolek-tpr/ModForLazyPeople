@@ -46,7 +46,7 @@ public class WebSocketServerHandler {
 
     private void connect() {
         try {
-            endpoint = new WebSocketClientEndpoint(new URI("ws://localhost:8080"));
+            endpoint = new WebSocketClientEndpoint(new URI("ws://epsi.ddns.net:8080"));
 
             this.endpoint.addMessageHandler(message -> {
                 try {
