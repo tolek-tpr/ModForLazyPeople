@@ -39,7 +39,6 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
                 if (serverHandler.endpoint == null) return;
 
                 JsonObject json = JsonParser.parseString(message).getAsJsonObject();
-
                 String id = json.get("id").getAsString();
                 String cmd = json.get("cmd").getAsString();
 
@@ -48,20 +47,20 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
                         serverHandler.mflpUsers.add(id);
                     } else if (json.get("body").getAsString().equalsIgnoreCase("PART")) {
                         serverHandler.mflpUsers.remove(id);
-                    } else {
-                        JsonObject bodyObject = json.getAsJsonObject("body");
+                    }
+                } else if (cmd.equals("STATUS_LIST")) {
+                    JsonObject bodyObject = json.getAsJsonObject("body");
 
-                        if (bodyObject.get("body_cmd").getAsString().equalsIgnoreCase("FULL_LIST")) {
-                            ArrayList<String> clients = new ArrayList<>();
+                    if (bodyObject.get("body_cmd").getAsString().equalsIgnoreCase("FULL_LIST")) {
+                        ArrayList<String> clients = new ArrayList<>();
 
-                            bodyObject.get("clients").getAsJsonArray().forEach(element -> clients.add(element.getAsString()));
-                            serverHandler.mflpUsers = clients;
-                        }
+                        bodyObject.get("clients").getAsJsonArray().forEach(element -> clients.add(element.getAsString()));
+                        serverHandler.mflpUsers = clients;
                     }
                 }
 
 
-            } catch (Exception ignored) { }
+            } catch (Exception ignored) {}
         });
     }
 
@@ -104,31 +103,22 @@ public class IconNetworkHandler extends EventImpl implements UpdateListener, Min
     }
 
     public void requestListAndSendJoin() {
-        CompletableFuture.supplyAsync(() -> {
-            if (this.client.getSession() == null || this.client.getSession().getUsername() == null) return "";
+        if (this.client.getSession() == null || this.client.getSession().getUsername() == null) return;
 
-            JsonObject requestListMessage = new JsonObject();
-            requestListMessage.addProperty("key", serverHandler.clientKey);
-            requestListMessage.addProperty("id", this.client.getSession().getUsername());
-            requestListMessage.addProperty("cmd", "STATUS");
-            requestListMessage.addProperty("body", "REQUEST_LIST");
+        JsonObject requestListMessage = new JsonObject();
+        requestListMessage.addProperty("key", serverHandler.clientKey);
+        requestListMessage.addProperty("id", this.client.getSession().getUsername());
+        requestListMessage.addProperty("cmd", "STATUS");
+        requestListMessage.addProperty("body", "REQUEST_LIST");
 
-            serverHandler.sendMessage(requestListMessage.toString());
-            return "";
-        });
+        serverHandler.sendMessage(requestListMessage.toString());
 
-        CompletableFuture.supplyAsync(() -> {
-            if (this.client.getSession() == null || this.client.getSession().getUsername() == null) return "";
-
-            JsonObject message = new JsonObject();
-            message.addProperty("key", serverHandler.clientKey);
-            message.addProperty("id", client.getSession().getUsername());
-            message.addProperty("cmd", "STATUS");
-            message.addProperty("body", "JOIN");
-            serverHandler.sendMessage(message.toString());
-
-            return "";
-        });
+        JsonObject message = new JsonObject();
+        message.addProperty("key", serverHandler.clientKey);
+        message.addProperty("id", client.getSession().getUsername());
+        message.addProperty("cmd", "STATUS");
+        message.addProperty("body", "JOIN");
+        serverHandler.sendMessage(message.toString());
     }
 
     @Override
