@@ -7,6 +7,7 @@ import me.tolek.modules.macro.MacroExecutor;
 import me.tolek.modules.autoReply.AutoReplyExecutor;
 import me.tolek.modules.settings.executor.AutoWelcomeBackImpl;
 import me.tolek.modules.settings.executor.AutoWelcomeImpl;
+import me.tolek.modules.settings.executor.EasyMsgExecutor;
 import me.tolek.network.IconNetworkHandler;
 import me.tolek.network.PartyNetworkHandler;
 import me.tolek.network.WebSocketServerHandler;
@@ -29,9 +30,9 @@ public class ModForLazyPeopleClient implements ClientModInitializer {
         events.add(new AutoWelcomeImpl());
         events.add(new AutoReplyExecutor());
         events.add(new PartyEvents());
-        //events.add(MflpPlayersWorker.getInstance());
         events.add(IconNetworkHandler.getInstance());
         events.add(new PartyNetworkHandler());
+        events.add(EasyMsgExecutor.getInstance());
 
         events.forEach(e -> e.setEnabled(true));
     }

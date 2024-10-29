@@ -86,6 +86,9 @@
   "mflp.setting.nametagIconToggle.name": "MFLP nametag icon",
   "mflp.setting.nametagIconToggle.tooltip": "Toggles whether to show the MFLP icon in the players nametag.",
 
+  "mflp.setting.easyMsgSetting.name": "Easy msg",
+  "mflp.setting.easyMsgSetting.tooltip": "A toggle for the easy msg setting, which automatically inputs /msg if you got a direct message in the last 20 seconds.",
+
   "mflp.setting.serverDisconnectionAction.name": "Disconnection Action",
   "mflp.setting.serverDisconnectionAction.tooltip": "What MFLP should do whenever you get disconnected from the MFLP network.",
   "mflp.setting.serverDisconnectionAction.chatMessage": "Chat Message",

@@ -27,6 +27,7 @@ public class MflpSettingsList {
 
     public AutoIgnoreWbMessages AUTO_IGNORE_WB_MESSAGES = new AutoIgnoreWbMessages();
     public AutoIgnoreWbMessagesDuration AUTO_IGNORE_WB_MESSAGES_DURATION = new AutoIgnoreWbMessagesDuration();
+    public EasyMsgSetting EASY_MSG_SETTING = new EasyMsgSetting();
 
     public ServerDisconnectionActionSetting SERVER_DISCONNECTION_ACTION = new ServerDisconnectionActionSetting();
 
@@ -62,6 +63,8 @@ public class MflpSettingsList {
 
         settings.add(AUTO_IGNORE_WB_MESSAGES);
         settings.add(AUTO_IGNORE_WB_MESSAGES_DURATION);
+
+        settings.add(EASY_MSG_SETTING);
 
         settings.add(SERVER_DISCONNECTION_ACTION);
 
