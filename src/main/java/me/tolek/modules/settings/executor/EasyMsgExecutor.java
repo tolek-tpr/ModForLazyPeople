@@ -46,13 +46,14 @@ public class EasyMsgExecutor extends EventImpl implements UpdateListener, Keyboa
 
     @Override
     public void onKey(int keyCode, int scanCode, int modifiers) {
-        // TODO: Make it so the lower number takes priority.
         if (client.options.chatKey.matchesKey(keyCode, scanCode) || client.options.commandKey.matchesKey(keyCode, scanCode)) {
-            if (this.timeSinceLastMsgInMillis < 20 * 1000) {
-                MflpSettingsList.getInstance().EASY_MSG_SETTING.refresh();
-            }
-            if (this.timeSinceLastPcInMillis < 20 * 1000) {
-                MflpSettingsList.getInstance().EASY_MSG_SETTING.refresh("/pc ");
+            int time = Math.min(this.timeSinceLastMsgInMillis, this.timeSinceLastPcInMillis);
+            if (time < 20 * 1000) {
+                if (time == this.timeSinceLastMsgInMillis) {
+                    MflpSettingsList.getInstance().EASY_MSG_SETTING.refresh();
+                } else {
+                    MflpSettingsList.getInstance().EASY_MSG_SETTING.refresh("/pc ");
+                }
             }
         }
     }
