@@ -13,7 +13,7 @@ public class MflpWelcomeCommand implements ClientModInitializer {
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
             dispatcher.register(ClientCommandManager.literal("mflpwelcome")
                     .executes(context -> {
-                        ScreenUtil.openScreenAfterDelay(new MflpHelloScreen());
+                        ScreenUtil.openScreen(new MflpHelloScreen());
                         return 1;
                     })
             );

@@ -1,7 +1,10 @@
 package me.tolek.events;
 
 import me.tolek.event.*;
+import me.tolek.gui.screens.PartyGui;
+import me.tolek.gui.screens.PartyGuiScreen;
 import me.tolek.modules.party.Party;
+import me.tolek.util.ScreenUtil;
 import me.tolek.util.ToastUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -88,6 +91,9 @@ public class PartyEvents extends EventImpl implements PartyListener {
         Party.setOwner(owner);
         Party.setModerators(moderators);
         Party.setMembers(members);
+
+        if (ScreenUtil.getScreen() instanceof PartyGuiScreen)
+            ScreenUtil.openScreen(new PartyGuiScreen(new PartyGui()));
     }
 
     @Override

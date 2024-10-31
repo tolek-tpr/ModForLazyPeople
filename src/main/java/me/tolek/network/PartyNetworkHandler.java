@@ -14,13 +14,11 @@ import me.tolek.util.ToastUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static me.tolek.event.PartyListener.InviteClientEvent;
 import static me.tolek.event.PartyListener.PartyChangedEvent;
@@ -310,7 +308,7 @@ public class PartyNetworkHandler extends EventImpl {
 
         if (connectedPlayers.contains(playerName)) {
             // Tell the user that they can tell them that they tried to invite a non MFLP user
-            ScreenUtil.openScreenAfterDelay(new NonMflpUserScreen(playerName));
+            ScreenUtil.openScreen(new NonMflpUserScreen(playerName));
         }
     }
 
@@ -348,7 +346,7 @@ public class PartyNetworkHandler extends EventImpl {
                     ToastUtil.showToast(Text.translatable("mflp.error.notConnected.title"), Text.translatable("mflp.error.notConnected.description"));
                     break;
                 case 2: // Screen
-                    ScreenUtil.openScreenAfterDelay(new FailedToConnectToMflpNetworkScreen());
+                    ScreenUtil.openScreen(new FailedToConnectToMflpNetworkScreen());
                     break;
                 default:
                     throw new IndexOutOfBoundsException(MflpSettingsList.getInstance().SERVER_DISCONNECTION_ACTION.stateIndex);

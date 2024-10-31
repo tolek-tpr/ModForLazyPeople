@@ -4,6 +4,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
 import me.tolek.gui.screens.PartyGui;
+import me.tolek.gui.screens.PartyGuiScreen;
 import me.tolek.modules.party.Party;
 import me.tolek.network.PartyNetworkHandler;
 import me.tolek.util.ScreenUtil;
@@ -12,7 +13,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -114,7 +114,7 @@ public class PartyCommand implements ClientModInitializer {
 
                     .then(literal("manage")
                             .executes(context -> {
-                                ScreenUtil.openScreenAfterDelay(new CottonClientScreen(Text.translatable("mflp.party.screen.title"), new PartyGui()));
+                                ScreenUtil.openScreen(new PartyGuiScreen(new PartyGui()));
                                 return 1;
                             }))
             );
