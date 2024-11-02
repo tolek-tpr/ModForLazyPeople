@@ -27,7 +27,8 @@
 			"me.tolek.commands.client.MflpWelcomeCommand",
 			"me.tolek.events.FabricEventsRegistry",
 			"me.tolek.commands.client.PartyCommand",
-			"me.tolek.commands.client.MflpNetCommand"
+			"me.tolek.commands.client.MflpNetCommand",
+			"me.tolek.commands.client.MflpConfigCommand"
 		],
 		"modmenu": [
 			"me.tolek.ModMenuImpl"

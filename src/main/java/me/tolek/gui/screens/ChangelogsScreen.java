@@ -29,6 +29,9 @@ public class ChangelogsScreen extends Screen {
 
         // -- CHANGELOGS START -- \\
 
+        addVersion("v3.0.1 - THE MACRO UPDATE", "ADDED: New setting to macros, the ability to use macros only on specific servers by @tolek-tpr",
+                "ADDED: A new command - /mflpconfig - to open the config screen by @tolek-tpr", "FIXED: MFLP Icons not showing up by @tolek-tpr",
+                "FIXED: Party GUI not updating by @BeefyAndTheDucks");
         addVersion("v3.0.0 - THE PARTY UPDATE", "ADDED: Party system (/party commands)", "ADDED: This menu", "IMPROVED: MFLP Network (new /mflpnet command)");
         addVersion("v2.6.9 - BUG FIXES AGAIN", "FIXED: Default UnAfk RegEx by @BeefyAndTheDucks", "FIXED: MFLP icon not displaying when being far away from the player by @tolek-tpr");
         addVersion("v2.6.8 - TRANSLATIONS UPDATE", "ADDED: Translations for Polish, Danish and update the English ones by @tolek-tpr and @BeefyAndTheDucks",
