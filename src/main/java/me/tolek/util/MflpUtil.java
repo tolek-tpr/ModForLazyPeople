@@ -5,6 +5,8 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import java.util.*;
+
 public class MflpUtil {
 
     public MflpUtil() { }
@@ -43,6 +45,35 @@ public class MflpUtil {
         String usernameRegex = "[a-zA-Z0-9_]{3,16}";
 
         return m.replaceFirst(usernameRegex, username).equals(message.getString());
+    }
+
+    public static <T> boolean listEqualsIgnoreOrder(List<T> list1, List<T> list2) {
+        return new HashSet<>(list1).equals(new HashSet<>(list2));
+    }
+
+    @SafeVarargs
+    public static <T> ArrayList<T> asArray(T... objects) {
+        ArrayList<T> array = new ArrayList<>();
+        Collections.addAll(array, objects);
+        return array;
+    }
+
+    public static <T> ArrayList<T> arrayFromSet(Set<T> set) {
+        return new ArrayList<>(set);
+    }
+
+    public static <K, V> HashMap<K, V> asHashMap(ArrayList<K> keys, ArrayList<V> objects) {
+        HashMap<K, V> map = new HashMap<>();
+        int i = 0;
+        for (K key : keys) {
+            if (objects.get(i) == null) {
+                map.put(key, null);
+            } else {
+                map.put(key, objects.get(i));
+            }
+            i++;
+        }
+        return map;
     }
 
 }

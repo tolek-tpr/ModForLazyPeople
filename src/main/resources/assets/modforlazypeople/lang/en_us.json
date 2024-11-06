@@ -11,6 +11,8 @@
   "mflp.welcomeScreen.line8": "As of update 2.5.0, you can use the \"create\" button to add macros",
   "mflp.welcomeScreen.quickGuide.title": "Mflp Quick Guide",
 
+  "mflp.hotkeysScreen.title": "Hotkeys",
+
   "mflp.true": "On",
   "mflp.false": "Off",
   "mflp.create": "Create",
@@ -27,6 +29,7 @@
   "mflp.mainConfig.macrosButton": "Macros",
   "mflp.mainConfig.settingsButton": "Settings",
   "mflp.mainConfig.autoReplyButton": "Auto Reply",
+  "mflp.mainConfig.hotkeyButton": "Hotkeys",
 
   "mflp.setting.autoWb.name": "Auto welcome back",
   "mflp.setting.autoWb.tooltip": "Automatically says wb when someone comes back from being afk or joins synergy.",
@@ -88,6 +91,21 @@
 
   "mflp.setting.easyMsgSetting.name": "Easy msg",
   "mflp.setting.easyMsgSetting.tooltip": "A toggle for the easy msg setting, which automatically inputs /msg if you got a direct message in the last 20 seconds. Also works for party chat.",
+
+  "mflp.setting.dustUpdate.name": "Dust update view",
+  "mflp.setting.dustUpdate.tooltip": "Shows the update range of the redstone dust you are looking at.",
+
+  "mflp.setting.repeaterUpdate.name": "Repeater update view",
+  "mflp.setting.repeaterUpdate.tooltip": "Shows the update range of the repeater you are looking at.",
+
+  "mflp.setting.comparatorUpdate.name": "Comparator update view",
+  "mflp.setting.comparatorUpdate.tooltip": "Shows the update range of the comparator you are looking at.",
+
+  "mflp.setting.observerUpdate.name": "Observer update view",
+  "mflp.setting.observerUpdate.tooltip": "Shows the update range of the observer you are looking at.",
+
+  "mflp.setting.railUpdates.name": "Rails update view",
+  "mflp.setting.railUpdates.tooltip": "Shows the update range of the powered rail or activator rail you are looking at.",
 
   "mflp.setting.serverDisconnectionAction.name": "Disconnection Action",
   "mflp.setting.serverDisconnectionAction.tooltip": "What MFLP should do whenever you get disconnected from the MFLP network.",

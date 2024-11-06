@@ -3,6 +3,7 @@ package me.tolek;
 import me.tolek.event.EventImpl;
 import me.tolek.events.AfkDetector;
 import me.tolek.events.PartyEvents;
+import me.tolek.input.HotkeyExecutorImpl;
 import me.tolek.modules.macro.MacroExecutor;
 import me.tolek.modules.autoReply.AutoReplyExecutor;
 import me.tolek.modules.settings.executor.AutoWelcomeBackImpl;
@@ -33,6 +34,7 @@ public class ModForLazyPeopleClient implements ClientModInitializer {
         events.add(IconNetworkHandler.getInstance());
         events.add(new PartyNetworkHandler());
         events.add(EasyMsgExecutor.getInstance());
+        events.add(new HotkeyExecutorImpl());
 
         events.forEach(e -> e.setEnabled(true));
     }

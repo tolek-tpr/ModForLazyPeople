@@ -98,9 +98,4 @@ public class MflpSettingsScreen extends Screen {
         super.render(context, mouseX, mouseY, delta);
     }
 
-    @Override
-    public void close() {
-        client.setScreen(null);
-    }
-
 }

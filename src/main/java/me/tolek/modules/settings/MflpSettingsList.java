@@ -35,6 +35,12 @@ public class MflpSettingsList {
     public AutoWbUnAfkRegex WB_UN_AFK_REGEX = new AutoWbUnAfkRegex();
     public CustomMessagePerServerSetting WB_REGEX_SETTINGS = new CustomMessagePerServerSetting();
 
+    public DustUpdateSetting DUST_UPDATE_VIEW = new DustUpdateSetting();
+    public RepeaterUpdateSetting REPEATER_UPDATE_VIEW = new RepeaterUpdateSetting();
+    public ComparatorUpdateSetting COMPARATOR_UPDATE_VIEW = new ComparatorUpdateSetting();
+    public ObserverUpdateSetting OBSERVER_UPDATE_VIEW = new ObserverUpdateSetting();
+    public RailUpdateSetting RAILS_UPDATE_VIEW = new RailUpdateSetting();
+
     private MflpSettingsList() {
 
     }
@@ -73,6 +79,12 @@ public class MflpSettingsList {
         settings.add(WB_REGEX_SETTINGS);
         settings.add(WB_JOIN_REGEX);
         settings.add(WB_UN_AFK_REGEX);
+
+        settings.add(DUST_UPDATE_VIEW);
+        settings.add(REPEATER_UPDATE_VIEW);
+        settings.add(COMPARATOR_UPDATE_VIEW);
+        settings.add(OBSERVER_UPDATE_VIEW);
+        settings.add(RAILS_UPDATE_VIEW);
 
         return settings;
     }

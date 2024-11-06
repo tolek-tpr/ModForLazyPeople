@@ -2,10 +2,7 @@ package me.tolek.gui.widgets;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.tolek.ModForLazyPeople;
-import me.tolek.gui.screens.AutoReplyScreen;
-import me.tolek.gui.screens.ChangelogsScreen;
-import me.tolek.gui.screens.MflpMacroConfig;
-import me.tolek.gui.screens.MflpSettingsScreen;
+import me.tolek.gui.screens.*;
 import me.tolek.network.WebSocketServerHandler;
 import me.tolek.util.InstancedValues;
 import net.fabricmc.api.EnvType;
@@ -48,6 +45,9 @@ public class MenuPickerWidget extends ContainerWidget {
         ButtonWidget autoReplyWidget = ButtonWidget.builder(Text.translatable("mflp.mainConfig.autoReplyButton"), (button) -> {
             client.setScreen(new AutoReplyScreen());
         }).dimensions(154, 22, 80, 20).build();
+        ButtonWidget hotkeysWidget = ButtonWidget.builder(Text.translatable("mflp.mainConfig.hotkeyButton"), (button) -> {
+            client.setScreen(new MflpHotkeysScreen());
+        }).dimensions(236, 22, 80, 20).build();
 
         RenderSystem.enableBlend();
         TextIconButtonWidget discordWidget = TextIconButtonWidget.builder(Text.empty(), ConfirmLinkScreen.opening(screen, InstancedValues.getInstance().discordUrl), true)
@@ -79,6 +79,7 @@ public class MenuPickerWidget extends ContainerWidget {
         addChild(macrosButton);
         addChild(settingsWidget);
         addChild(autoReplyWidget);
+        addChild(hotkeysWidget);
         addChild(discordWidget);
         addChild(changelogsWidget);
         addChild(reconnectButton);

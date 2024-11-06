@@ -9,5 +9,4 @@ public abstract class ButtonSetting extends MflpSetting {
     }
 
     public abstract void run();
-
 }

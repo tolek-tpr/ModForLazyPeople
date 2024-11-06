@@ -4,13 +4,13 @@
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [],
 	"client": [
-		"client.MainMenuMixin",
-		"client.PauseScreenMixin",
-		"client.MinecraftClientMixin",
 		"client.ChatHudMixin",
-     	"client.MflpClientScheduler",
-		"client.GamRendererMixin",
+      "client.RedstoneComponentUpdateRenderer",
 		"client.KeyboardMixin",
+		"client.MainMenuMixin",
+		"client.MflpClientScheduler",
+		"client.MinecraftClientMixin",
+		"client.PauseScreenMixin",
 		"client.PlayerListHudMixin",
 		"client.PlayerNameTagMixin"
 	],

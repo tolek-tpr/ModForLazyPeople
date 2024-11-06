@@ -1,21 +1,28 @@
 package me.tolek.input;
 
+import me.tolek.util.MflpUtil;
+import net.minecraft.client.util.InputUtil;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class Hotkey {
 
-    private ArrayList<Integer> keys;
+    private HashMap<Integer, Integer> keys; // Key, scanCode
     private boolean pressed = false;
 
-    public Hotkey(ArrayList<Integer> key) {
+    public Hotkey(HashMap<Integer, Integer> key) {
         this.keys = key;
     }
 
-    public ArrayList<Integer> getKey() {
-        return keys;
+    public ArrayList<Integer> getKeys() {
+        return MflpUtil.arrayFromSet(keys.keySet());
     }
 
-    public void setKey(ArrayList<Integer> key) {
+    public void setKeys(HashMap<Integer, Integer> key) {
         this.keys = key;
     }
 
@@ -30,5 +37,21 @@ public class Hotkey {
 
     public void setPressed(boolean pressed) {
         this.pressed = pressed;
+    }
+
+    public Text getFormattedKeys() {
+        if (this.getKeys().isEmpty()) {
+            return Text.literal("NONE");
+        } else {
+            MutableText text = Text.literal("");
+            keys.keySet().forEach(key -> {
+                if (text.getString().isEmpty()) {
+                    text.append(InputUtil.fromKeyCode(key, keys.get(key)).getLocalizedText());
+                } else {
+                    text.append(Text.literal(" + ").append(InputUtil.fromKeyCode(key, keys.get(key)).getLocalizedText()));
+                }
+            });
+            return text;
+        }
     }
 }
