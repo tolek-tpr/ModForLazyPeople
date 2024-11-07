@@ -125,6 +125,13 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
                     settings.COMPARATOR_UPDATE_VIEW = loadedData.getSettings().COMPARATOR_UPDATE_VIEW;
                     settings.OBSERVER_UPDATE_VIEW = loadedData.getSettings().OBSERVER_UPDATE_VIEW;
                     settings.RAILS_UPDATE_VIEW = loadedData.getSettings().RAILS_UPDATE_VIEW;
+
+                    // Colors
+                    settings.DUST_UPDATE_COLOR = loadedData.getSettings().DUST_UPDATE_COLOR;
+                    settings.REPEATER_UPDATE_COLOR = loadedData.getSettings().REPEATER_UPDATE_COLOR;
+                    settings.COMPARATOR_UPDATE_COLOR = loadedData.getSettings().COMPARATOR_UPDATE_COLOR;
+                    settings.OBSERVER_UPDATE_COLOR = loadedData.getSettings().OBSERVER_UPDATE_COLOR;
+                    settings.RAILS_UPDATE_COLOR = loadedData.getSettings().RAILS_UPDATE_COLOR;
                 }
                 if (loadedData.getAutoReplies() != null) {
                     arl.setAutoReplies(loadedData.getAutoReplies());

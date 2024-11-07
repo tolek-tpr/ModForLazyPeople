@@ -46,7 +46,7 @@ public class AutoReplyScreen extends Screen {
                 }
             });
             addDrawableChild(ibw);
-        })).dimensions(318, 22, 70, 20).build());
+        })).dimensions(400, 22, 70, 20).build());
 
         int step = 2;
         for (AutoReply m : autoReplies.getAutoReplies()) {

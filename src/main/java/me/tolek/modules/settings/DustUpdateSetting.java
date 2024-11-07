@@ -9,7 +9,6 @@ public class DustUpdateSetting extends BooleanSetting {
 
     public DustUpdateSetting() {
         super("mflp.setting.dustUpdate.name", false, "mflp.setting.dustUpdate.tooltip");
-        this.hotkey = new Hotkey(new HashMap<>());
     }
 
     @Override

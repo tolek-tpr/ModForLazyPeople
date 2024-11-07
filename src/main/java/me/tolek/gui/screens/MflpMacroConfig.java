@@ -60,7 +60,7 @@ public class MflpMacroConfig extends Screen {
                 }
             });
             addDrawableChild(ibw);
-        })).dimensions(318, 22, 70, 20).build());
+        })).dimensions(400, 22, 70, 20).build());
 
         int scaledWidth = client.getWindow().getScaledWidth();
         int step = 2;

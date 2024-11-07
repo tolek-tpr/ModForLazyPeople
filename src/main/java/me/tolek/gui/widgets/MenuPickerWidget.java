@@ -48,6 +48,9 @@ public class MenuPickerWidget extends ContainerWidget {
         ButtonWidget hotkeysWidget = ButtonWidget.builder(Text.translatable("mflp.mainConfig.hotkeyButton"), (button) -> {
             client.setScreen(new MflpHotkeysScreen());
         }).dimensions(236, 22, 80, 20).build();
+        ButtonWidget colorsWidget = ButtonWidget.builder(Text.translatable("mflp.mainConfig.colorsButton"), (button) -> {
+            client.setScreen(new MflpColorConfigScreen());
+        }).dimensions(318, 22, 80, 20).build();
 
         RenderSystem.enableBlend();
         TextIconButtonWidget discordWidget = TextIconButtonWidget.builder(Text.empty(), ConfirmLinkScreen.opening(screen, InstancedValues.getInstance().discordUrl), true)
@@ -80,6 +83,7 @@ public class MenuPickerWidget extends ContainerWidget {
         addChild(settingsWidget);
         addChild(autoReplyWidget);
         addChild(hotkeysWidget);
+        addChild(colorsWidget);
         addChild(discordWidget);
         addChild(changelogsWidget);
         addChild(reconnectButton);

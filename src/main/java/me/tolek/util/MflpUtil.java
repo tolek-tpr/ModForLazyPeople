@@ -76,4 +76,16 @@ public class MflpUtil {
         return map;
     }
 
+    public static void print(Object... objects) {
+        for (Object object : objects) {
+            System.out.println(object);
+        }
+    }
+
+    public static double hex2DecBetween1And0(String hexInput) {
+        int dec = Integer.parseInt(hexInput, 16);
+        int maxVal = (int) Math.pow(16, hexInput.length()) - 1;
+        return dec / (double) maxVal;
+    }
+
 }

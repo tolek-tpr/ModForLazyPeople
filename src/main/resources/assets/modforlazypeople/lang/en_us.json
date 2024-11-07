@@ -30,6 +30,7 @@
   "mflp.mainConfig.settingsButton": "Settings",
   "mflp.mainConfig.autoReplyButton": "Auto Reply",
   "mflp.mainConfig.hotkeyButton": "Hotkeys",
+  "mflp.mainConfig.colorsButton": "Colors",
 
   "mflp.setting.autoWb.name": "Auto welcome back",
   "mflp.setting.autoWb.tooltip": "Automatically says wb when someone comes back from being afk or joins synergy.",
@@ -107,11 +108,29 @@
   "mflp.setting.railUpdates.name": "Rails update view",
   "mflp.setting.railUpdates.tooltip": "Shows the update range of the powered rail or activator rail you are looking at.",
 
+  "mflp.setting.dustUpdateColor.name": "Dust update color",
+  "mflp.setting.dustUpdateColor.tooltip": "What color the boxes indicating the update radius of a dust are.",
+
+  "mflp.setting.repeaterUpdateColor.name": "Repeater update color",
+  "mflp.setting.repeaterUpdateColor.tooltip": "What color the boxes indicating the update radius of a repeater are.",
+
+  "mflp.setting.comparatorUpdateColor.name": "Comparator update color",
+  "mflp.setting.comparatorUpdateColor.tooltip": "What color the boxes indicating the update radius of a comparator are.",
+
+  "mflp.setting.observerUpdateColor.name": "Observer update color",
+  "mflp.setting.observerUpdateColor.tooltip": "What color the boxes indicating the update radius of a observer are.",
+
+  "mflp.setting.railUpdateColor.name": "Rails update color",
+  "mflp.setting.railUpdateColor.tooltip": "What color the boxes indicating the update radius of a rail are.",
+
   "mflp.setting.serverDisconnectionAction.name": "Disconnection Action",
   "mflp.setting.serverDisconnectionAction.tooltip": "What MFLP should do whenever you get disconnected from the MFLP network.",
   "mflp.setting.serverDisconnectionAction.chatMessage": "Chat Message",
   "mflp.setting.serverDisconnectionAction.toast": "Toast",
   "mflp.setting.serverDisconnectionAction.screen": "Screen",
+
+  "mflp.setting.resetButton.name": "Reset",
+  "mflp.setting.resetButton.tooltip": "Sets the field to the default value.",
 
   "mflp.macroSettings.addCommandButton": "Add Command",
   "mflp.macroSettings.command": "Command",

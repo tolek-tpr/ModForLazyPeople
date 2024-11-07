@@ -2,6 +2,7 @@ package me.tolek.gui.widgets.hotkeys;
 
 import me.tolek.input.Hotkey;
 import me.tolek.modules.settings.base.BooleanSetting;
+import me.tolek.modules.settings.base.HotkeyableSetting;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
@@ -20,12 +21,12 @@ public class HotkeySettingWidget extends ButtonWidget {
     @Nullable
     private Hotkey selectedHotkey;
     private Consumer<Hotkey> hotkeyConsumer = (b) -> {};
-    private PressAction onPress;
+    private final PressAction onPress;
     private HashMap<Integer, Integer> keys = new HashMap<>();
-    private final BooleanSetting setting;
+    private final HotkeyableSetting setting;
     private boolean set = false;
 
-    public HotkeySettingWidget(int x, int y, Text message, BooleanSetting setting, @Nullable Hotkey selectedHotkey) {
+    public HotkeySettingWidget(int x, int y, Text message, HotkeyableSetting setting, @Nullable Hotkey selectedHotkey) {
         super(x, y, 150, 20, message, (b) -> {}, ButtonWidget.DEFAULT_NARRATION_SUPPLIER);
         this.selectedHotkey = selectedHotkey;
         this.onPress = (button) -> {

@@ -1,6 +1,7 @@
 package me.tolek.mixin.client;
 
 import me.tolek.modules.settings.MflpSettingsList;
+import me.tolek.util.MflpUtil;
 import me.tolek.util.RenderUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -42,151 +43,189 @@ public class RedstoneComponentUpdateRenderer {
 
         // Redstone Dust
         if (block == Blocks.REDSTONE_WIRE && settingsList.DUST_UPDATE_VIEW.getState()) {
+            String[] hexVal = settingsList.DUST_UPDATE_COLOR.getArgb();
+            float a = (float) MflpUtil.hex2DecBetween1And0(hexVal[0]);
+            float r = (float) MflpUtil.hex2DecBetween1And0(hexVal[1]);
+            float g = (float) MflpUtil.hex2DecBetween1And0(hexVal[2]);
+            float b = (float) MflpUtil.hex2DecBetween1And0(hexVal[3]);
+
             // Main block
-            RenderUtil.drawBoxInWorld(matrices, camera, targetPos, 1, 0, 0, 1);
+            RenderUtil.drawBoxInWorld(matrices, camera, targetPos, r, g, b, a);
 
             // Lines
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ()), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ()), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() - 1), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ()), 1, 0, 0, 0.7F);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ()), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ()), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() + 1), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() - 1), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ()), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ()), r, g, b, a);
 
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 2, targetPos.getY(), targetPos.getZ()), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 2, targetPos.getY(), targetPos.getZ()), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() + 2), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() - 2), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 2, targetPos.getZ()), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 2, targetPos.getZ()), 1, 0, 0, 0.7F);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 2, targetPos.getY(), targetPos.getZ()), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 2, targetPos.getY(), targetPos.getZ()), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() + 2), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() - 2), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 2, targetPos.getZ()), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 2, targetPos.getZ()), r, g, b, a);
 
             // Corners
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() - 1), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() - 1), 1, 0, 0, 0.7F);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() + 1), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() + 1), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() - 1), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() - 1), r, g, b, a);
 
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() + 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() + 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() - 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() - 1, targetPos.getZ()), 1, 0, 0, 0.7F);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() + 1, targetPos.getZ()), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() + 1, targetPos.getZ()), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() - 1, targetPos.getZ()), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() - 1, targetPos.getZ()), r, g, b, a);
 
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() - 1), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() - 1), 1, 0, 0, 0.7F);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() + 1), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() - 1), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() + 1), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() - 1), r, g, b, a);
         } else if ((block == Blocks.REPEATER && settingsList.REPEATER_UPDATE_VIEW.getState()) || (block == Blocks.COMPARATOR && settingsList.COMPARATOR_UPDATE_VIEW.getState())) {
             if (world.getBlockState(targetPos).get(Properties.HORIZONTAL_FACING) == null) return;
+            float a;
+            float r;
+            float g;
+            float b;
+
+            if (block == Blocks.REPEATER) {
+                String[] hexVal = settingsList.REPEATER_UPDATE_COLOR.getArgb();
+                a = (float) MflpUtil.hex2DecBetween1And0(hexVal[0]);
+                r = (float) MflpUtil.hex2DecBetween1And0(hexVal[1]);
+                g = (float) MflpUtil.hex2DecBetween1And0(hexVal[2]);
+                b = (float) MflpUtil.hex2DecBetween1And0(hexVal[3]);
+            } else {
+                String[] hexVal = settingsList.COMPARATOR_UPDATE_COLOR.getArgb();
+                a = (float) MflpUtil.hex2DecBetween1And0(hexVal[0]);
+                r = (float) MflpUtil.hex2DecBetween1And0(hexVal[1]);
+                g = (float) MflpUtil.hex2DecBetween1And0(hexVal[2]);
+                b = (float) MflpUtil.hex2DecBetween1And0(hexVal[3]);
+            }
+
             switch (world.getBlockState(targetPos).get(Properties.HORIZONTAL_FACING)) {
                 case NORTH -> {
                     // Z - 1
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() + 2), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() + 1), 1, 0, 0, 0.7F);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() + 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() + 2), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() + 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() + 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() + 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() + 1), r, g, b, a);
                 }
                 case SOUTH -> {
                     // Z + 1
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() - 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() - 2), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() - 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() - 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() - 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() - 1), 1, 0, 0, 0.7F);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() - 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() - 2), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() - 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() - 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() - 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() - 1), r, g, b, a);
                 }
                 case EAST -> {
                     // X + 1
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 2, targetPos.getY(), targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() - 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() + 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() - 1, targetPos.getZ()), 1, 0, 0, 0.7F);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 2, targetPos.getY(), targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() + 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() - 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() + 1, targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() - 1, targetPos.getZ()), r, g, b, a);
                 }
                 case WEST -> {
                     // X - 1
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 2, targetPos.getY(), targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() - 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() + 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() - 1, targetPos.getZ()), 1, 0, 0, 0.7F);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 2, targetPos.getY(), targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() + 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() - 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() + 1, targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() - 1, targetPos.getZ()), r, g, b, a);
                 }
             }
         } else if (block == Blocks.OBSERVER && settingsList.OBSERVER_UPDATE_VIEW.getState()) {
             if (world.getBlockState(targetPos).get(Properties.FACING) == null) return;
+
+            String[] hexVal = settingsList.OBSERVER_UPDATE_COLOR.getArgb();
+            float a = (float) MflpUtil.hex2DecBetween1And0(hexVal[0]);
+            float r = (float) MflpUtil.hex2DecBetween1And0(hexVal[1]);
+            float g = (float) MflpUtil.hex2DecBetween1And0(hexVal[2]);
+            float b = (float) MflpUtil.hex2DecBetween1And0(hexVal[3]);
+
             switch (world.getBlockState(targetPos).get(Properties.FACING)) {
                 case NORTH -> {
                     // Z - 1
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() + 2), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() + 1), 1, 0, 0, 0.7F);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() + 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() + 2), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() + 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() + 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() + 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() + 1), r, g, b, a);
                 }
                 case SOUTH -> {
                     // Z + 1
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() - 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() - 2), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() - 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() - 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() - 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() - 1), 1, 0, 0, 0.7F);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() - 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() - 2), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() - 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() - 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() - 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() - 1), r, g, b, a);
                 }
                 case EAST -> {
                     // X + 1
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 2, targetPos.getY(), targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() - 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() + 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() - 1, targetPos.getZ()), 1, 0, 0, 0.7F);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 2, targetPos.getY(), targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() + 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ() - 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() + 1, targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() - 1, targetPos.getZ()), r, g, b, a);
                 }
                 case WEST -> {
                     // X - 1
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 2, targetPos.getY(), targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() - 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() + 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() - 1, targetPos.getZ()), 1, 0, 0, 0.7F);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 2, targetPos.getY(), targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() + 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ() - 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() + 1, targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() - 1, targetPos.getZ()), r, g, b, a);
                 }
                 case UP -> {
                     // Y + 1
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 2, targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() - 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() - 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() - 1), 1, 0, 0, 0.7F);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 2, targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() - 1, targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() - 1, targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() + 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() - 1), r, g, b, a);
                 }
                 case DOWN -> {
                     // Y - 1
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 2, targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() + 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() + 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() - 1), 1, 0, 0, 0.7F);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 2, targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() + 1, targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() + 1, targetPos.getZ()), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() + 1), r, g, b, a);
+                    RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() - 1), r, g, b, a);
                 }
             }
         } else if ((block == Blocks.POWERED_RAIL || block == Blocks.ACTIVATOR_RAIL) && settingsList.RAILS_UPDATE_VIEW.getState()) {
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 2, targetPos.getZ()), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ()), 1, 0, 0, 0.7F);
+            String[] hexVal = settingsList.RAILS_UPDATE_COLOR.getArgb();
+            float a = (float) MflpUtil.hex2DecBetween1And0(hexVal[0]);
+            float r = (float) MflpUtil.hex2DecBetween1And0(hexVal[1]);
+            float g = (float) MflpUtil.hex2DecBetween1And0(hexVal[2]);
+            float b = (float) MflpUtil.hex2DecBetween1And0(hexVal[3]);
 
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ()), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ()), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() - 1), 1, 0, 0, 0.7F);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ()), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 2, targetPos.getZ()), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ()), r, g, b, a);
 
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() - 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() - 1, targetPos.getZ()), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() + 1), 1, 0, 0, 0.7F);
-            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() - 1), 1, 0, 0, 0.7F);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY(), targetPos.getZ()), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY(), targetPos.getZ()), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() + 1), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY(), targetPos.getZ() - 1), r, g, b, a);
+
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() - 1, targetPos.getZ()), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() - 1, targetPos.getZ()), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() + 1), r, g, b, a);
+            RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() - 1), r, g, b, a);
         }
     }
 

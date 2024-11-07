@@ -25,7 +25,7 @@ public class MflpHotkeysScreen extends Screen {
     @Nullable
     public Hotkey selectedHotkey;
 
-    private ArrayList<HotkeySettingWidget> settingWidgets = new ArrayList<>();
+    private final ArrayList<HotkeySettingWidget> settingWidgets = new ArrayList<>();
 
     public MflpHotkeysScreen() {
         super(Text.translatable("mflp.hotkeysScreen.title"));
@@ -46,10 +46,10 @@ public class MflpHotkeysScreen extends Screen {
         MflpSettingsList settingsList = MflpSettingsList.getInstance();
         for (MflpSetting setting : settingsList.getSettings()) {
             if (!setting.render) continue;
-            // BOOLEAN SETTING
-            if (setting instanceof BooleanSetting bs) {
-                if (bs.getHotkey() == null) continue;
-                HotkeySettingWidget settingWidget = new HotkeySettingWidget(width / 2, 0, bs.getHotkey().getFormattedKeys(), bs,
+
+            if (setting instanceof HotkeyableSetting hs) {
+                if (hs.getHotkey() == null) continue;
+                HotkeySettingWidget settingWidget = new HotkeySettingWidget(width / 2, 0, hs.getHotkey().getFormattedKeys(), hs,
                         this.selectedHotkey);
                 settingWidget.setHotkeyConsumer(hotkey -> this.selectedHotkey = hotkey);
                 TextWidget label = new TextWidget(width / 2 - 155,

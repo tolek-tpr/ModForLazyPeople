@@ -6,6 +6,7 @@ import me.tolek.event.KeyboardListener;
 import me.tolek.event.MouseListener;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.modules.settings.base.BooleanSetting;
+import me.tolek.modules.settings.base.HotkeyableSetting;
 import me.tolek.util.MflpUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.Window;
@@ -46,16 +47,10 @@ public class HotkeyExecutorImpl extends EventImpl implements MouseListener, Keyb
                 pressedKeys.add(keyCode);
 
             settingsList.getSettings().forEach(setting -> {
-                if (setting instanceof BooleanSetting boolSetting && boolSetting.hotkey != null) {
-                    if (MflpUtil.listEqualsIgnoreOrder(boolSetting.getHotkey().getKeys(), this.pressedKeys)) {
-                        //boolSetting.hotkey.setPressed(true);
-                        if (boolSetting.getState()) {
-                            boolSetting.setState(false);
-                            boolSetting.notifyPressed();
-                        } else {
-                            boolSetting.setState(true);
-                            boolSetting.notifyPressed();
-                        }
+                if (setting instanceof HotkeyableSetting hs && hs.getHotkey() != null) {
+                    if (MflpUtil.listEqualsIgnoreOrder(hs.getHotkey().getKeys(), this.pressedKeys)) {
+                        hs.cycle();
+                        hs.notifyPressed();
                     }
                 }
             });

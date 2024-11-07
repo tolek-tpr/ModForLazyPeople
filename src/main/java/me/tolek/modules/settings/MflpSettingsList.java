@@ -41,6 +41,13 @@ public class MflpSettingsList {
     public ObserverUpdateSetting OBSERVER_UPDATE_VIEW = new ObserverUpdateSetting();
     public RailUpdateSetting RAILS_UPDATE_VIEW = new RailUpdateSetting();
 
+    // COLORS
+    public DustUpdateColorSetting DUST_UPDATE_COLOR = new DustUpdateColorSetting();
+    public RepeaterUpdateColorSetting REPEATER_UPDATE_COLOR = new RepeaterUpdateColorSetting();
+    public ComparatorUpdateColorSetting COMPARATOR_UPDATE_COLOR = new ComparatorUpdateColorSetting();
+    public ObserverUpdateColorSetting OBSERVER_UPDATE_COLOR = new ObserverUpdateColorSetting();
+    public RailsUpdateColorSetting RAILS_UPDATE_COLOR = new RailsUpdateColorSetting();
+
     private MflpSettingsList() {
 
     }
@@ -85,6 +92,13 @@ public class MflpSettingsList {
         settings.add(COMPARATOR_UPDATE_VIEW);
         settings.add(OBSERVER_UPDATE_VIEW);
         settings.add(RAILS_UPDATE_VIEW);
+
+        // Colors
+        settings.add(DUST_UPDATE_COLOR);
+        settings.add(REPEATER_UPDATE_COLOR);
+        settings.add(COMPARATOR_UPDATE_COLOR);
+        settings.add(OBSERVER_UPDATE_COLOR);
+        settings.add(RAILS_UPDATE_COLOR);
 
         return settings;
     }

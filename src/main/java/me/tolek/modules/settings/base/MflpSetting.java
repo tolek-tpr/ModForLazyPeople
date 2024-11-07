@@ -3,7 +3,7 @@ package me.tolek.modules.settings.base;
 public abstract class MflpSetting {
 
     private String name;
-    private Object defaultValue;
+    private final Object defaultValue;
     private String tooltip;
     public String type;
     public boolean render = true;
@@ -21,5 +21,6 @@ public abstract class MflpSetting {
     public String getName() { return this.name; }
     public String getTooltip() { return this.tooltip; }
     public void setTooltip(String tooltip) { this.tooltip = tooltip; }
+    public Object getDefaultValue() { return this.defaultValue; }
 
 }

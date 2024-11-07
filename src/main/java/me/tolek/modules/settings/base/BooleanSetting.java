@@ -8,10 +8,10 @@ import net.minecraft.util.Formatting;
 
 import java.util.HashMap;
 
-public abstract class BooleanSetting extends MflpSetting {
+public abstract class BooleanSetting extends HotkeyableSetting {
 
     private boolean state;
-    public Hotkey hotkey;
+    //public Hotkey hotkey;
 
     public BooleanSetting(String name, boolean defaultValue, String tt) {
         super(name, defaultValue, "boolean", tt);
@@ -24,15 +24,18 @@ public abstract class BooleanSetting extends MflpSetting {
 
     public boolean getState() { return this.state; }
 
-    public void setHotkey(Hotkey hotkey) { this.hotkey = hotkey; }
-    public Hotkey getHotkey() { return this.hotkey; }
-
+    @Override
     public void notifyPressed() {
         final boolean pressed = this.getState();
 
         MutableText text = Text.literal("Toggled ").append(Text.translatable(this.getName())).append(" ").append(pressed ? Text.translatable("mflp.true").formatted(Formatting.GREEN)
                 : Text.translatable("mflp.false").formatted(Formatting.RED));
         MinecraftClient.getInstance().inGameHud.setOverlayMessage(text, false);
+    }
+
+    @Override
+    public void cycle() {
+        this.run();
     }
 
 }
