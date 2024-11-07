@@ -19,18 +19,21 @@ import java.util.function.BiConsumer;
 public class PartyGui extends LightweightGuiDescription {
     private static final BiConsumer<String, WPartyMember> MEMBER_MEMBER_CONFIGURATOR = (String s, WPartyMember partyMember) -> {
         partyMember.usernameLabel.setText(Text.literal(s));
+        partyMember.setFace(s);
     };
 
     private static final BiConsumer<String, WPartyMember> OWNER_MEMBER_CONFIGURATOR = (String s, WPartyMember partyMember) -> {
         partyMember.usernameLabel.setText(Text.literal(s));
-        partyMember.demotePromoteButton.setOnClick(() -> PartyNetworkHandler.promotePlayer(s));
-        partyMember.demotePromoteButton.setIcon(new TextureIcon(Objects.requireNonNull(Identifier.of(ModForLazyPeople.MOD_ID, "textures/gui/sprites/promote.png"))));
+        partyMember.setFace(s);
+        partyMember.promoteButton.setOnClick(() -> PartyNetworkHandler.promotePlayer(s));
+        partyMember.demoteButton.setOnClick(() -> PartyNetworkHandler.removeMember(s));
     };
 
     private static final BiConsumer<String, WPartyMember> OWNER_MODERATOR_CONFIGURATOR = (String s, WPartyMember partyMember) -> {
         partyMember.usernameLabel.setText(Text.literal(s));
-        partyMember.demotePromoteButton.setOnClick(() -> PartyNetworkHandler.demotePlayer(s));
-        partyMember.demotePromoteButton.setIcon(new TextureIcon(Objects.requireNonNull(Identifier.of(ModForLazyPeople.MOD_ID, "textures/gui/sprites/demote.png"))));
+        partyMember.setFace(s);
+        partyMember.promoteButton.setOnClick(() -> PartyNetworkHandler.promotePlayer(s));
+        partyMember.demoteButton.setOnClick(() -> PartyNetworkHandler.demotePlayer(s));
     };
 
     public PartyGui() {
@@ -67,14 +70,14 @@ public class PartyGui extends LightweightGuiDescription {
 
         WListPanel<String, WPartyMember> moderatorsList = new WListPanel<>(Party.getModerators(), () -> new WPartyMember(Party.isOwner()), Party.isOwner() ? OWNER_MODERATOR_CONFIGURATOR : MEMBER_MEMBER_CONFIGURATOR);
         moderatorsList.setListItemHeight(15);
-        root.add(moderatorsList, 0, 3, 8, 6);
+        root.add(moderatorsList, 0, 3, 10, 6);
 
         WLabel membersLabel = new WLabel(Text.translatable("mflp.party.members"));
-        root.add(membersLabel, 8, 2);
+        root.add(membersLabel, 10, 2);
 
         WListPanel<String, WPartyMember> membersList = new WListPanel<>(Party.getMembers(), () -> new WPartyMember(Party.isOwner()), Party.isOwner() ? OWNER_MEMBER_CONFIGURATOR : MEMBER_MEMBER_CONFIGURATOR);
         membersList.setListItemHeight(15);
-        root.add(membersList, 8, 3, 8, 6);
+        root.add(membersList, 10, 3, 10, 6);
 
 
 

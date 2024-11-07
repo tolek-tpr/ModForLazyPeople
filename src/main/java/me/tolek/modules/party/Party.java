@@ -8,8 +8,8 @@ public class Party {
 
     private static String owner;
     private static ArrayList<String> moderators = new ArrayList<>();
-    private static ArrayList<String> members = new ArrayList<>();
-    private static boolean isInParty = false;
+    private static ArrayList<String> members = new ArrayList<>() {{ add("bear_with_me_XD"); }};
+    private static boolean isInParty = true;
 
     public static String getOwner() {
         return owner;

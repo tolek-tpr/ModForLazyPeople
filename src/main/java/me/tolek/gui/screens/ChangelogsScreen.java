@@ -29,6 +29,7 @@ public class ChangelogsScreen extends Screen {
 
         // -- CHANGELOGS START -- \\
 
+        addVersion("v3.0.2 - THE UPDATE UPDATE", "BUMPED: Fabric version to 0.16.7 by @BeefyAndTheDucks", "ADDED: Missing promotion/demotion buttons in Party GUI (/party manage)", "ADDED: Player heads in Party GUI (/party manage)");
         addVersion("v3.0.1 - THE MACRO UPDATE", "ADDED: New setting to macros, the ability to use macros only on specific servers by @tolek-tpr",
                 "ADDED: A new command - /mflpconfig - to open the config screen by @tolek-tpr", "FIXED: MFLP Icons not showing up by @tolek-tpr",
                 "FIXED: Party GUI not updating by @BeefyAndTheDucks");
