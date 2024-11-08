@@ -43,10 +43,10 @@ public class MflpConfigManager {
         try (FileReader reader = new FileReader(CONFIG_FILE, StandardCharsets.UTF_8)) {
             return gson.fromJson(reader, ModData.class);
         } catch (IOException e) {
-            ModForLazyPeople.LOGGER.warn("MFLP save file not found!");
+            ModForLazyPeople.LOGGER.warn("MFLP save file not found!", e);
             return null;
         } catch (JsonIOException e) {
-            ModForLazyPeople.LOGGER.warn("Json Error while loading MFLP save file");
+            ModForLazyPeople.LOGGER.warn("Json Error while loading MFLP save file", e);
             return null;
         }
     }

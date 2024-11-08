@@ -3,7 +3,7 @@ package me.tolek.modules.settings.base;
 import me.tolek.util.MflpUtil;
 import me.tolek.util.RegexUtil;
 
-public class ColorSetting extends MflpSetting {
+public abstract class ColorSetting extends MflpSetting {
 
     private String a;
     private String r;
