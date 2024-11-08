@@ -10,7 +10,7 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
-// This will NOT be translated. (for now ;)). UPDATE: no.
+// This will NOT be translated. (for now ;)). UPDATE: no. UPDATE: it's a joke lmao... or is it?
 public class ChangelogsScreen extends Screen {
 
     public ChangelogsScreen(Screen parent) {
@@ -34,7 +34,7 @@ public class ChangelogsScreen extends Screen {
                 "ADDED: Player heads in Party GUI (/party manage) by @BeefyAndTheDucks",
                 "ADDED: Settings for displaying the update radius of different redstone components by @tolek-tpr",
                 "ADDED: A Hotkey tab in the main GUI allowing to toggle boolean settings and switch list settings by @tolek-tpr",
-                "Added a Colors tab in the main GUI, for setting the colors for the Update Radius settings by @tolek-tpr");
+                "ADDED: A Colors tab in the main GUI, for setting the colors for the Update Radius settings by @tolek-tpr");
         addVersion("v3.0.1 - THE MACRO UPDATE", "ADDED: New setting to macros, the ability to use macros only on specific servers by @tolek-tpr",
                 "ADDED: A new command - /mflpconfig - to open the config screen by @tolek-tpr", "FIXED: MFLP Icons not showing up by @tolek-tpr",
                 "FIXED: Party GUI not updating by @BeefyAndTheDucks");
