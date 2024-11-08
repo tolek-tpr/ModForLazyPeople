@@ -126,6 +126,8 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
                     settings.OBSERVER_UPDATE_VIEW = loadedData.getSettings().OBSERVER_UPDATE_VIEW;
                     settings.RAILS_UPDATE_VIEW = loadedData.getSettings().RAILS_UPDATE_VIEW;
 
+                    settings.FREE_CAM_ENABLED = loadedData.getSettings().FREE_CAM_ENABLED;
+
                     // Colors
                     settings.DUST_UPDATE_COLOR = loadedData.getSettings().DUST_UPDATE_COLOR;
                     settings.REPEATER_UPDATE_COLOR = loadedData.getSettings().REPEATER_UPDATE_COLOR;
@@ -150,8 +152,8 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
         uc.check();
         Logger logger = ModForLazyPeople.LOGGER;
         if (uc.isUpdateAvailable()) {
-            logger.warn("New version available: v" + uc.getLatestVersion() + " (current: v" + uc.currentVersion + ")");
-            logger.warn("Download it at " + iv.modrinthUrl);
+            logger.warn("New version available: v{} (current: v{})", uc.getLatestVersion(), uc.currentVersion);
+            logger.warn("Download it at {}", iv.modrinthUrl);
         }
         if (uc.isUpdateAvailable()) {
             iv.updateAvailable = true;

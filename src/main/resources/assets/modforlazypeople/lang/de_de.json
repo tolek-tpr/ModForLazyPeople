@@ -11,8 +11,8 @@
   "mflp.welcomeScreen.line8": "As of update 2.5.0, you can use the \"create\" button to add macros",
   "mflp.welcomeScreen.quickGuide.title": "Mflp Quick Guide",
 
-  "mflp.true": "On",
-  "mflp.false": "Off",
+  "mflp.true": "ON",
+  "mflp.false": "OFF",
   "mflp.create": "Create",
   "mflp.openScreen": "Open screen",
   "mflp.add": "Add",

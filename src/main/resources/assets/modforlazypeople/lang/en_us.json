@@ -129,6 +129,9 @@
   "mflp.setting.serverDisconnectionAction.toast": "Toast",
   "mflp.setting.serverDisconnectionAction.screen": "Screen",
 
+  "mflp.setting.freeCamEnabled.name": "Free Cam",
+  "mflp.setting.freeCamEnabled.tooltip": "Activates a kind of spectator mode.",
+
   "mflp.setting.resetButton.name": "Reset",
   "mflp.setting.resetButton.tooltip": "Sets the field to the default value.",
 

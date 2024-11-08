@@ -41,6 +41,8 @@ public class MflpSettingsList {
     public ObserverUpdateSetting OBSERVER_UPDATE_VIEW = new ObserverUpdateSetting();
     public RailUpdateSetting RAILS_UPDATE_VIEW = new RailUpdateSetting();
 
+    public FreeCamEnabled FREE_CAM_ENABLED = new FreeCamEnabled();
+
     // COLORS
     public DustUpdateColorSetting DUST_UPDATE_COLOR = new DustUpdateColorSetting();
     public RepeaterUpdateColorSetting REPEATER_UPDATE_COLOR = new RepeaterUpdateColorSetting();
@@ -92,6 +94,8 @@ public class MflpSettingsList {
         settings.add(COMPARATOR_UPDATE_VIEW);
         settings.add(OBSERVER_UPDATE_VIEW);
         settings.add(RAILS_UPDATE_VIEW);
+
+        settings.add(FREE_CAM_ENABLED);
 
         // Colors
         settings.add(DUST_UPDATE_COLOR);

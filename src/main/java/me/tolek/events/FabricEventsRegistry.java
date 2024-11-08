@@ -3,9 +3,11 @@ package me.tolek.events;
 import me.tolek.event.EventManager;
 import me.tolek.event.RenderListener;
 import me.tolek.event.WorldRenderListener;
+import me.tolek.modules.betterFreeCam.CameraEntity;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.util.InstancedValues;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
@@ -36,6 +38,10 @@ public class FabricEventsRegistry implements ClientModInitializer {
         });*/
         HudRenderCallback.EVENT.register((context, tickDelta) -> { EventManager.getInstance().fire(new RenderListener.RenderEvent(context, tickDelta)); });
         ClientSendMessageEvents.ALLOW_CHAT.register((msg) -> !(settingsList.AUTO_WELCOME_BACK.getState() && settingsList.AUTO_IGNORE_WB_MESSAGES.getState() && iv.timeSinceLastWbMillis < settingsList.AUTO_IGNORE_WB_MESSAGES_DURATION.getState() * 1000 && msg.contains("wb")));
+
+        ClientTickEvents.START_CLIENT_TICK.register((mcClient) -> {
+            CameraEntity.movementTick();
+        });
     }
 
 }
