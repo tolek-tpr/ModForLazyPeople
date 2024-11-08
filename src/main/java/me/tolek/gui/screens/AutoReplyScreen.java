@@ -32,7 +32,7 @@ public class AutoReplyScreen extends Screen {
         }).dimensions(width / 2 - 75, height - 29, 150, 20).build());
 
         MenuPickerWidget mpw = new MenuPickerWidget(10, 22, client);
-        mpw.children().forEach(this::addDrawableChild);
+        addDrawableChild(mpw);
 
         addDrawableChild(ButtonWidget.builder(Text.translatable("mflp.create"), (button -> {
             InputBoxWidget ibw = new InputBoxWidget(textRenderer, width / 2 - 75,   height / 2 - 40, 150, 20, Text.translatable("mflp.name"));

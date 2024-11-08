@@ -38,7 +38,7 @@ public class MflpHotkeysScreen extends Screen {
         }).dimensions(width / 2 - 75, height - 29, 150, 20).build());
 
         MenuPickerWidget mpw = new MenuPickerWidget(10, 22, client);
-        mpw.children().forEach(this::addDrawableChild);
+        addDrawableChild(mpw);
 
         ScrollableListWidget slw = new ScrollableListWidget(this.client, width, height - 84, 44, 22);
         slw.setRenderBackground(false);

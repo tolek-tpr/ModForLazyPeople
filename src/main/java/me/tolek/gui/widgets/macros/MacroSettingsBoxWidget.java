@@ -23,7 +23,7 @@ import java.util.List;
 @Environment(EnvType.CLIENT)
 public class MacroSettingsBoxWidget extends ContainerWidget {
 
-    private List<ClickableWidget> children = new ArrayList<>();
+    public ArrayList<ClickableWidget> children = new ArrayList<>();
     private MacroList macroList = MacroList.getInstance();
     private TextRenderer tx;
     private int x;
@@ -86,11 +86,13 @@ public class MacroSettingsBoxWidget extends ContainerWidget {
         return children;
     }
 
-    @Override
-    protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {}
-
     public void addChild(ClickableWidget child) {
         children.add(child);
+    }
+
+    @Override
+    protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
+        children.forEach(c -> c.render(context, mouseX, mouseY, delta));
     }
 
     @Override

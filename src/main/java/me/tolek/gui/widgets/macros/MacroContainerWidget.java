@@ -31,7 +31,7 @@ import java.util.function.Consumer;
 @Environment(EnvType.CLIENT)
 public class MacroContainerWidget extends ContainerWidget {
 
-    private List<ClickableWidget> children = new ArrayList<>();
+    public ArrayList<ClickableWidget> children = new ArrayList<>();
     private MacroList macroList = MacroList.getInstance();
     @Nullable
     private KeyBinding selectedKeyBinding;
@@ -160,8 +160,8 @@ public class MacroContainerWidget extends ContainerWidget {
 
     @Override
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
-        context.drawTextWithShadow(tx, m.getName(), x - 155, y + 10 - tx.fontHeight / 2, 0xffffff);
         children.forEach(c -> c.render(context, mouseX, mouseY, delta));
+        context.drawTextWithShadow(tx, m.getName(), x - 155, y + 10 - tx.fontHeight / 2, 0xffffff);
     }
 
     public void addChild(ClickableWidget child) {

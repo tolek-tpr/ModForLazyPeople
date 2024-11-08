@@ -7,8 +7,13 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextWidget;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TextContent;
 import net.minecraft.util.Formatting;
+
+import java.util.ArrayList;
+import java.util.List;
 
 // This will NOT be translated. (for now ;)). UPDATE: no.
 public class ChangelogsScreen extends Screen {
@@ -70,9 +75,20 @@ public class ChangelogsScreen extends Screen {
 
         for (String change : changes) {
             MutableText changeText = Text.literal(" - ").append(change).formatted(Formatting.ITALIC);
-            TextWidget changeLabel = new TextWidget(width / 2 - 155,
-                    10 - textRenderer.fontHeight / 2, textRenderer.getWidth(changeText) + 10, 20, changeText, textRenderer);
-            slw.addRow(changeLabel);
+            List<OrderedText> wrappedText = textRenderer.wrapLines(changeText, 350);
+
+            for (OrderedText text : wrappedText) {
+                StringBuilder builder = new StringBuilder();
+                text.accept((index, style, c) -> {
+                    builder.appendCodePoint(c);
+                    return true;
+                });
+                Text text2 = Text.literal(builder.toString());
+
+                TextWidget changeLabel = new TextWidget(width / 2 - 155,
+                        10 - textRenderer.fontHeight / 2, 350, 20, text2, textRenderer);
+                slw.addRow(changeLabel);
+            }
         }
     }
 

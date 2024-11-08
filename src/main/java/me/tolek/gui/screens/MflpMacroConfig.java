@@ -41,7 +41,7 @@ public class MflpMacroConfig extends Screen {
         }).dimensions(width / 2 - 75, height - 29, 150, 20).build());
 
         MenuPickerWidget mpw = new MenuPickerWidget(10, 22, client);
-        mpw.children().forEach(this::addDrawableChild);
+        addDrawableChild(mpw);
 
         addDrawableChild(ButtonWidget.builder(Text.translatable("mflp.create"), (button -> {
             InputBoxWidget ibw = new InputBoxWidget(textRenderer, width / 2 - 75, height / 2 - 40, 150, 20, Text.translatable("mflp.name"));
@@ -68,7 +68,6 @@ public class MflpMacroConfig extends Screen {
             MacroContainerWidget mcw = new MacroContainerWidget(scaledWidth / 2, 42 + step, this.client,
                     this.selectedKeyBinding, m, textRenderer);
             addDrawableChild(mcw);
-            mcw.children().forEach(this::addDrawableChild);
             mcw.keyBindingConsumer = (kb) -> {this.selectedKeyBinding = kb;};
 
             step += 22;

@@ -20,9 +20,9 @@ import java.util.List;
 @Environment(EnvType.CLIENT)
 public class MacroCommandsWidget extends ContainerWidget {
 
-    private List<ClickableWidget> children = new ArrayList<>();
-    private TextRenderer tx;
-    private String command;
+    public final ArrayList<ClickableWidget> children = new ArrayList<>();
+    private final TextRenderer tx;
+    private final String command;
     private int x;
     private int y;
 
@@ -48,6 +48,7 @@ public class MacroCommandsWidget extends ContainerWidget {
 
     @Override
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
+        children.forEach(c -> c.render(context, mouseX, mouseY, delta));
         context.drawTextWithShadow(tx, command, 10, y + 10 - tx.fontHeight / 2, 0xffffff);
     }
 
