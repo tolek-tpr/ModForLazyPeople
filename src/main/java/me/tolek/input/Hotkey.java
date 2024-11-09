@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class Hotkey {
 
     private HashMap<Integer, Integer> keys; // Key, scanCode
-    private boolean pressed = false;
+    private transient boolean pressed = false;
 
     public Hotkey(HashMap<Integer, Integer> key) {
         this.keys = key;
