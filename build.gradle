@@ -28,7 +28,7 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modApi ("com.terraformersmc:modmenu:9.2.0-beta.2")
+	modApi "com.terraformersmc:modmenu:11.0.3"
 	implementation "com.google.code.gson:gson:2.9.0"
 
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
