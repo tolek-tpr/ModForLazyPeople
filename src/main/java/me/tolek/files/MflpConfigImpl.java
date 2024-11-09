@@ -129,6 +129,7 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
                     settings.FREE_CAM_ENABLED = loadedData.getSettings().FREE_CAM_ENABLED;
                     settings.FREE_CAM_INPUT_MODE = loadedData.getSettings().FREE_CAM_INPUT_MODE;
                     settings.FREE_CAM_MOVEMENT_MODE = loadedData.getSettings().FREE_CAM_MOVEMENT_MODE;
+                    settings.FREE_CAM_MOVEMENT_SPEED = loadedData.getSettings().FREE_CAM_MOVEMENT_SPEED;
 
                     // Colors
                     settings.DUST_UPDATE_COLOR = loadedData.getSettings().DUST_UPDATE_COLOR;

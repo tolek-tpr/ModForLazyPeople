@@ -140,6 +140,9 @@
   "mflp.setting.freeCamMovementMode.name": "Free Cam Movement Mode",
   "mflp.setting.freeCamMovementMode.tooltip": "Whether WASD moves the player or the camera",
 
+  "mflp.setting.freeCamMovementSpeed.name": "Free Cam Movement Speed",
+  "mflp.setting.freeCamMovementSpeed.tooltip": "The speed of which the Free Cam camera moves.",
+
   "mflp.setting.resetButton.name": "Reset",
   "mflp.setting.resetButton.tooltip": "Sets the field to the default value.",
 

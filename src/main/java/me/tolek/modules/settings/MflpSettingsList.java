@@ -42,9 +42,9 @@ public class MflpSettingsList {
     public RailUpdateSetting RAILS_UPDATE_VIEW = new RailUpdateSetting();
 
     public FreeCamEnabled FREE_CAM_ENABLED = new FreeCamEnabled();
-
     public FreeCamInputMode FREE_CAM_INPUT_MODE = new FreeCamInputMode();
     public FreeCamMovementMode FREE_CAM_MOVEMENT_MODE = new FreeCamMovementMode();
+    public FreeCamMovementSpeed FREE_CAM_MOVEMENT_SPEED = new FreeCamMovementSpeed();
 
     // COLORS
     public DustUpdateColorSetting DUST_UPDATE_COLOR = new DustUpdateColorSetting();
@@ -99,9 +99,9 @@ public class MflpSettingsList {
         settings.add(RAILS_UPDATE_VIEW);
 
         settings.add(FREE_CAM_ENABLED);
-
         settings.add(FREE_CAM_INPUT_MODE);
         settings.add(FREE_CAM_MOVEMENT_MODE);
+        settings.add(FREE_CAM_MOVEMENT_SPEED);
 
         // Colors
         settings.add(DUST_UPDATE_COLOR);

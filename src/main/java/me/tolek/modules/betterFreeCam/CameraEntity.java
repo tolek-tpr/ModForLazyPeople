@@ -67,7 +67,7 @@ public class CameraEntity extends ClientPlayerEntity
 
     private static double getMoveSpeed()
     {
-        return 0.7;
+        return 0.7 * MflpSettingsList.getInstance().FREE_CAM_MOVEMENT_SPEED.getState();
     }
 
     private void handleMotion(double forward, double up, double strafe)
