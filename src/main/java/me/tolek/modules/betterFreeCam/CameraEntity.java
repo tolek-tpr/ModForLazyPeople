@@ -1,6 +1,6 @@
 package me.tolek.modules.betterFreeCam;
 
-import me.tolek.ModForLazyPeople;
+import me.tolek.modules.settings.FreeCamMovementMode;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.util.CameraUtils;
 import me.tolek.util.MiscUtils;
@@ -43,7 +43,7 @@ public class CameraEntity extends ClientPlayerEntity
     {
         CameraEntity camera = getCamera();
 
-        if (camera != null && MflpSettingsList.getInstance().FREE_CAM_ENABLED.getState())
+        if (camera != null && MflpSettingsList.getInstance().FREE_CAM_MOVEMENT_MODE.stateIndex == FreeCamMovementMode.CAMERA)
         {
             GameOptions options = MinecraftClient.getInstance().options;
 
@@ -129,6 +129,7 @@ public class CameraEntity extends ClientPlayerEntity
     private static CameraEntity createCameraEntity(MinecraftClient mc)
     {
         ClientPlayerEntity player = mc.player;
+        assert player != null;
         CameraEntity camera = new CameraEntity(mc, mc.world, player.networkHandler, player.getStatHandler(), player.getRecipeBook());
         camera.noClip = true;
         float yaw = player.getYaw();
@@ -179,6 +180,9 @@ public class CameraEntity extends ClientPlayerEntity
 
         mc.setCameraEntity(camera);
         mc.chunkCullingEnabled = false; // Disable chunk culling
+
+        // Disable the motion option when entering camera mode
+        MflpSettingsList.getInstance().FREE_CAM_MOVEMENT_MODE.stateIndex = 0;
     }
 
     private static void removeCamera(MinecraftClient mc)

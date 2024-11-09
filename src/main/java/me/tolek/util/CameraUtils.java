@@ -1,6 +1,8 @@
 package me.tolek.util;
 
 import me.tolek.modules.betterFreeCam.CameraEntity;
+import me.tolek.modules.settings.FreeCamInputMode;
+import me.tolek.modules.settings.FreeCamMovementMode;
 import me.tolek.modules.settings.MflpSettingsList;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.WorldRenderer;
@@ -27,12 +29,14 @@ public class CameraUtils {
 
     public static boolean shouldPreventPlayerInputs()
     {
-        return MflpSettingsList.getInstance().FREE_CAM_ENABLED.getState();
+        return MflpSettingsList.getInstance().FREE_CAM_ENABLED.getState() &&
+                MflpSettingsList.getInstance().FREE_CAM_INPUT_MODE.stateIndex == FreeCamInputMode.CAMERA;
     }
 
     public static boolean shouldPreventPlayerMovement()
     {
-        return MflpSettingsList.getInstance().FREE_CAM_ENABLED.getState();
+        return MflpSettingsList.getInstance().FREE_CAM_ENABLED.getState() &&
+                MflpSettingsList.getInstance().FREE_CAM_MOVEMENT_MODE.stateIndex == FreeCamMovementMode.CAMERA;
     }
 
     public static float getCameraYaw()

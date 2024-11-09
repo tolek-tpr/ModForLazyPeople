@@ -13,8 +13,8 @@
 
   "mflp.hotkeysScreen.title": "Hotkeys",
 
-  "mflp.true": "On",
-  "mflp.false": "Off",
+  "mflp.true": "ON",
+  "mflp.false": "OFF",
   "mflp.create": "Create",
   "mflp.openScreen": "Open screen",
   "mflp.add": "Add",
@@ -25,6 +25,8 @@
   "mflp.download": "Download",
   "mflp.reconnect": "Reconnect",
   "mflp.reconnect.tooltip": "Try reconnecting to the MFLP network.",
+  "mflp.player": "Player",
+  "mflp.camera": "Camera",
 
   "mflp.mainConfig.macrosButton": "Macros",
   "mflp.mainConfig.settingsButton": "Settings",
@@ -131,6 +133,12 @@
 
   "mflp.setting.freeCamEnabled.name": "Free Cam",
   "mflp.setting.freeCamEnabled.tooltip": "Activates a kind of spectator mode.",
+
+  "mflp.setting.freeCamInputMode.name": "Free Cam Input Mode",
+  "mflp.setting.freeCamInputMode.tooltip": "Whether clicks go to the player or the camera",
+
+  "mflp.setting.freeCamMovementMode.name": "Free Cam Movement Mode",
+  "mflp.setting.freeCamMovementMode.tooltip": "Whether WASD moves the player or the camera",
 
   "mflp.setting.resetButton.name": "Reset",
   "mflp.setting.resetButton.tooltip": "Sets the field to the default value.",

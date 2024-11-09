@@ -9,6 +9,9 @@
     "client.AbstractClientPlayerEntityMixin",
     "client.ChatHudMixin",
     "client.ClientPlayerEntityMixin",
+    "client.ClientPlayerInteractionManagerMixin",
+    "client.GameRendererMixin",
+    "client.InGameHudMixin",
     "client.KeyboardMixin",
     "client.MainMenuMixin",
     "client.MflpClientScheduler",
@@ -16,9 +19,11 @@
     "client.PauseScreenMixin",
     "client.PlayerListHudMixin",
     "client.PlayerNameTagMixin",
-    "client.RedstoneComponentUpdateRenderer"
+    "client.RedstoneComponentUpdateRenderer",
+    "client.WorldRendererMixin"
   ],
+  "mixinPriority": 991,
   "injectors": {
     "defaultRequire": 1
-	}
+  }
 }

@@ -4,6 +4,7 @@ import me.tolek.modules.betterFreeCam.CameraEntity;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.util.CameraUtils;
 import me.tolek.util.DummyMovementInput;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.input.Input;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.util.Hand;
@@ -21,7 +22,7 @@ public class ClientPlayerEntityMixin {
     @Shadow
     public Input input;
     @Unique
-    private final DummyMovementInput dummyMovementInput = new DummyMovementInput(null);
+    private final DummyMovementInput dummyMovementInput = new DummyMovementInput(MinecraftClient.getInstance().options);
     @Unique
     private Input realInput;
 

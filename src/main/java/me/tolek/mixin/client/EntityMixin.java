@@ -15,11 +15,7 @@ public class EntityMixin {
         if ((Object) this instanceof ClientPlayerEntity) {
             if (CameraUtils.shouldPreventPlayerMovement()) {
                 CameraUtils.updateCameraRotations((float) yawChange, (float) pitchChange);
-            }
-
-            if (CameraUtils.shouldPreventPlayerMovement()) {
                 ci.cancel();
-                return;
             }
         }
     }
