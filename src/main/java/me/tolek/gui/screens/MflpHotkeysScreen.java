@@ -41,7 +41,6 @@ public class MflpHotkeysScreen extends Screen {
         addDrawableChild(mpw);
 
         ScrollableListWidget slw = new ScrollableListWidget(this.client, width, height - 84, 44, 22);
-        slw.setRenderBackground(false);
 
         MflpSettingsList settingsList = MflpSettingsList.getInstance();
         for (MflpSetting setting : settingsList.getSettings()) {

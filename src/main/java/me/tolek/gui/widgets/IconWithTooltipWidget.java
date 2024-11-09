@@ -18,7 +18,7 @@ public class IconWithTooltipWidget extends TextIconButtonWidget.IconOnly {
     private Identifier modifiableTexture;
 
     public IconWithTooltipWidget(int width, int height, Text message, Identifier texture) {
-        super(width, height, message, width, height, texture, (btn) -> {});
+        super(width, height, message, width, height, texture, (btn) -> {}, ButtonWidget.DEFAULT_NARRATION_SUPPLIER);
         modifiableTexture = texture;
     }
 

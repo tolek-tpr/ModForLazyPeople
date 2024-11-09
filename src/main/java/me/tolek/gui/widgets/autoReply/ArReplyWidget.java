@@ -27,7 +27,7 @@ public class ArReplyWidget extends ContainerWidget {
     private int height;
     private TextFieldWidget widget;
     private TextIconButtonWidget ibw;
-    public static Identifier CROSS_ICON = new Identifier(ModForLazyPeople.MOD_ID, "cross");
+    public static Identifier CROSS_ICON = Identifier.of(ModForLazyPeople.MOD_ID, "cross");
 
     public ArReplyWidget(int x, int y, String tr, AutoReply ar, String tt, TextRenderer tx, int width, int height, ButtonWidget.PressAction pa) {
         super(x, y, 150, 20, Text.literal("test"));

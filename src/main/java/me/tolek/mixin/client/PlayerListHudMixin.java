@@ -26,7 +26,7 @@ public class PlayerListHudMixin {
     //private final MflpPlayersWorker worker = MflpPlayersWorker.getInstance();
     private final WebSocketServerHandler serverHandler = WebSocketServerHandler.getInstance();
     @Unique
-    private final Identifier logo = new Identifier("modforlazypeople", "mflp/user_logo");
+    private final Identifier logo = Identifier.of("modforlazypeople", "mflp/user_logo");
     private final MflpSettingsList settingsList = MflpSettingsList.getInstance();
 
     @Inject(method = "render", at = @At(value = "INVOKE", target="Lnet/minecraft/client/gui/hud/PlayerListHud;renderLatencyIcon(Lnet/minecraft/client/gui/DrawContext;IIILnet/minecraft/client/network/PlayerListEntry;)V"))

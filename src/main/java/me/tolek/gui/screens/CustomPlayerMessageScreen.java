@@ -30,7 +30,6 @@ public class CustomPlayerMessageScreen extends Screen {
     @Override
     public void init() {
         ScrollableListWidget slw = new ScrollableListWidget(this.client, width, height - 84, 80, 22);
-        slw.setRenderBackground(false);
 
         addDrawableChild(ButtonWidget.builder(Text.translatable("mflp.add"), (button) -> {
             list.addMessage(new Tuple<>("", ""));

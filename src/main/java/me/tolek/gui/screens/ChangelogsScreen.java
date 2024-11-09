@@ -31,7 +31,6 @@ public class ChangelogsScreen extends Screen {
         addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, (button) -> close()).dimensions(width / 2 - 75, height - 29, 150, 20).build());
 
         slw = new ScrollableListWidget(this.client, width, height - 84, 44, 22);
-        slw.setRenderBackground(false);
 
         // -- CHANGELOGS START -- \\
 

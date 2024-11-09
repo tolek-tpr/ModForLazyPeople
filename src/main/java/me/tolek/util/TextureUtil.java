@@ -49,7 +49,7 @@ public class TextureUtil {
             NativeImage nativeImage = NativeImage.read(new URL(url).openStream());
 
             // Generate a unique Identifier based on the username
-            Identifier textureId = new Identifier(ModForLazyPeople.MOD_ID, "player_faces/" + username.toLowerCase());
+            Identifier textureId = Identifier.of(ModForLazyPeople.MOD_ID, "player_faces/" + username.toLowerCase());
 
             // Register the texture with Minecraft's TextureManager
             TextureManager textureManager = MinecraftClient.getInstance().getTextureManager();

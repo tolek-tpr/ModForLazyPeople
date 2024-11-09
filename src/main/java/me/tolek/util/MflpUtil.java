@@ -11,7 +11,7 @@ public class MflpUtil {
 
     public MflpUtil() { }
 
-    public static Identifier pencilIcon = new Identifier("modforlazypeople", "pencil");
+    public static Identifier pencilIcon = Identifier.of("modforlazypeople", "pencil");
     public boolean didSave = false;
 
     public void sendMessage(ClientPlayerEntity source, String message) {

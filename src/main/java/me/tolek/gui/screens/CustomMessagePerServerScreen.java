@@ -42,7 +42,6 @@ public class CustomMessagePerServerScreen extends Screen {
     @Override
     public void init() {
         ScrollableListWidget slw = new ScrollableListWidget(this.client, width - 2, height - 84, 80, 22);
-        slw.setRenderBackground(false);
 
         addDrawableChild(ButtonWidget.builder(Text.translatable("mflp.add"), (button) -> {
             list.addMessagesForServer("", new Tuple<>("", ""));

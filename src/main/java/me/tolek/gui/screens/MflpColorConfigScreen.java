@@ -31,7 +31,6 @@ public class MflpColorConfigScreen extends Screen {
         addDrawableChild(mpw);
 
         ScrollableListWidget slw = new ScrollableListWidget(this.client, width, height - 84, 44, 22);
-        slw.setRenderBackground(false);
 
         for (MflpSetting setting : settingsList.getSettings()) {
             if (!setting.render) continue;

@@ -28,7 +28,7 @@ public class PlayerNameTagMixin {
     //private final MflpPlayersWorker worker = MflpPlayersWorker.getInstance();
     private final WebSocketServerHandler serverHandler = WebSocketServerHandler.getInstance();
     @Unique
-    private final Identifier logo = new Identifier("modforlazypeople", "textures/gui/sprites/mflp/user_logo.png");
+    private final Identifier logo = Identifier.of("modforlazypeople", "textures/gui/sprites/mflp/user_logo.png");
     @Unique
     private final MinecraftClient client = MinecraftClient.getInstance();
     @Unique
@@ -36,7 +36,7 @@ public class PlayerNameTagMixin {
     private final MflpSettingsList settingsList = MflpSettingsList.getInstance();
 
     @Inject(method = "renderLabelIfPresent", at = @At(value = "INVOKE", target="Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/text/Text;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/client/font/TextRenderer$TextLayerType;II)I"))
-    private void drawLogo(@Coerce Object entity, Text text, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
+    private void drawLogo(@Coerce Object entity, Text text, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, float tickDelta, CallbackInfo ci) {
         if (this.serverHandler == null || !settingsList.NAMETAG_ICON_TOGGLE.getState()) return;
         ArrayList<String> returnMessage = serverHandler.mflpUsers;
 
@@ -62,12 +62,12 @@ public class PlayerNameTagMixin {
                 RenderSystem.setShader(GameRenderer::getPositionTexProgram);
                 RenderSystem.enableBlend();
                 Matrix4f matrix4f = matrices.peek().getPositionMatrix();
-                BufferBuilder bufferBuilder = Tessellator.getInstance().getBuffer();
-                bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
-                bufferBuilder.vertex(matrix4f, x1, y1, z).texture(u1, v1).next();
-                bufferBuilder.vertex(matrix4f, x1, y2, z).texture(u1, v2).next();
-                bufferBuilder.vertex(matrix4f, x2, y2, z).texture(u2, v2).next();
-                bufferBuilder.vertex(matrix4f, x2, y1, z).texture(u2, v1).next();
+                BufferBuilder bufferBuilder = Tessellator.getInstance().begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
+                //bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
+                bufferBuilder.vertex(matrix4f, x1, y1, z).texture(u1, v1);
+                bufferBuilder.vertex(matrix4f, x1, y2, z).texture(u1, v2);
+                bufferBuilder.vertex(matrix4f, x2, y2, z).texture(u2, v2);
+                bufferBuilder.vertex(matrix4f, x2, y1, z).texture(u2, v1);
                 BufferRenderer.drawWithGlobalProgram(bufferBuilder.end());
                 RenderSystem.disableBlend();
 
