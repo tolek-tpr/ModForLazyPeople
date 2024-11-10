@@ -21,7 +21,6 @@ public class FreeCamPostProcessor extends ListSetting {
         }
 
         this.renderHotkey = true;
-        this.render = false;
     }
 
     @Override
