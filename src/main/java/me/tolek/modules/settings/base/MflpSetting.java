@@ -1,12 +1,13 @@
 package me.tolek.modules.settings.base;
 
 public abstract class MflpSetting {
+    // transient = exclude
 
-    private String name;
-    private final Object defaultValue;
-    private String tooltip;
-    public String type;
-    public boolean render = true;
+    private transient String name;
+    private transient final Object defaultValue;
+    private transient String tooltip;
+    public transient String type;
+    public transient boolean render = true;
 
     public MflpSetting(String name, Object defaultValue, String type, String tooltip) {
         this.name = name;

@@ -25,6 +25,7 @@ public class MflpSettingsScreen extends Screen {
     @Override
     public void init() {
         addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, (button) -> {
+            assert client != null;
             client.setScreen((Screen) null);
         }).dimensions(width / 2 - 75, height - 29, 150, 20).build());
 
@@ -37,24 +38,23 @@ public class MflpSettingsScreen extends Screen {
         for (MflpSetting setting : settingsList.getSettings()) {
             if (!setting.render) continue;
             // BOOLEAN SETTING
-            if (setting instanceof BooleanSetting) {
-                BooleanSetting bs = (BooleanSetting) setting;
-
+            if (setting instanceof BooleanSetting bs) {
                 BooleanWidget bw = new BooleanWidget(width / 2, 0, bs);
                 TextWidget label = new TextWidget(width / 2 - 155,
                         10 - textRenderer.fontHeight / 2, textRenderer.getWidth(Text.translatable(setting.getName())) + 10, 20, Text.translatable(setting.getName()), textRenderer);
                 slw.addRow(label, bw);
             }
 
-            // FLOAT SETTING (not implemented)
-            if (setting instanceof FloatSetting) {
-                FloatSetting fs = (FloatSetting) setting;
+            // FLOAT SETTING
+            if (setting instanceof FloatSetting fs) {
+                FloatWidget fw = new FloatWidget(width / 2, 0, fs, textRenderer);
+                TextWidget label = new TextWidget(width / 2 - 155,
+                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(Text.translatable(setting.getName())) + 10, 20 , Text.translatable(setting.getName()), textRenderer);
+                slw.addRow(label, fw);
             }
 
             // INT SETTING
-            if (setting instanceof IntegerSetting) {
-                IntegerSetting is = (IntegerSetting) setting;
-
+            if (setting instanceof IntegerSetting is) {
                 IntegerWidget iw = new IntegerWidget(width / 2, 0, is, textRenderer);
                 TextWidget label = new TextWidget(width / 2 - 155,
                         10 - textRenderer.fontHeight / 2, textRenderer.getWidth(Text.translatable(setting.getName())) + 10, 20, Text.translatable(setting.getName()), textRenderer);
@@ -62,9 +62,7 @@ public class MflpSettingsScreen extends Screen {
             }
 
             // STRING SETTING
-            if (setting instanceof StringSetting) {
-                StringSetting ss = (StringSetting) setting;
-
+            if (setting instanceof StringSetting ss) {
                 StringWidget sw = new StringWidget(width / 2, 0, ss, textRenderer);
                 TextWidget label = new TextWidget(width / 2 - 155,
                         10 - textRenderer.fontHeight / 2, textRenderer.getWidth(Text.translatable(setting.getName())) + 10, 20, Text.translatable(setting.getName()), textRenderer);
@@ -72,18 +70,14 @@ public class MflpSettingsScreen extends Screen {
             }
 
             // LIST SETTING
-            if (setting instanceof ListSetting) {
-                ListSetting ls = (ListSetting) setting;
-
+            if (setting instanceof ListSetting ls) {
                 ListWidget lw = new ListWidget(width / 2, 0, ls);
                 TextWidget label = new TextWidget(width / 2 - 155,
                         10 - textRenderer.fontHeight / 2, textRenderer.getWidth(Text.translatable(setting.getName())) + 10, 20, Text.translatable(setting.getName()), textRenderer);
                 slw.addRow(label, lw);
             }
 
-            if (setting instanceof ButtonSetting) {
-                ButtonSetting bs = (ButtonSetting) setting;
-
+            if (setting instanceof ButtonSetting bs) {
                 ButtonSettingWidget bw = new ButtonSettingWidget(width / 2, 0, bs);
                 TextWidget label = new TextWidget(width / 2 - 155,
                         10 - textRenderer.fontHeight / 2, textRenderer.getWidth(Text.translatable(setting.getName())) + 10, 20, Text.translatable(setting.getName()), textRenderer);

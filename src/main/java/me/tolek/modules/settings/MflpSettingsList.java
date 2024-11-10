@@ -41,6 +41,13 @@ public class MflpSettingsList {
     public ObserverUpdateSetting OBSERVER_UPDATE_VIEW = new ObserverUpdateSetting();
     public RailUpdateSetting RAILS_UPDATE_VIEW = new RailUpdateSetting();
 
+    public FreeCamEnabled FREE_CAM_ENABLED = new FreeCamEnabled();
+    public FreeCamInputMode FREE_CAM_INPUT_MODE = new FreeCamInputMode();
+    public FreeCamMovementMode FREE_CAM_MOVEMENT_MODE = new FreeCamMovementMode();
+    public FreeCamMovementSpeed FREE_CAM_MOVEMENT_SPEED = new FreeCamMovementSpeed();
+    public FreeCamWalkingMode FREE_CAM_WALKING_MODE = new FreeCamWalkingMode();
+    public FreeCamPostProcessor FREE_CAM_POST_PROCESSOR = new FreeCamPostProcessor();
+
     // COLORS
     public DustUpdateColorSetting DUST_UPDATE_COLOR = new DustUpdateColorSetting();
     public RepeaterUpdateColorSetting REPEATER_UPDATE_COLOR = new RepeaterUpdateColorSetting();
@@ -92,6 +99,13 @@ public class MflpSettingsList {
         settings.add(COMPARATOR_UPDATE_VIEW);
         settings.add(OBSERVER_UPDATE_VIEW);
         settings.add(RAILS_UPDATE_VIEW);
+
+        settings.add(FREE_CAM_ENABLED);
+        settings.add(FREE_CAM_INPUT_MODE);
+        settings.add(FREE_CAM_MOVEMENT_MODE);
+        settings.add(FREE_CAM_MOVEMENT_SPEED);
+        settings.add(FREE_CAM_WALKING_MODE);
+        settings.add(FREE_CAM_POST_PROCESSOR);
 
         // Colors
         settings.add(DUST_UPDATE_COLOR);
