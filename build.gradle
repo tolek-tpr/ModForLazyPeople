@@ -40,6 +40,10 @@ dependencies {
 	modImplementation include("io.github.cottonmc:LibGui:${project.libgui_version}")
 }
 
+loom {
+	accessWidenerPath = file("src/main/resources/modforlazypeople.accesswidener");
+}
+
 test {
 	useJUnitPlatform()
 }

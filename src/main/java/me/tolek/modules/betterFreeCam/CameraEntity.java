@@ -1,5 +1,6 @@
 package me.tolek.modules.betterFreeCam;
 
+import me.tolek.mixin.client.GameRendererMixin;
 import me.tolek.modules.settings.FreeCamMovementMode;
 import me.tolek.modules.settings.FreeCamWalkingMode;
 import me.tolek.modules.settings.MflpSettingsList;
@@ -10,6 +11,7 @@ import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.recipebook.ClientRecipeBook;
+import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MovementType;
@@ -43,6 +45,8 @@ public class CameraEntity extends ClientPlayerEntity
     {
         return true;
     }
+
+    public static boolean isActive() { return getCamera() != null; }
 
     public static void movementTick()
     {
@@ -175,6 +179,9 @@ public class CameraEntity extends ClientPlayerEntity
     {
         MinecraftClient mc = MinecraftClient.getInstance();
 
+        mc.gameRenderer.disablePostProcessor();
+        MflpSettingsList.getInstance().FREE_CAM_POST_PROCESSOR.stateIndex = 0;
+
         if (mc.world != null && mc.player != null)
         {
             if (enabled)
@@ -186,7 +193,7 @@ public class CameraEntity extends ClientPlayerEntity
                 removeCamera(mc);
             }
 
-            mc.gameRenderer.setRenderHand(! enabled);
+            mc.gameRenderer.setRenderHand(!enabled);
         }
     }
 

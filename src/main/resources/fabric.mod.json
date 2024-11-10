@@ -37,6 +37,7 @@
 	"mixins": [
 		"modforlazypeople.mixins.json"
 	],
+	"accessWidener": "modforlazypeople.accesswidener",
 	"depends": {
 		"fabricloader": ">=0.16.7",
 		"minecraft": "~1.20.4",
