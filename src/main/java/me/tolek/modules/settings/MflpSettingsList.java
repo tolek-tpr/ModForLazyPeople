@@ -46,7 +46,7 @@ public class MflpSettingsList {
     public FreeCamMovementMode FREE_CAM_MOVEMENT_MODE = new FreeCamMovementMode();
     public FreeCamMovementSpeed FREE_CAM_MOVEMENT_SPEED = new FreeCamMovementSpeed();
     public FreeCamWalkingMode FREE_CAM_WALKING_MODE = new FreeCamWalkingMode();
-    public FreeCamPostProcessor FREE_CAM_POST_PROCESSOR = new FreeCamPostProcessor();
+    public PostProcessorSetting POST_PROCESSOR = new PostProcessorSetting();
 
     // COLORS
     public DustUpdateColorSetting DUST_UPDATE_COLOR = new DustUpdateColorSetting();
@@ -105,7 +105,7 @@ public class MflpSettingsList {
         settings.add(FREE_CAM_MOVEMENT_MODE);
         settings.add(FREE_CAM_MOVEMENT_SPEED);
         settings.add(FREE_CAM_WALKING_MODE);
-        settings.add(FREE_CAM_POST_PROCESSOR);
+        settings.add(POST_PROCESSOR);
 
         // Colors
         settings.add(DUST_UPDATE_COLOR);
