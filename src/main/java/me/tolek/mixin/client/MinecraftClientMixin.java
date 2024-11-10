@@ -1,10 +1,8 @@
 package me.tolek.mixin.client;
 
-import me.tolek.ModForLazyPeople;
 import me.tolek.event.EventManager;
 import me.tolek.events.WorldLoadHandler;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.RunArgs;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.world.ClientWorld;
 import org.jetbrains.annotations.Nullable;

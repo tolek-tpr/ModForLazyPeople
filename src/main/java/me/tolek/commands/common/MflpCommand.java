@@ -6,8 +6,6 @@ import net.minecraft.server.ServerTickManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 
-import java.util.List;
-
 import static net.minecraft.server.command.CommandManager.*;
 
 public class MflpCommand implements ModInitializer {

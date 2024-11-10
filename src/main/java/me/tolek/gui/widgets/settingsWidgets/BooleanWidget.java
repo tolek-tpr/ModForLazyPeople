@@ -1,10 +1,8 @@
 package me.tolek.gui.widgets.settingsWidgets;
 
-import me.tolek.gui.screens.MflpSettingsScreen;
 import me.tolek.modules.settings.base.BooleanSetting;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
