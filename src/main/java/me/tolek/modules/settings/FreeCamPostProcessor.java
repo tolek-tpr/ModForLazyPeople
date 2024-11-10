@@ -26,18 +26,16 @@ public class FreeCamPostProcessor extends ListSetting {
 
     @Override
     public void run() {
-        if (CameraEntity.isActive()) {
-            if (stateIndex == getList().size() - 1) {
-                stateIndex = 0;
-            } else {
-                stateIndex = stateIndex + 1;
-            }
-
-            GameRenderer gameRenderer = MinecraftClient.getInstance().gameRenderer;
-            if (stateIndex == 0)
-                gameRenderer.disablePostProcessor();
-            else
-                gameRenderer.loadPostProcessor(GameRenderer.SUPER_SECRET_SETTING_PROGRAMS[stateIndex - 1]);
+        if (stateIndex == getList().size() - 1) {
+            stateIndex = 0;
+        } else {
+            stateIndex = stateIndex + 1;
         }
+
+        GameRenderer gameRenderer = MinecraftClient.getInstance().gameRenderer;
+        if (stateIndex == 0)
+            gameRenderer.disablePostProcessor();
+        else
+            gameRenderer.loadPostProcessor(GameRenderer.SUPER_SECRET_SETTING_PROGRAMS[stateIndex - 1]);
     }
 }
