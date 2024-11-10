@@ -1,6 +1,7 @@
 package me.tolek.modules.betterFreeCam;
 
 import me.tolek.modules.settings.FreeCamMovementMode;
+import me.tolek.modules.settings.FreeCamWalkingMode;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.util.CameraUtils;
 import me.tolek.util.MiscUtils;
@@ -13,9 +14,13 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MovementType;
 import net.minecraft.stat.StatHandler;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.shape.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class CameraEntity extends ClientPlayerEntity
 {
@@ -82,7 +87,26 @@ public class CameraEntity extends ClientPlayerEntity
         double z = (forward * zFactor + strafe * xFactor) * scale;
 
         this.setVelocity(new Vec3d(x, y, z));
-        this.move(MovementType.SELF, this.getVelocity());
+
+        if (MflpSettingsList.getInstance().FREE_CAM_WALKING_MODE.stateIndex == FreeCamWalkingMode.WALK)
+            this.collidingMove(this.getVelocity());
+        else
+            this.move(MovementType.SELF, this.getVelocity());
+    }
+
+    private void collidingMove(Vec3d movement) {
+        Box box = this.getBoundingBox();
+        List<VoxelShape> list = this.getWorld().getEntityCollisions(this, box.stretch(movement));
+        Vec3d adjustedMovement = movement.lengthSquared() == 0.0 ? movement : Entity.adjustMovementForCollisions(this, movement, box, this.getWorld(), list);
+
+        final double x = movement.x + getX();
+        double y = movement.y + getY();
+        final double z = movement.z + getZ();
+
+        if (movement.y < adjustedMovement.y)
+            y = getY();
+
+        this.setPosition(x, y, z);
     }
 
     private void updateLastTickPosition()

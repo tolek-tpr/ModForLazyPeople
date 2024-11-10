@@ -143,6 +143,11 @@
   "mflp.setting.freeCamMovementSpeed.name": "Free Cam Movement Speed",
   "mflp.setting.freeCamMovementSpeed.tooltip": "The speed of which the Free Cam camera moves.",
 
+  "mflp.setting.freeCamWalkingMode.name": "Free Cam Walk Mode",
+  "mflp.setting.freeCamWalkingMode.tooltip": "Whether or not you walk on blocks or not (only blocks below you)",
+  "mflp.setting.freeCamWalkingMode.noClip": "No Clip",
+  "mflp.setting.freeCamWalkingMode.walk": "Walk",
+
   "mflp.setting.resetButton.name": "Reset",
   "mflp.setting.resetButton.tooltip": "Sets the field to the default value.",
 
