@@ -20,7 +20,7 @@ public class MflpSettingsList {
     public AutoWbDelay WB_DELAY = new AutoWbDelay();
     public AutoWbCooldown WB_COOLDOWN = new AutoWbCooldown();
     public WbPlayerBlacklist WB_PLAYER_BLACKLIST = new WbPlayerBlacklist();
-    public PerPlayerMessageButtonSetting PER_PLAYER_MESSAGE_BUTTON_SETTING = new PerPlayerMessageButtonSetting();
+    public PerPlayerMessageButtonSetting PPMBS = new PerPlayerMessageButtonSetting();
 
     public MflpTabIconSetting TAB_ICON_TOGGLE = new MflpTabIconSetting();
     public MflpNametagIconSetting NAMETAG_ICON_TOGGLE = new MflpNametagIconSetting();
@@ -81,7 +81,7 @@ public class MflpSettingsList {
 
         settings.add(SERVER_DISCONNECTION_ACTION);
 
-        settings.add(PER_PLAYER_MESSAGE_BUTTON_SETTING);
+        settings.add(PPMBS);
 
         settings.add(WB_REGEX_SETTINGS);
         settings.add(WB_JOIN_REGEX);
