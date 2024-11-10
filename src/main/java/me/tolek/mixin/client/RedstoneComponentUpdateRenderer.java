@@ -5,6 +5,7 @@ import me.tolek.util.MflpUtil;
 import me.tolek.util.RenderUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.PoweredRailBlock;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.GameRenderer;
@@ -226,6 +227,15 @@ public class RedstoneComponentUpdateRenderer {
             RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() - 1, targetPos.getZ()), r, g, b, a);
             RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() + 1), r, g, b, a);
             RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() - 1, targetPos.getZ() - 1), r, g, b, a);
+
+            if (world.getBlockState(targetPos).get(Properties.STRAIGHT_RAIL_SHAPE).isAscending()) {
+                RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 2, targetPos.getZ()), r, g, b, a);
+
+                RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() + 1, targetPos.getY() + 1, targetPos.getZ()), r, g, b, a);
+                RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX() - 1, targetPos.getY() + 1, targetPos.getZ()), r, g, b, a);
+                RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() + 1), r, g, b, a);
+                RenderUtil.drawBoxInWorld(matrices, camera, new BlockPos(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ() - 1), r, g, b, a);
+            }
         }
     }
 

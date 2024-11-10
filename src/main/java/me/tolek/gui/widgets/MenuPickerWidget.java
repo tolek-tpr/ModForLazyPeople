@@ -97,7 +97,7 @@ public class MenuPickerWidget extends ContainerWidget {
 
     @Override
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
-
+        children.forEach(c -> c.render(context, mouseX, mouseY, delta));
     }
 
     public void addChild(ClickableWidget child) {

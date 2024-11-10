@@ -36,7 +36,7 @@ public class HotkeyExecutorImpl extends EventImpl implements MouseListener, Keyb
 
     @Override
     public void onKey(int keyCode, int scanCode, int modifiers) {
-        if (client.world == null) return;
+        if (client.world == null || client.currentScreen != null) return;
 
         final Window window = client.getWindow();
         final long windowHandle = window.getHandle();
