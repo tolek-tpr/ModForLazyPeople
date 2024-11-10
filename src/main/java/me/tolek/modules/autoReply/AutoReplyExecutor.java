@@ -3,7 +3,6 @@ package me.tolek.modules.autoReply;
 import me.tolek.event.ChatListener;
 import me.tolek.event.EventImpl;
 import me.tolek.event.EventManager;
-import me.tolek.event.UpdateListener;
 import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
 import net.fabricmc.api.EnvType;

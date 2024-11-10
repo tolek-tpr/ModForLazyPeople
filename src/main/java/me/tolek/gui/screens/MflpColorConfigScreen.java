@@ -3,7 +3,6 @@ package me.tolek.gui.screens;
 import me.tolek.gui.widgets.MenuPickerWidget;
 import me.tolek.gui.widgets.ScrollableListWidget;
 import me.tolek.gui.widgets.colors.ColorInputWidget;
-import me.tolek.gui.widgets.settingsWidgets.*;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.modules.settings.base.*;
 import net.minecraft.client.gui.screen.Screen;
