@@ -35,7 +35,7 @@ public class MflpConfigManager {
         try (FileWriter writer = new FileWriter(CONFIG_FILE, StandardCharsets.UTF_8)) {
             gson.toJson(modData, writer);
         } catch (IOException e) {
-            e.printStackTrace();
+            ModForLazyPeople.LOGGER.error("Failed to save!", e);
         }
     }
 
@@ -43,7 +43,7 @@ public class MflpConfigManager {
         try (FileReader reader = new FileReader(CONFIG_FILE, StandardCharsets.UTF_8)) {
             return gson.fromJson(reader, ModData.class);
         } catch (IOException e) {
-            ModForLazyPeople.LOGGER.warn("MFLP save file not found!", e);
+            ModForLazyPeople.LOGGER.warn("MFLP save file not found!");
             return null;
         } catch (JsonIOException e) {
             ModForLazyPeople.LOGGER.warn("Json Error while loading MFLP save file", e);

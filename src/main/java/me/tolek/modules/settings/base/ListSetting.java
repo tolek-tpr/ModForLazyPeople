@@ -12,7 +12,7 @@ import java.util.HashMap;
 public abstract class ListSetting extends HotkeyableSetting {
 
     public int stateIndex;
-    private ArrayList<Object> selection = new ArrayList<>();
+    private transient ArrayList<Object> selection = new ArrayList<>();
     //private Hotkey hotkey;
 
     public ListSetting(String name, int defaultIndex, String tt, ArrayList<Object> selection) {

@@ -3,9 +3,14 @@ package me.tolek;
 import me.tolek.event.EventImpl;
 import me.tolek.events.AfkDetector;
 import me.tolek.events.PartyEvents;
+import me.tolek.events.WorldLoadHandler;
+import me.tolek.events.WorldLoadListener;
 import me.tolek.input.HotkeyExecutorImpl;
+import me.tolek.interfaces.IWorldLoadListener;
+import me.tolek.modules.betterFreeCam.CameraEntity;
 import me.tolek.modules.macro.MacroExecutor;
 import me.tolek.modules.autoReply.AutoReplyExecutor;
+import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.modules.settings.executor.AutoWelcomeBackImpl;
 import me.tolek.modules.settings.executor.AutoWelcomeImpl;
 import me.tolek.modules.settings.executor.EasyMsgExecutor;
@@ -37,5 +42,9 @@ public class ModForLazyPeopleClient implements ClientModInitializer {
         events.add(new HotkeyExecutorImpl());
 
         events.forEach(e -> e.setEnabled(true));
+
+        IWorldLoadListener worldLoadListener = new WorldLoadListener();
+        WorldLoadHandler.getInstance().registerWorldLoadPreHandler(worldLoadListener);
+        WorldLoadHandler.getInstance().registerWorldLoadPostHandler(worldLoadListener);
     }
 }

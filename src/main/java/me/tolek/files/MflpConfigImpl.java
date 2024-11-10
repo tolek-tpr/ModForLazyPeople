@@ -126,12 +126,22 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
                     settings.OBSERVER_UPDATE_VIEW = loadedData.getSettings().OBSERVER_UPDATE_VIEW;
                     settings.RAILS_UPDATE_VIEW = loadedData.getSettings().RAILS_UPDATE_VIEW;
 
+                    settings.FREE_CAM_ENABLED = loadedData.getSettings().FREE_CAM_ENABLED;
+                    settings.FREE_CAM_INPUT_MODE = loadedData.getSettings().FREE_CAM_INPUT_MODE;
+                    settings.FREE_CAM_MOVEMENT_MODE = loadedData.getSettings().FREE_CAM_MOVEMENT_MODE;
+                    settings.FREE_CAM_MOVEMENT_SPEED = loadedData.getSettings().FREE_CAM_MOVEMENT_SPEED;
+                    settings.FREE_CAM_WALKING_MODE = loadedData.getSettings().FREE_CAM_WALKING_MODE;
+                    settings.FREE_CAM_POST_PROCESSOR = loadedData.getSettings().FREE_CAM_POST_PROCESSOR;
+
                     // Colors
                     settings.DUST_UPDATE_COLOR = loadedData.getSettings().DUST_UPDATE_COLOR;
                     settings.REPEATER_UPDATE_COLOR = loadedData.getSettings().REPEATER_UPDATE_COLOR;
                     settings.COMPARATOR_UPDATE_COLOR = loadedData.getSettings().COMPARATOR_UPDATE_COLOR;
                     settings.OBSERVER_UPDATE_COLOR = loadedData.getSettings().OBSERVER_UPDATE_COLOR;
                     settings.RAILS_UPDATE_COLOR = loadedData.getSettings().RAILS_UPDATE_COLOR;
+
+                    // Disable free cam so we don't spawn in free cam
+                    settings.FREE_CAM_ENABLED.setState(false);
                 }
                 if (loadedData.getAutoReplies() != null) {
                     arl.setAutoReplies(loadedData.getAutoReplies());
@@ -150,8 +160,8 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
         uc.check();
         Logger logger = ModForLazyPeople.LOGGER;
         if (uc.isUpdateAvailable()) {
-            logger.warn("New version available: v" + uc.getLatestVersion() + " (current: v" + uc.currentVersion + ")");
-            logger.warn("Download it at " + iv.modrinthUrl);
+            logger.warn("New version available: v{} (current: v{})", uc.getLatestVersion(), uc.currentVersion);
+            logger.warn("Download it at {}", iv.modrinthUrl);
         }
         if (uc.isUpdateAvailable()) {
             iv.updateAvailable = true;

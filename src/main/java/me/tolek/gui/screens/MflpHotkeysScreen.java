@@ -3,7 +3,6 @@ package me.tolek.gui.screens;
 import me.tolek.gui.widgets.MenuPickerWidget;
 import me.tolek.gui.widgets.ScrollableListWidget;
 import me.tolek.gui.widgets.hotkeys.HotkeySettingWidget;
-import me.tolek.gui.widgets.settingsWidgets.*;
 import me.tolek.input.Hotkey;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.modules.settings.base.*;
@@ -44,18 +43,17 @@ public class MflpHotkeysScreen extends Screen {
 
         MflpSettingsList settingsList = MflpSettingsList.getInstance();
         for (MflpSetting setting : settingsList.getSettings()) {
-            if (!setting.render) continue;
+            if (!(setting instanceof HotkeyableSetting hs)) continue;
+            if (!setting.render && !hs.renderHotkey()) continue;
 
-            if (setting instanceof HotkeyableSetting hs) {
-                if (hs.getHotkey() == null) continue;
-                HotkeySettingWidget settingWidget = new HotkeySettingWidget(width / 2, 0, hs.getHotkey().getFormattedKeys(), hs,
-                        this.selectedHotkey);
-                settingWidget.setHotkeyConsumer(hotkey -> this.selectedHotkey = hotkey);
-                TextWidget label = new TextWidget(width / 2 - 155,
-                        10 - textRenderer.fontHeight / 2, textRenderer.getWidth(Text.translatable(setting.getName())) + 10, 20, Text.translatable(setting.getName()), textRenderer);
-                slw.addRow(label, settingWidget);
-                this.settingWidgets.add(settingWidget);
-            }
+            if (hs.getHotkey() == null) continue;
+            HotkeySettingWidget settingWidget = new HotkeySettingWidget(width / 2, 0, hs.getHotkey().getFormattedKeys(), hs,
+                    this.selectedHotkey);
+            settingWidget.setHotkeyConsumer(hotkey -> this.selectedHotkey = hotkey);
+            TextWidget label = new TextWidget(width / 2 - 155,
+                    10 - textRenderer.fontHeight / 2, textRenderer.getWidth(Text.translatable(setting.getName())) + 10, 20, Text.translatable(setting.getName()), textRenderer);
+            slw.addRow(label, settingWidget);
+            this.settingWidgets.add(settingWidget);
         }
         addDrawableChild(slw);
     }
