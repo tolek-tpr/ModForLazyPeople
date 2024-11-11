@@ -16,6 +16,7 @@ import me.tolek.network.IconNetworkHandler;
 import me.tolek.network.PartyNetworkHandler;
 import me.tolek.network.WebSocketServerHandler;
 import net.fabricmc.api.ClientModInitializer;
+import net.minecraft.client.MinecraftClient;
 
 import java.util.ArrayList;
 

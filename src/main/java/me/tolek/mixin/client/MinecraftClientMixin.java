@@ -3,8 +3,13 @@ package me.tolek.mixin.client;
 import me.tolek.event.EventManager;
 import me.tolek.events.WorldLoadHandler;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.RunArgs;
+import net.minecraft.client.gui.screen.DownloadingTerrainScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.resource.ResourcePackManager;
+import net.minecraft.server.SaveLoader;
+import net.minecraft.world.level.storage.LevelStorage;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -23,11 +28,9 @@ import static me.tolek.event.MinecraftStartListener.MinecraftStartFinishedEvent;
 @Mixin(MinecraftClient.class)
 public class MinecraftClientMixin {
 
-    @Shadow
-    public ClientWorld world;
+    @Shadow public ClientWorld world;
+    @Unique private ClientWorld worldBefore;
 
-    @Unique
-    private ClientWorld worldBefore;
 
     @Inject(at = @At("HEAD"), method = "tick")
     private void onTick(CallbackInfo ci) {
@@ -53,8 +56,8 @@ public class MinecraftClientMixin {
         EventManager.getInstance().fire(event);
     }
 
-    @Inject(method = "joinWorld(Lnet/minecraft/client/world/ClientWorld;)V", at = @At("HEAD"))
-    private void onLoadWorldPre(@Nullable ClientWorld worldClientIn, CallbackInfo ci)
+    @Inject(method = "joinWorld(Lnet/minecraft/client/world/ClientWorld;Lnet/minecraft/client/gui/screen/DownloadingTerrainScreen$WorldEntryReason;)V", at = @At("HEAD"))
+    private void onLoadWorldPre(ClientWorld worldClientIn, DownloadingTerrainScreen.WorldEntryReason worldEntryReason, CallbackInfo ci)
     {
         // Only handle dimension changes/respawns here.
         // The initial join is handled in MixinClientPlayNetworkHandler onGameJoin
@@ -65,8 +68,8 @@ public class MinecraftClientMixin {
         }
     }
 
-    @Inject(method = "joinWorld(Lnet/minecraft/client/world/ClientWorld;)V", at = @At("RETURN"))
-    private void onLoadWorldPost(@Nullable ClientWorld worldClientIn, CallbackInfo ci)
+    @Inject(method = "joinWorld(Lnet/minecraft/client/world/ClientWorld;Lnet/minecraft/client/gui/screen/DownloadingTerrainScreen$WorldEntryReason;)V", at = @At("RETURN"))
+    private void onLoadWorldPost(ClientWorld worldClientIn, DownloadingTerrainScreen.WorldEntryReason worldEntryReason, CallbackInfo ci)
     {
         if (this.worldBefore != null)
         {
@@ -75,15 +78,29 @@ public class MinecraftClientMixin {
         }
     }
 
-    @Inject(method = "disconnect(Lnet/minecraft/client/gui/screen/Screen;)V", at = @At("HEAD"))
-    private void onDisconnectPre(Screen screen, CallbackInfo ci)
+    @Inject(method = "enterReconfiguration(Lnet/minecraft/client/gui/screen/Screen;)V", at = @At("HEAD"))
+    private void onReconfigurationPre(Screen screen, CallbackInfo ci)
     {
         this.worldBefore = this.world;
         ((WorldLoadHandler) WorldLoadHandler.getInstance()).onWorldLoadPre(this.worldBefore, null, (MinecraftClient)(Object) this);
     }
 
-    @Inject(method = "disconnect(Lnet/minecraft/client/gui/screen/Screen;)V", at = @At("RETURN"))
-    private void onDisconnectPost(Screen screen, CallbackInfo ci)
+    @Inject(method = "enterReconfiguration(Lnet/minecraft/client/gui/screen/Screen;)V", at = @At("RETURN"))
+    private void onReconfigurationPost(Screen screen, CallbackInfo ci)
+    {
+        ((WorldLoadHandler) WorldLoadHandler.getInstance()).onWorldLoadPost(this.worldBefore, null, (MinecraftClient)(Object) this);
+        this.worldBefore = null;
+    }
+
+    @Inject(method = "disconnect(Lnet/minecraft/client/gui/screen/Screen;Z)V", at = @At("HEAD"))
+    private void onDisconnectPre(Screen screen, boolean bl, CallbackInfo ci)
+    {
+        this.worldBefore = this.world;
+        ((WorldLoadHandler) WorldLoadHandler.getInstance()).onWorldLoadPre(this.worldBefore, null, (MinecraftClient)(Object) this);
+    }
+
+    @Inject(method = "disconnect(Lnet/minecraft/client/gui/screen/Screen;Z)V", at = @At("RETURN"))
+    private void onDisconnectPost(Screen screen, boolean bl, CallbackInfo ci)
     {
         ((WorldLoadHandler) WorldLoadHandler.getInstance()).onWorldLoadPost(this.worldBefore, null, (MinecraftClient)(Object) this);
         this.worldBefore = null;

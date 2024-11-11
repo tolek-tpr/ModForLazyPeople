@@ -20,7 +20,7 @@ public abstract class GameRendererMixin {
 
     @Shadow public abstract void disablePostProcessor();
 
-    @Redirect(method = "updateTargetedEntity", at = @At(value = "INVOKE",
+    @Redirect(method = "updateCrosshairTarget", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/client/MinecraftClient;getCameraEntity()Lnet/minecraft/entity/Entity;"))
     private Entity overrideCameraEntityForRayTrace(MinecraftClient mc)
     {

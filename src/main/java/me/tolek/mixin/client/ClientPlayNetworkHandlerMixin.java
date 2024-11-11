@@ -16,12 +16,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ClientPlayNetworkHandler.class)
 public class ClientPlayNetworkHandlerMixin {
 
-    @Shadow
-    private ClientWorld world;
+    @Shadow private ClientWorld world;
 
     @Unique
-    @Nullable
-    private ClientWorld worldBefore;
+    @Nullable private ClientWorld worldBefore;
 
     @Inject(method = "onGameJoin", at = @At("HEAD"))
     private void onPreJoinGameHead(GameJoinS2CPacket packet, CallbackInfo ci)
@@ -33,8 +31,8 @@ public class ClientPlayNetworkHandlerMixin {
     }
 
     @Inject(method = "onGameJoin", at = @At(value = "INVOKE",
-            target = "Lnet/minecraft/client/MinecraftClient;joinWorld(" +
-                    "Lnet/minecraft/client/world/ClientWorld;)V"))
+            target = "Lnet/minecraft/client/MinecraftClient;joinWorld(Lnet/minecraft/client/world/ClientWorld;Lnet/minecraft/client/gui/screen/DownloadingTerrainScreen$WorldEntryReason;)V",
+            shift = At.Shift.BEFORE))
     private void onPreGameJoin(GameJoinS2CPacket packet, CallbackInfo ci)
     {
         ((WorldLoadHandler) WorldLoadHandler.getInstance()).onWorldLoadPre(this.worldBefore, this.world, MinecraftClient.getInstance());
