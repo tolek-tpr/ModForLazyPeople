@@ -1,5 +1,6 @@
 package me.tolek.modules.macro;
 
+import me.tolek.ModForLazyPeople;
 import me.tolek.util.KeyBindingUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -19,12 +20,17 @@ public class Macro {
     private boolean isTurnedOn = true;
     private int worldSpecificOptionIndex = 0;
     private String allowedServers = "";
+    private int executeOption = 0;
+
+    // Don't serialize
+    private int currentCommand = 0;
 
     public Macro(KeyBinding keyBinding, List<String> commands, String macroName, int repeatAmount) {
         this.keyBinding = keyBinding;
         this.commands = new ArrayList<>(commands);
         this.macroName = macroName;
         this.repeatAmount = repeatAmount;
+        this.allowedServers = "";
     }
 
     public Macro(KeyBinding keyBinding, List<String> commands, String macroName, int repeatAmount, boolean isUneditable, boolean isTurnedOn) {
@@ -34,6 +40,7 @@ public class Macro {
         this.repeatAmount = repeatAmount;
         this.isUneditable = isUneditable;
         this.isTurnedOn = isTurnedOn;
+        this.allowedServers = "";
     }
 
     public void runMacro(ClientPlayerEntity p) {
@@ -50,10 +57,23 @@ public class Macro {
             if (!connectedToServer) return;
         }
         for (int i = 0; i < repeatAmount; ++i) {
-            commands.forEach((cmd) -> {
-                p.networkHandler.sendChatCommand(cmd.startsWith("/") ?
-                        cmd.substring(1) : cmd);
-            });
+            if (this.executeOption  == 0) {
+                commands.forEach((cmd) -> p.networkHandler.sendChatCommand(cmd.startsWith("/") ?
+                        cmd.substring(1) : cmd));
+            } else {
+                try {
+                    if (commands.isEmpty()) continue;
+                    String currentCmd = commands.get(this.currentCommand).startsWith("/") ? commands.get(this.currentCommand).substring(1) : commands.get(this.currentCommand);
+                    p.networkHandler.sendChatCommand(currentCmd);
+                    if (this.currentCommand == commands.size() - 1) {
+                        this.currentCommand = 0;
+                    } else {
+                        this.currentCommand++;
+                    }
+                } catch (Exception e) {
+                    ModForLazyPeople.LOGGER.error("A exception occurred when trying to run the macro!");
+                }
+            }
         }
     }
 
@@ -80,12 +100,17 @@ public class Macro {
 
     public ArrayList<String> getCommands() { return commands; }
 
-    public void setCommands(ArrayList<String> commands) { this.commands = commands; }
+    public void setCommands(ArrayList<String> commands) {
+        this.currentCommand = 0;
+        this.commands = commands;
+    }
     public void addCommands(List<String> commands) {
+        this.currentCommand = 0;
         this.commands.addAll(commands);
     }
 
     public boolean removeCommands(List<String> commands) {
+        this.currentCommand = 0;
         for (String cmd : commands) {
             this.commands.remove(cmd);
         }
@@ -97,6 +122,11 @@ public class Macro {
     public boolean getUneditable() { return this.isUneditable; }
     public void setTurnedOn(boolean turnedOn) { this.isTurnedOn = turnedOn; }
     public boolean getTurnedOn() { return this.isTurnedOn; }
+    public int getWorldSpecificOptionIndex() { return this.worldSpecificOptionIndex; }
+    public int getExecuteOption() { return this.executeOption; }
+
+    public void setWorldSpecificOptionIndex(int index) { this.worldSpecificOptionIndex = index; }
+    public void setExecuteOption(int option) { this.executeOption = option; }
 
     public void nextWorldSpecificSetting() {
         int maxWorldSpecificOptionIndex = 3;
@@ -105,6 +135,22 @@ public class Macro {
         } else {
             this.worldSpecificOptionIndex++;
         }
+    }
+
+    public void nextExecuteOption() {
+        if (this.executeOption == 1) {
+            this.executeOption = 0;
+        } else {
+            this.executeOption++;
+        }
+    }
+
+    public String getNameForExecuteOption() {
+        switch (this.executeOption) {
+            case 0 -> { return "mflp.macroSettings.all"; }
+            case 1 -> { return "mflp.macroSettings.oneAtATime"; }
+        }
+        return null;
     }
 
     public String getNameForSpecificWorld() {
@@ -117,7 +163,7 @@ public class Macro {
         return null;
     }
 
-    public void setAllowedServers(String allowedServers) { this.allowedServers = allowedServers; }
-    public String getAllowedServers() { return this.allowedServers; }
+    public void setAllowedServers(String allowedServers) { this.allowedServers = allowedServers == null ? "" : allowedServers; }
+    public String getAllowedServers() { return this.allowedServers == null ? "" : this.allowedServers; }
 
 }

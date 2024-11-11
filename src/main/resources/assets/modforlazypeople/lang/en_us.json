@@ -191,6 +191,9 @@
   "mflp.macroSettings.worldOptionButton.tooltip": "Select where the macro should work, anywhere, in single player only, on specific servers or only in multiplayer.",
   "mflp.macroSettings.worldOptionTextField": "List of servers: ",
   "mflp.macroSettings.worldOptionTextField.tooltip": "Enter the ips of the server's you want the macro to work on in Server specific mode. Use spaces to separate",
+  "mflp.macroSettings.all": "All at once",
+  "mflp.macroSettings.oneAtATime": "One at a time",
+  "mflp.macroSettings.executeOptionTooltip": "If All at once is selected, pressing the key will execute all of the commands. If One at a time is selected, it will cycle through the commands with each button press",
   "mflp.macroConfigScreen.title": "Configure macros",
 
   "mflp.autoReply.noAutoRepliesAdded": "No Auto Replies Added!",
