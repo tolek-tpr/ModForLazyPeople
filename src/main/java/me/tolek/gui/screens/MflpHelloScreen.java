@@ -1,7 +1,6 @@
 package me.tolek.gui.screens;
 
 import me.tolek.util.InstancedValues;
-import me.tolek.util.MflpUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;

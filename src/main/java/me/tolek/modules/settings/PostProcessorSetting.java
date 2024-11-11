@@ -1,23 +1,20 @@
 package me.tolek.modules.settings;
 
-import me.tolek.modules.betterFreeCam.CameraEntity;
 import me.tolek.modules.settings.base.ListSetting;
-import me.tolek.util.CameraUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 
-// Don't worry about SUPER_SECRET_SETTING_PROGRAMS, it's just IntelliJ shitting itself not realizing I put in an accesswidener
-public class FreeCamPostProcessor extends ListSetting {
-    public FreeCamPostProcessor() {
-        super("mflp.setting.freeCamPostProcessor.name", 0, "mflp.unused", null);
+public class PostProcessorSetting extends ListSetting {
+    public PostProcessorSetting() {
+        super("mflp.setting.postProcessor.name", 0, "mflp.setting.postProcessor.tooltip", null);
 
         this.setList(new ArrayList<>());
-        this.addOption("mflp.setting.freeCamPostProcessor.none");
+        this.addOption("mflp.setting.postProcessor.none");
         for (Identifier program : GameRenderer.SUPER_SECRET_SETTING_PROGRAMS) {
-            this.addOption("mflp.setting.freeCamPostProcessor." + program.getPath());
+            this.addOption("mflp.setting.postProcessor." + program.getPath());
         }
 
         this.renderHotkey = true;
@@ -31,10 +28,19 @@ public class FreeCamPostProcessor extends ListSetting {
             stateIndex = stateIndex + 1;
         }
 
+        setPostProcessor();
+    }
+
+    public void setPostProcessor(boolean bailOutIfNoneSelected) {
         GameRenderer gameRenderer = MinecraftClient.getInstance().gameRenderer;
-        if (stateIndex == 0)
-            gameRenderer.disablePostProcessor();
-        else
+        if (stateIndex == 0 && bailOutIfNoneSelected)
+            return;
+        gameRenderer.disablePostProcessor();
+        if (stateIndex != 0)
             gameRenderer.loadPostProcessor(GameRenderer.SUPER_SECRET_SETTING_PROGRAMS[stateIndex - 1]);
+    }
+
+    public void setPostProcessor() {
+        setPostProcessor(false);
     }
 }

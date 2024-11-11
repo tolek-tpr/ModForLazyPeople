@@ -11,7 +11,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
 
 public class WPartyMember extends WPlainPanel {
 

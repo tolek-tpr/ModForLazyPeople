@@ -3,14 +3,11 @@ package me.tolek.mixin.client;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.util.CameraUtils;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gl.PostEffectProcessor;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -20,6 +17,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class GameRendererMixin {
 
     @Shadow abstract void loadPostProcessor(Identifier id);
+
+    @Shadow public abstract void disablePostProcessor();
 
     @Redirect(method = "updateTargetedEntity", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/client/MinecraftClient;getCameraEntity()Lnet/minecraft/entity/Entity;"))
@@ -46,6 +45,12 @@ public abstract class GameRendererMixin {
         {
             ci.cancel();
         }
+    }
+
+    @Inject(method = "onCameraEntitySet", at = @At("RETURN"))
+    private void ensurePostProcessor(Entity entity, CallbackInfo ci) {
+        final boolean bailOutIfNoneSelected = true;
+        MflpSettingsList.getInstance().POST_PROCESSOR.setPostProcessor(bailOutIfNoneSelected);
     }
 
 }

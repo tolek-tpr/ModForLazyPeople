@@ -6,7 +6,6 @@ import me.tolek.util.MflpUtil;
 import me.tolek.util.RenderUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.PoweredRailBlock;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;

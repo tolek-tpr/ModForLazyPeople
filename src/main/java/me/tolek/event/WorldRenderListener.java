@@ -1,8 +1,6 @@
 package me.tolek.event;
 
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 
