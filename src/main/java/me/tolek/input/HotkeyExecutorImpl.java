@@ -5,7 +5,6 @@ import me.tolek.event.EventManager;
 import me.tolek.event.KeyboardListener;
 import me.tolek.event.MouseListener;
 import me.tolek.modules.settings.MflpSettingsList;
-import me.tolek.modules.settings.base.BooleanSetting;
 import me.tolek.modules.settings.base.HotkeyableSetting;
 import me.tolek.util.MflpUtil;
 import net.minecraft.client.MinecraftClient;

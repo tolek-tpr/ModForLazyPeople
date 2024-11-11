@@ -1,18 +1,14 @@
 package me.tolek.gui.widgets.hotkeys;
 
 import me.tolek.input.Hotkey;
-import me.tolek.modules.settings.base.BooleanSetting;
 import me.tolek.modules.settings.base.HotkeyableSetting;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Consumer;
 

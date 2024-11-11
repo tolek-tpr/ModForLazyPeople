@@ -3,7 +3,6 @@ package me.tolek.modules.settings;
 import me.tolek.util.Tuple;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class CustomPlayerMessageList {
 

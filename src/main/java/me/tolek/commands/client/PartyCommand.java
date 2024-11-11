@@ -2,7 +2,6 @@ package me.tolek.commands.client;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
-import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
 import me.tolek.gui.screens.PartyGui;
 import me.tolek.gui.screens.PartyGuiScreen;
 import me.tolek.modules.party.Party;

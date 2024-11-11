@@ -1,11 +1,7 @@
 package me.tolek.modules.settings;
 
 import me.tolek.modules.settings.base.BooleanSetting;
-import me.tolek.modules.settings.base.MflpSetting;
-import me.tolek.util.InstancedValues;
-import me.tolek.util.MflpUtil;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.text.Text;
 
 public class AutoWelcome extends BooleanSetting {
 

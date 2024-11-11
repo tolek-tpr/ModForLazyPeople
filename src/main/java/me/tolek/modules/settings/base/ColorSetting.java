@@ -1,6 +1,5 @@
 package me.tolek.modules.settings.base;
 
-import me.tolek.util.MflpUtil;
 import me.tolek.util.RegexUtil;
 
 public abstract class ColorSetting extends MflpSetting {

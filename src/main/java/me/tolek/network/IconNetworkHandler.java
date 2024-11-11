@@ -3,7 +3,6 @@ package me.tolek.network;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import me.tolek.event.*;
-import me.tolek.gui.screens.FailedToConnectToMflpNetworkScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
