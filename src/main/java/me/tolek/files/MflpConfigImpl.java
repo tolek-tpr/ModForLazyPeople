@@ -91,6 +91,9 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
 
                     Macro m = new Macro(kb, sm.commands, sm.name, sm.repeatAmt, sm.isUneditable, sm.isOn);
                     m.setKey(sm.key);
+                    m.setAllowedServers(sm.allowedServers);
+                    m.setWorldSpecificOptionIndex(sm.worldSpecificOptionIndex);
+                    m.setExecuteOption(sm.executeOption);
                     macroList.addMacro(m);
                 }
                 if (loadedData.getSettings() != null) {

@@ -32,12 +32,14 @@ public class ChangelogsScreen extends Screen {
 
         // -- CHANGELOGS START -- \\
 
-        addVersion("v3.0.2 - THE UPDATE UPDATE", "ADDED: Missing promotion/demotion buttons in Party GUI (/party manage) by @BeefyAndTheDucks",
+        addVersion("v3.0.2 - THE UPDATE UPDATE", "ADDED: A option for macros to execute either all commands at once or one at a time by @tolek-tpr",
+                "ADDED: Missing promotion/demotion buttons in Party GUI (/party manage) by @BeefyAndTheDucks",
                 "ADDED: Player heads in Party GUI (/party manage) by @BeefyAndTheDucks",
                 "ADDED: Settings for displaying the update radius of different redstone components by @tolek-tpr",
                 "ADDED: A Hotkey tab in the main GUI allowing to toggle boolean settings and switch list settings by @tolek-tpr",
                 "ADDED: A Colors tab in the main GUI, for setting the colors for the Update Radius settings by @tolek-tpr",
-                "ADDED: Free Cam by @BeefyAndTheDucks");
+                "ADDED: Better free Cam by @BeefyAndTheDucks",
+                "ADDED: Icelandic translations by @VipelyRS");
         addVersion("v3.0.1 - THE MACRO UPDATE", "ADDED: New setting to macros, the ability to use macros only on specific servers by @tolek-tpr",
                 "ADDED: A new command - /mflpconfig - to open the config screen by @tolek-tpr", "FIXED: MFLP Icons not showing up by @tolek-tpr",
                 "FIXED: Party GUI not updating by @BeefyAndTheDucks");

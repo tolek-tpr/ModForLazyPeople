@@ -63,6 +63,13 @@ public class MflpConfigureMacroScreen extends Screen {
         inputWidget.setChangedListener(macro::setAllowedServers);
         inputWidget.setTooltip(Tooltip.of(Text.translatable("mflp.macroSettings.worldOptionTextField.tooltip")));
         addDrawableChild(inputWidget);
+
+        ButtonWidget executeOption = ButtonWidget.builder(Text.translatable(macro.getNameForExecuteOption()), (button) -> {
+            macro.nextExecuteOption();
+            clearAndInit();
+        }).dimensions(280, 74, 100, 20).build();
+        executeOption.setTooltip(Tooltip.of(Text.translatable("mflp.macroSettings.executeOptionTooltip")));
+        addDrawableChild(executeOption);
     }
 
     @Override

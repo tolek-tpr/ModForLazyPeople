@@ -59,14 +59,20 @@ public class MflpConfigManager {
         public int repeatAmt = 1;
         public boolean isUneditable = false;
         public boolean isOn = true;
+        public int worldSpecificOptionIndex = 0;
+        public String allowedServers = "";
+        public int executeOption = 0;
 
-        public ShortMacro(String name, ArrayList<String> commands, int key, int repeatAmt, boolean isUneditable, boolean isOn) {
+        public ShortMacro(String name, ArrayList<String> commands, int key, int repeatAmt, boolean isUneditable, boolean isOn, int worldSpecificOptionIndex, String allowedServers, int executeOption) {
             this.name = name;
             this.commands = commands;
             this.key = key;
             this.repeatAmt = repeatAmt;
             this.isUneditable = isUneditable;
             this.isOn = isOn;
+            this.worldSpecificOptionIndex = worldSpecificOptionIndex;
+            this.allowedServers = allowedServers;
+            this.executeOption = executeOption;
         }
 
     }
@@ -84,7 +90,8 @@ public class MflpConfigManager {
                        AutoRepliesList arl, String fileVersion, ArrayList<Tuple<String, String>> customPlayerMessages,
                        ArrayList<Tuple<String, Tuple<String, String>>> customServerMessages) {
             for (Macro m : macros) {
-                this.macros.add(new ShortMacro(m.getName(), m.getCommands(), m.getKey(), m.getRepeatAmount(), m.getUneditable(), m.getTurnedOn()));
+                this.macros.add(new ShortMacro(m.getName(), m.getCommands(), m.getKey(), m.getRepeatAmount(), m.getUneditable(), m.getTurnedOn(),
+                        m.getWorldSpecificOptionIndex(), m.getAllowedServers(), m.getExecuteOption()));
             }
             this.settings = settings;
             this.shownWelcomeScreen = shownWelcomeScreen;
