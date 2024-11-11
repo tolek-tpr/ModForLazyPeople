@@ -1,19 +1,20 @@
 package me.tolek.event;
 
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.render.RenderTickCounter;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 
 public interface RenderListener extends Listener {
 
-    void onRender(DrawContext context, float partialTicks);
+    void onRender(DrawContext context, RenderTickCounter partialTicks);
 
     public static class RenderEvent extends Event<RenderListener> {
         private final DrawContext context;
-        private final float partialTicks;
+        private final RenderTickCounter partialTicks;
 
-        public RenderEvent(DrawContext context, float partialTicks) {
+        public RenderEvent(DrawContext context, RenderTickCounter partialTicks) {
             this.context = context;
             this.partialTicks = partialTicks;
         }
