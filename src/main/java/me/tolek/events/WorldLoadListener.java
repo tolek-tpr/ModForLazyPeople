@@ -13,6 +13,9 @@ public class WorldLoadListener implements IWorldLoadListener {
     {
         // Always disable the Free Camera mode when leaving the world or switching dimensions
         MflpSettingsList.getInstance().FREE_CAM_ENABLED.setState(false);
+
+        // Apply the Post Processor
+        MflpSettingsList.getInstance().POST_PROCESSOR.setPostProcessor();
     }
 
 }
