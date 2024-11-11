@@ -85,7 +85,7 @@
   "mflp.setting.customServerMessages.tooltip": "Opnar skjáinn þar sem þú getur breytt þjóninum tengja/afk orðsendingu.",
 
   "mflp.setting.tabIconToggle.name": "MFLP færslutakkalistitáknmynd",
-  "mflp.setting.tabIconToggle.tooltip": Skiptir um hvort sýna eigi MFLP-táknmyndin í færslutakkalistans.",
+  "mflp.setting.tabIconToggle.tooltip": "Skiptir um hvort sýna eigi MFLP-táknmyndin í færslutakkalistans.",
 
   "mflp.setting.nametagIconToggle.name": "MFLP nafnspjaldstáknmynd",
   "mflp.setting.nametagIconToggle.tooltip": "Skiptir um hvort sýna eigi MFLP táknmyndin í nafnspjald leikmannsins.",
