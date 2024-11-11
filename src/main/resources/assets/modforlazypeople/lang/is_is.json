@@ -36,7 +36,7 @@
   "mflp.setting.autoWb.tooltip": "Segir sjálfkrafa wb þegar einhver kemur aftur eftir að hafa verið afk eða gengur í Synergy.",
 
   "mflp.setting.autoWelcome.name": "Sjálfvirkur velkominn",
-  "mflp.setting.autoWelcome.tooltip": "Sjalfvirkt segir "welcome!" þegar ný persóna tengist Synergy",
+  "mflp.setting.autoWelcome.tooltip": "Sjalfvirkt segir \"welcome!\" þegar ný persóna tengist Synergy",
 
   "mflp.setting.autoWbRank.name": "Sjálfvirkt WB-staða stilling",
   "mflp.setting.autoWbRank.tooltip": "Stöðusía fyrir sjálfvirkt wb",
