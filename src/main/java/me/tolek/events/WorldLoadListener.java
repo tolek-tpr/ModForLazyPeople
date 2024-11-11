@@ -12,6 +12,9 @@ public class WorldLoadListener implements IWorldLoadListener {
     public void onWorldLoadPre(@Nullable ClientWorld worldBefore, @Nullable ClientWorld worldAfter, MinecraftClient mc) {
         // Always disable the Free Camera mode when leaving the world or switching dimensions
         MflpSettingsList.getInstance().FREE_CAM_ENABLED.setState(false);
+
+        // Apply the Post Processor
+        MflpSettingsList.getInstance().POST_PROCESSOR.setPostProcessor();
     }
 
 }
