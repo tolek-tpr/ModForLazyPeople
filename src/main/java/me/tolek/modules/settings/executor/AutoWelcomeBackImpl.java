@@ -50,7 +50,7 @@ public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, Upda
         String playerName = MinecraftClient.getInstance().getSession().getUsername();
         CustomMessagePerServerList serverMessagesList = CustomMessagePerServerList.getInstance();
 
-        if (message.getString().contains("banana") && !message.getString().contains("To")) {
+        if (message.getString().contains("meWhen911") && !message.getString().contains("To")) {
             if (iv.timeSinceLastInputMillis / 1000 < 30) {
                 if (!setting.getState()) {
                     setting.run();
