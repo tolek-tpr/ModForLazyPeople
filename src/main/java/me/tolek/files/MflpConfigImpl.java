@@ -2,16 +2,14 @@ package me.tolek.files;
 
 import me.tolek.ModForLazyPeople;
 import me.tolek.event.*;
-import me.tolek.modules.macro.Macro;
 import me.tolek.modules.macro.MacroList;
 import me.tolek.modules.autoReply.AutoRepliesList;
-import me.tolek.modules.settings.CustomMessagePerServerList;
-import me.tolek.modules.settings.CustomPlayerMessageList;
+import me.tolek.modules.settings.AutoWelcomeBack;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.updateChecker.UpdateChecker;
 import me.tolek.util.InstancedValues;
+import me.tolek.util.LoggingUtils;
 import me.tolek.util.MflpUtil;
-import net.minecraft.client.option.KeyBinding;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
@@ -44,7 +42,7 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
         AutoRepliesList arl = AutoRepliesList.getInstance();
 
         if (!util.didSave) {
-            configManager.save(macroList.getMacros(), iv.shownWelcomeScreen, settings, arl);
+            //configManager.save(macroList.getMacros(), iv.shownWelcomeScreen, settings, arl);
             util.didSave = true;
         }
     }
@@ -61,7 +59,13 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
         AutoRepliesList arl = AutoRepliesList.getInstance();
 
         if (!iv.hasLoaded) {
-            MflpConfigManager.ModData loadedData = configManager.load();
+            ArrayList<ConfigFieldModifier<Object>> modifiers = new ArrayList<>();
+
+            modifiers.add(new TestWbModifier());
+
+            new MflpConfigParser().load(MflpConfigFiles.getSettingsConfigFormatted(), LoggingUtils.getConfigLogger(), modifiers);
+
+            /*MflpConfigManager.ModData loadedData = configManager.load();
 
             if (loadedData != null) {
                 if (loadedData.getFileVersion() != null) {
@@ -159,7 +163,7 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
                     CustomMessagePerServerList.getInstance().setMessagesPerServer(loadedData.getCustomServerMessages());
                 }
             }
-            iv.hasLoaded = true;
+            iv.hasLoaded = true;*/
         }
 
         UpdateChecker uc = new UpdateChecker("tolek-tpr", "ModForLazyPeople", iv.getMflpVersion());
