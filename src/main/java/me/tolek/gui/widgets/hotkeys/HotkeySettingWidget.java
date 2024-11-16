@@ -28,6 +28,8 @@ public class HotkeySettingWidget extends ButtonWidget {
         this.onPress = (button) -> {
             this.selectedHotkey = setting.getHotkey();
             this.hotkeyConsumer.accept(this.selectedHotkey);
+            this.keys = new HashMap<>();
+            this.setMessage(Text.literal("NONE"));
             this.update();
         };
         this.setting = setting;
