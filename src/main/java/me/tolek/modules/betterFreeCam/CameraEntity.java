@@ -106,7 +106,7 @@ public class CameraEntity extends ClientPlayerEntity
         final double z = movement.z + getZ();
 
         if (movement.y < adjustedMovement.y)
-            y = getY();
+            y = adjustedMovement.y + getY();
 
         this.setPosition(x, y, z);
     }

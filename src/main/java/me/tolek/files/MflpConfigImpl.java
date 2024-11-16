@@ -145,6 +145,9 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
 
                     // Disable free cam so we don't spawn in free cam
                     settings.FREE_CAM_ENABLED.setState(false);
+
+                    // Disable the shader
+                    settings.POST_PROCESSOR.setState(0);
                 }
                 if (loadedData.getAutoReplies() != null) {
                     arl.setAutoReplies(loadedData.getAutoReplies());
