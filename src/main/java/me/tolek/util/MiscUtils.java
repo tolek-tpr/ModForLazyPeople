@@ -54,4 +54,13 @@ public class MiscUtils {
 
         return current;
     }
+
+    public static boolean isModLoaded(String modId) {
+        try {
+            // Fabric API's Loader is used to check for mods
+            return net.fabricmc.loader.api.FabricLoader.getInstance().isModLoaded(modId);
+        } catch (Throwable t) {
+            return false; // Assume not loaded if an error occurs
+        }
+    }
 }

@@ -1,5 +1,6 @@
 {
   "required": true,
+  "minVersion": "0.8",
   "package": "me.tolek.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
@@ -21,10 +22,12 @@
     "client.PlayerListHudMixin",
     "client.PlayerNameTagMixin",
     "client.RedstoneComponentUpdateRenderer",
-    "client.WorldRendererMixin"
+    "client.WorldRendererMixin",
+    "client.WorldRendererSetupTerrainMixin"
   ],
   "mixinPriority": 991,
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "plugin": "me.tolek.mixin.ModForLazyPeopleMixinPlugin"
 }
