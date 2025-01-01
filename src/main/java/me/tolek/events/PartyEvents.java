@@ -128,7 +128,7 @@ public class PartyEvents extends EventImpl implements PartyListener {
         } else {
             assert MinecraftClient.getInstance().player != null;
 
-            MinecraftClient.getInstance().player.sendMessage(message);
+            MinecraftClient.getInstance().player.sendMessage(message, false);
         }
 
         if (playSound)

@@ -8,6 +8,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.PlayerListHud;
 import net.minecraft.client.network.PlayerListEntry;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.util.Identifier;
@@ -48,7 +49,7 @@ public class PlayerListHudMixin {
             RenderSystem.enableBlend();
             context.getMatrices().push();
             context.getMatrices().translate(0.0f, 0.0f, 100.0f);
-            context.drawGuiTexture(logo, x - 2, y + 5, 4, 4);
+            context.drawGuiTexture(RenderLayer::getGuiTextured, logo, x - 2, y + 5, 4, 4);
             context.getMatrices().pop();
             RenderSystem.disableBlend();
         }

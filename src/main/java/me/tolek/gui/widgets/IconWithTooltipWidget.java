@@ -1,19 +1,25 @@
 package me.tolek.gui.widgets;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.screen.ButtonTextures;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextIconButtonWidget;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.ColorHelper;
 import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
 public class IconWithTooltipWidget extends TextIconButtonWidget.IconOnly {
+
+    private static final ButtonTextures TEXTURES = new ButtonTextures(
+            Identifier.ofVanilla("widget/button"), Identifier.ofVanilla("widget/button_disabled"), Identifier.ofVanilla("widget/button_highlighted")
+    );
 
     private Identifier modifiableTexture;
 
@@ -25,15 +31,20 @@ public class IconWithTooltipWidget extends TextIconButtonWidget.IconOnly {
     @Override
     public void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
-        context.setShaderColor(1.0F, 1.0F, 1.0F, this.alpha);
-        RenderSystem.enableBlend();
-        RenderSystem.enableDepthTest();
-        context.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        context.drawGuiTexture(
+                RenderLayer::getGuiTextured,
+                TEXTURES.get(this.active, this.isSelected()),
+                this.getX(),
+                this.getY(),
+                this.getWidth(),
+                this.getHeight(),
+                ColorHelper.getWhite(this.alpha)
+        );
         int i = this.active ? 16777215 : 10526880;
         this.drawMessage(context, minecraftClient.textRenderer, i | MathHelper.ceil(this.alpha * 255.0F) << 24);
         int ii = this.getX() + this.getWidth() / 2 - this.textureWidth / 2;
         int j = this.getY() + this.getHeight() / 2 - this.textureHeight / 2;
-        context.drawGuiTexture(modifiableTexture, ii, j, this.textureWidth, this.textureHeight);
+        context.drawGuiTexture(RenderLayer::getGuiTextured, modifiableTexture, ii, j, this.textureWidth, this.textureHeight);
     }
 
     public void setTexture(Identifier texture) {

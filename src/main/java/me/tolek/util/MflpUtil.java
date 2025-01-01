@@ -16,7 +16,7 @@ public class MflpUtil {
 
     public void sendMessage(ClientPlayerEntity source, String message) {
         if (source == null) return;
-        source.sendMessage(Text.literal(message));
+        source.sendMessage(Text.literal(message), false);
     }
 
     public void sendCommand(ClientPlayerEntity source, String command) {

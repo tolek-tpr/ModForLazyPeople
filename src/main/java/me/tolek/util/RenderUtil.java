@@ -1,10 +1,7 @@
 package me.tolek.util;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.Camera;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.WorldRenderer;
+import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.BlockPos;
 
@@ -50,6 +47,14 @@ public class RenderUtil {
         WorldRenderer.drawBox(matrices, consumer, 0, 0, 0, size.getX(), size.getY(), size.getZ(), r, g, b, a);
 
         matrices.pop();
+    }
+
+    public static void disablePostProcessor() {
+        GameRenderer gameRenderer = MinecraftClient.getInstance().gameRenderer;
+
+        if (gameRenderer.postProcessorEnabled)
+            gameRenderer.togglePostProcessorEnabled();
+        gameRenderer.clearPostProcessor();
     }
 
 }

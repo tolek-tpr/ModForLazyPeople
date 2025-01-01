@@ -16,10 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = GameRenderer.class, priority = 1002)
 public abstract class GameRendererMixin {
 
-    @Shadow abstract void loadPostProcessor(Identifier id);
-
-    @Shadow public abstract void disablePostProcessor();
-
     @Redirect(method = "updateCrosshairTarget", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/client/MinecraftClient;getCameraEntity()Lnet/minecraft/entity/Entity;"))
     private Entity overrideCameraEntityForRayTrace(MinecraftClient mc)

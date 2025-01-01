@@ -2,6 +2,7 @@ package me.tolek.modules.settings;
 
 import me.tolek.ModForLazyPeople;
 import me.tolek.modules.settings.base.ListSetting;
+import me.tolek.util.RenderUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.util.Identifier;
@@ -38,9 +39,9 @@ public class PostProcessorSetting extends ListSetting {
         GameRenderer gameRenderer = MinecraftClient.getInstance().gameRenderer;
         if (stateIndex == 0 && bailOutIfNoneSelected)
             return;
-        gameRenderer.disablePostProcessor();
+        RenderUtil.disablePostProcessor();
         if (stateIndex != 0)
-            gameRenderer.loadPostProcessor(SUPER_SECRET_SETTING_PROGRAMS[stateIndex - 1]);
+            gameRenderer.setPostProcessor(SUPER_SECRET_SETTING_PROGRAMS[stateIndex - 1]);
     }
 
     public void setPostProcessor() {
