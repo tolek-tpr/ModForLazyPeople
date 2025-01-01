@@ -38,7 +38,6 @@ public class AutoWelcomeBack extends BooleanSetting {
                 message = message.replace("%p", lastName);
             }
             MinecraftClient.getInstance().player.networkHandler.sendChatMessage(message);
-
             InstancedValues.getInstance().timeSinceLastWbMillis = 0;
         }
     }
@@ -57,7 +56,6 @@ public class AutoWelcomeBack extends BooleanSetting {
             }
 
             MinecraftClient.getInstance().player.networkHandler.sendChatMessage(reply);
-
             InstancedValues.getInstance().timeSinceLastWbMillis = 0;
         }
     }
