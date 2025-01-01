@@ -1,5 +1,6 @@
 package me.tolek.util;
 
+import me.tolek.mixin.client.RedstoneComponentUpdateRenderer;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.*;
@@ -8,8 +9,9 @@ import net.minecraft.util.math.BlockPos;
 import org.joml.Matrix4f;
 
 /**
- *  THIS CLASS IS VERY BRAIN DEAD, TO USE THE drawBoxInWorld methods if you can't get a matrixStack and have a matrix4fStack instead, you can
- *  probably use new MatrixStack() as demonstrated in mixin/client/RedstoneComponentUpdateRenderer.java
+ *  <p><strong>THIS CLASS IS VERY BRAIN DEAD</strong></p> TO USE THE {@code drawBoxInWorld}
+ *  methods if you can't get a {@code MatrixStack} and have a {@code Matrix4fStack} instead, you can
+ *  probably use {@code new MatrixStack()} as demonstrated in {@link RedstoneComponentUpdateRenderer}
  */
 
 public class RenderUtil {

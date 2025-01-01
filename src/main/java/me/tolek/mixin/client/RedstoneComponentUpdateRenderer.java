@@ -1,6 +1,5 @@
 package me.tolek.mixin.client;
 
-import com.llamalad7.mixinextras.sugar.Local;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.util.ColorUtil;
 import me.tolek.util.RenderUtil;
@@ -16,9 +15,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import org.joml.Matrix4f;
-import org.joml.Matrix4fStack;
 import org.objectweb.asm.Opcodes;
-import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -94,19 +91,16 @@ public class RedstoneComponentUpdateRenderer {
             float g;
             float b;
 
+            String[] hexVal;
             if (block == Blocks.REPEATER) {
-                String[] hexVal = settingsList.REPEATER_UPDATE_COLOR.getArgb();
-                a = (float) ColorUtil.hex2DecBetween1And0(hexVal[0]);
-                r = (float) ColorUtil.hex2DecBetween1And0(hexVal[1]);
-                g = (float) ColorUtil.hex2DecBetween1And0(hexVal[2]);
-                b = (float) ColorUtil.hex2DecBetween1And0(hexVal[3]);
+                hexVal = settingsList.REPEATER_UPDATE_COLOR.getArgb();
             } else {
-                String[] hexVal = settingsList.COMPARATOR_UPDATE_COLOR.getArgb();
-                a = (float) ColorUtil.hex2DecBetween1And0(hexVal[0]);
-                r = (float) ColorUtil.hex2DecBetween1And0(hexVal[1]);
-                g = (float) ColorUtil.hex2DecBetween1And0(hexVal[2]);
-                b = (float) ColorUtil.hex2DecBetween1And0(hexVal[3]);
+                hexVal = settingsList.COMPARATOR_UPDATE_COLOR.getArgb();
             }
+            a = (float) ColorUtil.hex2DecBetween1And0(hexVal[0]);
+            r = (float) ColorUtil.hex2DecBetween1And0(hexVal[1]);
+            g = (float) ColorUtil.hex2DecBetween1And0(hexVal[2]);
+            b = (float) ColorUtil.hex2DecBetween1And0(hexVal[3]);
 
             switch (world.getBlockState(targetPos).get(Properties.HORIZONTAL_FACING)) {
                 case NORTH -> {
