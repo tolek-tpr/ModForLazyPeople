@@ -61,6 +61,7 @@ public class InstancedValues {
     }
 
     public long timeSinceLastInputMillis = 0;
+    public long timeUntilNextWbMillis = 0;
     public long timeSinceLastWbMillis = 0;
     public String githubUrl = "github.com/tolek-tpr/ModForLazyPeople/releases";
     public String modrinthUrl = "https://modrinth.com/mod/modforlazypeople/versions";
