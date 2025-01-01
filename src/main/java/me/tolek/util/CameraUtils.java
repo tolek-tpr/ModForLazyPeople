@@ -161,7 +161,7 @@ public class CameraUtils {
     {
         for (int cy = 0; cy < 16; ++cy)
         {
-            renderer.scheduleBlockRender(chunkX, cy, chunkZ);
+            renderer.scheduleChunkRender(chunkX, cy, chunkZ);
         }
     }
 

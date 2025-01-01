@@ -336,7 +336,7 @@ public class PartyNetworkHandler extends EventImpl {
                 case 0: // Chat
                     if (MinecraftClient.getInstance().player != null && MinecraftClient.getInstance().world != null) {
                         MinecraftClient.getInstance().player.sendMessage(Text.translatable("mflp.error.notConnected.title")
-                                .formatted(Formatting.ITALIC, Formatting.BOLD, Formatting.RED));
+                                .formatted(Formatting.ITALIC, Formatting.BOLD, Formatting.RED), false);
                     } else {
                         ToastUtil.showToast(Text.translatable("mflp.error.notConnected.title"), Text.translatable("mflp.error.notConnected.description"));
                     }

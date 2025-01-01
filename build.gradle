@@ -28,14 +28,14 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modApi "com.terraformersmc:modmenu:11.0.3"
-	implementation "com.google.code.gson:gson:2.9.0"
+	modApi "com.terraformersmc:modmenu:${project.mod_menu_version}"
+	implementation "com.google.code.gson:gson:${project.gson_version}"
 
-	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+	testImplementation "org.junit.jupiter:junit-jupiter-api:${project.jupiter_version}"
+	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${project.jupiter_version}"
 
-	include(implementation 'javax.websocket:javax.websocket-api:1.1')
-	include(implementation 'org.glassfish.tyrus.bundles:tyrus-standalone-client:1.17') // Tyrus dependency
+	include(implementation "javax.websocket:javax.websocket-api:${project.javax_websocket_version}")
+	include(implementation "org.glassfish.tyrus.bundles:tyrus-standalone-client:${project.tyrus_version}") // Tyrus dependency
 
 	modImplementation include("io.github.cottonmc:LibGui:${project.libgui_version}")
 }
