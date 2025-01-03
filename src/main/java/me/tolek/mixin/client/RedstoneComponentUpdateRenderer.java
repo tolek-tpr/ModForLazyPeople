@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class RedstoneComponentUpdateRenderer {
 
     @Unique
-    private final MinecraftClient client = MinecraftClient.getInstance();
+    private MinecraftClient client = MinecraftClient.getInstance();
     @Unique
     private final MflpSettingsList settingsList = MflpSettingsList.getInstance();
 
@@ -34,6 +34,8 @@ public class RedstoneComponentUpdateRenderer {
     private void drawAreaSelection(ObjectAllocator allocator, RenderTickCounter tickCounter, boolean renderBlockOutline,
                                    Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager,
                                    Matrix4f positionMatrix, Matrix4f projectionMatrix, CallbackInfo ci) {
+        if (client == null) client = MinecraftClient.getInstance();
+        if (client == null) return;
         final HitResult target = client.crosshairTarget;
         final ClientWorld world = client.world;
         if ((target == null) || world == null) return;
