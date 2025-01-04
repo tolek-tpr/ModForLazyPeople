@@ -28,11 +28,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class RedstoneComponentUpdateRenderer {
 
     @Unique
-    private final MinecraftClient client = MinecraftClient.getInstance();
+    private MinecraftClient client = MinecraftClient.getInstance();
+    @Unique
     private final MflpSettingsList settingsList = MflpSettingsList.getInstance();
 
     @Inject(method = "render", at = @At(value = "FIELD", target = "Lnet/minecraft/client/MinecraftClient;crosshairTarget:Lnet/minecraft/util/hit/HitResult;", opcode = Opcodes.GETFIELD, ordinal = 1))
     private void drawAreaSelection(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f matrix4f, CallbackInfo ci) {
+        if (client == null) client = MinecraftClient.getInstance();
+        if (client == null) return;
         final HitResult target = client.crosshairTarget;
         final ClientWorld world = client.world;
         if ((target == null) || world == null) return;

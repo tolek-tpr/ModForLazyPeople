@@ -5,6 +5,7 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import java.io.*;
 import java.util.*;
 
 public class MflpUtil {
@@ -86,6 +87,38 @@ public class MflpUtil {
         int dec = Integer.parseInt(hexInput, 16);
         int maxVal = (int) Math.pow(16, hexInput.length()) - 1;
         return dec / (double) maxVal;
+    }
+
+    // Useful if i want to add a sky thing that was suggested to me (shader thing)
+    public static InputStream getResourceAsInputStream(String filePath) {
+        ClassLoader classLoader = MflpUtil.class.getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream(filePath);
+
+        return inputStream;
+    }
+
+    /**
+     *
+     * @param in InputStream of the file you want to read
+     * @return String, the entire file in one string.
+     * @throws IOException
+     */
+    public static String readFile(InputStream in) throws IOException {
+        final StringBuffer sBuffer = new StringBuffer();
+        final BufferedReader br = new BufferedReader(new InputStreamReader(in));
+        final char[] buffer = new char[1024];
+
+        int cnt;
+        while ((cnt = br.read(buffer, 0, buffer.length)) > -1) {
+            sBuffer.append(buffer, 0, cnt);
+        }
+        br.close();
+        in.close();
+        return sBuffer.toString();
+    }
+
+    public static InputStream asInputStream(File f) throws FileNotFoundException {
+        return new FileInputStream(f);
     }
 
 }
