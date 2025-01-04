@@ -45,7 +45,7 @@ public class MflpHotkeysScreen extends Screen {
         MflpSettingsList settingsList = MflpSettingsList.getInstance();
         for (MflpSetting setting : settingsList.getSettings()) {
             if (!(setting instanceof HotkeyableSetting hs)) continue;
-            if (!setting.render && !hs.renderHotkey()) continue;
+            if (!setting.render || !hs.renderHotkey()) continue;
 
             if (hs.getHotkey() == null) continue;
             HotkeySettingWidget settingWidget = new HotkeySettingWidget(width / 2, 0, hs.getHotkey().getFormattedKeys(), hs,

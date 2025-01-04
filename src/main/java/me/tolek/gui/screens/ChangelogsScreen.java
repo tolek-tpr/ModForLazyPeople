@@ -33,6 +33,11 @@ public class ChangelogsScreen extends Screen {
 
         // -- CHANGELOGS START -- \\
 
+        addVersion("v3.0.3 - THE MINECRAFT UPDATE",
+                "PORTED: Ported ModForLazyPeople for minecraft versions: 1.21.3 and 1.21.4 by @BeefyAndTheDucks and @tolek-tpr",
+                "FIXED: Internal issues with hotkey rendering by @tolek-tpr",
+                "FIXED: Crash with the redstone component update display setting by @tolek-tpr",
+                "REMOVED: Old super secret settings until beefy ports the shaders to 1.21.3/4 by @tolek-tpr");
         addVersion("v3.0.2 - THE UPDATE UPDATE", "ADDED: A option for macros to execute either all commands at once or one at a time by @tolek-tpr",
                 "ADDED: Missing promotion/demotion buttons in Party GUI (/party manage) by @BeefyAndTheDucks",
                 "ADDED: Player heads in Party GUI (/party manage) by @BeefyAndTheDucks",
