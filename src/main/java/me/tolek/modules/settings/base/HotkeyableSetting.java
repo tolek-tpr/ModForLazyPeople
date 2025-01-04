@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public abstract class HotkeyableSetting extends MflpSetting {
 
-    protected boolean renderHotkey = false;
+    protected transient boolean renderHotkey = true;
     Hotkey hotkey = new Hotkey(new HashMap<>());
 
     public HotkeyableSetting(String name, Object defaultValue, String type, String tooltip) {

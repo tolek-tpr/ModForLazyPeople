@@ -21,7 +21,9 @@ public class PostProcessorSetting extends ListSetting {
             this.addOption("mflp.setting.postProcessor." + program.getPath());
         }
 
-        this.renderHotkey = true;
+        // Remove these 2 once shaders are back in.
+        this.renderHotkey = false;
+        this.render = false;
     }
 
     @Override
