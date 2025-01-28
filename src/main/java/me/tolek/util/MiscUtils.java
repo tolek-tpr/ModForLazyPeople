@@ -2,6 +2,7 @@ package me.tolek.util;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.GameOptions;
+import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
@@ -23,6 +24,7 @@ public class MiscUtils {
         if (options.sneakKey.isPressed())   { vertical -= 1; }
 
         double speed = (forward != 0 && strafe != 0) ? 1.2 : 1.0;
+
         double forwardRamped  = getRampedMotion(lastMotion.x, forward , rampAmount, decelerationFactor) / speed;
         double verticalRamped = getRampedMotion(lastMotion.y, vertical, rampAmount, decelerationFactor);
         double strafeRamped   = getRampedMotion(lastMotion.z, strafe  , rampAmount, decelerationFactor) / speed;

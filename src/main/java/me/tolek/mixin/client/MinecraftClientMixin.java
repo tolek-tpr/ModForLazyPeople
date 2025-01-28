@@ -2,15 +2,11 @@ package me.tolek.mixin.client;
 
 import me.tolek.event.EventManager;
 import me.tolek.events.WorldLoadHandler;
+import me.tolek.util.TickUtils;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.RunArgs;
 import net.minecraft.client.gui.screen.DownloadingTerrainScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.resource.ResourcePackManager;
-import net.minecraft.server.SaveLoader;
-import net.minecraft.world.level.storage.LevelStorage;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -104,5 +100,11 @@ public class MinecraftClientMixin {
     {
         ((WorldLoadHandler) WorldLoadHandler.getInstance()).onWorldLoadPost(this.worldBefore, null, (MinecraftClient)(Object) this);
         this.worldBefore = null;
+    }
+
+    @Inject(method = "tick()V", at = @At("RETURN"))
+    private void onClientTick(CallbackInfo ci)
+    {
+        TickUtils.getInstance().onClientTick((MinecraftClient)(Object) this);
     }
 }

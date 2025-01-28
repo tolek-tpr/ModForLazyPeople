@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(InGameHud.class)
+@Mixin(value = InGameHud.class, priority = 1006)
 public class InGameHudMixin {
 
     @Shadow @Final private MinecraftClient client;
