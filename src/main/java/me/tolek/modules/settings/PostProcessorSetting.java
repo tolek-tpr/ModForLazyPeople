@@ -25,15 +25,13 @@ public class PostProcessorSetting extends ListSetting {
 
     @Override
     public void run() {
-        // Add this back in when shaders are fixed.
-
-        /*if (stateIndex == getList().size() - 1) {
+        if (stateIndex == getList().size() - 1) {
             stateIndex = 0;
         } else {
             stateIndex = stateIndex + 1;
         }
 
-        setPostProcessor();*/
+        setPostProcessor();
     }
 
     public void setPostProcessor(boolean bailOutIfNoneSelected) {
