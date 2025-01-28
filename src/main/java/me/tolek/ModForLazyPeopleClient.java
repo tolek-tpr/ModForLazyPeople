@@ -1,10 +1,7 @@
 package me.tolek;
 
 import me.tolek.event.EventImpl;
-import me.tolek.events.AfkDetector;
-import me.tolek.events.PartyEvents;
-import me.tolek.events.WorldLoadHandler;
-import me.tolek.events.WorldLoadListener;
+import me.tolek.events.*;
 import me.tolek.input.HotkeyExecutorImpl;
 import me.tolek.interfaces.IWorldLoadListener;
 import me.tolek.modules.macro.MacroExecutor;
@@ -15,6 +12,7 @@ import me.tolek.modules.settings.executor.EasyMsgExecutor;
 import me.tolek.network.IconNetworkHandler;
 import me.tolek.network.PartyNetworkHandler;
 import me.tolek.network.WebSocketServerHandler;
+import me.tolek.util.TickUtils;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.MinecraftClient;
 
@@ -45,5 +43,7 @@ public class ModForLazyPeopleClient implements ClientModInitializer {
         IWorldLoadListener worldLoadListener = new WorldLoadListener();
         WorldLoadHandler.getInstance().registerWorldLoadPreHandler(worldLoadListener);
         WorldLoadHandler.getInstance().registerWorldLoadPostHandler(worldLoadListener);
+
+        TickUtils.getInstance().registerClientTickHandler(new ClientTickHandler());
     }
 }

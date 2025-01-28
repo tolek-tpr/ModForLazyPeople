@@ -1,6 +1,6 @@
 package me.tolek.modules.betterFreeCam;
 
-import me.tolek.modules.settings.FreeCamMovementMode;
+import me.tolek.modules.settings.FreeCamMovementModeSetting;
 import me.tolek.modules.settings.FreeCamWalkingMode;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.util.CameraUtils;
@@ -50,7 +50,7 @@ public class CameraEntity extends ClientPlayerEntity
     {
         CameraEntity camera = getCamera();
 
-        if (camera != null && MflpSettingsList.getInstance().FREE_CAM_MOVEMENT_MODE.stateIndex == FreeCamMovementMode.CAMERA)
+        if (camera != null && MflpSettingsList.getInstance().FREE_CAM_MOVEMENT_MODE.stateIndex == FreeCamMovementModeSetting.CAMERA)
         {
             GameOptions options = MinecraftClient.getInstance().options;
 

@@ -41,10 +41,10 @@ public class MflpSettingsList {
     public ObserverUpdateSetting OBSERVER_UPDATE_VIEW = new ObserverUpdateSetting();
     public RailUpdateSetting RAILS_UPDATE_VIEW = new RailUpdateSetting();
 
-    public FreeCamEnabled FREE_CAM_ENABLED = new FreeCamEnabled();
-    public FreeCamInputMode FREE_CAM_INPUT_MODE = new FreeCamInputMode();
-    public FreeCamMovementMode FREE_CAM_MOVEMENT_MODE = new FreeCamMovementMode();
-    public FreeCamMovementSpeed FREE_CAM_MOVEMENT_SPEED = new FreeCamMovementSpeed();
+    public FreeCamEnabledSetting FREE_CAM_ENABLED = new FreeCamEnabledSetting();
+    public FreeCamInputModeSetting FREE_CAM_INPUT_MODE = new FreeCamInputModeSetting();
+    public FreeCamMovementModeSetting FREE_CAM_MOVEMENT_MODE = new FreeCamMovementModeSetting();
+    public FreeCamMovementSpeedSetting FREE_CAM_MOVEMENT_SPEED = new FreeCamMovementSpeedSetting();
     public FreeCamWalkingMode FREE_CAM_WALKING_MODE = new FreeCamWalkingMode();
     public PostProcessorSetting POST_PROCESSOR = new PostProcessorSetting();
 

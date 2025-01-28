@@ -25,20 +25,24 @@ public class PostProcessorSetting extends ListSetting {
 
     @Override
     public void run() {
-        if (stateIndex == getList().size() - 1) {
+        // Add this back in when shaders are fixed.
+
+        /*if (stateIndex == getList().size() - 1) {
             stateIndex = 0;
         } else {
             stateIndex = stateIndex + 1;
         }
 
-        setPostProcessor();
+        setPostProcessor();*/
     }
 
     public void setPostProcessor(boolean bailOutIfNoneSelected) {
         GameRenderer gameRenderer = MinecraftClient.getInstance().gameRenderer;
         if (stateIndex == 0 && bailOutIfNoneSelected)
             return;
+
         gameRenderer.disablePostProcessor();
+
         if (stateIndex != 0)
             gameRenderer.loadPostProcessor(SUPER_SECRET_SETTING_PROGRAMS[stateIndex - 1]);
     }

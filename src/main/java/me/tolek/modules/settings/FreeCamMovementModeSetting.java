@@ -4,12 +4,12 @@ import me.tolek.modules.settings.base.ListSetting;
 
 import java.util.ArrayList;
 
-public class FreeCamInputMode extends ListSetting {
+public class FreeCamMovementModeSetting extends ListSetting {
     public static final int CAMERA = 0;
     public static final int PLAYER = 1;
 
-    public FreeCamInputMode() {
-        super("mflp.setting.freeCamInputMode.name", 0, "mflp.setting.freeCamInputMode.tooltip", null);
+    public FreeCamMovementModeSetting() {
+        super("mflp.setting.freeCamMovementMode.name", 0, "mflp.setting.freeCamMovementMode.tooltip", null);
 
         this.setList(new ArrayList<>());
         this.addOption("mflp.camera");
