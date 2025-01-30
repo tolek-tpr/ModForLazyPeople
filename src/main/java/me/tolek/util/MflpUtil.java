@@ -4,6 +4,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.*;
@@ -96,6 +98,8 @@ public class MflpUtil {
 
         return inputStream;
     }
+
+    public static Logger getConfigLogger() { return LoggerFactory.getLogger("MFLP-Config"); }
 
     /**
      *

@@ -116,7 +116,7 @@ public class AutoReplySettingScreen extends Screen {
 
         context.drawTextWithShadow(textRenderer, Text.translatable("mflp.autoReplyConfigScreen.keywords"),
                 20, 65, 0xffffff);
-        context.drawTextWithShadow(textRenderer, Text.translatable("mflp.autoReplyConfigScreen.replies"),
+        context.drawTextWithShadow(textRenderer, Text.translatable("mflp.autoReplyConfigScreen.autoReplies"),
                 width / 2 + 5, 65, 0xffffff);
 
         remove(arss);

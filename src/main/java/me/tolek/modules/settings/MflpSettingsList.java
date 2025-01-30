@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class MflpSettingsList {
 
     private static MflpSettingsList instance;
-
+    private transient final ArrayList<MflpSetting> settings = new ArrayList<>();
 
     public AutoWelcomeBack AUTO_WELCOME_BACK = new AutoWelcomeBack();
     public AutoWelcome AUTO_WELCOME = new AutoWelcome();
@@ -56,16 +56,6 @@ public class MflpSettingsList {
     public RailsUpdateColorSetting RAILS_UPDATE_COLOR = new RailsUpdateColorSetting();
 
     private MflpSettingsList() {
-
-    }
-
-    public static MflpSettingsList getInstance() {
-        if (instance == null) MflpSettingsList.instance = new MflpSettingsList();
-        return instance;
-    }
-
-    public ArrayList<MflpSetting> getSettings() {
-        ArrayList<MflpSetting> settings = new ArrayList<>();
         settings.add(AUTO_WELCOME_BACK);
         settings.add(AUTO_WELCOME);
         settings.add(WB_RANK_WHITELIST);
@@ -113,7 +103,14 @@ public class MflpSettingsList {
         settings.add(COMPARATOR_UPDATE_COLOR);
         settings.add(OBSERVER_UPDATE_COLOR);
         settings.add(RAILS_UPDATE_COLOR);
+    }
 
+    public static MflpSettingsList getInstance() {
+        if (instance == null) MflpSettingsList.instance = new MflpSettingsList();
+        return instance;
+    }
+
+    public ArrayList<MflpSetting> getSettings() {
         return settings;
     }
 

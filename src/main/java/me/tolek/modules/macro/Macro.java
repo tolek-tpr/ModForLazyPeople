@@ -1,6 +1,7 @@
 package me.tolek.modules.macro;
 
 import me.tolek.ModForLazyPeople;
+import me.tolek.files.ISerializable;
 import me.tolek.util.KeyBindingUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -23,7 +24,7 @@ public class Macro {
     private int executeOption = 0;
 
     // Don't serialize
-    private int currentCommand = 0;
+    private transient int currentCommand = 0;
 
     public Macro(KeyBinding keyBinding, List<String> commands, String macroName, int repeatAmount) {
         this.keyBinding = keyBinding;

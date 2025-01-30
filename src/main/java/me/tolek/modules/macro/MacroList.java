@@ -10,26 +10,25 @@ import java.util.List;
 public class MacroList {
 
     private MacroList() {
+        KeyBinding UNDEFINED_KEYBINDING = new KeyBinding(
+                "mflp.keybinding.defaultKey",
+                InputUtil.Type.KEYSYM,
+                InputUtil.UNKNOWN_KEY.getCode(),
+                "mflp.keybindCategory.macro"
+        );
         Macro a = new Macro(UNDEFINED_KEYBINDING, List.of("/mflp freezeGame"), "Tick freeze", 1);
+        KeyBinding UNDEFINED_KEYBINDING1 = new KeyBinding(
+                "mflp.keybinding.defaultKey",
+                InputUtil.Type.KEYSYM,
+                InputUtil.UNKNOWN_KEY.getCode(),
+                "mflp.keybindCategory.macro"
+        );
         Macro b = new Macro(UNDEFINED_KEYBINDING1, List.of("/tick step"), "Tick step", 1);
         a.setKey(InputUtil.UNKNOWN_KEY.getCode());
         b.setKey(InputUtil.UNKNOWN_KEY.getCode());
         this.addMacro(a);
         this.addMacro(b);
     }
-
-    private final KeyBinding UNDEFINED_KEYBINDING = new KeyBinding(
-            "mflp.keybinding.defaultKey",
-            InputUtil.Type.KEYSYM,
-            InputUtil.UNKNOWN_KEY.getCode(),
-            "mflp.keybindCategory.macro"
-    );
-    private final KeyBinding UNDEFINED_KEYBINDING1 = new KeyBinding(
-            "mflp.keybinding.defaultKey",
-            InputUtil.Type.KEYSYM,
-            InputUtil.UNKNOWN_KEY.getCode(),
-            "mflp.keybindCategory.macro"
-    );
 
     private static MacroList instance;
     private ArrayList<Macro> macros = new ArrayList<>();

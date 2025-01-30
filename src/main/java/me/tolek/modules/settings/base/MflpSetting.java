@@ -1,6 +1,8 @@
 package me.tolek.modules.settings.base;
 
-public abstract class MflpSetting {
+import me.tolek.files.ISerializable;
+
+public abstract class MflpSetting implements ISerializable {
     // transient = exclude
 
     private transient String name;

@@ -1,5 +1,6 @@
 package me.tolek.gui.screens;
 
+import me.tolek.MflpInfo;
 import me.tolek.util.InstancedValues;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -34,7 +35,7 @@ public class MflpHelloScreen extends Screen {
         addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, (button) -> {
             Objects.requireNonNull(client).setScreen(null);
         }).dimensions(width / 2 - 75, height / 2 + 80, 150, 20).build());
-        iv.shownWelcomeScreen = true;
+        MflpInfo.getInstance().shownWelcomeScreen = true;
     }
 
     @Override

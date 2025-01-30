@@ -8,7 +8,7 @@ public class AutoRepliesList {
 
     }
 
-    public static final String repliesTooltip = "mflp.autoReplyConfigScreen.replies.tooltip";
+    public static final String repliesTooltip = "mflp.autoReplyConfigScreen.autoReplies.tooltip";
     public static final String toReplyTooltip = "mflp.autoReplyConfigScreen.keywords.tooltip";
 
     private static AutoRepliesList instance;

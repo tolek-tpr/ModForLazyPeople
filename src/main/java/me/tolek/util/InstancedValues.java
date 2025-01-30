@@ -19,14 +19,8 @@ public class InstancedValues {
     }
 
     private InstancedValues() {
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        gson = builder.create();
     }
 
-    private final Gson gson;
-
-    public boolean shownWelcomeScreen = false;
     public boolean hasLoaded = false;
     public boolean updateAvailable = false;
 

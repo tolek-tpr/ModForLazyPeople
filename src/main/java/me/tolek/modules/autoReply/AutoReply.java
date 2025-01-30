@@ -1,8 +1,10 @@
 package me.tolek.modules.autoReply;
 
+import me.tolek.files.ISerializable;
+
 import java.util.ArrayList;
 
-public class AutoReply {
+public class AutoReply implements ISerializable {
 
     private ArrayList<String> keywords = new ArrayList<>();
     private ArrayList<String> replies = new ArrayList<>();

@@ -1,5 +1,6 @@
 package me.tolek.mixin.client;
 
+import me.tolek.MflpInfo;
 import me.tolek.gui.screens.FailedToConnectToMflpNetworkScreen;
 import me.tolek.gui.screens.MflpHelloScreen;
 import me.tolek.gui.screens.MflpUpdateScreen;
@@ -18,8 +19,8 @@ public class MainMenuMixin {
     private void init(CallbackInfo ci) {
         InstancedValues iv = InstancedValues.getInstance();
         if (iv.failedToConnect) MinecraftClient.getInstance().setScreen(new FailedToConnectToMflpNetworkScreen());
-        if (!iv.shownWelcomeScreen) MinecraftClient.getInstance().setScreen(new MflpHelloScreen(iv.failedToConnect ? new FailedToConnectToMflpNetworkScreen() : null));
-        if (iv.updateAvailable && !iv.shownUpdateScreen) MinecraftClient.getInstance().setScreen(iv.shownWelcomeScreen ? new MflpUpdateScreen(null) : new MflpUpdateScreen(new MflpHelloScreen(iv.failedToConnect ? new FailedToConnectToMflpNetworkScreen() : null)));
+        if (!MflpInfo.getInstance().shownWelcomeScreen) MinecraftClient.getInstance().setScreen(new MflpHelloScreen(iv.failedToConnect ? new FailedToConnectToMflpNetworkScreen() : null));
+        if (iv.updateAvailable && !iv.shownUpdateScreen) MinecraftClient.getInstance().setScreen(MflpInfo.getInstance().shownWelcomeScreen ? new MflpUpdateScreen(null) : new MflpUpdateScreen(new MflpHelloScreen(iv.failedToConnect ? new FailedToConnectToMflpNetworkScreen() : null)));
 
         iv.failedToConnect = false;
     }
