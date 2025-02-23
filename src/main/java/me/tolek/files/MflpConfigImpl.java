@@ -1,21 +1,16 @@
 package me.tolek.files;
 
-import me.tolek.MflpInfo;
 import me.tolek.ModForLazyPeople;
 import me.tolek.event.*;
+import me.tolek.files.deprecated.MflpConfigManager;
 import me.tolek.modules.autoReply.AutoReply;
-import me.tolek.modules.macro.Macro;
 import me.tolek.modules.macro.MacroList;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.settings.AutoWelcomeBack;
-import me.tolek.modules.settings.CustomMessagePerServerList;
-import me.tolek.modules.settings.CustomPlayerMessageList;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.updateChecker.UpdateChecker;
 import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
-import net.minecraft.client.option.KeyBinding;
-import org.lwjgl.opengl.GL20;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;

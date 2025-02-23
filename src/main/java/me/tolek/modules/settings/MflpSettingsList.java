@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class MflpSettingsList {
 
     private static MflpSettingsList instance;
-    private transient final ArrayList<MflpSetting> settings = new ArrayList<>();
+    private final transient ArrayList<MflpSetting> settings = new ArrayList<>();
 
     public AutoWelcomeBack AUTO_WELCOME_BACK = new AutoWelcomeBack();
     public AutoWelcome AUTO_WELCOME = new AutoWelcome();

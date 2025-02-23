@@ -3,13 +3,12 @@ package me.tolek.files;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
+import com.google.gson.stream.JsonReader;
 import me.tolek.MflpInfo;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;
 import me.tolek.modules.macro.MacroList;
-import me.tolek.modules.settings.CustomMessagePerServerList;
-import me.tolek.modules.settings.CustomPlayerMessageList;
-import me.tolek.modules.settings.MflpSettingsList;
+import me.tolek.modules.settings.*;
 import me.tolek.modules.settings.base.MflpSetting;
 import me.tolek.util.MflpUtil;
 import org.jetbrains.annotations.Nullable;
@@ -30,6 +29,7 @@ public class MflpConfigLoader {
     public MflpConfigLoader() {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
+        //builder.registerTypeAdapter(MflpSetting.class, new MflpSettingTypeAdapter());
         gson = builder.create();
     }
 
@@ -103,6 +103,7 @@ public class MflpConfigLoader {
         } catch (IOException e) {
             logger.warn("Could not find file: " + file);
         } catch (JsonIOException e) {
+            logger.warn("Json Exception! Thrown by file: " + file);
             logger.error(e.getLocalizedMessage());
         } catch (Exception e) {
             logger.error("A error occured while loading MFLP save files!", e);
@@ -139,7 +140,7 @@ public class MflpConfigLoader {
         }
     }
 
-    private void loadAutoReplies(ModData.AutoReplyData autoReplyData, Logger logger,
+    public void loadAutoReplies(ModData.AutoReplyData autoReplyData, Logger logger,
                                  ArrayList<MflpConfigFieldModifier<? extends ISerializable>> modifiers) {
         AutoRepliesList repliesList = AutoRepliesList.getInstance();
 
@@ -154,21 +155,21 @@ public class MflpConfigLoader {
         }
     }
 
-    private void loadSettings(ModData.SettingsData settingsData, Logger logger, ArrayList<MflpConfigFieldModifier<? extends ISerializable>> modifiers) {
+    public void loadSettings(ModData.SettingsData settingsData, Logger logger, ArrayList<MflpConfigFieldModifier<? extends ISerializable>> modifiers) {
         MflpSettingsList settingsList = MflpSettingsList.getInstance();
 
-        if (settingsData.settingsList() == null || settingsData.settingsList().getSettings() == null) logger.warn("Failed to fetch Settings List!");
-        for (int i = 0; i < settingsList.getSettings().size(); i++) {
-            MflpSetting setting = settingsList.getSettings().get(i);
-            ArrayList<MflpConfigFieldModifier<? extends ISerializable>> specificSettingMods = this.getModifiersForSerializable(modifiers, setting);
-            if (settingsData != null && settingsData.settingsList() != null) { // Do not remove this, the previous `if` does not stop this code from executing!
-                MflpSetting parsedSetting = (MflpSetting) this.modifyObject(settingsData.settingsList().getSettings().get(i), specificSettingMods);
-                settingsList.getSettings().set(i, parsedSetting == null ? setting : parsedSetting);
-            } else {
-                MflpSetting parsedSetting = (MflpSetting) this.modifyObject(settingsList.getSettings().get(i), specificSettingMods);
-                settingsList.getSettings().set(i, parsedSetting == null ? setting : parsedSetting);
-            }
+        if (settingsData.settingsList() == null || settingsData.settingsList().getSettings() == null) {
+            logger.warn("Failed to fetch Settings List!");
+            return;
         }
+
+        var mfs = this.getModifiersForSettings(modifiers);
+        var loadedSettings = settingsData.settingsList();
+
+        // region Setting Loading
+        settingsList.AUTO_WELCOME_BACK = (AutoWelcomeBack) this.modifyObject(loadedSettings.AUTO_WELCOME_BACK, mfs.get(AutoWelcomeBack.class));
+        settingsList.AUTO_WELCOME = (AutoWelcome) this.modifyObject(loadedSettings.AUTO_WELCOME, mfs.get(AutoWelcome.class));
+        // endregion
     }
 
     private ArrayList<MflpConfigFieldModifier<? extends ISerializable>> getModifiersForSerializable(
@@ -182,7 +183,19 @@ public class MflpConfigLoader {
         return ret;
     }
 
+    private HashMap<Class<MflpSetting>, ArrayList<MflpConfigFieldModifier<? extends ISerializable>>> getModifiersForSettings(
+            ArrayList<MflpConfigFieldModifier<? extends ISerializable>> modifiers) {
+        HashMap<Class<MflpSetting>, ArrayList<MflpConfigFieldModifier<? extends ISerializable>>> map = new HashMap<>();
+
+        for (var modifier : modifiers) {
+            map.getOrDefault(modifier.getFieldType(), new ArrayList<>()).add(modifier);
+        }
+
+        return map;
+    }
+
     private ISerializable modifyObject(ISerializable serializable, ArrayList<MflpConfigFieldModifier<? extends ISerializable>> modifiers) {
+        if (serializable == null) return null;
         AtomicReference<ISerializable> ret = new AtomicReference<>();
         ret.set(serializable);
         if (modifiers == null) return serializable;

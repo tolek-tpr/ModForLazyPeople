@@ -8,7 +8,7 @@ public abstract class MflpSetting implements ISerializable {
     private transient String name;
     private transient final Object defaultValue;
     private transient String tooltip;
-    public transient String type;
+    public String type;
     public transient boolean render = true;
 
     public MflpSetting(String name, Object defaultValue, String type, String tooltip) {

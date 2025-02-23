@@ -1,4 +1,4 @@
-package me.tolek.files;
+package me.tolek.files.deprecated;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
