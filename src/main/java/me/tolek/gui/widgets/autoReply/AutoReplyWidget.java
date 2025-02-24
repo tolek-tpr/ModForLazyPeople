@@ -20,6 +20,7 @@ import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Environment(EnvType.CLIENT)
 public class AutoReplyWidget extends ContainerWidget {
@@ -87,4 +88,15 @@ public class AutoReplyWidget extends ContainerWidget {
 
     }
 
+    @Override
+    protected int getContentsHeightWithPadding() {
+        AtomicInteger thing = new AtomicInteger();
+        children.forEach(c -> thing.addAndGet(c.getHeight() + 4));
+        return thing.get();
+    }
+
+    @Override
+    protected double getDeltaYPerScroll() {
+        return 10;
+    }
 }

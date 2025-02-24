@@ -22,7 +22,7 @@ public class WorldRendererMixin {
 
     @Inject(method = "render", at = @At(value = "INVOKE_STRING",
             target = "Lnet/minecraft/util/profiler/Profiler;swap(Ljava/lang/String;)V", args = "ldc=terrain_setup"))
-    private void preSetupTerrain(ObjectAllocator allocator, RenderTickCounter tickCounter, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f positionMatrix, Matrix4f projectionMatrix, CallbackInfo ci)
+    private void preSetupTerrain(ObjectAllocator allocator, RenderTickCounter tickCounter, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, Matrix4f positionMatrix, Matrix4f projectionMatrix, CallbackInfo ci)
     {
         if (MflpSettingsList.getInstance().FREE_CAM_ENABLED.getState())
         {
@@ -32,7 +32,7 @@ public class WorldRendererMixin {
 
     @Inject(method = "render", at = @At(value = "INVOKE_STRING",
             target = "Lnet/minecraft/util/profiler/Profiler;swap(Ljava/lang/String;)V", args = "ldc=compile_sections"))
-    private void postSetupTerrain(ObjectAllocator allocator, RenderTickCounter tickCounter, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f positionMatrix, Matrix4f projectionMatrix, CallbackInfo ci)
+    private void postSetupTerrain(ObjectAllocator allocator, RenderTickCounter tickCounter, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, Matrix4f positionMatrix, Matrix4f projectionMatrix, CallbackInfo ci)
     {
         CameraUtils.setFreeCameraSpectator(false);
     }

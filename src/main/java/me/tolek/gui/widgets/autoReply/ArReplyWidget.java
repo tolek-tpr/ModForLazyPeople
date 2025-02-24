@@ -14,6 +14,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Environment(EnvType.CLIENT)
 public class ArReplyWidget extends ContainerWidget {
@@ -73,4 +74,15 @@ public class ArReplyWidget extends ContainerWidget {
 
     }
 
+    @Override
+    protected int getContentsHeightWithPadding() {
+        AtomicInteger thing = new AtomicInteger();
+        children.forEach(c -> thing.addAndGet(c.getHeight() + 4));
+        return thing.get();
+    }
+
+    @Override
+    protected double getDeltaYPerScroll() {
+        return 10;
+    }
 }

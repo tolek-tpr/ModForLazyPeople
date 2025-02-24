@@ -32,8 +32,8 @@ public class RedstoneComponentUpdateRenderer {
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "net/minecraft/client/MinecraftClient.getFramebuffer ()Lnet/minecraft/client/gl/Framebuffer;", opcode = Opcodes.GETFIELD, ordinal = 1))
     private void drawAreaSelection(ObjectAllocator allocator, RenderTickCounter tickCounter, boolean renderBlockOutline,
-                                   Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager,
-                                   Matrix4f positionMatrix, Matrix4f projectionMatrix, CallbackInfo ci) {
+                                   Camera camera, GameRenderer gameRenderer, Matrix4f positionMatrix,
+                                   Matrix4f projectionMatrix, CallbackInfo ci) {
         if (client == null) client = MinecraftClient.getInstance();
         if (client == null) return;
         final HitResult target = client.crosshairTarget;
