@@ -174,15 +174,4 @@ public class MacroContainerWidget extends ContainerWidget {
 
     }
 
-    @Override
-    protected int getContentsHeightWithPadding() {
-        AtomicInteger thing = new AtomicInteger();
-        children.forEach(c -> thing.addAndGet(c.getHeight() + 4));
-        return thing.get();
-    }
-
-    @Override
-    protected double getDeltaYPerScroll() {
-        return 10;
-    }
 }
