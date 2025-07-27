@@ -62,4 +62,14 @@ public class MacroCommandsWidget extends ContainerWidget {
 
     }
 
+    @Override
+    protected int getContentsHeightWithPadding() {
+        return this.getHeight();
+    }
+
+    @Override
+    protected double getDeltaYPerScroll() {
+        return 10;
+    }
+
 }

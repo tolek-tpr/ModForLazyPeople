@@ -31,7 +31,7 @@ public class ArReplyWidget extends ContainerWidget {
     public static Identifier CROSS_ICON = Identifier.of(ModForLazyPeople.MOD_ID, "cross");
 
     public ArReplyWidget(int x, int y, String tr, AutoReply ar, String tt, TextRenderer tx, int width, int height, ButtonWidget.PressAction pa) {
-        super(x, y, 150, 20, Text.literal("test"));
+        super(x, y, 190, 20, Text.literal("test"));
 
         this.tx = tx;
         this.x = x;
@@ -74,4 +74,13 @@ public class ArReplyWidget extends ContainerWidget {
 
     }
 
+    @Override
+    protected int getContentsHeightWithPadding() {
+        return this.getHeight();
+    }
+
+    @Override
+    protected double getDeltaYPerScroll() {
+        return 10;
+    }
 }

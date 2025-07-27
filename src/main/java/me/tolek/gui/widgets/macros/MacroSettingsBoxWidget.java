@@ -35,7 +35,7 @@ public class MacroSettingsBoxWidget extends ContainerWidget {
     private int height;
 
     public MacroSettingsBoxWidget(int x, int y, MinecraftClient client, Screen parent, Macro m, TextRenderer tx, int width, int height) {
-        super(x, y, 150, 20, Text.literal("test"));
+        super(x, y, x + 144 + 80, 20, Text.literal("test"));
 
         this.tx = tx;
         this.x = x;
@@ -101,4 +101,13 @@ public class MacroSettingsBoxWidget extends ContainerWidget {
 
     }
 
+    @Override
+    protected int getContentsHeightWithPadding() {
+        return this.getHeight();
+    }
+
+    @Override
+    protected double getDeltaYPerScroll() {
+        return 10;
+    }
 }

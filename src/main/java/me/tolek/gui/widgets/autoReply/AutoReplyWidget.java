@@ -34,7 +34,7 @@ public class AutoReplyWidget extends ContainerWidget {
     private MinecraftClient client;
 
     public AutoReplyWidget(int x, int y, AutoReply ar, TextRenderer tx, MinecraftClient client) {
-        super(x, y, 310, 20, Text.literal("auto reply widget"));
+        super(x - 180, y, 310, 20, Text.literal("auto reply widget"));
         this.ar = ar;
         this.tx = tx;
         this.x = x;
@@ -86,6 +86,16 @@ public class AutoReplyWidget extends ContainerWidget {
     @Override
     protected void appendClickableNarrations(NarrationMessageBuilder builder) {
 
+    }
+
+    @Override
+    protected int getContentsHeightWithPadding() {
+        return this.getHeight();
+    }
+
+    @Override
+    protected double getDeltaYPerScroll() {
+        return 10;
     }
 
 }

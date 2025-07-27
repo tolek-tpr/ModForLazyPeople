@@ -47,7 +47,7 @@ public class MacroContainerWidget extends ContainerWidget {
     public Consumer<KeyBinding> keyBindingConsumer = (b) -> {};
 
     public MacroContainerWidget(int x, int y, MinecraftClient client, KeyBinding selectedKeyBinding, Macro m, TextRenderer tx) {
-        super(x, y, 150, 20, Text.literal("test"));
+        super(x - 180, y, x + 144 + 70, 20, Text.literal("test"));
         this.selectedKeyBinding = selectedKeyBinding;
         this.m = m;
         this.x = x;
@@ -172,6 +172,16 @@ public class MacroContainerWidget extends ContainerWidget {
     @Override
     protected void appendClickableNarrations(NarrationMessageBuilder builder) {
 
+    }
+
+    @Override
+    protected int getContentsHeightWithPadding() {
+        return this.getHeight();
+    }
+
+    @Override
+    protected double getDeltaYPerScroll() {
+        return 10;
     }
 
 }
