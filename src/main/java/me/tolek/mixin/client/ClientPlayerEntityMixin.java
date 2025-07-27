@@ -22,7 +22,7 @@ public class ClientPlayerEntityMixin {
     @Shadow
     public Input input;
     @Unique
-    private final DummyMovementInput dummyMovementInput = new DummyMovementInput(MinecraftClient.getInstance().options);
+    private final DummyMovementInput dummyMovementInput = new DummyMovementInput(null);
     @Unique
     private Input realInput;
 

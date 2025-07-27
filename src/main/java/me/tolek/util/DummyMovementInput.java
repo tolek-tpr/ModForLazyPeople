@@ -10,7 +10,8 @@ public class DummyMovementInput extends KeyboardInput
         super(options);
     }
 
-    public void tick(boolean sneaking, float f)
+    @Override
+    public void tick()
     {
         // NO-OP
     }
