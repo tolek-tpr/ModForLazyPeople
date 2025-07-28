@@ -1,31 +1,51 @@
 package me.tolek.mixin.client;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import me.tolek.modules.settings.FreeCamInputModeSetting;
 import me.tolek.modules.settings.MflpSettingsList;
 import me.tolek.util.CameraUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = GameRenderer.class, priority = 1002)
 public abstract class GameRendererMixin {
 
+    @Shadow @Final
+    private MinecraftClient client;
+
+    @ModifyExpressionValue(method = "getFov", at = @At(value = "CONSTANT", args = "floatValue=70.0"))
+    private float applyFreeCameraFov(float original)
+    {
+        if (MflpSettingsList.getInstance().FREE_CAM_ENABLED.getState())
+        {
+            return ((float) this.client.options.getFov().getValue());
+        }
+
+        return original;
+    }
+
+    @ModifyVariable(method = "getFov", at = @At(value = "LOAD", ordinal = 0), argsOnly = true)
+    private boolean freezeFovOnFreeCamera(boolean value)
+    {
+        return !MflpSettingsList.getInstance().FREE_CAM_ENABLED.getState() && value;
+    }
+
     @Redirect(method = "updateCrosshairTarget", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/client/MinecraftClient;getCameraEntity()Lnet/minecraft/entity/Entity;"))
     private Entity overrideCameraEntityForRayTrace(MinecraftClient mc)
     {
-        // Return the real player for the hit target ray tracing if the
-        // player inputs option is enabled in Free Camera mode.
-        // Normally in Free Camera mode the MFLP CameraEntity is set as the
-        // render view/camera entity, which would then also ray trace from the camera point of view.
         if (MflpSettingsList.getInstance().FREE_CAM_ENABLED.getState() &&
-                !CameraUtils.shouldPreventPlayerInputs() &&
+                MflpSettingsList.getInstance().FREE_CAM_INPUT_MODE.stateIndex == FreeCamInputModeSetting.PLAYER  &&
                 mc.player != null)
         {
             return mc.player;
