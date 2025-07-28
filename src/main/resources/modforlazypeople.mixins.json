@@ -13,6 +13,7 @@
     "client.ClientPlayerInteractionManagerMixin",
     "client.ClientPlayNetworkHandlerMixin",
     "client.GameRendererMixin",
+    "client.HeldItemRendererMixin",
     "client.InGameHudMixin",
     "client.KeyboardMixin",
     "client.MainMenuMixin",
