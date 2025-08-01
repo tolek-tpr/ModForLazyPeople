@@ -5,6 +5,7 @@ import me.tolek.event.*;
 import me.tolek.modules.macro.Macro;
 import me.tolek.modules.macro.MacroList;
 import me.tolek.modules.autoReply.AutoRepliesList;
+import me.tolek.modules.settings.AnimationSettings;
 import me.tolek.modules.settings.CustomMessagePerServerList;
 import me.tolek.modules.settings.CustomPlayerMessageList;
 import me.tolek.modules.settings.MflpSettingsList;
@@ -59,6 +60,7 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
         MacroList macroList = MacroList.getInstance();
         MflpSettingsList settings = MflpSettingsList.getInstance();
         AutoRepliesList arl = AutoRepliesList.getInstance();
+        AnimationSettings animSettings = AnimationSettings.getInstance();
 
         if (!iv.hasLoaded) {
             MflpConfigManager.ModData loadedData = configManager.load();
@@ -128,6 +130,9 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
                     settings.COMPARATOR_UPDATE_VIEW = loadedData.getSettings().COMPARATOR_UPDATE_VIEW;
                     settings.OBSERVER_UPDATE_VIEW = loadedData.getSettings().OBSERVER_UPDATE_VIEW;
                     settings.RAILS_UPDATE_VIEW = loadedData.getSettings().RAILS_UPDATE_VIEW;
+                    settings.ANIMATION_SETTINGS = loadedData.getSettings().ANIMATION_SETTINGS;
+                    settings.CUSTOM_BLOCK_OUTLINE = loadedData.getSettings().CUSTOM_BLOCK_OUTLINE;
+                    settings.CUSTOM_BLOCK_OUTLINE_COLOR = loadedData.getSettings().CUSTOM_BLOCK_OUTLINE_COLOR;
 
                     settings.FREE_CAM_ENABLED = loadedData.getSettings().FREE_CAM_ENABLED;
                     settings.FREE_CAM_INPUT_MODE = loadedData.getSettings().FREE_CAM_INPUT_MODE;
@@ -148,6 +153,17 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
 
                     // Disable the shader
                     settings.POST_PROCESSOR.setState(0);
+                }
+                if (loadedData.getAnimationSettings() != null) {
+                    animSettings.posX.setValue(loadedData.getAnimationSettings().posX.value());
+                    animSettings.posY.setValue(loadedData.getAnimationSettings().posY.value());
+                    animSettings.posZ.setValue(loadedData.getAnimationSettings().posZ.value());
+                    animSettings.rotX.setValue(loadedData.getAnimationSettings().rotX.value());
+                    animSettings.rotY.setValue(loadedData.getAnimationSettings().rotY.value());
+                    animSettings.rotZ.setValue(loadedData.getAnimationSettings().rotZ.value());
+                    animSettings.scale.setValue(loadedData.getAnimationSettings().scale.value());
+                    animSettings.swingSpeed.setValue(loadedData.getAnimationSettings().swingSpeed.value());
+                    animSettings.cancelReequipAnimation.setValue(loadedData.getAnimationSettings().cancelReequipAnimation.value());
                 }
                 if (loadedData.getAutoReplies() != null) {
                     arl.setAutoReplies(loadedData.getAutoReplies());

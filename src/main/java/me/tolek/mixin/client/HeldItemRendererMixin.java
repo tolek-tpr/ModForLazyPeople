@@ -1,6 +1,7 @@
 package me.tolek.mixin.client;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import me.tolek.modules.settings.AnimationSettings;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.item.HeldItemRenderer;
@@ -36,14 +37,14 @@ public class HeldItemRendererMixin {
                                  MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light,
                                  CallbackInfo ci) {
         if (hand == Hand.MAIN_HAND) {
-            float rotX = 10;
-            float rotY = 5;
-            float rotZ = -25;
-            float posX = -50 / 100f;
-            float posY = 20 / 100f;
-            float posZ = -25 / 100f;
+            float rotX = (float) AnimationSettings.getInstance().rotX.value();
+            float rotY = (float) AnimationSettings.getInstance().rotY.value();
+            float rotZ = (float) AnimationSettings.getInstance().rotZ.value();
+            float posX = (float) AnimationSettings.getInstance().posX.value() / 100f;
+            float posY = (float) AnimationSettings.getInstance().posY.value() / 100f;
+            float posZ = (float) AnimationSettings.getInstance().posZ.value() / 100f;
 
-            float scale = 0.3F;
+            float scale = (float) AnimationSettings.getInstance().scale.value();
             matrices.translate(posX, posY, posZ);
 
             matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(rotX));
@@ -62,6 +63,19 @@ public class HeldItemRendererMixin {
     )
     public float attackCooldown(float original) {
         return 1f;
+    }
+
+    @Inject(
+            method = "applyEquipOffset",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    public void onApplyEquipOffset(MatrixStack matrices, Arm arm, float equipProgress, CallbackInfo ci) {
+        if (AnimationSettings.getInstance().cancelReequipAnimation.value()) {
+            int i = arm == Arm.RIGHT ? 1 : -1;
+            matrices.translate((float)i * 0.56f, -0.52f, -0.72f);
+            ci.cancel();
+        }
     }
 
     @Inject(

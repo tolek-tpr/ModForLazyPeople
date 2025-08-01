@@ -1,22 +1,21 @@
 package me.tolek.event;
 
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.render.RenderTickCounter;
+import net.minecraft.client.util.math.MatrixStack;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 
 public interface RenderListener extends Listener {
 
-    void onRender(DrawContext context, RenderTickCounter partialTicks);
+    void onRender(MatrixStack matrices, float tickDelta);
 
     public static class RenderEvent extends Event<RenderListener> {
-        private final DrawContext context;
-        private final RenderTickCounter partialTicks;
+        private final MatrixStack matrices;
+        private final float tickDelta;
 
-        public RenderEvent(DrawContext context, RenderTickCounter partialTicks) {
-            this.context = context;
-            this.partialTicks = partialTicks;
+        public RenderEvent(MatrixStack matrices, float tickDelta) {
+            this.matrices = matrices;
+            this.tickDelta = tickDelta;
         }
 
         @Override
@@ -24,7 +23,7 @@ public interface RenderListener extends Listener {
             GL11.glEnable(GL11.GL_LINE_SMOOTH);
 
             for(RenderListener listener : listeners)
-                listener.onRender(context, partialTicks);
+                listener.onRender(matrices, tickDelta);
 
             GL11.glDisable(GL11.GL_LINE_SMOOTH);
         }

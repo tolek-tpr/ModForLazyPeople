@@ -7,9 +7,7 @@ import me.tolek.ModForLazyPeople;
 import me.tolek.modules.macro.Macro;
 import me.tolek.modules.autoReply.AutoRepliesList;
 import me.tolek.modules.autoReply.AutoReply;
-import me.tolek.modules.settings.CustomMessagePerServerList;
-import me.tolek.modules.settings.CustomPlayerMessageList;
-import me.tolek.modules.settings.MflpSettingsList;
+import me.tolek.modules.settings.*;
 import me.tolek.util.InstancedValues;
 import me.tolek.util.Tuple;
 
@@ -81,6 +79,7 @@ public class MflpConfigManager {
         private String fileVersion;
         private ArrayList<ShortMacro> macros = new ArrayList<>();
         private MflpSettingsList settings;
+        private AnimationSettings animationSettings;
         private boolean shownWelcomeScreen;
         private ArrayList<AutoReply> autoReplies = new ArrayList<>();
         private ArrayList<Tuple<String, String>> customPlayerMessages = new ArrayList<>();
@@ -99,6 +98,7 @@ public class MflpConfigManager {
             this.fileVersion = fileVersion;
             this.customPlayerMessages = customPlayerMessages;
             this.customServerMessages = customServerMessages;
+            this.animationSettings = AnimationSettings.getInstance();
         }
 
         public ArrayList<ShortMacro> getShortMacros() {
@@ -106,6 +106,7 @@ public class MflpConfigManager {
         }
         public String getFileVersion() { return this.fileVersion; }
         public MflpSettingsList getSettings() { return this.settings; }
+        public AnimationSettings getAnimationSettings() { return this.animationSettings; }
         public ArrayList<AutoReply> getAutoReplies() { return this.autoReplies; }
         public boolean isShownWelcomeScreen() {
             return shownWelcomeScreen;
