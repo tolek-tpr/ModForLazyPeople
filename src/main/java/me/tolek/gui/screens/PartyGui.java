@@ -7,7 +7,7 @@ import io.github.cottonmc.cotton.gui.widget.icon.TextureIcon;
 import me.tolek.ModForLazyPeople;
 import me.tolek.gui.widgets.WPartyMember;
 import me.tolek.modules.party.Party;
-import me.tolek.network.depracated.PartyHandler;
+import me.tolek.network.PartyHandler;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;

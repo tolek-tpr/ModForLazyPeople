@@ -1,7 +1,5 @@
 package me.tolek.network;
 
-import me.tolek.network.depracated.IconHandler;
-import me.tolek.network.depracated.PartyHandler;
 import me.tolek.network.packet.S2C.StatusPlayerJoinedS2CPacket;
 import me.tolek.network.packet.S2C.StatusPlayerLeftS2CPacket;
 import me.tolek.network.packet.S2C.StatusReturnListS2CPacket;
@@ -25,7 +23,7 @@ public class ClientPacketListener implements PacketListener {
 
     // region Party Packet Handling
     public void onPartyError(PartyErrorS2CPacket packet) {
-        PartyHandler.handleError(packet.code);
+        PartyHandler.handleError(packet);
     }
 
     public void onPlayerAccept(PartyPlayerAcceptS2CPacket packet) {

@@ -1,6 +1,5 @@
-package me.tolek.network.depracated;
+package me.tolek.network;
 
-import me.tolek.event.EventImpl;
 import me.tolek.event.EventManager;
 import me.tolek.event.PartyListener;
 import me.tolek.gui.screens.FailedToConnectToMflpNetworkScreen;

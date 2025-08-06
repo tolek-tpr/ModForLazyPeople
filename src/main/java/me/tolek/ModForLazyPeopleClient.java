@@ -10,7 +10,7 @@ import me.tolek.modules.settings.executor.AutoWelcomeBackImpl;
 import me.tolek.modules.settings.executor.AutoWelcomeImpl;
 import me.tolek.modules.settings.executor.EasyMsgExecutor;
 import me.tolek.network.client.WebsocketHandler;
-import me.tolek.network.depracated.IconHandler;
+import me.tolek.network.IconHandler;
 import me.tolek.scheduler.MflpScheduler;
 import me.tolek.util.TickUtils;
 import net.fabricmc.api.ClientModInitializer;

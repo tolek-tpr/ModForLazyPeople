@@ -1,4 +1,4 @@
-package me.tolek.network.depracated;
+package me.tolek.network;
 
 import me.tolek.event.*;
 import me.tolek.network.client.WebsocketHandler;

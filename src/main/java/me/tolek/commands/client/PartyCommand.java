@@ -5,7 +5,7 @@ import com.mojang.brigadier.context.CommandContext;
 import me.tolek.gui.screens.PartyGui;
 import me.tolek.gui.screens.PartyGuiScreen;
 import me.tolek.modules.party.Party;
-import me.tolek.network.depracated.PartyHandler;
+import me.tolek.network.PartyHandler;
 import me.tolek.util.ScreenUtil;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
