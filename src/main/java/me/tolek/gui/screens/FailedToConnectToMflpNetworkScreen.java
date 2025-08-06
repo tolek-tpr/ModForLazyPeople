@@ -1,6 +1,6 @@
 package me.tolek.gui.screens;
 
-import me.tolek.network.WebSocketServerHandler;
+import me.tolek.network.client.WebsocketHandler;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.tooltip.Tooltip;
@@ -25,7 +25,7 @@ public class FailedToConnectToMflpNetworkScreen extends Screen {
         addDrawableChild(okayButton);
 
         ButtonWidget retryButton = ButtonWidget.builder(Text.translatable("mflp.reconnect"), (b) -> {
-                    WebSocketServerHandler.getInstance().reconnect();
+                    WebsocketHandler.getInstance().reconnect();
                     close();
                 })
                 .dimensions(width / 2 - buttonsWidth - padding, height / 2 + height / 8, buttonsWidth, buttonsHeight)

@@ -3,7 +3,7 @@ package me.tolek.mixin.client;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.tolek.modules.settings.MflpSettingsList;
-import me.tolek.network.WebSocketServerHandler;
+import me.tolek.network.depracated.IconHandler;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.PlayerListHud;
@@ -23,9 +23,9 @@ import java.util.ArrayList;
 @Mixin(PlayerListHud.class)
 public class PlayerListHudMixin {
 
-    @Unique
+    //@Unique
     //private final MflpPlayersWorker worker = MflpPlayersWorker.getInstance();
-    private final WebSocketServerHandler serverHandler = WebSocketServerHandler.getInstance();
+    //private final WebSocketServerHandler serverHandler = WebSocketServerHandler.getInstance();
     @Unique
     private final Identifier logo = Identifier.of("modforlazypeople", "mflp/user_logo");
     private final MflpSettingsList settingsList = MflpSettingsList.getInstance();
@@ -42,7 +42,7 @@ public class PlayerListHudMixin {
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.world == null || !settingsList.TAB_ICON_TOGGLE.getState()) return;
 
-        ArrayList<String> returnMessage = serverHandler.mflpUsers;
+        ArrayList<String> returnMessage = IconHandler.getInstance().mflpUsers;
 
         if (entry.getProfile() == null || entry.getProfile().getId() == null) return;
         if (returnMessage != null && returnMessage.contains(entry.getProfile().getName())) {

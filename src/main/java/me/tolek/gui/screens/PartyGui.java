@@ -7,7 +7,7 @@ import io.github.cottonmc.cotton.gui.widget.icon.TextureIcon;
 import me.tolek.ModForLazyPeople;
 import me.tolek.gui.widgets.WPartyMember;
 import me.tolek.modules.party.Party;
-import me.tolek.network.PartyNetworkHandler;
+import me.tolek.network.depracated.PartyHandler;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
@@ -25,15 +25,15 @@ public class PartyGui extends LightweightGuiDescription {
     private static final BiConsumer<String, WPartyMember> OWNER_MEMBER_CONFIGURATOR = (String s, WPartyMember partyMember) -> {
         partyMember.usernameLabel.setText(Text.literal(s));
         partyMember.setFace(s);
-        partyMember.promoteButton.setOnClick(() -> PartyNetworkHandler.promotePlayer(s));
-        partyMember.demoteButton.setOnClick(() -> PartyNetworkHandler.removeMember(s));
+        partyMember.promoteButton.setOnClick(() -> PartyHandler.promotePlayer(s));
+        partyMember.demoteButton.setOnClick(() -> PartyHandler.removeMember(s));
     };
 
     private static final BiConsumer<String, WPartyMember> OWNER_MODERATOR_CONFIGURATOR = (String s, WPartyMember partyMember) -> {
         partyMember.usernameLabel.setText(Text.literal(s));
         partyMember.setFace(s);
-        partyMember.promoteButton.setOnClick(() -> PartyNetworkHandler.promotePlayer(s));
-        partyMember.demoteButton.setOnClick(() -> PartyNetworkHandler.demotePlayer(s));
+        partyMember.promoteButton.setOnClick(() -> PartyHandler.promotePlayer(s));
+        partyMember.demoteButton.setOnClick(() -> PartyHandler.demotePlayer(s));
     };
 
     public PartyGui() {
@@ -51,7 +51,7 @@ public class PartyGui extends LightweightGuiDescription {
         root.add(inviteTextField, 0, isInParty ? 10 : 2, 6, 1);
 
         WButton inviteButton = new WButton(Text.translatable("mflp.party.screen.invite"));
-        inviteButton.setOnClick(() -> PartyNetworkHandler.invitePlayer(inviteTextField.getText()));
+        inviteButton.setOnClick(() -> PartyHandler.invitePlayer(inviteTextField.getText()));
         inviteButton.setEnabled(!isInParty || Party.isModeratorOrOwner());
         root.add(inviteButton, 7, isInParty ? 10 : 2, 3, 1);
 
@@ -87,7 +87,7 @@ public class PartyGui extends LightweightGuiDescription {
         root.add(closeButton, root.getWidth() / 2 / pixelsPerCell - (closeButtonWidth / 2), 12, closeButtonWidth, 1);
 
         WButton leaveButton = new WButton(new TextureIcon(Objects.requireNonNull(Identifier.of(ModForLazyPeople.MOD_ID, "textures/gui/sprites/leave.png"))));
-        leaveButton.setOnClick(PartyNetworkHandler::leaveParty);
+        leaveButton.setOnClick(PartyHandler::leaveParty);
         //leaveButton.addTooltip(new TooltipBuilder().add(Text.translatable("mflp.party.screen.leave.tooltip")));
         root.add(leaveButton, root.getWidth() / pixelsPerCell, 1, 1, 1);
 

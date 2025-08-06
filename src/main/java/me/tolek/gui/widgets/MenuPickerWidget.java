@@ -3,7 +3,6 @@ package me.tolek.gui.widgets;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.tolek.ModForLazyPeople;
 import me.tolek.gui.screens.*;
-import me.tolek.network.WebSocketServerHandler;
 import me.tolek.util.InstancedValues;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

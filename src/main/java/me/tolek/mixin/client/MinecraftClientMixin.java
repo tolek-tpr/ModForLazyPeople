@@ -1,6 +1,7 @@
 package me.tolek.mixin.client;
 
 import me.tolek.event.EventManager;
+import me.tolek.event.UpdateListener;
 import me.tolek.events.WorldLoadHandler;
 import me.tolek.util.TickUtils;
 import net.minecraft.client.MinecraftClient;
@@ -33,9 +34,13 @@ public class MinecraftClientMixin {
         EventManager.getInstance().fire(UpdateEvent.INSTANCE);
     }
 
+    @Inject(at = @At("RETURN"), method = "tick")
+    private void onEndTick(CallbackInfo ci) {
+        EventManager.getInstance().fire(new UpdateListener.EndTickEvent());
+    }
+
     @Inject(at = @At("HEAD"), method = "scheduleStop")
     private void scheduleStop(CallbackInfo ci) {
-        MinecraftClient client = MinecraftClient.getInstance();
         MinecraftQuitEvent event = new MinecraftQuitEvent();
         EventManager.getInstance().fire(event);
     }

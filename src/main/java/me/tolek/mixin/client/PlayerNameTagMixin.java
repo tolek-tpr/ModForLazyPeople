@@ -2,7 +2,7 @@ package me.tolek.mixin.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.tolek.modules.settings.MflpSettingsList;
-import me.tolek.network.WebSocketServerHandler;
+import me.tolek.network.depracated.IconHandler;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gl.ShaderProgramKeys;
@@ -26,8 +26,6 @@ import java.util.ArrayList;
 public class PlayerNameTagMixin {
 
     @Unique
-    private final WebSocketServerHandler serverHandler = WebSocketServerHandler.getInstance();
-    @Unique
     private final Identifier logo = Identifier.of("modforlazypeople", "textures/gui/sprites/mflp/user_logo.png");
     @Unique
     private final MinecraftClient client = MinecraftClient.getInstance();
@@ -38,8 +36,8 @@ public class PlayerNameTagMixin {
 
     @Inject(method = "renderLabelIfPresent", at = @At(value = "INVOKE", target="Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/text/Text;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/client/font/TextRenderer$TextLayerType;II)I"))
     private void drawLogo(@Coerce Object entity, Text text, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
-        if (this.serverHandler == null || !settingsList.NAMETAG_ICON_TOGGLE.getState()) return;
-        ArrayList<String> returnMessage = serverHandler.mflpUsers;
+        if (!settingsList.NAMETAG_ICON_TOGGLE.getState()) return;
+        ArrayList<String> returnMessage = IconHandler.getInstance().mflpUsers;
 
         if (!(entity instanceof PlayerEntity e)) return;
 
@@ -64,7 +62,6 @@ public class PlayerNameTagMixin {
                 RenderSystem.enableBlend();
                 Matrix4f matrix4f = matrices.peek().getPositionMatrix();
                 BufferBuilder bufferBuilder = Tessellator.getInstance().begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
-                //bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
 
                 bufferBuilder.vertex(matrix4f, x1, y1, z).texture(u1, v1);
                 bufferBuilder.vertex(matrix4f, x1, y2, z).texture(u1, v2);
@@ -72,7 +69,6 @@ public class PlayerNameTagMixin {
                 bufferBuilder.vertex(matrix4f, x2, y1, z).texture(u2, v1);
                 BufferRenderer.drawWithGlobalProgram(bufferBuilder.end());
                 RenderSystem.disableBlend();
-
             }
         }
     }

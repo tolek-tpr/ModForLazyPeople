@@ -1,8 +1,8 @@
 package me.tolek.modules.settings.executor;
 
 import me.tolek.event.*;
-import me.tolek.interfaces.IScheduler;
 import me.tolek.modules.settings.*;
+import me.tolek.scheduler.MflpScheduler;
 import me.tolek.util.InstancedValues;
 import me.tolek.util.MflpUtil;
 import me.tolek.util.RegexUtil;
@@ -13,6 +13,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.client.network.ServerInfo;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, UpdateListener {
@@ -93,7 +94,7 @@ public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, Upda
                 if (joined || unAfk) {
                     if (!MflpUtil.isFakeMessage(message)) {
                         if (iv.timeSinceLastInputMillis / 1000 < 30 && !iv.isAfk) {
-                            ((IScheduler) client).scheduleNonRepeating(settingsList.WB_DELAY.getState(), (b) -> {
+                            MflpScheduler.getInstance().scheduleDelayedTask(Identifier.of("mflp", "wb_delay"), () -> {
                                 if (validateRankWhitelist(message, client, settingsList)) {
                                     setting.lastName = message.getString().contains("is no longer AFK.") ?
                                             message.getString().split(" ")[1] : message.getString().split(" ")[0];
@@ -105,8 +106,7 @@ public class AutoWelcomeBackImpl extends EventImpl implements ChatListener, Upda
                                         if (!isBlacklisted(message.getString())) setting.refresh(message);
                                     }
                                 }
-                            });
-
+                            }, settingsList.WB_DELAY.getState());
                         }
                     }
                 }

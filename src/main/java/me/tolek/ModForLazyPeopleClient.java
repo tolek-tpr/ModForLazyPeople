@@ -9,19 +9,17 @@ import me.tolek.modules.autoReply.AutoReplyExecutor;
 import me.tolek.modules.settings.executor.AutoWelcomeBackImpl;
 import me.tolek.modules.settings.executor.AutoWelcomeImpl;
 import me.tolek.modules.settings.executor.EasyMsgExecutor;
-import me.tolek.network.IconNetworkHandler;
-import me.tolek.network.PartyNetworkHandler;
-import me.tolek.network.WebSocketServerHandler;
+import me.tolek.network.client.WebsocketHandler;
+import me.tolek.network.depracated.IconHandler;
+import me.tolek.scheduler.MflpScheduler;
 import me.tolek.util.TickUtils;
 import net.fabricmc.api.ClientModInitializer;
-import net.minecraft.client.MinecraftClient;
 
 import java.util.ArrayList;
 
 public class ModForLazyPeopleClient implements ClientModInitializer {
 
     private final ArrayList<EventImpl> events = new ArrayList<>();
-    private final WebSocketServerHandler server = WebSocketServerHandler.getInstance(); // PRE-LOAD for key gen
 
     @Override
     public void onInitializeClient() {
@@ -32,17 +30,19 @@ public class ModForLazyPeopleClient implements ClientModInitializer {
         events.add(new AutoWelcomeBackImpl());
         events.add(new AutoWelcomeImpl());
         events.add(new AutoReplyExecutor());
-        events.add(new PartyEvents());
-        events.add(IconNetworkHandler.getInstance());
-        events.add(new PartyNetworkHandler());
+        //events.add(new PartyEvents());
+        events.add(IconHandler.getInstance());
+        //events.add(new PartyNetworkHandler());
         events.add(EasyMsgExecutor.getInstance());
         events.add(new HotkeyExecutorImpl());
+        events.add(MflpScheduler.getInstance());
 
         events.forEach(e -> e.setEnabled(true));
 
         IWorldLoadListener worldLoadListener = new WorldLoadListener();
         WorldLoadHandler.getInstance().registerWorldLoadPreHandler(worldLoadListener);
         WorldLoadHandler.getInstance().registerWorldLoadPostHandler(worldLoadListener);
+        WebsocketHandler.getInstance();
 
         TickUtils.getInstance().registerClientTickHandler(new ClientTickHandler());
     }

@@ -16,7 +16,6 @@
     "client.InGameHudMixin",
     "client.KeyboardMixin",
     "client.MainMenuMixin",
-    "client.MflpClientScheduler",
     "client.MinecraftClientMixin",
     "client.PauseScreenMixin",
     "client.PlayerListHudMixin",

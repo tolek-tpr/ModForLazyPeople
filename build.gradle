@@ -36,6 +36,9 @@ dependencies {
 
 	include(implementation "javax.websocket:javax.websocket-api:${project.javax_websocket_version}")
 	include(implementation "org.glassfish.tyrus.bundles:tyrus-standalone-client:${project.tyrus_version}") // Tyrus dependency
+    // Compat reasons this is stupid
+    implementation("org.glassfish.tyrus:tyrus-server:2.0.0")
+    implementation("org.glassfish.tyrus:tyrus-container-grizzly-server:2.0.0")
 
 	modImplementation include("io.github.cottonmc:LibGui:${project.libgui_version}")
 }

@@ -5,7 +5,7 @@ import com.mojang.brigadier.context.CommandContext;
 import me.tolek.gui.screens.PartyGui;
 import me.tolek.gui.screens.PartyGuiScreen;
 import me.tolek.modules.party.Party;
-import me.tolek.network.PartyNetworkHandler;
+import me.tolek.network.depracated.PartyHandler;
 import me.tolek.util.ScreenUtil;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -29,21 +29,21 @@ public class PartyCommand implements ClientModInitializer {
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.invitingPlayer", player));
-                                PartyNetworkHandler.invitePlayer(player);
+                                PartyHandler.invitePlayer(player);
                                 return 1;
                             })))
 
                     .then(literal("accept")
                             .executes(context -> {
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.acceptingInvite"));
-                                PartyNetworkHandler.acceptInvite();
+                                PartyHandler.acceptInvite();
                                 return 1;
                             }))
 
                     .then(literal("decline")
                             .executes(context -> {
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.decliningInvite"));
-                                PartyNetworkHandler.declineInvite();
+                                PartyHandler.declineInvite();
                                 return 1;
                             }))
 
@@ -54,7 +54,7 @@ public class PartyCommand implements ClientModInitializer {
                             .executes(context -> {
                                 if (Party.isInParty()) {
                                     context.getSource().sendFeedback(Text.translatable("mflp.party.leavingParty"));
-                                    PartyNetworkHandler.leaveParty();
+                                    PartyHandler.leaveParty();
                                 } else {
                                     context.getSource().sendFeedback(Text.literal("You are not in a party!").formatted(Formatting.RED));
                                 }
@@ -91,7 +91,7 @@ public class PartyCommand implements ClientModInitializer {
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.removingPlayer", player));
-                                PartyNetworkHandler.removeMember(player);
+                                PartyHandler.removeMember(player);
                                 return 1;
                             })))
 
@@ -99,7 +99,7 @@ public class PartyCommand implements ClientModInitializer {
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.promotingPlayer", player));
-                                PartyNetworkHandler.promotePlayer(player);
+                                PartyHandler.promotePlayer(player);
                                 return 1;
                             })))
 
@@ -107,7 +107,7 @@ public class PartyCommand implements ClientModInitializer {
                             .executes(context -> {
                                 String player = StringArgumentType.getString(context, "player");
                                 context.getSource().sendFeedback(Text.translatable("mflp.party.demotingPlayer", player));
-                                PartyNetworkHandler.demotePlayer(player);
+                                PartyHandler.demotePlayer(player);
                                 return 1;
                             })))
 
@@ -124,7 +124,7 @@ public class PartyCommand implements ClientModInitializer {
 
     private static int chat(CommandContext<FabricClientCommandSource> context) {
         String message = StringArgumentType.getString(context, "message");
-        PartyNetworkHandler.send(message);
+        PartyHandler.send(message);
         return 1;
     }
 
