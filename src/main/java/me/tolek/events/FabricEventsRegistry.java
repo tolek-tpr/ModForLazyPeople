@@ -34,12 +34,11 @@ public class FabricEventsRegistry implements ClientModInitializer {
             iv.pauseWelcomeBack = false;
             iv.isAfk = false;
         });*/
+
+        // TODO: this is deprecated
         HudRenderCallback.EVENT.register((context, tickDelta) -> { EventManager.getInstance().fire(new HudRenderListener.HudRenderEvent(context, tickDelta)); });
         ClientSendMessageEvents.ALLOW_CHAT.register((msg) -> !(settingsList.AUTO_WELCOME_BACK.getState() && settingsList.AUTO_IGNORE_WB_MESSAGES.getState() && iv.timeSinceLastWbMillis < settingsList.AUTO_IGNORE_WB_MESSAGES_DURATION.getState() * 1000 && msg.contains("wb")));
-        WorldRenderEvents.BLOCK_OUTLINE.register((ctx, blockOutlineContext) -> {
-
-            return false;
-        });
+        WorldRenderEvents.BLOCK_OUTLINE.register((ctx, blockOutlineContext) -> false);
     }
 
 }
