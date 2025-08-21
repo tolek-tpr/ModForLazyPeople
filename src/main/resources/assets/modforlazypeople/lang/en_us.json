@@ -132,22 +132,10 @@
   "mflp.setting.serverDisconnectionAction.toast": "Toast",
   "mflp.setting.serverDisconnectionAction.screen": "Screen",
 
-  "mflp.setting.freeCamEnabled.name": "Free Cam",
-  "mflp.setting.freeCamEnabled.tooltip": "Activates a kind of spectator mode.",
-
-  "mflp.setting.freeCamInputMode.name": "Free Cam Input Mode",
-  "mflp.setting.freeCamInputMode.tooltip": "Whether clicks go to the player or the camera",
-
-  "mflp.setting.freeCamMovementMode.name": "Free Cam Movement Mode",
-  "mflp.setting.freeCamMovementMode.tooltip": "Whether WASD moves the player or the camera",
-
-  "mflp.setting.freeCamMovementSpeed.name": "Free Cam Movement Speed",
-  "mflp.setting.freeCamMovementSpeed.tooltip": "The speed of which the Free Cam camera moves.",
-
-  "mflp.setting.freeCamWalkingMode.name": "Free Cam Walk Mode",
-  "mflp.setting.freeCamWalkingMode.tooltip": "Whether or not you walk on blocks or not (only blocks below you)",
+  "mflp.setting.freeCamWalkingMode.name": "Free Cam Collision Mode",
+  "mflp.setting.freeCamWalkingMode.tooltip": "Whether or not you walk on blocks or not (only blocks below you), requires Tweakeroo.",
   "mflp.setting.freeCamWalkingMode.noClip": "No Clip",
-  "mflp.setting.freeCamWalkingMode.walk": "Walk",
+  "mflp.setting.freeCamWalkingMode.walk": "Ground Collision",
 
   "mflp.setting.postProcessor.name": "Shader",
   "mflp.setting.postProcessor.tooltip": "Adds back the \"Super Secret Settings\" which you can toggle in here (even includes enderman, spider and creeper shaders)",

@@ -45,6 +45,7 @@
 		"fabric-api": "*"
 	},
 	"suggests": {
-		"modmenu": "Mod Menu"
+		"modmenu": "Mod Menu",
+        "tweakeroo": "Tweakeroo"
 	}
 }

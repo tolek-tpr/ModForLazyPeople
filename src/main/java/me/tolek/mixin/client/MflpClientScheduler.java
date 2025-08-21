@@ -16,7 +16,7 @@ import java.util.function.Consumer;
 public class MflpClientScheduler implements IScheduler {
 
     // THIS CODE IS FAULTY, WHEN USING IT WITH SOMETHING THAT USES THREADS LIKE HTTP REQUESTS IT WILL LAG THE GAME!!!!
-    // FIX ME
+    // TODO: FIX ME
 
     @Unique
     private Map<UUID, MflpScheduler> schedulers = new HashMap<>();

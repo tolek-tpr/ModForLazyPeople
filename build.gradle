@@ -38,6 +38,8 @@ dependencies {
 	include(implementation "org.glassfish.tyrus.bundles:tyrus-standalone-client:${project.tyrus_version}") // Tyrus dependency
 
 	modImplementation include("io.github.cottonmc:LibGui:${project.libgui_version}")
+
+    modCompileOnly files("libs/tweakeroo-fabric-1.21.4-0.23.4.jar") // Tweakeroo dependency
 }
 
 loom {
