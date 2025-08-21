@@ -31,6 +31,10 @@ public class ChangelogsScreen extends Screen {
         slw = new ScrollableListWidget(this.client, width, height - 84, 44, 22);
 
         // -- CHANGELOGS START -- \\
+        addVersion("v3.0.4 - THE BEAR YOU NAME THIS UPDATE PLEASE UPDATE",
+                "PORTED: Ported ModForLazyPeople for version 1.21.4 by @BeefyAndTheDucks and @tolek-tpr",
+                "REMOVED: MFLP Cam",
+                "ADDED: Tweakeroo free cam compatibility (old MFLP Cam functionalities now work on Tweakeroo free cam");
 
         addVersion("v3.0.3 - THE MINECRAFT UPDATE",
                 "PORTED: Ported ModForLazyPeople for minecraft versions: 1.21.3 and 1.21.4 by @BeefyAndTheDucks and @tolek-tpr",
