@@ -40,6 +40,11 @@ public class MflpSettingsList {
     public ComparatorUpdateSetting COMPARATOR_UPDATE_VIEW = new ComparatorUpdateSetting();
     public ObserverUpdateSetting OBSERVER_UPDATE_VIEW = new ObserverUpdateSetting();
     public RailUpdateSetting RAILS_UPDATE_VIEW = new RailUpdateSetting();
+
+    public AnimationSetting ANIMATION_SETTINGS = new AnimationSetting();
+    public CustomBlockOutline CUSTOM_BLOCK_OUTLINE = new CustomBlockOutline();
+    public CustomBlockOutlineColor CUSTOM_BLOCK_OUTLINE_COLOR = new CustomBlockOutlineColor();
+
     public FreeCamWalkingMode FREE_CAM_WALKING_MODE = new FreeCamWalkingMode();
     public PostProcessorSetting POST_PROCESSOR = new PostProcessorSetting();
 
@@ -95,10 +100,14 @@ public class MflpSettingsList {
         settings.add(OBSERVER_UPDATE_VIEW);
         settings.add(RAILS_UPDATE_VIEW);
 
+        settings.add(ANIMATION_SETTINGS);
+        settings.add(CUSTOM_BLOCK_OUTLINE);
+
         settings.add(FREE_CAM_WALKING_MODE);
         settings.add(POST_PROCESSOR);
 
         // Colors
+        settings.add(CUSTOM_BLOCK_OUTLINE_COLOR);
         settings.add(DUST_UPDATE_COLOR);
         settings.add(REPEATER_UPDATE_COLOR);
         settings.add(COMPARATOR_UPDATE_COLOR);

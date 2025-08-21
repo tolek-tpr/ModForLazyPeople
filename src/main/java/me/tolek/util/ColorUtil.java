@@ -1,5 +1,7 @@
 package me.tolek.util;
 
+import java.awt.*;
+
 public class ColorUtil {
 
     public static int argbToInt(int a, int r, int g, int b) {
@@ -15,6 +17,10 @@ public class ColorUtil {
         int dec = Integer.parseInt(hexInput, 16);
         int maxVal = (int) Math.pow(16, hexInput.length()) - 1;
         return dec / (double) maxVal;
+    }
+
+    public static int hex2Dec(String hex) {
+        return Integer.parseInt(hex, 16);
     }
 
     public static int floatToInt255(float value) {
@@ -33,6 +39,27 @@ public class ColorUtil {
 
         // Combine the components into a single integer in RGBA order
         return (r << 24) | (g << 16) | (b << 8) | a;
+    }
+
+    public static String[] getChromaARGB() {
+        long time = System.currentTimeMillis();
+
+        float hue = (time % 2000L) / 2000f;
+
+        int rgb = Color.HSBtoRGB(hue, 1.0f, 1.0f);
+
+        // Extract RGB components
+        int r = (rgb >> 16) & 0xFF;
+        int g = (rgb >> 8) & 0xFF;
+        int b = rgb & 0xFF;
+        int a = 255; // fully opaque
+
+        return new String[] {
+                String.format("%02X", a),
+                String.format("%02X", r),
+                String.format("%02X", g),
+                String.format("%02X", b)
+        };
     }
 
 }

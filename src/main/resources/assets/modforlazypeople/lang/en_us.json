@@ -112,19 +112,28 @@
   "mflp.setting.railUpdates.tooltip": "Shows the update range of the powered rail or activator rail you are looking at.",
 
   "mflp.setting.dustUpdateColor.name": "Dust update color",
-  "mflp.setting.dustUpdateColor.tooltip": "What color the boxes indicating the update radius of a dust are. Format is Hexadecimal, AARRGGBB (ARGB)",
+  "mflp.setting.dustUpdateColor.tooltip": "What color the boxes indicating the update radius of a dust are. Format is Hexadecimal, AARRGGBB (ARGB). Type \"chroma\" for chroma",
 
   "mflp.setting.repeaterUpdateColor.name": "Repeater update color",
-  "mflp.setting.repeaterUpdateColor.tooltip": "What color the boxes indicating the update radius of a repeater are. Format is Hexadecimal, AARRGGBB (ARGB)",
+  "mflp.setting.repeaterUpdateColor.tooltip": "What color the boxes indicating the update radius of a repeater are. Format is Hexadecimal, AARRGGBB (ARGB). Type \"chroma\" for chroma",
 
   "mflp.setting.comparatorUpdateColor.name": "Comparator update color",
-  "mflp.setting.comparatorUpdateColor.tooltip": "What color the boxes indicating the update radius of a comparator are. Format is Hexadecimal, AARRGGBB (ARGB)",
+  "mflp.setting.comparatorUpdateColor.tooltip": "What color the boxes indicating the update radius of a comparator are. Format is Hexadecimal, AARRGGBB (ARGB). Type \"chroma\" for chroma",
 
   "mflp.setting.observerUpdateColor.name": "Observer update color",
-  "mflp.setting.observerUpdateColor.tooltip": "What color the boxes indicating the update radius of a observer are. Format is Hexadecimal, AARRGGBB (ARGB)",
+  "mflp.setting.observerUpdateColor.tooltip": "What color the boxes indicating the update radius of a observer are. Format is Hexadecimal, AARRGGBB (ARGB). Type \"chroma\" for chroma",
 
   "mflp.setting.railUpdateColor.name": "Rails update color",
-  "mflp.setting.railUpdateColor.tooltip": "What color the boxes indicating the update radius of a rail are. Format is Hexadecimal, AARRGGBB (ARGB)",
+  "mflp.setting.railUpdateColor.tooltip": "What color the boxes indicating the update radius of a rail are. Format is Hexadecimal, AARRGGBB (ARGB). Type \"chroma\" for chroma",
+
+  "mflp.setting.customAnimations.name": "Custom Animations",
+  "mflp.setting.customAnimations.tooltip": "Allows you to change the positions, length, size and rotation of certain animations.",
+
+  "mflp.setting.customBlockOutline.name": "Custom Block Outline",
+  "mflp.setting.customBlockOutline.tooltip": "Makes the normal block outline render through blocks",
+
+  "mflp.setting.customBlockOutlineColor.name": "Custom Block Outline Color",
+  "mflp.setting.customBlockOutlineColor.tooltip": "Changes the color of the custom block outline. Type \"chroma\" for chroma",
 
   "mflp.setting.serverDisconnectionAction.name": "Disconnection Action",
   "mflp.setting.serverDisconnectionAction.tooltip": "What MFLP should do whenever you get disconnected from the MFLP network.",
@@ -286,5 +295,18 @@
   "mflp.changelogsScreen.title": "Changelogs",
   "mflp.nonMflpUserScreen.name": "Non MFLP User",
   "mflp.nonMflpUserScreen.title": "You tried to invite %s but they don't have MFLP installed. Would you like to message them about MFLP?",
-  "mflp.nonMflpUserScreen.messagePreview": "Below is the message that will be sent to them."
+  "mflp.nonMflpUserScreen.messagePreview": "Below is the message that will be sent to them.",
+
+  "mflp.screen.animations.name": "Animations",
+
+  "mflp.animations.posX": "Pos X",
+  "mflp.animations.posY": "Pos Y",
+  "mflp.animations.posZ": "Pos Z",
+  "mflp.animations.rotX": "Pitch",
+  "mflp.animations.rotY": "Yaw",
+  "mflp.animations.rotZ": "Roll",
+  "mflp.animations.scale": "Scale",
+  "mflp.animations.swingSpeed": "Swing Speed",
+  "mflp.animations.reequip": "Cancel Reequip Animation"
+
 }

@@ -36,6 +36,7 @@ public class ModForLazyPeopleClient implements ClientModInitializer {
         events.add(new PartyNetworkHandler());
         events.add(EasyMsgExecutor.getInstance());
         events.add(new HotkeyExecutorImpl());
+        events.add(new BlockOverlayRenderer());
 
         events.forEach(e -> e.setEnabled(true));
     }

@@ -33,7 +33,7 @@ public class MenuPickerWidget extends ContainerWidget {
     private static final Identifier DISCONNECTED_ICON = Identifier.of(ModForLazyPeople.MOD_ID, "cross");
 
     public MenuPickerWidget(int x, int y, MinecraftClient client) {
-        super(x, y, 400, 20, Text.literal("test"));
+        super(x, y, 400, client.currentScreen.height, Text.literal("test"));
 
         Screen screen = client.currentScreen;
 
@@ -112,7 +112,6 @@ public class MenuPickerWidget extends ContainerWidget {
 
     @Override
     protected int getContentsHeightWithPadding() {
-        System.out.println(this.getHeight());
         return this.getHeight();
     }
 
