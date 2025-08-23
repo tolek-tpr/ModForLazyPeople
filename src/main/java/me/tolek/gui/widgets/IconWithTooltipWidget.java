@@ -5,21 +5,19 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.screen.ButtonTextures;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextIconButtonWidget;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.ColorHelper;
 import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
 public class IconWithTooltipWidget extends TextIconButtonWidget.IconOnly {
 
-    private static final ButtonTextures TEXTURES = new ButtonTextures(
+    /*private static final ButtonTextures TEXTURES = new ButtonTextures(
             Identifier.ofVanilla("widget/button"), Identifier.ofVanilla("widget/button_disabled"), Identifier.ofVanilla("widget/button_highlighted")
-    );
+    );*/
 
     private Identifier modifiableTexture;
 
@@ -31,7 +29,7 @@ public class IconWithTooltipWidget extends TextIconButtonWidget.IconOnly {
     @Override
     public void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
-        context.drawGuiTexture(
+        /*context.drawGuiTexture(
                 RenderLayer::getGuiTextured,
                 TEXTURES.get(this.active, this.isSelected()),
                 this.getX(),
@@ -39,7 +37,7 @@ public class IconWithTooltipWidget extends TextIconButtonWidget.IconOnly {
                 this.getWidth(),
                 this.getHeight(),
                 ColorHelper.getWhite(this.alpha)
-        );
+        );*/
         int i = this.active ? 16777215 : 10526880;
         this.drawMessage(context, minecraftClient.textRenderer, i | MathHelper.ceil(this.alpha * 255.0F) << 24);
         int ii = this.getX() + this.getWidth() / 2 - this.textureWidth / 2;
