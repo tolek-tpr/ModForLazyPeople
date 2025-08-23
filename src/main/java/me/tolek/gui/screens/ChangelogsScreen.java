@@ -33,8 +33,10 @@ public class ChangelogsScreen extends Screen {
         // -- CHANGELOGS START -- \\
         addVersion("v3.0.4 - THE BEAR YOU NAME THIS UPDATE PLEASE UPDATE",
                 "PORTED: Ported ModForLazyPeople for version 1.21.4 by @BeefyAndTheDucks and @tolek-tpr",
-                "REMOVED: MFLP Cam",
-                "ADDED: Tweakeroo free cam compatibility (old MFLP Cam functionalities now work on Tweakeroo free cam");
+                "ADDED: Tweakeroo free cam compatibility (old MFLP Cam functionalities now work on Tweakeroo free cam",
+                "ADDED: Warning when trying to join a server where you have modules enabled that are against its rules",
+                "FIXED: Some icons having button background instead of no background",
+                "REMOVED: MFLP Cam");
 
         addVersion("v3.0.3 - THE MINECRAFT UPDATE",
                 "PORTED: Ported ModForLazyPeople for minecraft versions: 1.21.3 and 1.21.4 by @BeefyAndTheDucks and @tolek-tpr",
