@@ -4,18 +4,13 @@
   "package": "me.tolek.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "client.EntityMixin",
     "client.LivingEntityMixin"
   ],
   "client": [
-    "client.AbstractClientPlayerEntityMixin",
+    "client.AbstractEntityMixin",
     "client.ChatHudMixin",
-    "client.ClientPlayerEntityMixin",
-    "client.ClientPlayerInteractionManagerMixin",
-    "client.ClientPlayNetworkHandlerMixin",
     "client.GameRendererMixin",
     "client.HeldItemRendererMixin",
-    "client.InGameHudMixin",
     "client.KeyboardMixin",
     "client.MainMenuMixin",
     "client.MflpClientScheduler",
@@ -24,10 +19,9 @@
     "client.PlayerListHudMixin",
     "client.PlayerNameTagMixin",
     "client.RedstoneComponentUpdateRenderer",
-    "client.WorldRendererMixin",
-    "client.WorldRendererSetupTerrainMixin"
+
+    "client.Tweakeroo_CameraEntityMixin"
   ],
-  "mixinPriority": 991,
   "injectors": {
     "defaultRequire": 1
   },

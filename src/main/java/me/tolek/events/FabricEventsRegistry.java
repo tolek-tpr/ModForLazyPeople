@@ -24,6 +24,7 @@ public class FabricEventsRegistry implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        // TODO: remove?
         /*ClientLoginConnectionEvents.INIT.register((i, j) -> {
             iv.pauseWelcomeBack = true;
             // bad idea but w/e
@@ -47,13 +48,10 @@ public class FabricEventsRegistry implements ClientModInitializer {
             }
 
         });
-
+        // TODO: this is deprecated
         HudRenderCallback.EVENT.register((context, tickDelta) -> { EventManager.getInstance().fire(new HudRenderListener.HudRenderEvent(context, tickDelta)); });
-        ClientSendMessageEvents.ALLOW_CHAT.register((msg) -> !(settingsList.AUTO_WELCOME_BACK.getState() && settingsList.AUTO_IGNORE_WB_MESSAGES.getState() && iv.timeSinceLastWbMillis < settingsList.AUTO_IGNORE_WB_MESSAGES_DURATION.getState() * 1000L && msg.contains("wb")));
-        WorldRenderEvents.BLOCK_OUTLINE.register((ctx, blockOutlineContext) -> {
-
-            return false;
-        });
+        ClientSendMessageEvents.ALLOW_CHAT.register((msg) -> !(settingsList.AUTO_WELCOME_BACK.getState() && settingsList.AUTO_IGNORE_WB_MESSAGES.getState() && iv.timeSinceLastWbMillis < settingsList.AUTO_IGNORE_WB_MESSAGES_DURATION.getState() * 1000 && msg.contains("wb")));
+        WorldRenderEvents.BLOCK_OUTLINE.register((ctx, blockOutlineContext) -> false);
     }
 
 }

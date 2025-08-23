@@ -22,10 +22,11 @@ public class ModForLazyPeopleMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        // Check for Sodium
-        boolean isSodiumLoaded = MiscUtils.isModLoaded("sodium");
-        if (mixinClassName.equals("me.tolek.mixin.client.WorldRendererSetupTerrainMixin")) {
-            return !isSodiumLoaded;
+        boolean isTweakerooLoaded = MiscUtils.isModLoaded("tweakeroo");
+
+        // TODO: this is hella messy, but it works for now
+        if (mixinClassName.equals("me.tolek.mixin.client.Tweakeroo_CameraEntityMixin")) {
+            return isTweakerooLoaded; // Only apply if tweakeroo is loaded
         }
         return true; // Apply other mixins
     }

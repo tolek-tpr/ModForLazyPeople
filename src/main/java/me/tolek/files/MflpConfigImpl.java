@@ -134,10 +134,6 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
                     settings.CUSTOM_BLOCK_OUTLINE = loadedData.getSettings().CUSTOM_BLOCK_OUTLINE;
                     settings.CUSTOM_BLOCK_OUTLINE_COLOR = loadedData.getSettings().CUSTOM_BLOCK_OUTLINE_COLOR;
 
-                    settings.FREE_CAM_ENABLED = loadedData.getSettings().FREE_CAM_ENABLED;
-                    settings.FREE_CAM_INPUT_MODE = loadedData.getSettings().FREE_CAM_INPUT_MODE;
-                    settings.FREE_CAM_MOVEMENT_MODE = loadedData.getSettings().FREE_CAM_MOVEMENT_MODE;
-                    settings.FREE_CAM_MOVEMENT_SPEED = loadedData.getSettings().FREE_CAM_MOVEMENT_SPEED;
                     settings.FREE_CAM_WALKING_MODE = loadedData.getSettings().FREE_CAM_WALKING_MODE;
                     settings.POST_PROCESSOR = loadedData.getSettings().POST_PROCESSOR;
 
@@ -147,9 +143,6 @@ public class MflpConfigImpl extends EventImpl implements MinecraftQuitListener, 
                     settings.COMPARATOR_UPDATE_COLOR = loadedData.getSettings().COMPARATOR_UPDATE_COLOR;
                     settings.OBSERVER_UPDATE_COLOR = loadedData.getSettings().OBSERVER_UPDATE_COLOR;
                     settings.RAILS_UPDATE_COLOR = loadedData.getSettings().RAILS_UPDATE_COLOR;
-
-                    // Disable free cam so we don't spawn in free cam
-                    settings.FREE_CAM_ENABLED.setState(false);
 
                     // Disable the shader
                     settings.POST_PROCESSOR.setState(0);

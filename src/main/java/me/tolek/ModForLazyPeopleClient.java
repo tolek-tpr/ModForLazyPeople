@@ -3,7 +3,6 @@ package me.tolek;
 import me.tolek.event.EventImpl;
 import me.tolek.events.*;
 import me.tolek.input.HotkeyExecutorImpl;
-import me.tolek.interfaces.IWorldLoadListener;
 import me.tolek.modules.macro.MacroExecutor;
 import me.tolek.modules.autoReply.AutoReplyExecutor;
 import me.tolek.modules.settings.executor.AutoWelcomeBackImpl;
@@ -12,15 +11,15 @@ import me.tolek.modules.settings.executor.EasyMsgExecutor;
 import me.tolek.network.IconNetworkHandler;
 import me.tolek.network.PartyNetworkHandler;
 import me.tolek.network.WebSocketServerHandler;
-import me.tolek.util.TickUtils;
 import net.fabricmc.api.ClientModInitializer;
-import net.minecraft.client.MinecraftClient;
 
 import java.util.ArrayList;
 
 public class ModForLazyPeopleClient implements ClientModInitializer {
 
     private final ArrayList<EventImpl> events = new ArrayList<>();
+
+    @SuppressWarnings("unused")
     private final WebSocketServerHandler server = WebSocketServerHandler.getInstance(); // PRE-LOAD for key gen
 
     @Override
@@ -40,11 +39,5 @@ public class ModForLazyPeopleClient implements ClientModInitializer {
         events.add(new BlockOverlayRenderer());
 
         events.forEach(e -> e.setEnabled(true));
-
-        IWorldLoadListener worldLoadListener = new WorldLoadListener();
-        WorldLoadHandler.getInstance().registerWorldLoadPreHandler(worldLoadListener);
-        WorldLoadHandler.getInstance().registerWorldLoadPostHandler(worldLoadListener);
-
-        TickUtils.getInstance().registerClientTickHandler(new ClientTickHandler());
     }
 }

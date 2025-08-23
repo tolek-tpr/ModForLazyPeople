@@ -1,6 +1,7 @@
 package me.tolek.modules.settings;
 
 import me.tolek.modules.settings.base.ListSetting;
+import me.tolek.util.MiscUtils;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,11 @@ public class FreeCamWalkingMode extends ListSetting {
         this.setList(new ArrayList<>());
         this.addOption("mflp.setting.freeCamWalkingMode.noClip");
         this.addOption("mflp.setting.freeCamWalkingMode.walk");
+
+        boolean tweakerooLoaded = MiscUtils.isModLoaded("tweakeroo");
+
+        renderHotkey = tweakerooLoaded;
+        render = tweakerooLoaded;
     }
 
     @Override
