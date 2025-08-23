@@ -307,6 +307,12 @@
   "mflp.animations.rotZ": "Roll",
   "mflp.animations.scale": "Scale",
   "mflp.animations.swingSpeed": "Swing Speed",
-  "mflp.animations.reequip": "Cancel Reequip Animation"
+  "mflp.animations.reequip": "Cancel Reequip Animation",
+  "mflp.usingDisallowedModuleWarningScreen.name": "Using Disallowed Module Warning",
+  "mflp.usingDisallowedModuleWarningScreen.disableOffendingModules": "Disable Modules",
+  "mflp.usingDisallowedModuleWarningScreen.playAnyway": "Play Anyway",
+  "mflp.usingDisallowedModuleWarningScreen.playAnyway.tooltip": "Warning: This may get you banned, do this at your own risk.",
+  "mflp.usingDisallowedModuleWarningScreen.title": "Warning: You are about to play on a server that disallows one or more of the settings you are using.",
+  "mflp.usingDisallowedModuleWarningScreen.implications": "This may get you banned, continue playing at your own risk."
 
 }
