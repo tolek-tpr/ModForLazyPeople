@@ -19,6 +19,13 @@ public class ModForLazyPeopleMixinPlugin implements IMixinConfigPlugin {
         }
     };
 
+    @SuppressWarnings("ReferenceToMixin")
+    private final HashMap<String, String[]> mixinIncompatibilityMap = new HashMap<>() {
+        {
+            //put(SomeMixin.class.getName(), new String[] { "some_incompatibility" });
+        }
+    };
+
     @Override
     public void onLoad(String mixinPackage) {
         // Called when mixin configuration is loaded
@@ -38,6 +45,17 @@ public class ModForLazyPeopleMixinPlugin implements IMixinConfigPlugin {
                 // Check if the dependency is loaded
                 if (!MiscUtils.isModLoaded(dependency))
                     // It's not, we cannot apply this mixin.
+                    return false;
+            }
+        }
+
+        // Check if it has incompatibilities
+        if (mixinIncompatibilityMap.containsKey(mixinClassName)) {
+            // It has incompatibilities: go through them
+            for (String incompatibility : mixinIncompatibilityMap.get(mixinClassName)) {
+                // Check if the incompatibility is loaded
+                if (MiscUtils.isModLoaded(incompatibility))
+                    // It is, we cannot apply this mixin.
                     return false;
             }
         }
